@@ -15,6 +15,9 @@ class _LogInScreenState extends State<LogInScreen> {
         title: const Text("Login Screen"),
         centerTitle: true,
       ),
+      body: const Center(
+        child: Text("Log In Screen"),
+      ),
     );
   }
 }
