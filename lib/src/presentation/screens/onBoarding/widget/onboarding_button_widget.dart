@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/utils/extension.dart';
 
 class OnBoardingButtonWidget extends StatefulWidget {
   const OnBoardingButtonWidget({super.key});
@@ -19,7 +21,9 @@ class _OnBoardingButtonWidgetState extends State<OnBoardingButtonWidget> {
             color: ColorSchemes.buttonOnBoarding,
             borderRadius: BorderRadiusDirectional.all(Radius.circular(12))),
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(Routes.loginScreen);
+          },
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           height: 50,
           child: Text(
