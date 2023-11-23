@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/login_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
 
-class Routes {
+class AppRoutes {
   static const String onBoardingScreen = "/onBoardingScreen";
-  static const String loginScreen = "loginScreen";
+  static const String loginScreen = "/loginScreen";
+  static const String splashScreen = "/splashScreen";
 }
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Routes.onBoardingScreen:
+      case AppRoutes.onBoardingScreen:
         return _materialRoute(const OnBoardingScreen());
-      case Routes.loginScreen:
+      case AppRoutes.loginScreen:
         return _materialRoute(const LogInScreen());
+      case AppRoutes.splashScreen:
+        return _materialRoute(const SplashScreen());
       default:
         return unDefinedRoute();
     }

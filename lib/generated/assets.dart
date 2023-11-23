@@ -16,4 +16,5 @@ class Assets {
   static const String imagesFrame = 'assets/images/Frame.svg';
   static const String imagesGroup = 'assets/images/Group.svg';
   static const String imagesOnboardingDoc = 'assets/images/onboarding_doc.png';
+  static const String imagesSplashScreen = 'assets/images/splash_screen.png';
 }

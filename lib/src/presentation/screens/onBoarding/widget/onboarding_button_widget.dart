@@ -22,7 +22,7 @@ class _OnBoardingButtonWidgetState extends State<OnBoardingButtonWidget> {
             borderRadius: BorderRadiusDirectional.all(Radius.circular(12))),
         child: MaterialButton(
           onPressed: () {
-            context.pushNamed(Routes.loginScreen);
+            context.pushNamed(AppRoutes.loginScreen);
           },
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           height: 50,
