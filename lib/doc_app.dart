@@ -17,7 +17,7 @@ class DocApp extends StatelessWidget {
         onGenerateRoute: RouteGenerator.getRoute,
         initialRoute: Routes.onBoardingScreen,
         theme: AppTheme("en").light,
-        home: const HomeScreen(title: 'Doc Doc'),
+        home: const HomeScreen(title: "title"),
       ),
     );
   }
