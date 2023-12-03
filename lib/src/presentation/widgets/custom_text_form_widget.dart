@@ -43,7 +43,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       readOnly: widget.readOnly,
       focusNode: _focus,
       keyboardType: widget.textInputType,
@@ -55,8 +55,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
           color: ColorSchemes.black,
           letterSpacing: -0.13),
       decoration: InputDecoration(
+          isDense: true,
           focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorSchemes.border),
+              borderSide: const BorderSide(color: ColorSchemes.primary),
               borderRadius: BorderRadius.circular(10)),
           enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: ColorSchemes.border),

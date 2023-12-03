@@ -35,7 +35,7 @@ class TextStyles {
   );
 
   static TextStyle font24BlueBold = TextStyle(
-    fontSize: 24.sp,
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorSchemes.primary,
   );

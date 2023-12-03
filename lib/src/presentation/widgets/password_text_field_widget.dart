@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
@@ -71,6 +73,7 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
               _passwordIcon,
               fit: BoxFit.scaleDown,
               matchTextDirection: true,
+              color: ColorSchemes.primary,
             ),
             onPressed: _toggleVisibilityIcon,
           ),

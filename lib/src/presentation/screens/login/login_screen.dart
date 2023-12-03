@@ -45,15 +45,19 @@ class _LogInScreenState extends State<LogInScreen> {
       builder: (bloc, state) {
         return Scaffold(
           body: LogInContentWidget(
-            loginController: _loginController,
-            loginErrorMassage: _loginErrorMassage,
-            validateEmailAddress: (email) {
-              _validateEmailAddress(email);
-            },
-            validatePassword: (password) {
-              _validatePassword(password);
-            },
-          ),
+              loginController: _loginController,
+              loginErrorMassage: _loginErrorMassage,
+              validateEmailAddress: (email) {
+                _validateEmailAddress(email);
+              },
+              validatePassword: (password) {
+                _validatePassword(password);
+              },
+              onForgetPasswordPressed: _navigateToForgotPasswordScreen,
+              onLogInPressed: () {
+                //_bloc.add(LogInEvent());
+              },
+              onSignUpPressed: () {}),
         );
       },
     );
@@ -65,10 +69,6 @@ class _LogInScreenState extends State<LogInScreen> {
 
   void _validateEmailAddress(String email) {
     _bloc.add(ValidateEmailEvent(email: email));
-  }
-
-  void _navigateToForgotPasswordScreenEvent() {
-    _bloc.add(NavigateToForgetPasswordEvent());
   }
 
   void _navigateToForgotPasswordScreen() {

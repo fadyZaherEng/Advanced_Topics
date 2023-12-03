@@ -24,7 +24,7 @@ class _LoginTitleWidgetState extends State<LoginTitleWidget> {
             style: TextStyles.font24BlueBold,
             textAlign: TextAlign.start,
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 12.h),
           Text(
             'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
             style: TextStyles.font15GrayRegular,

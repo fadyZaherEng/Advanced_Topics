@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
-class OnBoardingButtonWidget extends StatefulWidget {
-  const OnBoardingButtonWidget({super.key});
+class CustomButtonWidget extends StatefulWidget {
+  void Function()? onPressed;
+  String title;
+  double padding;
+
+  CustomButtonWidget({
+    super.key,
+    required this.onPressed,
+    required this.title,
+    this.padding = 20,
+  });
 
   @override
-  State<OnBoardingButtonWidget> createState() => _OnBoardingButtonWidgetState();
+  State<CustomButtonWidget> createState() => _CustomButtonWidgetState();
 }
 
-class _OnBoardingButtonWidgetState extends State<OnBoardingButtonWidget> {
+class _CustomButtonWidgetState extends State<CustomButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(widget.padding),
       child: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
             color: ColorSchemes.buttonOnBoarding,
             borderRadius: BorderRadiusDirectional.all(Radius.circular(12))),
         child: MaterialButton(
-          onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              AppRoutes.loginScreen,
-              (route) => false,
-            );
-          },
+          onPressed: widget.onPressed,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           height: 50,
           child: Text(
-            "Get Started",
+            widget.title,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge
