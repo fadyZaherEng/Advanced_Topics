@@ -1,0 +1,8 @@
+flutter_native_splash:
+  #first frame 640*640 r=320
+  #second frame large 960*960
+  color: "#ffffff"
+  image: assets/images/splash_screen.png
+  android_12:
+    color: "#ffffff"
+    image: assets/images/android12_logo.png

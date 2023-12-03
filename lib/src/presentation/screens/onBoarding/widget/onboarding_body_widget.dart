@@ -65,7 +65,7 @@ class _OnBoardingBodyWidgetState extends State<OnBoardingBodyWidget> {
               "easily with Docdoc to get a new experience.",
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Colors.black,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.normal,
                   ),
               textAlign: TextAlign.center,

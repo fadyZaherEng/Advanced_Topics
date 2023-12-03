@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/login_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
 
 class AppRoutes {
   static const String onBoardingScreen = "/onBoardingScreen";
   static const String loginScreen = "/loginScreen";
-  static const String splashScreen = "/splashScreen";
+  //static const String splashScreen = "/splashScreen";
 }
 
 class RouteGenerator {
@@ -16,8 +15,8 @@ class RouteGenerator {
         return _materialRoute(const OnBoardingScreen());
       case AppRoutes.loginScreen:
         return _materialRoute(const LogInScreen());
-      case AppRoutes.splashScreen:
-        return _materialRoute(const SplashScreen());
+      // case AppRoutes.splashScreen:
+      //   return _materialRoute(const SplashScreen());
       default:
         return unDefinedRoute();
     }

@@ -13,8 +13,11 @@ class Assets {
   static const String fontsPoppinsRegular = 'assets/fonts/Poppins-Regular.ttf';
   static const String fontsPoppinsSemiBold =
       'assets/fonts/Poppins-SemiBold.ttf';
+  static const String imagesFinalLogo = 'assets/images/android12_logo.png';
   static const String imagesFrame = 'assets/images/Frame.svg';
   static const String imagesGroup = 'assets/images/Group.svg';
+  static const String imagesIosAndroidLogo =
+      'assets/images/ios_android_logo.png';
   static const String imagesOnboardingDoc = 'assets/images/onboarding_doc.png';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
 }
