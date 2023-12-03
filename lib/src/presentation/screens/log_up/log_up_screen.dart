@@ -10,6 +10,6 @@ class LogUpScreen extends StatefulWidget {
 class _LogUpScreenState extends State<LogUpScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }
