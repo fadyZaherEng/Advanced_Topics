@@ -77,12 +77,12 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
             ),
             onPressed: _toggleVisibilityIcon,
           ),
-          prefixIcon: SvgPicture.asset(
-            ImagePaths.lock,
-            fit: BoxFit.scaleDown,
-            matchTextDirection: true,
-            color: ColorSchemes.black,
-          ),
+          // prefixIcon: SvgPicture.asset(
+          //   ImagePaths.lock,
+          //   fit: BoxFit.scaleDown,
+          //   matchTextDirection: true,
+          //   color: ColorSchemes.black,
+          // ),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           labelStyle: _labelStyle(context, _textFieldHasFocus),

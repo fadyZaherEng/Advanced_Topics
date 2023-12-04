@@ -2,6 +2,8 @@
 class Assets {
   Assets._();
 
+  static const String assetsImagesApple = 'assets/images/apple.svg';
+  static const String assetsImagesGoogle = 'assets/images/google.svg';
   static const String fontsAlmaraiBold = 'assets/fonts/Almarai-Bold.ttf';
   static const String fontsAlmaraiExtraBold =
       'assets/fonts/Almarai-ExtraBold.ttf';
@@ -14,6 +16,7 @@ class Assets {
   static const String fontsPoppinsSemiBold =
       'assets/fonts/Poppins-SemiBold.ttf';
   static const String imagesAndroid12Logo = 'assets/images/android12_logo.png';
+  static const String imagesApple = 'assets/images/apple.png';
   static const String imagesArrow = 'assets/images/arrow.svg';
   static const String imagesBlus = 'assets/images/blus.svg';
   static const String imagesCalender = 'assets/images/calender.svg';
@@ -27,9 +30,12 @@ class Assets {
   static const String imagesDiifMinus = 'assets/images/diif_minus.svg';
   static const String imagesDoller = 'assets/images/doller.svg';
   static const String imagesEmail = 'assets/images/email.svg';
+  static const String imagesFace = 'assets/images/face.svg';
+  static const String imagesFacebook = 'assets/images/facebook.png';
   static const String imagesForgetPasswordEmail =
       'assets/images/forget_password_email.svg';
   static const String imagesFrame = 'assets/images/Frame.svg';
+  static const String imagesGoogle = 'assets/images/google.png';
   static const String imagesGroup = 'assets/images/Group.svg';
   static const String imagesIcAboutUs = 'assets/images/ic_about_us.svg';
   static const String imagesIcAddress = 'assets/images/ic_address.svg';
