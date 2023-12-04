@@ -26,6 +26,14 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
             children: [
               Checkbox(
                 value: _rememberMe,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                activeColor: ColorSchemes.primary,
+                side: const BorderSide(
+                  color: ColorSchemes.gray,
+                  width: 1,
+                ),
                 onChanged: (value) {
                   setState(
                     () {

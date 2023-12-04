@@ -8,4 +8,7 @@ class ImagePaths {
   static const String lock = "assets/images/ic_lock.svg";
   static const String showPassword = "assets/images/ic_show_password.svg";
   static const String hidePassword = "assets/images/ic_hide_password.svg";
+  static const String face = "assets/images/face.svg";
+  static const String google = "assets/images/google.svg";
+  static const String apple = "assets/images/apple.svg";
 }
