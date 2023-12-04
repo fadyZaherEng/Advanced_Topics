@@ -45,19 +45,22 @@ class _LogInScreenState extends State<LogInScreen> {
       builder: (bloc, state) {
         return Scaffold(
           body: LogInContentWidget(
-              loginController: _loginController,
-              loginErrorMassage: _loginErrorMassage,
-              validateEmailAddress: (email) {
-                _validateEmailAddress(email);
-              },
-              validatePassword: (password) {
-                _validatePassword(password);
-              },
-              onForgetPasswordPressed: _navigateToForgotPasswordScreen,
-              onLogInPressed: () {
-                //_bloc.add(LogInEvent());
-              },
-              onSignUpPressed: () {}),
+            loginController: _loginController,
+            loginErrorMassage: _loginErrorMassage,
+            validateEmailAddress: (email) {
+              _validateEmailAddress(email);
+            },
+            validatePassword: (password) {
+              _validatePassword(password);
+            },
+            onForgetPasswordPressed: _navigateToForgotPasswordScreen,
+            onLogInPressed: () {
+              //_bloc.add(LogInEvent());
+            },
+            onSignUpPressed: () {
+              _navigateToLogUpScreen();
+            },
+          ),
         );
       },
     );
@@ -81,5 +84,9 @@ class _LogInScreenState extends State<LogInScreen> {
 
   void _pop() {
     Navigator.of(context).pop();
+  }
+
+  void _navigateToLogUpScreen() {
+    Navigator.of(context).pushNamed('/logUpScreen');
   }
 }
