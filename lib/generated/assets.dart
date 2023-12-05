@@ -5,16 +5,14 @@ class Assets {
   static const String assetsImagesApple = 'assets/images/apple.svg';
   static const String assetsImagesGoogle = 'assets/images/google.svg';
   static const String fontsAlmaraiBold = 'assets/fonts/Almarai-Bold.ttf';
-  static const String fontsAlmaraiExtraBold =
-      'assets/fonts/Almarai-ExtraBold.ttf';
+  static const String fontsAlmaraiExtraBold = 'assets/fonts/Almarai-ExtraBold.ttf';
   static const String fontsAlmaraiLight = 'assets/fonts/Almarai-Light.ttf';
   static const String fontsAlmaraiRegular = 'assets/fonts/Almarai-Regular.ttf';
   static const String fontsPoppinsBold = 'assets/fonts/Poppins-Bold.ttf';
   static const String fontsPoppinsLight = 'assets/fonts/Poppins-Light.ttf';
   static const String fontsPoppinsMedium = 'assets/fonts/Poppins-Medium.ttf';
   static const String fontsPoppinsRegular = 'assets/fonts/Poppins-Regular.ttf';
-  static const String fontsPoppinsSemiBold =
-      'assets/fonts/Poppins-SemiBold.ttf';
+  static const String fontsPoppinsSemiBold = 'assets/fonts/Poppins-SemiBold.ttf';
   static const String imagesAndroid12Logo = 'assets/images/android12_logo.png';
   static const String imagesApple = 'assets/images/apple.png';
   static const String imagesArrow = 'assets/images/arrow.svg';
@@ -25,14 +23,12 @@ class Assets {
   static const String imagesCheckin = 'assets/images/checkin.svg';
   static const String imagesCheckinTime = 'assets/images/checkin_time.svg';
   static const String imagesCheckoutTime = 'assets/images/checkout_time.svg';
-  static const String imagesConfirmationEmail =
-      'assets/images/confirmation_email.svg';
+  static const String imagesConfirmationEmail = 'assets/images/confirmation_email.svg';
   static const String imagesDoller = 'assets/images/doller.svg';
   static const String imagesEmail = 'assets/images/email.svg';
   static const String imagesFace = 'assets/images/face.svg';
   static const String imagesFacebook = 'assets/images/facebook.png';
-  static const String imagesForgetPasswordEmail =
-      'assets/images/forget_password_email.svg';
+  static const String imagesForgetPasswordEmail = 'assets/images/forget_password_email.svg';
   static const String imagesFrame = 'assets/images/Frame.svg';
   static const String imagesGoogle = 'assets/images/google.png';
   static const String imagesGroup = 'assets/images/Group.svg';
@@ -50,64 +46,39 @@ class Assets {
   static const String imagesIcContact = 'assets/images/ic_contact.svg';
   static const String imagesIcEdit = 'assets/images/ic_edit.svg';
   static const String imagesIcEducation = 'assets/images/ic_education.svg';
-  static const String imagesIcEmptyTimeline =
-      'assets/images/ic_empty_timeline.svg';
+  static const String imagesIcEmptyTimeline = 'assets/images/ic_empty_timeline.svg';
   static const String imagesIcFile = 'assets/images/ic_file.svg';
   static const String imagesIcFilter = 'assets/images/ic_filter.svg';
   static const String imagesIcGallery = 'assets/images/ic_gallery.svg';
-  static const String imagesIcHalfDayLeave =
-      'assets/images/ic_half_day_leave.svg';
-  static const String imagesIcHidePassword =
-      'assets/images/ic_hide_password.svg';
-  static const String imagesIcHomeSelected =
-      'assets/images/ic_home_selected.svg';
-  static const String imagesIcHomeUnSelected =
-      'assets/images/ic_home_un_selected.svg';
-  static const String imagesIcIndemnityEncashment =
-      'assets/images/ic_indemnity_encashment.svg';
+  static const String imagesIcHidePassword = 'assets/images/ic_hide_password.svg';
+  static const String imagesIcHomeSelected = 'assets/images/ic_home_selected.svg';
+  static const String imagesIcHomeUnSelected = 'assets/images/ic_home_un_selected.svg';
+  static const String imagesIcIndemnityEncashment = 'assets/images/ic_indemnity_encashment.svg';
   static const String imagesIcLanguage = 'assets/images/ic_language.svg';
-  static const String imagesIcLeave = 'assets/images/ic_leave.svg';
-  static const String imagesIcLeaveCncashment =
-      'assets/images/ic_leave_cncashment.svg';
-  static const String imagesIcLoan = 'assets/images/ic_loan.svg';
   static const String imagesIcLock = 'assets/images/ic_lock.svg';
   static const String imagesIcLogout = 'assets/images/ic_logout.svg';
-  static const String imagesIcMoreSelected =
-      'assets/images/ic_more_selected.svg';
-  static const String imagesIcMoreUnSelected =
-      'assets/images/ic_more_un_selected.svg';
+  static const String imagesIcMoreSelected = 'assets/images/ic_more_selected.svg';
+  static const String imagesIcMoreUnSelected = 'assets/images/ic_more_un_selected.svg';
   static const String imagesIcNoInternet = 'assets/images/ic_no_internet.svg';
-  static const String imagesIcNotificationsEmpty =
-      'assets/images/ic_notifications_empty.svg';
-  static const String imagesIcNotificationsMore =
-      'assets/images/ic_notifications_more.svg';
+  static const String imagesIcNotificationsEmpty = 'assets/images/ic_notifications_empty.svg';
+  static const String imagesIcNotificationsMore = 'assets/images/ic_notifications_more.svg';
   static const String imagesIcPdf = 'assets/images/ic_pdf.svg';
   static const String imagesIcPresent = 'assets/images/ic_present.svg';
   static const String imagesIcProfile = 'assets/images/ic_profile.svg';
-  static const String imagesIcProfileSelected =
-      'assets/images/ic_profile_selected.svg';
-  static const String imagesIcProfileUnSelected =
-      'assets/images/ic_profile_un_selected.svg';
-  static const String imagesIcRequestSelected =
-      'assets/images/ic_request_selected.svg';
+  static const String imagesIcProfileSelected = 'assets/images/ic_profile_selected.svg';
+  static const String imagesIcProfileUnSelected = 'assets/images/ic_profile_un_selected.svg';
+  static const String imagesIcRequestSelected = 'assets/images/ic_request_selected.svg';
   static const String imagesIcRequestType = 'assets/images/ic_request_type.svg';
-  static const String imagesIcRequestUnSelected =
-      'assets/images/ic_request_un_selected.svg';
+  static const String imagesIcRequestUnSelected = 'assets/images/ic_request_un_selected.svg';
   static const String imagesIcResumeDuty = 'assets/images/ic_resume_duty.svg';
   static const String imagesIcSelectDate = 'assets/images/ic_select_date.svg';
-  static const String imagesIcShortLeave = 'assets/images/ic_short_leave.svg';
-  static const String imagesIcShowPassword =
-      'assets/images/ic_show_password.svg';
-  static const String imagesIcTermesConditions =
-      'assets/images/ic_termes_conditions.svg';
+  static const String imagesIcShowPassword = 'assets/images/ic_show_password.svg';
+  static const String imagesIcTermesConditions = 'assets/images/ic_termes_conditions.svg';
   static const String imagesIcTime = 'assets/images/ic_time.svg';
-  static const String imagesIcTimeLineTime =
-      'assets/images/ic_time_line_time.svg';
-  static const String imagesIcUpdateProfile =
-      'assets/images/ic_update_profile.svg';
+  static const String imagesIcTimeLineTime = 'assets/images/ic_time_line_time.svg';
+  static const String imagesIcUpdateProfile = 'assets/images/ic_update_profile.svg';
   static const String imagesIcUploadFile = 'assets/images/ic_upload_file.svg';
-  static const String imagesIosAndroidLogo =
-      'assets/images/ios_android_logo.png';
+  static const String imagesIosAndroidLogo = 'assets/images/ios_android_logo.png';
   static const String imagesLeave = 'assets/images/leave.svg';
   static const String imagesNews = 'assets/images/news.svg';
   static const String imagesNotification = 'assets/images/notification.svg';
@@ -115,4 +86,5 @@ class Assets {
   static const String imagesRightArrow = 'assets/images/right_arrow.svg';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
   static const String imagesTrueMark = 'assets/images/true_mark.svg';
+
 }
