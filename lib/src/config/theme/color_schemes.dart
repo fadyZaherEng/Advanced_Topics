@@ -14,4 +14,5 @@ class ColorSchemes {
   static const Color border = Color.fromRGBO(214, 214, 214, 1);
   static const Color lightGray = Color.fromRGBO(242, 242, 242, 1);
   static const Color sameBlack = Color.fromRGBO(66, 67, 71, 0.8);
+  static const Color iconBackGround = Color.fromRGBO(244, 236, 255, 1);
 }

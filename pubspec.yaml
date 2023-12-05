@@ -60,6 +60,8 @@ dependencies:
   flutter_svg:
   # for adapting screen and font size.
   flutter_screenutil:
+  internet_connection_checker:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
