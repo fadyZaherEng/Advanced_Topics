@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 
-class LogUpScreen extends StatefulWidget {
+class LogUpScreen extends BaseStatefulWidget {
   const LogUpScreen({super.key});
-
   @override
-  State<LogUpScreen> createState() => _LogUpScreenState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _LogUpScreenState();
 }
 
-class _LogUpScreenState extends State<LogUpScreen> {
+class _LogUpScreenState extends BaseState<LogUpScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold();
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget baseBuild(BuildContext context) {
+    return const Scaffold();
   }
 }

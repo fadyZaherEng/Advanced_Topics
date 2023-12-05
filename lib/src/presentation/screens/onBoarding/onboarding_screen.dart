@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
+import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/widget/onboarding_body_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/widget/onboarding_logo_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OnBoardingScreen extends StatefulWidget {
+class OnBoardingScreen extends BaseStatefulWidget {
   const OnBoardingScreen({super.key});
-
   @override
-  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
+class _OnBoardingScreenState extends BaseState<OnBoardingScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget baseBuild(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

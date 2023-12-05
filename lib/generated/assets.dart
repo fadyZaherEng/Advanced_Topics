@@ -27,7 +27,6 @@ class Assets {
   static const String imagesCheckoutTime = 'assets/images/checkout_time.svg';
   static const String imagesConfirmationEmail =
       'assets/images/confirmation_email.svg';
-  static const String imagesDiifMinus = 'assets/images/diif_minus.svg';
   static const String imagesDoller = 'assets/images/doller.svg';
   static const String imagesEmail = 'assets/images/email.svg';
   static const String imagesFace = 'assets/images/face.svg';
@@ -39,20 +38,12 @@ class Assets {
   static const String imagesGroup = 'assets/images/Group.svg';
   static const String imagesIcAboutUs = 'assets/images/ic_about_us.svg';
   static const String imagesIcAddress = 'assets/images/ic_address.svg';
-  static const String imagesIcAirTicket = 'assets/images/ic_air_ticket.svg';
   static const String imagesIcApprove = 'assets/images/ic_approve.svg';
   static const String imagesIcArrowDown = 'assets/images/ic_arrow_down.svg';
   static const String imagesIcArrowLeft = 'assets/images/ic_arrow_left.svg';
   static const String imagesIcArrowRight = 'assets/images/ic_arrow_right.svg';
   static const String imagesIcAssets = 'assets/images/ic_assets.svg';
-  static const String imagesIcAttachment = 'assets/images/ic_attachment.svg';
-  static const String imagesIcAttendanceHistory =
-      'assets/images/ic_attendance_history.svg';
-  static const String imagesIcAttendanceHistoryEmpty =
-      'assets/images/ic_attendance_history_empty.svg';
   static const String imagesIcBackArrow = 'assets/images/ic_back_arrow.svg';
-  static const String imagesIcBusinessTrip =
-      'assets/images/ic_business_trip.svg';
   static const String imagesIcCamera = 'assets/images/ic_camera.svg';
   static const String imagesIcCheckIn = 'assets/images/ic_check_in.svg';
   static const String imagesIcClose = 'assets/images/ic_close.svg';
@@ -85,29 +76,11 @@ class Assets {
       'assets/images/ic_more_selected.svg';
   static const String imagesIcMoreUnSelected =
       'assets/images/ic_more_un_selected.svg';
-  static const String imagesIcMyRequests = 'assets/images/ic_my_requests.svg';
-  static const String imagesIcMyRequestsEmptyScreen =
-      'assets/images/ic_my_requests_empty_screen.svg';
-  static const String imagesIcMyTeamAttendance =
-      'assets/images/ic_my_team_attendance.svg';
-  static const String imagesIcMyTeamAttendanceEmpty =
-      'assets/images/ic_my_team_attendance_empty.svg';
-  static const String imagesIcMyTeamLeave =
-      'assets/images/ic_my_team_leave.svg';
-  static const String imagesIcMyTeamRequests =
-      'assets/images/ic_my_team_requests.svg';
-  static const String imagesIcMyTeamRequestsEmpty =
-      'assets/images/ic_my_team_requests_empty.svg';
+  static const String imagesIcNoInternet = 'assets/images/ic_no_internet.svg';
   static const String imagesIcNotificationsEmpty =
       'assets/images/ic_notifications_empty.svg';
   static const String imagesIcNotificationsMore =
       'assets/images/ic_notifications_more.svg';
-  static const String imagesIcOtherRequest =
-      'assets/images/ic_other_request.svg';
-  static const String imagesIcPayslipSelected =
-      'assets/images/ic_payslip_selected.svg';
-  static const String imagesIcPayslipUnSelected =
-      'assets/images/ic_payslip_un_selected.svg';
   static const String imagesIcPdf = 'assets/images/ic_pdf.svg';
   static const String imagesIcPresent = 'assets/images/ic_present.svg';
   static const String imagesIcProfile = 'assets/images/ic_profile.svg';
@@ -141,7 +114,5 @@ class Assets {
   static const String imagesOnboardingDoc = 'assets/images/onboarding_doc.png';
   static const String imagesRightArrow = 'assets/images/right_arrow.svg';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
-  static const String imagesTalentlinkHrLogo =
-      'assets/images/talentlink_hr_logo.svg';
   static const String imagesTrueMark = 'assets/images/true_mark.svg';
 }

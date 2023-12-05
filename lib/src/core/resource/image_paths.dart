@@ -11,4 +11,6 @@ class ImagePaths {
   static const String face = "assets/images/face.svg";
   static const String google = "assets/images/google.svg";
   static const String apple = "assets/images/apple.svg";
+
+  static const String noInternet = "assets/images/ic_no_internet.svg";
 }
