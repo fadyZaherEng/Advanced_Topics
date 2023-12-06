@@ -3,6 +3,7 @@ import 'package:flutter_advanced_topics/src/presentation/screens/home/home_scree
 import 'package:flutter_advanced_topics/src/presentation/screens/log_up/log_up_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/login_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_screen/full_video_screen.dart';
 
 class AppRoutes {
   static const String onBoardingScreen = "/onBoardingScreen";
@@ -10,6 +11,7 @@ class AppRoutes {
   static const String homeScreen = "/homeScreen";
   static const String forgetPasswordScreen = "/forgetPasswordScreen";
   static const String logUpScreen = "/logUpScreen";
+  static const String fullVideoScreen = "/fullVideoScreen";
 //static const String splashScreen = "/splashScreen";
 }
 
@@ -26,6 +28,9 @@ class RouteGenerator {
       //   return _materialRoute(const ForgetPasswordScreen());
       case AppRoutes.logUpScreen:
         return _materialRoute(const LogUpScreen());
+      case AppRoutes.fullVideoScreen:
+        final videoUrl = routeSettings.arguments as String;
+        return _materialRoute(FullVideoScreen(videoUrl: videoUrl));
       // case AppRoutes.splashScreen:
       //   return _materialRoute(const SplashScreen());
       default:

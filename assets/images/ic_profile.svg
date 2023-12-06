@@ -1,4 +1,12 @@
-<svg data-name="Iconly/Bulk/Profile" xmlns="http://www.w3.org/2000/svg" width="15.994" height="20" viewBox="0 0 15.994 20">
-    <path data-name="Fill 1" d="M8 0C3.684 0 0 .68 0 3.4s3.661 3.425 8 3.425c4.313 0 8-.679 8-3.4S12.334 0 8 0" transform="translate(0 13.175)" style="fill:#e63a2d"/>
-    <path data-name="Fill 4" d="M5.292 10.584A5.292 5.292 0 1 0 0 5.292a5.273 5.273 0 0 0 5.292 5.292" transform="translate(2.705)" style="fill:#d6d6d6"/>
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_38_272)">
+<rect width="56" height="56" fill="#D9D9D9"/>
+<path d="M28 35C34.6274 35 40 29.6274 40 23C40 16.3726 34.6274 11 28 11C21.3726 11 16 16.3726 16 23C16 29.6274 21.3726 35 28 35Z" fill="white"/>
+<path d="M28 35.8167C13.9455 35.8167 2.5 45.4767 2.5 57.3792C2.5 58.1842 3.11716 58.8167 3.90264 58.8167H52.0974C52.8828 58.8167 53.5 58.1842 53.5 57.3792C53.5 45.4767 42.0545 35.8167 28 35.8167Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_38_272">
+<rect width="56" height="56" fill="white"/>
+</clipPath>
+</defs>
 </svg>

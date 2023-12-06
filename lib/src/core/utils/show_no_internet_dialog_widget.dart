@@ -1,6 +1,6 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/presentation/widgets/no_internet_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/no_internet_widget.dart';
 
 Future showNoInternetDialogWidget({
   required BuildContext context,

@@ -4,10 +4,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/manager/loading/loading_manager.dart';
+import 'package:flutter_advanced_topics/src/core/utils/show_no_internet_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/internet/get_no_internet_use_case.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/internet/set_no_internet_use_case.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/show_no_internet_dialog_widget.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 abstract class BaseStatefulWidget extends StatefulWidget {
