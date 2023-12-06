@@ -76,6 +76,8 @@ dependencies:
   device_info_plus:
   # for handling permissions in flutter
   permission_handler:
+  # for  progress bar in flutter (like arc progress bar)
+  arc_progress_bar_new:
 
 
 dev_dependencies:
