@@ -60,6 +60,14 @@ dependencies:
   flutter_svg:
   # for adapting screen and font size.
   flutter_screenutil:
+  # for video player
+  video_player:
+  # for audio player
+  audioplayers:
+  # for downloading files
+  url_launcher: ^6.1.12
+  # for webview
+  flutter_widget_from_html_core: ^0.10.3
   # for checking internet connection status and displaying a snackbar to the user in case of no internet connection
   internet_connection_checker:
   # for shared preferences
@@ -68,6 +76,7 @@ dependencies:
   device_info_plus:
   # for handling permissions in flutter
   permission_handler:
+
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +88,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  # webview flutter
+  webview_flutter: ^3.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
