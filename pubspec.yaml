@@ -60,8 +60,14 @@ dependencies:
   flutter_svg:
   # for adapting screen and font size.
   flutter_screenutil:
+  # for checking internet connection status and displaying a snackbar to the user in case of no internet connection
   internet_connection_checker:
+  # for shared preferences
   shared_preferences:
+  # for device information (like device id and device name)
+  device_info_plus:
+  # for handling permissions in flutter
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
