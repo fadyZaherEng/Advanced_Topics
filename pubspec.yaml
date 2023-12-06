@@ -60,10 +60,6 @@ dependencies:
   flutter_svg:
   # for adapting screen and font size.
   flutter_screenutil:
-  #check the internet connection status in your app
-  internet_connection_checker:
-  # for sharing data between screens in your app
-  shared_preferences:
   # for video player
   video_player:
   # for audio player
@@ -72,7 +68,14 @@ dependencies:
   url_launcher: ^6.1.12
   # for webview
   flutter_widget_from_html_core: ^0.10.3
-
+  # for checking internet connection status and displaying a snackbar to the user in case of no internet connection
+  internet_connection_checker:
+  # for shared preferences
+  shared_preferences:
+  # for device information (like device id and device name)
+  device_info_plus:
+  # for handling permissions in flutter
+  permission_handler:
 
 
 dev_dependencies:
