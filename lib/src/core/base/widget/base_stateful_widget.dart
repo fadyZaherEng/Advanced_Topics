@@ -72,7 +72,6 @@ abstract class BaseState<W extends BaseStatefulWidget> extends State<W>
   Future<void> _updateConnectionStatus(InternetConnectionStatus status) async {
     if (status == InternetConnectionStatus.disconnected &&
         !GetNoInternetUseCase(injector())()) {
-      print(true);
       SetNoInternetUseCase(injector())(true);
       showNoInternetDialogWidget(
         context: context,
@@ -85,7 +84,6 @@ abstract class BaseState<W extends BaseStatefulWidget> extends State<W>
       );
     } else if (status == InternetConnectionStatus.connected &&
         GetNoInternetUseCase(injector())()) {
-      print(false);
       SetNoInternetUseCase(injector())(false);
       Navigator.pop(context);
     }
