@@ -26,3 +26,4 @@
 # Web_view_to_Display_Content_From_HTML
 # Web_view_to_Display_Content_From_URL
 # QR_Code_Scanner_widget
+# Album_Widget_using_Page_View
