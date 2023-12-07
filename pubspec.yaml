@@ -79,6 +79,8 @@ dependencies:
   # for  progress bar in flutter (like arc progress bar)
   arc_progress_bar_new:
   qr_code_scanner: ^1.0.1
+  photo_view:
+  equatable:
 
 
 dev_dependencies:
