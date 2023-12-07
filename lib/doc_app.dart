@@ -24,9 +24,8 @@ class DocApp extends StatelessWidget {
           title: 'Doc Doc',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          //initialRoute: AppRoutes.onBoardingScreen,
+          initialRoute: AppRoutes.onBoardingScreen,
           theme: AppTheme("en").light,
-          home: QRViewExample(),
         ),
       ),
     );

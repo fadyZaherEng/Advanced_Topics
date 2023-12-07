@@ -6,14 +6,14 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/qr/widget/build
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr/widget/camera_scanner_option_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+class QrCodeScannerScreen extends StatefulWidget {
+  const QrCodeScannerScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _QRViewExampleState();
+  State<StatefulWidget> createState() => _QrCodeScannerScreenState();
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _QrCodeScannerScreenState extends State<QrCodeScannerScreen> {
   Barcode? result;
   QRViewController? controller;
 
