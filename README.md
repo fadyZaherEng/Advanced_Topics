@@ -31,4 +31,7 @@
 # Web_view_to_Display_Content_From_URL
 # QR_Code_Scanner_widget
 # Album_Widget_using_Page_View
-# Upload_File_Custom_Widget
+# Upload_File_Custom_Widget_And_Show_Bottom_sheet_With_New_style
+# App_Localization
+
+######################################################
