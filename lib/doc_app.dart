@@ -6,11 +6,11 @@ import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_file_bottom_sheet.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet_upload_file_style_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/file_content_bottom_sheet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/upload_file_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
 
 class DocApp extends StatelessWidget {
   const DocApp({super.key});
@@ -29,7 +29,14 @@ class DocApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Doc Doc',
           debugShowCheckedModeBanner: false,
-          // onGenerateRoute: RouteGenerator.getRoute,
+          supportedLocales: S.delegate.supportedLocales,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          onGenerateRoute: RouteGenerator.getRoute,
           //initialRoute: AppRoutes.onBoardingScreen,
           theme: AppTheme("en").light,
           home: Scaffold(
