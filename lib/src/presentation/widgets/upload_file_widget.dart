@@ -29,14 +29,16 @@ class UploadFileWidget extends StatefulWidget {
 class _UploadFileWidgetState extends State<UploadFileWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      key: widget.globalKey,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            widget.filePath.isEmpty
-                ? DottedBorder(
+    return Center(
+      child: Column(
+        key: widget.globalKey,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          widget.filePath.isEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: DottedBorder(
                     color: widget.isMandatory
                         ? ColorSchemes.redError
                         : ColorSchemes.primary,
@@ -75,7 +77,7 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
                                   horizontal: 16,
                                 ),
                                 child: Text(
-                                  "Chose File",
+                                  "Choose File",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -90,55 +92,47 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
                         ],
                       ),
                     ),
-                  )
-                : Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        "ImagePaths.file",
+                  ),
+                )
+              : Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      ImagePaths.imagesIcFile,
+                      fit: BoxFit.scaleDown,
+                    ),
+                    const SizedBox(width: 15),
+                    Text(
+                      widget.filePath.split('/').last,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: ColorSchemes.black,
+                            letterSpacing: -0.13,
+                          ),
+                    ),
+                    const SizedBox(width: 15),
+                    InkWell(
+                      onTap: () => widget.deleteFileAction(widget.filePath),
+                      child: SvgPicture.asset(
+                        ImagePaths.close,
                         fit: BoxFit.scaleDown,
                       ),
-                      const SizedBox(width: 15),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.filePath.split('/').last,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                    color: ColorSchemes.black,
-                                    letterSpacing: -0.13,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => widget.deleteFileAction(widget.filePath),
-                        child: SvgPicture.asset(
-                          ImagePaths.close,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                    ],
-                  ),
-            const SizedBox(height: 8.0),
-            Visibility(
-              visible: widget.isMandatory,
-              child: Text(
-                widget.fileErrorMassage ?? "",
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: ColorSchemes.redError,
-                      letterSpacing: -.24,
                     ),
-              ),
+                  ],
+                ),
+          const SizedBox(height: 8.0),
+          Visibility(
+            visible: widget.isMandatory,
+            child: Text(
+              widget.fileErrorMassage ?? "",
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: ColorSchemes.redError,
+                    letterSpacing: -.24,
+                  ),
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
