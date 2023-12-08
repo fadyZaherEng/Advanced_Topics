@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
-import 'package:flutter_advanced_topics/src/core/utils/show_file_bottom_sheet.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/upload_file_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,25 +35,8 @@ class DocApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          //initialRoute: AppRoutes.onBoardingScreen,
+          initialRoute: AppRoutes.onBoardingScreen,
           theme: AppTheme("en").light,
-          home: Scaffold(
-            body: SafeArea(
-              child: UploadFileWidget(
-                deleteFileAction: (value) {},
-                showUploadFileBottomSheet: () {
-                  showBottomSheetUploadFile(
-                    context: context,
-                    onTapCamera: () {},
-                    onTapGallery: () {},
-                    onTapFile: () {},
-                  );
-                },
-                globalKey: GlobalKey(),
-                filePath: "",
-              ),
-            ),
-          ),
         ),
       ),
     );

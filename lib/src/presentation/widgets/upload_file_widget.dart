@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+//calling
+// UploadFileWidget(
+// deleteFileAction: (value) {},
+// showUploadFileBottomSheet: () {
+// showBottomSheetUploadFile(
+// context: context,
+// onTapCamera: () {},
+// onTapGallery: () {},
+// onTapFile: () {},
+// );
+// },
+// globalKey: GlobalKey(),
+// filePath: "",
+// ),
 
 class UploadFileWidget extends StatefulWidget {
   final GlobalKey globalKey;
