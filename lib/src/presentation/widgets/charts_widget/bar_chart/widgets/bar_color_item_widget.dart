@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/widgets/bar_color_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/widgets/bar_color_widget.dart';
 
 class BarColorItemWidget extends StatelessWidget {
   final BarColorModel barColor;
