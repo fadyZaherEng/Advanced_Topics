@@ -35,7 +35,7 @@ class DocApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: AppRoutes.barChartScreen,
+          initialRoute: AppRoutes.onBoardingScreen,
           theme: AppTheme("en").light,
         ),
       ),
