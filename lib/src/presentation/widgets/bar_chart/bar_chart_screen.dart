@@ -12,6 +12,7 @@ class BarChartScreen extends StatefulWidget {
 
 class _BarChartScreenState extends State<BarChartScreen> {
   late List<BarChart> data;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -39,35 +40,52 @@ class _BarChartScreenState extends State<BarChartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 22),
-                BarChartWidget(
-                  maximumLabels: 3,
-                  labelRotation: 0,
-                  data: data,
-                  width: 0.3,
-                  height: 250,
-                  minimum: 0,
-                  maximum: 0.9,
-                  interval: 1,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
+          decoration: BoxDecoration(
+            color: ColorSchemes.white,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 4),
+                blurRadius: 16,
+                spreadRadius: 0,
+                color: ColorSchemes.black.withOpacity(
+                  0.1,
                 ),
-                BarColorWidget(
-                  barColors: [
-                    BarColorModel(
-                        title: "Total Delay Less Equal Than",
-                        color: ColorSchemes.barOrange),
-                    BarColorModel(
-                        title: "Total Delay More Than",
-                        color: ColorSchemes.redError),
-                  ],
-                ),
-              ],
-            ),
+              )
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BarChartWidget(
+                maximumLabels: 3,
+                labelRotation: 0,
+                data: data,
+                width: 0.3,
+                height: 250,
+                minimum: 0,
+                maximum: 0.9,
+                interval: 1,
+              ),
+              BarColorWidget(
+                barColors: [
+                  BarColorModel(
+                    title: "Total Delay Less Equal Than",
+                    color: ColorSchemes.barOrange,
+                  ),
+                  BarColorModel(
+                    title: "Total Delay More Than",
+                    color: ColorSchemes.redError,
+                  ),
+                  BarColorModel(
+                    title: "Total Delay More Than",
+                    color: ColorSchemes.black,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
