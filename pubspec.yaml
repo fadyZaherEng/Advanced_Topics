@@ -86,6 +86,8 @@ dependencies:
   equatable:
   dotted_border:
   syncfusion_flutter_charts:
+  skeletons:
+
 
 
 

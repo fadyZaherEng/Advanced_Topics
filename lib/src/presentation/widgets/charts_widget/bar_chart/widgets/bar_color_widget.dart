@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/widgets/bar_color_item_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/widgets/bar_color_item_widget.dart';
 
 class BarColorWidget extends StatelessWidget {
   final List<BarColorModel> barColors;

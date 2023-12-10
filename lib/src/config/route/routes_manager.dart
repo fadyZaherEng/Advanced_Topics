@@ -5,7 +5,7 @@ import 'package:flutter_advanced_topics/src/presentation/screens/log_up/log_up_s
 import 'package:flutter_advanced_topics/src/presentation/screens/login/login_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/bar_chart_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/bar_chart_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_screen/full_video_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr/qr_code_scanner_screen.dart';
 

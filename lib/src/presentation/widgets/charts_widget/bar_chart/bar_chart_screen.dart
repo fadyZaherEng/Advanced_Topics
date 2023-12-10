@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/widgets/bar_chart_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/widgets/bar_color_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/widgets/bar_chart_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/widgets/bar_color_widget.dart';
 
 class BarChartScreen extends StatefulWidget {
   const BarChartScreen({super.key});
