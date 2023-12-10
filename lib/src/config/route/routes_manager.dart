@@ -5,6 +5,7 @@ import 'package:flutter_advanced_topics/src/presentation/screens/log_up/log_up_s
 import 'package:flutter_advanced_topics/src/presentation/screens/login/login_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bar_chart/bar_chart_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_screen/full_video_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr/qr_code_scanner_screen.dart';
 
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String fullVideoScreen = "/fullVideoScreen";
   static const String qrCodeScannerScreen = "/QrCodeScannerScreen";
   static const String splashScreen = "/splashScreen";
+  static const String barChartScreen = "/barChartScreen";
 }
 
 class RouteGenerator {
@@ -39,6 +41,8 @@ class RouteGenerator {
         return _materialRoute(const QrCodeScannerScreen());
       case AppRoutes.splashScreen:
         return _materialRoute(const SplashScreen());
+      case AppRoutes.barChartScreen:
+        return _materialRoute(const BarChartScreen());
       default:
         return unDefinedRoute();
     }

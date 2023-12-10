@@ -85,6 +85,7 @@ dependencies:
   photo_view:
   equatable:
   dotted_border:
+  syncfusion_flutter_charts:
 
 
 
