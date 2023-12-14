@@ -38,3 +38,5 @@
 # Bar_Chart_Widget
 # skeletons_And_Custom_Skeletons
 ######################################################
+# different_Custom_Graph_Widget
+
