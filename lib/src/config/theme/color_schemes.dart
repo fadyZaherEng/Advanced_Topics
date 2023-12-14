@@ -31,4 +31,10 @@ class ColorSchemes {
   static const Color linearBarActive = Color(0xFF193F60);
   static const Color linearBarInActive = Color(0xFFD6D6D6);
   static const Color circularInActive = Color(0xFFEDEEF0);
+  static const Color dashboardCardColor = Color(0xFFF2F0F5);
+  static const Color activeUserColor = Color(0xFF00AF46);
+  static const Color pendingUserColor = Color(0xFFE5A800);
+  static const Color disabledUserColor = Color(0xFF989898);
+  static const Color filterColor = Color(0xFF7210FF);
+  static const Color yellow = Color(0xFFE5A800);
 }
