@@ -4,7 +4,6 @@ import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/restart_widget.dart';
 
 void main() async {
-  ////////////////////////////////////
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDependencies();
   runApp(const RestartWidget(DocApp()));
