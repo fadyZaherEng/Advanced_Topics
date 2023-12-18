@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_advanced_topics/src/core/resource/data_state.dart';
 import 'package:flutter_advanced_topics/src/core/utils/network/api_error_names.dart';
 
-// TODO: wallahy I will refactor this .. Omar Ahmed
 enum DataSource {
   NO_CONTENT,
   BAD_REQUEST,

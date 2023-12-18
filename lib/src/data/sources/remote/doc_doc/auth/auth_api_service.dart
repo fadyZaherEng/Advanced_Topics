@@ -9,7 +9,7 @@ part 'auth_api_service.g.dart';
 
 @RestApi(baseUrl: APIKeys.baseUrl)
 abstract class AuthApiService {
-  factory AuthApiService(Dio dio) = _AuthApiService;
+  factory AuthApiService(Dio dio, {String baseUrl}) = _AuthApiService;
 
   @POST(APIKeys.signIn)
   Future<HttpResponse<DocDocResponse<RemoteSignIn>>> signIn(
