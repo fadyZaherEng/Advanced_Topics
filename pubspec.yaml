@@ -47,6 +47,7 @@ dependencies:
   # Automatically generate code for converting to and from JSON by annotating Dart classes
   json_serializable:
   json_annotation:
+  build_runner:
   # Networking
   dio:
   retrofit:
