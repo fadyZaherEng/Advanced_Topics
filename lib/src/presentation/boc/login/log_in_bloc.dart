@@ -52,4 +52,6 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
       NavigateToForgetPasswordEvent event, Emitter<LoginState> emit) {
     emit(LoginNavigateToForgetPasswordState());
   }
+  //start login implementation
+
 }
