@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';

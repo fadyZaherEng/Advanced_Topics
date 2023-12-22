@@ -65,13 +65,23 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onLogInEvent(
       LogInEvent event, Emitter<LoginState> emit) async {
     emit(LoginLoadingState());
-    ValidationState validationState = _emailValidationUseCase(event.email);
-    ValidationState validationState2 =
+    ValidationState validationStateEmail = _emailValidationUseCase(event.email);
+    ValidationState validationStatePassword =
         _passwordValidationUseCase(event.password);
-    final response = await _signInUseCase(
-        signInRequest: SignInRequest(
-      email: event.email,
-      password: event.password,
-    ));
+    if (validationStateEmail != ValidationState.emailEmpty &&
+        validationStateEmail != ValidationState.emailNotValid &&
+        validationStatePassword != ValidationState.passwordEmpty &&
+        validationStatePassword != ValidationState.passwordNotValid) {
+      final response = await _signInUseCase(
+          signInRequest: SignInRequest(
+        email: event.email,
+        password: event.password,
+      ));
+      response.when(success: (success) {
+        emit(SignInSuccessState(signIn: success.data));
+      }, failure: (failure) {
+        emit(SignInFailApiState(errorMassage: failure.message.toString()));
+      });
+    }
   }
 }
