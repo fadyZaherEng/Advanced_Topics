@@ -22,16 +22,6 @@ class LoginPasswordNotValidState extends LoginState {
 
 class LoginPasswordValidState extends LoginState {}
 
-class LoginLoadingState extends LoginState {}
-
-class LoginSuccessState extends LoginState {}
-
-class LoginFailApiState extends LoginState {
-  final String errorMassage;
-
-  LoginFailApiState({required this.errorMassage});
-}
-
 class LoginPopState extends LoginState {}
 
 class LoginNavigateToForgetPasswordState extends LoginState {}

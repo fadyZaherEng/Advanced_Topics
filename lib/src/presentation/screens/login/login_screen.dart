@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
@@ -12,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogInScreen extends BaseStatefulWidget {
   const LogInScreen({super.key});
+
   @override
   BaseState<BaseStatefulWidget> baseCreateState() => _LogInScreenState();
 }
@@ -23,10 +22,6 @@ class _LogInScreenState extends BaseState<LogInScreen> {
     passwordController: TextEditingController(),
   );
   final LoginErrorMassage _loginErrorMassage = LoginErrorMassage();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget baseBuild(BuildContext context) {
@@ -44,7 +39,14 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _pop();
         } else if (state is LoginNavigateToForgetPasswordState) {
           _navigateToForgotPasswordScreen();
-        } else if (state is LoginSuccessState) {
+        } else if (state is SignInSuccessState) {
+          _navigateToHomeScreen();
+        } else if (state is SignInFailApiState) {
+          _navigateToLogUpScreen();
+        } else if (state is SignInLoadingState) {
+          showLoading();
+        } else if (state is SignInSuccessState) {
+          print(state.signIn.token);
           _navigateToHomeScreen();
         }
       },
@@ -62,6 +64,10 @@ class _LogInScreenState extends BaseState<LogInScreen> {
             onForgetPasswordPressed: _navigateToForgotPasswordScreen,
             onLogInPressed: () {
               //_bloc.add(LogInEvent());
+              _bloc.add(LoginApiEvent(
+                email: _loginController.emailController.text,
+                password: _loginController.passwordController.text,
+              ));
             },
             onSignUpPressed: () {
               _navigateToLogUpScreen();

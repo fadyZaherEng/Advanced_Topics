@@ -64,7 +64,7 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
 
   FutureOr<void> _onLogInEvent(
       LogInEvent event, Emitter<LoginState> emit) async {
-    emit(LoginLoadingState());
+    emit(SignInLoadingState());
     ValidationState validationStateEmail = _emailValidationUseCase(event.email);
     ValidationState validationStatePassword =
         _passwordValidationUseCase(event.password);
