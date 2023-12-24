@@ -107,7 +107,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   void _showMassageDialog(String errorMassage) {
     showMassageDialogWidget(
         context: context,
-        text: errorMassage.toString(),
+        text: errorMassage,
         icon: 'assets/images/onboarding_doc.png',
         buttonText: 'Ok',
         onTap: () {

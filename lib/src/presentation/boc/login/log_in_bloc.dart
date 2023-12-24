@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_advanced_topics/src/core/resource/data_state.dart';
+import 'package:flutter_advanced_topics/src/core/utils/network/api_error_handler.dart';
 import 'package:flutter_advanced_topics/src/core/utils/validation/login_validation.dart';
 import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/sign_in/request/sign_in_request.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/auth/sign_in_response.dart';
@@ -97,7 +98,15 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
           emit(SignInSuccessState(
               signIn: response.data ?? const SignIn(token: "", username: "")));
         } else if (response is DataFailed) {
-          emit(SignInFailApiState(errorMassage: response.message ?? ""));
+          emit(
+            SignInFailApiState(
+                errorMassage: ErrorHandler.handle(response.error)
+                        .apiErrorModel
+                        .error!
+                        .response!
+                        .statusMessage ??
+                    ""),
+          );
         }
       }
     }
