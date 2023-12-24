@@ -20,8 +20,9 @@ class ValidateEmailEvent extends LoginEvent {
 
 class ValidatePasswordEvent extends LoginEvent {
   final String password;
-
-  ValidatePasswordEvent({required this.password});
+  ValidatePasswordEvent({
+    required this.password,
+  });
 }
 
 class ValidateEmailAndPasswordEvent extends LoginEvent {

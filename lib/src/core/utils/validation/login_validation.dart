@@ -8,6 +8,34 @@ class LoginValidation {
     return regExp.hasMatch(email.trim());
   }
 
+  static List<ValidationState> isPasswordValid({
+    required String password,
+  }) {
+    List<ValidationState> validationStates = [];
+    if (password == null || password.isEmpty) {
+      validationStates.add(ValidationState.passwordEmpty);
+      return validationStates;
+    }
+    if (password.toString().length > 6) {
+      validationStates.add(ValidationState.passwordHasMinLength);
+    }
+    if (password.toString().contains(RegExp(r'[a-z]'))) {
+      validationStates.add(ValidationState.passwordHasLowercase);
+    }
+    if (password.toString().contains(RegExp(r'[A-Z]'))) {
+      validationStates.add(ValidationState.passwordHasUppercase);
+    }
+    if (password.toString().contains(RegExp(r'[0-9]'))) {
+      validationStates.add(ValidationState.passwordHasNumber);
+    }
+    if (password.toString().contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+      validationStates.add(ValidationState.passwordHasSpecialCharacters);
+    } else {
+      validationStates.add(ValidationState.passwordValid);
+    }
+    return validationStates;
+  }
+
   static ValidationState validateEmail(String email) {
     if (email == null || email.isEmpty) {
       return ValidationState.emailEmpty;
@@ -18,12 +46,10 @@ class LoginValidation {
     }
   }
 
-  static ValidationState validatePassword(String password) {
-    if (password == null || password.isEmpty) {
-      return ValidationState.passwordEmpty;
-    } else {
-      return ValidationState.passwordValid;
-    }
+  static List<ValidationState> validatePassword({
+    required String password,
+  }) {
+    return isPasswordValid(password: password);
   }
 }
 
@@ -34,4 +60,9 @@ enum ValidationState {
   emailEmpty,
   emailNotValid,
   emailValid,
+  passwordHasUppercase,
+  passwordHasLowercase,
+  passwordHasNumber,
+  passwordHasSpecialCharacters,
+  passwordHasMinLength,
 }

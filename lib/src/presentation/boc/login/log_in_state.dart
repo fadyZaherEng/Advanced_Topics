@@ -22,6 +22,16 @@ class LoginPasswordNotValidState extends LoginState {
 
 class LoginPasswordValidState extends LoginState {}
 
+class LoginPasswordHasLowerCaseState extends LoginState {}
+
+class LoginPasswordHasUpperCaseState extends LoginState {}
+
+class LoginPasswordHasNumberState extends LoginState {}
+
+class LoginPasswordHasSpecialCharactersState extends LoginState {}
+
+class LoginPasswordHasMinLengthState extends LoginState {}
+
 class LoginPopState extends LoginState {}
 
 class LoginNavigateToForgetPasswordState extends LoginState {}

@@ -23,6 +23,25 @@ class _LogInScreenState extends BaseState<LogInScreen> {
     passwordController: TextEditingController(),
   );
   final LoginErrorMassage _loginErrorMassage = LoginErrorMassage();
+  bool _hasLowerCase = false;
+  bool _hasUpperCase = false;
+  bool _hasNumber = false;
+  bool _hasSpecialCharacters = false;
+  bool _hasMinLength = false;
+  @override
+  initState() {
+    super.initState();
+    _loginController.passwordController.addListener(() {
+      _validatePassword(_loginController.passwordController.text);
+    });
+  }
+
+  @override
+  void dispose() {
+    _loginController.emailController.dispose();
+    _loginController.passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget baseBuild(BuildContext context) {
@@ -49,6 +68,16 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           print(state.signIn.token);
           hideLoading();
           _navigateToHomeScreen();
+        } else if (state is LoginPasswordHasLowerCaseState) {
+          _hasLowerCase = true;
+        } else if (state is LoginPasswordHasUpperCaseState) {
+          _hasUpperCase = true;
+        } else if (state is LoginPasswordHasNumberState) {
+          _hasNumber = true;
+        } else if (state is LoginPasswordHasSpecialCharactersState) {
+          _hasSpecialCharacters = true;
+        } else if (state is LoginPasswordHasMinLengthState) {
+          _hasMinLength = true;
         }
       },
       builder: (bloc, state) {
@@ -74,6 +103,11 @@ class _LogInScreenState extends BaseState<LogInScreen> {
             onSignUpPressed: () {
               _navigateToLogUpScreen();
             },
+            hasLowerCase: _hasLowerCase,
+            hasUpperCase: _hasUpperCase,
+            hasNumber: _hasNumber,
+            hasSpecialCharacters: _hasSpecialCharacters,
+            hasMinLength: _hasMinLength,
           ),
         );
       },
@@ -81,7 +115,9 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   }
 
   void _validatePassword(String password) {
-    _bloc.add(ValidatePasswordEvent(password: password));
+    _bloc.add(ValidatePasswordEvent(
+      password: password,
+    ));
   }
 
   void _validateEmailAddress(String email) {

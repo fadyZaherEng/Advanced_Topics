@@ -45,10 +45,33 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
 
   void _onValidatePasswordEvent(
       ValidatePasswordEvent event, Emitter<LoginState> emit) {
-    ValidationState validationState =
-        _passwordValidationUseCase(event.password);
-    if (validationState == ValidationState.passwordEmpty) {
+    List<ValidationState> validationStatePassword = _passwordValidationUseCase(
+      password: event.password,
+    );
+    if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
       emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword.contains(ValidationState.passwordNotValid)) {
+      emit(LoginPasswordNotValidState(errorMassage: "Password Is Not Valid"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasMinLength)) {
+      emit(LoginPasswordHasMinLengthState());
+    }
+    if (validationStatePassword.contains(ValidationState.passwordHasNumber)) {
+      emit(LoginPasswordHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasUppercase)) {
+      emit(LoginPasswordHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasLowercase)) {
+      emit(LoginPasswordHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasSpecialCharacters)) {
+      emit(LoginPasswordHasSpecialCharactersState());
     } else {
       emit(LoginPasswordValidState());
     }
@@ -66,26 +89,44 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onLogInEvent(
       LogInApiEvent event, Emitter<LoginState> emit) async {
     ValidationState validationStateEmail = _emailValidationUseCase(event.email);
-    ValidationState validationStatePassword =
-        _passwordValidationUseCase(event.password);
+    List<ValidationState> validationStatePassword = _passwordValidationUseCase(
+      password: event.password,
+    );
     if (validationStateEmail == ValidationState.emailEmpty) {
       emit(LoginEmailNotValidState(errorMassage: "Email Address Is Required"));
     }
-    if (validationStatePassword == ValidationState.passwordEmpty) {
+    if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
       emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword.contains(ValidationState.passwordNotValid)) {
+      emit(LoginPasswordNotValidState(errorMassage: "Password Is Not Valid"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasMinLength)) {
+      emit(LoginPasswordHasMinLengthState());
+    }
+    if (validationStatePassword.contains(ValidationState.passwordHasNumber)) {
+      emit(LoginPasswordHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasUppercase)) {
+      emit(LoginPasswordHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasLowercase)) {
+      emit(LoginPasswordHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasSpecialCharacters)) {
+      emit(LoginPasswordHasSpecialCharactersState());
     }
     if (validationStateEmail == ValidationState.emailNotValid) {
       emit(LoginEmailNotValidState(
           errorMassage: "please Enter Valid Email Address "));
     }
-    if (validationStatePassword == ValidationState.passwordNotValid) {
-      emit(LoginPasswordNotValidState(
-          errorMassage: "please Enter Valid Password "));
-    }
     if (validationStateEmail != ValidationState.emailNotValid &&
-        validationStatePassword != ValidationState.passwordNotValid &&
         validationStateEmail != ValidationState.emailEmpty &&
-        validationStatePassword != ValidationState.passwordEmpty) {
+        validationStatePassword.contains(ValidationState.passwordValid)) {
       {
         emit(SignInLoadingState());
         final response = await _signInUseCase(

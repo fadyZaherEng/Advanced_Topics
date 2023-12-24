@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/utils/login_controller.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/utils/login_error_massage.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/d
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/forget_password_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/log_in_title_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/login_alternative_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/valid_password_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_text_form_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/password_text_field_widget.dart';
@@ -20,6 +23,11 @@ class LogInContentWidget extends StatefulWidget {
   void Function() onLogInPressed;
   void Function() onForgetPasswordPressed;
   void Function() onSignUpPressed;
+  final bool hasLowerCase;
+  final bool hasUpperCase;
+  final bool hasNumber;
+  final bool hasSpecialCharacters;
+  final bool hasMinLength;
 
   LogInContentWidget({
     super.key,
@@ -30,6 +38,11 @@ class LogInContentWidget extends StatefulWidget {
     required this.onLogInPressed,
     required this.onForgetPasswordPressed,
     required this.onSignUpPressed,
+    required this.hasLowerCase,
+    required this.hasUpperCase,
+    required this.hasNumber,
+    required this.hasSpecialCharacters,
+    required this.hasMinLength,
   });
 
   @override
@@ -61,6 +74,13 @@ class _LogInContentWidgetState extends State<LogInContentWidget> {
                 onChange: widget.validatePassword,
                 errorMessage: widget.loginErrorMassage.password,
               ),
+              SizedBox(height: 5.h),
+                  hasLowerCase: widget.hasLowerCase,
+                  hasUpperCase: widget.hasUpperCase,
+                  hasSpecialCharacters: widget.hasSpecialCharacters,
+                  hasNumber: widget.hasNumber,
+                  hasMinLength: widget.hasMinLength,
+                ),
               SizedBox(height: 20.h),
               ForgetPasswordWidget(
                 onForgetPasswordPressed: widget.onForgetPasswordPressed,
