@@ -42,12 +42,12 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _navigateToForgotPasswordScreen();
         } else if (state is SignInFailApiState) {
           hideLoading();
-          print(state.errorMassage.toString());
           _showMassageDialog(state.errorMassage);
         } else if (state is SignInLoadingState) {
           showLoading();
         } else if (state is SignInSuccessState) {
           print(state.signIn.token);
+          hideLoading();
           _navigateToHomeScreen();
         }
       },
@@ -93,7 +93,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   }
 
   void _navigateToHomeScreen() {
-    Navigator.of(context).pushNamed('/home');
+    Navigator.of(context).pushReplacementNamed('/home');
   }
 
   void _pop() {
@@ -106,12 +106,13 @@ class _LogInScreenState extends BaseState<LogInScreen> {
 
   void _showMassageDialog(String errorMassage) {
     showMassageDialogWidget(
-        context: context,
-        text: errorMassage,
-        icon: 'assets/images/onboarding_doc.png',
-        buttonText: 'Ok',
-        onTap: () {
-          Navigator.of(context).pop();
-        });
+      context: context,
+      text: errorMassage,
+      icon: 'assets/images/onboarding_doc.png',
+      buttonText: 'Ok',
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+    );
   }
 }
