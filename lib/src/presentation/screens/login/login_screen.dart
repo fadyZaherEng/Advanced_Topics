@@ -39,10 +39,8 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _pop();
         } else if (state is LoginNavigateToForgetPasswordState) {
           _navigateToForgotPasswordScreen();
-        } else if (state is SignInSuccessState) {
-          _navigateToHomeScreen();
         } else if (state is SignInFailApiState) {
-          _navigateToLogUpScreen();
+          print(state.errorMassage.toString());
         } else if (state is SignInLoadingState) {
           showLoading();
         } else if (state is SignInSuccessState) {
