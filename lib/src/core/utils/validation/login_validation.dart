@@ -14,7 +14,6 @@ class LoginValidation {
     List<ValidationState> validationStates = [];
     if (password.isEmpty) {
       validationStates.add(ValidationState.passwordEmpty);
-      return validationStates;
     }
     if (password.toString().length > 6) {
       validationStates.add(ValidationState.passwordHasMinLength);
@@ -30,16 +29,8 @@ class LoginValidation {
     }
     if (password.toString().contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       validationStates.add(ValidationState.passwordHasSpecialCharacters);
-    } else if ((validationStates
-            .contains(ValidationState.passwordHasMinLength) ||
-        validationStates.contains(ValidationState.passwordHasNumber) ||
-        validationStates.contains(ValidationState.passwordHasUppercase) ||
-        validationStates.contains(ValidationState.passwordHasLowercase) ||
-        validationStates
-                .contains(ValidationState.passwordHasSpecialCharacters) &&
-            !validationStates.contains(ValidationState.passwordEmpty))) {
     } else {
-      validationStates.add(ValidationState.passwordNotValid);
+      validationStates.add(ValidationState.passwordValid);
     }
     return validationStates;
   }

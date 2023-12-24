@@ -22,6 +22,10 @@ class PasswordValidations extends StatelessWidget {
     print(hasMinLength);
     return Column(
       children: [
+        buildValidationRow('Password must not be empty', hasMinLength),
+        const SizedBox(
+          height: 3,
+        ),
         buildValidationRow('At least 1 lowercase letter', hasLowerCase),
         const SizedBox(
           height: 3,

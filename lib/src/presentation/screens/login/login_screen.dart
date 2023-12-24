@@ -29,6 +29,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   bool _hasSpecialCharacters = false;
   bool _hasMinLength = false;
   bool _allValid = false;
+  bool _emptyPassword = false;
   @override
   initState() {
     super.initState();
@@ -52,24 +53,13 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _loginErrorMassage.email = state.errorMassage;
         } else if (state is LoginEmailValidState) {
           _loginErrorMassage.email = null;
-        } else if (state is LoginPasswordNotValidState) {
-          _loginErrorMassage.password = state.errorMassage;
-          _hasLowerCase = false;
-          _hasUpperCase = false;
-          _hasNumber = false;
-          _hasSpecialCharacters = false;
-          _hasMinLength = false;
-          _allValid = false;
         } else if (state is LoginPasswordEmptyState) {
-          _loginErrorMassage.password = state.errorMassage;
-          _hasLowerCase = false;
-          _hasUpperCase = false;
-          _hasNumber = false;
-          _hasSpecialCharacters = false;
-          _hasMinLength = false;
+          _emptyPassword = true;
           _allValid = false;
+          _loginErrorMassage.password = state.errorMassage;
         } else if (state is LoginPasswordValidState) {
           _loginErrorMassage.password = null;
+          _allValid = true;
         } else if (state is LoginPopState) {
           _pop();
         } else if (state is LoginNavigateToForgetPasswordState) {
@@ -85,26 +75,36 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _navigateToHomeScreen();
         } else if (state is LoginPasswordHasLowerCaseState) {
           _hasLowerCase = true;
+          _allValid = false;
+          _loginErrorMassage.password =
+              "Password must contain at least one lowercase letter";
         } else if (state is LoginPasswordHasUpperCaseState) {
           _hasUpperCase = true;
+          _allValid = false;
+          _loginErrorMassage.password =
+              "Password must contain at least one uppercase letter";
         } else if (state is LoginPasswordHasNumberState) {
           _hasNumber = true;
+          _allValid = false;
+          _loginErrorMassage.password =
+              "Password must contain at least one number";
         } else if (state is LoginPasswordHasSpecialCharactersState) {
           _hasSpecialCharacters = true;
+          _allValid = false;
+          _loginErrorMassage.password =
+              "Password must contain at least one special character";
         } else if (state is LoginPasswordHasMinLengthState) {
           _hasMinLength = true;
+          _allValid = false;
+          _loginErrorMassage.password =
+              "Password must be at least 8 characters";
+        } else if (state is LoginPasswordEmptyState) {
+          _emptyPassword = true;
+          _allValid = false;
+          _loginErrorMassage.password = "Password must not be empty";
         }
       },
       builder: (bloc, state) {
-        if (_hasLowerCase &&
-            _hasUpperCase &&
-            _hasNumber &&
-            _hasSpecialCharacters &&
-            _hasMinLength) {
-          _allValid = true;
-        } else {
-          _allValid = false;
-        }
         return Scaffold(
           body: LogInContentWidget(
             loginController: _loginController,
@@ -133,6 +133,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
             hasSpecialCharacters: _hasSpecialCharacters,
             hasMinLength: _hasMinLength,
             allValid: _allValid,
+            emptyPassword: _emptyPassword,
           ),
         );
       },

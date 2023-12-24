@@ -51,9 +51,6 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
     if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
       emit(LoginPasswordEmptyState(errorMassage: "Password Is Required"));
     }
-    if (validationStatePassword.contains(ValidationState.passwordNotValid)) {
-      emit(LoginPasswordNotValidState(errorMassage: "Password Is Not Valid"));
-    }
     if (validationStatePassword
         .contains(ValidationState.passwordHasMinLength)) {
       emit(LoginPasswordHasMinLengthState());
@@ -98,9 +95,6 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
     }
     if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
       emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
-    }
-    if (validationStatePassword.contains(ValidationState.passwordNotValid)) {
-      emit(LoginPasswordNotValidState(errorMassage: "Password Is Not Valid"));
     }
     if (validationStatePassword
         .contains(ValidationState.passwordHasMinLength)) {
