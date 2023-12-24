@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_advanced_topics/src/core/resource/data_state.dart';
 import 'package:flutter_advanced_topics/src/core/utils/validation/login_validation.dart';
 import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/sign_in/request/sign_in_request.dart';
+import 'package:flutter_advanced_topics/src/domain/entities/auth/sign_in_response.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/email_validation_use_case.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/password_validation_use_case.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/sign_in_use_case.dart';
@@ -23,7 +25,7 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
     on<ValidatePasswordEvent>(_onValidatePasswordEvent);
     on<LoginPopEvent>(_onLoginPopEvent);
     on<NavigateToForgetPasswordEvent>(_onNavigateToForgetPasswordEvent);
-    on<LogInEvent>(_onLogInEvent);
+    on<LogInApiEvent>(_onLogInEvent);
   }
 
   void _onValidateEmailEvent(
@@ -61,25 +63,43 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   FutureOr<void> _onLogInEvent(
-      LogInEvent event, Emitter<LoginState> emit) async {
-    emit(SignInLoadingState());
+      LogInApiEvent event, Emitter<LoginState> emit) async {
     ValidationState validationStateEmail = _emailValidationUseCase(event.email);
     ValidationState validationStatePassword =
         _passwordValidationUseCase(event.password);
-    if (validationStateEmail != ValidationState.emailEmpty &&
-        validationStateEmail != ValidationState.emailNotValid &&
-        validationStatePassword != ValidationState.passwordEmpty &&
-        validationStatePassword != ValidationState.passwordNotValid) {
-      final response = await _signInUseCase(
+    if (validationStateEmail == ValidationState.emailEmpty) {
+      emit(LoginEmailNotValidState(errorMassage: "Email Address Is Required"));
+    }
+    if (validationStatePassword == ValidationState.passwordEmpty) {
+      emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
+    }
+    if (validationStateEmail == ValidationState.emailNotValid) {
+      emit(LoginEmailNotValidState(
+          errorMassage: "please Enter Valid Email Address "));
+    }
+    if (validationStatePassword == ValidationState.passwordNotValid) {
+      emit(LoginPasswordNotValidState(
+          errorMassage: "please Enter Valid Password "));
+    }
+    if (validationStateEmail != ValidationState.emailNotValid &&
+        validationStatePassword != ValidationState.passwordNotValid &&
+        validationStateEmail != ValidationState.emailEmpty &&
+        validationStatePassword != ValidationState.passwordEmpty) {
+      {
+        emit(SignInLoadingState());
+        final response = await _signInUseCase(
           signInRequest: SignInRequest(
-        email: event.email,
-        password: event.password,
-      ));
-      response.when(success: (success) {
-        emit(SignInSuccessState(signIn: success.data));
-      }, failure: (failure) {
-        emit(SignInFailApiState(errorMassage: failure.message.toString()));
-      });
+            email: event.email,
+            password: event.password,
+          ),
+        );
+        if (response is DataSuccess<SignIn>) {
+          emit(SignInSuccessState(
+              signIn: response.data ?? const SignIn(token: "", username: "")));
+        } else if (response is DataFailed) {
+          emit(SignInFailApiState(errorMassage: response.message ?? ""));
+        }
+      }
     }
   }
 }

@@ -33,11 +33,11 @@ class ValidateEmailAndPasswordEvent extends LoginEvent {
 
 class LoginPopEvent extends LoginEvent {}
 
-class LogInEvent extends LoginEvent {
+class LogInApiEvent extends LoginEvent {
   final String email;
   final String password;
 
-  LogInEvent({
+  LogInApiEvent({
     required this.email,
     required this.password,
   });

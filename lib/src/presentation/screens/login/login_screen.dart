@@ -63,11 +63,12 @@ class _LogInScreenState extends BaseState<LogInScreen> {
             },
             onForgetPasswordPressed: _navigateToForgotPasswordScreen,
             onLogInPressed: () {
-              //_bloc.add(LogInEvent());
-              _bloc.add(LoginApiEvent(
-                email: _loginController.emailController.text,
-                password: _loginController.passwordController.text,
-              ));
+              _bloc.add(
+                LogInApiEvent(
+                  email: _loginController.emailController.text,
+                  password: _loginController.passwordController.text,
+                ),
+              );
             },
             onSignUpPressed: () {
               _navigateToLogUpScreen();

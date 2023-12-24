@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_advanced_topics/src/core/resource/data_state.dart';
-import 'package:flutter_advanced_topics/src/core/utils/network/api_error_handler.dart';
-import 'package:flutter_advanced_topics/src/core/utils/network/api_result.dart';
 import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/auth_api_service.dart';
 import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/sign_in/entity/remote_sign_in.dart';
 import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/sign_in/request/sign_in_request.dart';
@@ -16,7 +14,7 @@ class AuthRepositoryImplementation implements AuthRepository {
   AuthRepositoryImplementation(this._authApiService);
 
   @override
-  Future<ApiResult<SignIn>> signIn({
+  Future<DataState<SignIn>> signIn({
     required SignInRequest signInRequest,
   }) async {
     try {
@@ -24,21 +22,20 @@ class AuthRepositoryImplementation implements AuthRepository {
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         if ((httpResponse.data.status ?? false) &&
             (httpResponse.data.statusCode ?? 400) == 200) {
-          return ApiResult.success(DataSuccess(
+          return DataSuccess(
             data: (httpResponse.data.result?.mapToDomain()),
             message: httpResponse.data.responseMessage ?? "",
-          ));
+          );
         }
       }
-      return ApiResult.failure(
-        DataFailed(
-          message: httpResponse.data.responseMessage ?? "",
-          code: httpResponse.data.statusCode,
-        ),
+      return DataFailed(
+        message: httpResponse.data.responseMessage ?? "",
+        code: httpResponse.data.statusCode,
       );
     } on DioException catch (error) {
-      return ApiResult.failure(
-        ErrorHandler.handle(error).apiErrorModel,
+      return DataFailed(
+        error: error,
+        message: error.message,
       );
     }
   }

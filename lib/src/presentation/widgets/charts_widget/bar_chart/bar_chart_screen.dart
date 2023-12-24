@@ -15,7 +15,6 @@ class _BarChartScreenState extends State<BarChartScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     data = [
       BarChart([
