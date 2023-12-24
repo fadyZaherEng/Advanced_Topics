@@ -49,6 +49,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<LogInBloc, LoginState>(
       listener: (bloc, state) {
+        print(state);
         if (state is LoginEmailNotValidState) {
           _loginErrorMassage.email = state.errorMassage;
         } else if (state is LoginEmailValidState) {

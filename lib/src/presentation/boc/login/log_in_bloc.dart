@@ -94,7 +94,7 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
       emit(LoginEmailNotValidState(errorMassage: "Email Address Is Required"));
     }
     if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
-      emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
+      emit(LoginPasswordEmptyState(errorMassage: "Password Is Required"));
     }
     if (validationStatePassword
         .contains(ValidationState.passwordHasMinLength)) {
