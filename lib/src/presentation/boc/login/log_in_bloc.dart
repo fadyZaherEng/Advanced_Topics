@@ -60,8 +60,6 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginNavigateToForgetPasswordState());
   }
 
-  //start login implementation
-
   FutureOr<void> _onLogInEvent(
       LogInEvent event, Emitter<LoginState> emit) async {
     emit(SignInLoadingState());
