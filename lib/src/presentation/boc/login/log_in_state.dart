@@ -22,6 +22,11 @@ class LoginPasswordNotValidState extends LoginState {
 
 class LoginPasswordValidState extends LoginState {}
 
+class LoginPasswordEmptyState extends LoginState {
+  String errorMassage;
+  LoginPasswordEmptyState({required this.errorMassage});
+}
+
 class LoginPasswordHasLowerCaseState extends LoginState {}
 
 class LoginPasswordHasUpperCaseState extends LoginState {}

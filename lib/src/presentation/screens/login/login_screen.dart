@@ -28,6 +28,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
   bool _hasNumber = false;
   bool _hasSpecialCharacters = false;
   bool _hasMinLength = false;
+  bool _allValid = false;
   @override
   initState() {
     super.initState();
@@ -53,6 +54,20 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _loginErrorMassage.email = null;
         } else if (state is LoginPasswordNotValidState) {
           _loginErrorMassage.password = state.errorMassage;
+          _hasLowerCase = false;
+          _hasUpperCase = false;
+          _hasNumber = false;
+          _hasSpecialCharacters = false;
+          _hasMinLength = false;
+          _allValid = false;
+        } else if (state is LoginPasswordEmptyState) {
+          _loginErrorMassage.password = state.errorMassage;
+          _hasLowerCase = false;
+          _hasUpperCase = false;
+          _hasNumber = false;
+          _hasSpecialCharacters = false;
+          _hasMinLength = false;
+          _allValid = false;
         } else if (state is LoginPasswordValidState) {
           _loginErrorMassage.password = null;
         } else if (state is LoginPopState) {
@@ -81,6 +96,15 @@ class _LogInScreenState extends BaseState<LogInScreen> {
         }
       },
       builder: (bloc, state) {
+        if (_hasLowerCase &&
+            _hasUpperCase &&
+            _hasNumber &&
+            _hasSpecialCharacters &&
+            _hasMinLength) {
+          _allValid = true;
+        } else {
+          _allValid = false;
+        }
         return Scaffold(
           body: LogInContentWidget(
             loginController: _loginController,
@@ -108,6 +132,7 @@ class _LogInScreenState extends BaseState<LogInScreen> {
             hasNumber: _hasNumber,
             hasSpecialCharacters: _hasSpecialCharacters,
             hasMinLength: _hasMinLength,
+            allValid: _allValid,
           ),
         );
       },

@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_state.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/utils/login_controller.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/utils/login_error_massage.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/already_have_account_widget.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_w
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_text_form_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/password_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/terms_and_condition_text_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LogInContentWidget extends StatefulWidget {
@@ -28,6 +31,7 @@ class LogInContentWidget extends StatefulWidget {
   final bool hasNumber;
   final bool hasSpecialCharacters;
   final bool hasMinLength;
+  final bool allValid;
 
   LogInContentWidget({
     super.key,
@@ -43,6 +47,7 @@ class LogInContentWidget extends StatefulWidget {
     required this.hasNumber,
     required this.hasSpecialCharacters,
     required this.hasMinLength,
+    required this.allValid,
   });
 
   @override
@@ -50,63 +55,74 @@ class LogInContentWidget extends StatefulWidget {
 }
 
 class _LogInContentWidgetState extends State<LogInContentWidget> {
+  bool _emptyPassword = false;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const LoginTitleWidget(),
-              CustomTextFieldWidget(
-                controller: widget.loginController.emailController,
-                errorMessage: widget.loginErrorMassage.email,
-                labelTitle: "Email",
-                onChange: widget.validateEmailAddress,
-              ),
-              SizedBox(height: 20.h),
-              PasswordTextFieldWidget(
-                controller: widget.loginController.passwordController,
-                labelTitle: "Password",
-                onChange: widget.validatePassword,
-                errorMessage: widget.loginErrorMassage.password,
-              ),
-              SizedBox(height: 5.h),
-                  hasLowerCase: widget.hasLowerCase,
-                  hasUpperCase: widget.hasUpperCase,
-                  hasSpecialCharacters: widget.hasSpecialCharacters,
-                  hasNumber: widget.hasNumber,
-                  hasMinLength: widget.hasMinLength,
+    return BlocConsumer<LogInBloc, LoginState>(listener: (context, state) {
+      if (state is LoginPasswordEmptyState) {
+        _emptyPassword = true;
+      } else {
+        _emptyPassword = false;
+      }
+    }, builder: (context, state) {
+      return SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const LoginTitleWidget(),
+                CustomTextFieldWidget(
+                  controller: widget.loginController.emailController,
+                  errorMessage: widget.loginErrorMassage.email,
+                  labelTitle: "Email",
+                  onChange: widget.validateEmailAddress,
                 ),
-              SizedBox(height: 20.h),
-              ForgetPasswordWidget(
-                onForgetPasswordPressed: widget.onForgetPasswordPressed,
-              ),
-              SizedBox(height: 30.h),
-              CustomButtonWidget(
-                onPressed: widget.onLogInPressed,
-                title: "Log In",
-                padding: 5,
-              ),
-              SizedBox(height: 30.h),
-              const DividerWidget(),
-              SizedBox(height: 30.h),
-              const LoginAlternativeWidget(),
-              SizedBox(height: 35.h),
-              const TermsAndConditionsTextWidget(),
-              SizedBox(height: 10.h),
-              Center(
-                child: AlreadyHaveAccountTextWidget(
-                  onSignUpPressed: widget.onSignUpPressed,
+                SizedBox(height: 20.h),
+                PasswordTextFieldWidget(
+                  controller: widget.loginController.passwordController,
+                  labelTitle: "Password",
+                  onChange: widget.validatePassword,
+                  errorMessage: widget.loginErrorMassage.password,
                 ),
-              ),
-            ],
+                SizedBox(height: 5.h),
+                if (!widget.allValid)
+                  PasswordValidations(
+                    hasLowerCase: widget.hasLowerCase,
+                    hasUpperCase: widget.hasUpperCase,
+                    hasSpecialCharacters: widget.hasSpecialCharacters,
+                    hasNumber: widget.hasNumber,
+                    hasMinLength: widget.hasMinLength,
+                  ),
+                SizedBox(height: 20.h),
+                ForgetPasswordWidget(
+                  onForgetPasswordPressed: widget.onForgetPasswordPressed,
+                ),
+                SizedBox(height: 30.h),
+                CustomButtonWidget(
+                  onPressed: widget.onLogInPressed,
+                  title: "Log In",
+                  padding: 5,
+                ),
+                SizedBox(height: 30.h),
+                const DividerWidget(),
+                SizedBox(height: 30.h),
+                const LoginAlternativeWidget(),
+                SizedBox(height: 35.h),
+                const TermsAndConditionsTextWidget(),
+                SizedBox(height: 10.h),
+                Center(
+                  child: AlreadyHaveAccountTextWidget(
+                    onSignUpPressed: widget.onSignUpPressed,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -12,7 +12,7 @@ class LoginValidation {
     required String password,
   }) {
     List<ValidationState> validationStates = [];
-    if (password == null || password.isEmpty) {
+    if (password.isEmpty) {
       validationStates.add(ValidationState.passwordEmpty);
       return validationStates;
     }
@@ -30,14 +30,22 @@ class LoginValidation {
     }
     if (password.toString().contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       validationStates.add(ValidationState.passwordHasSpecialCharacters);
+    } else if ((validationStates
+            .contains(ValidationState.passwordHasMinLength) ||
+        validationStates.contains(ValidationState.passwordHasNumber) ||
+        validationStates.contains(ValidationState.passwordHasUppercase) ||
+        validationStates.contains(ValidationState.passwordHasLowercase) ||
+        validationStates
+                .contains(ValidationState.passwordHasSpecialCharacters) &&
+            !validationStates.contains(ValidationState.passwordEmpty))) {
     } else {
-      validationStates.add(ValidationState.passwordValid);
+      validationStates.add(ValidationState.passwordNotValid);
     }
     return validationStates;
   }
 
   static ValidationState validateEmail(String email) {
-    if (email == null || email.isEmpty) {
+    if (email.isEmpty) {
       return ValidationState.emailEmpty;
     } else if (!isEmailValid(email)) {
       return ValidationState.emailNotValid;
