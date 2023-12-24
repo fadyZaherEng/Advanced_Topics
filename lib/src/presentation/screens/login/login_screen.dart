@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_event.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_state.dart';
@@ -40,7 +41,9 @@ class _LogInScreenState extends BaseState<LogInScreen> {
         } else if (state is LoginNavigateToForgetPasswordState) {
           _navigateToForgotPasswordScreen();
         } else if (state is SignInFailApiState) {
+          hideLoading();
           print(state.errorMassage.toString());
+          _showMassageDialog(state.errorMassage);
         } else if (state is SignInLoadingState) {
           showLoading();
         } else if (state is SignInSuccessState) {
@@ -99,5 +102,16 @@ class _LogInScreenState extends BaseState<LogInScreen> {
 
   void _navigateToLogUpScreen() {
     Navigator.of(context).pushNamed('/logUpScreen');
+  }
+
+  void _showMassageDialog(String errorMassage) {
+    showMassageDialogWidget(
+        context: context,
+        text: errorMassage.toString(),
+        icon: 'assets/images/onboarding_doc.png',
+        buttonText: 'Ok',
+        onTap: () {
+          Navigator.of(context).pop();
+        });
   }
 }
