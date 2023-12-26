@@ -54,10 +54,6 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           _loginErrorMassage.email = state.errorMassage;
         } else if (state is LoginEmailValidState) {
           _loginErrorMassage.email = null;
-        } else if (state is LoginPasswordEmptyState) {
-          _emptyPassword = true;
-          _allValid = false;
-          _loginErrorMassage.password = state.errorMassage;
         } else if (state is LoginPasswordValidState) {
           _loginErrorMassage.password = null;
           _allValid = true;
@@ -74,35 +70,48 @@ class _LogInScreenState extends BaseState<LogInScreen> {
           print(state.signIn.token);
           hideLoading();
           _navigateToHomeScreen();
-        } else if (state is LoginPasswordHasLowerCaseState) {
-          _hasLowerCase = true;
-          _allValid = false;
-          _loginErrorMassage.password =
-              "Password must contain at least one lowercase letter";
-        } else if (state is LoginPasswordHasUpperCaseState) {
-          _hasUpperCase = true;
-          _allValid = false;
-          _loginErrorMassage.password =
-              "Password must contain at least one uppercase letter";
-        } else if (state is LoginPasswordHasNumberState) {
-          _hasNumber = true;
-          _allValid = false;
-          _loginErrorMassage.password =
-              "Password must contain at least one number";
-        } else if (state is LoginPasswordHasSpecialCharactersState) {
-          _hasSpecialCharacters = true;
-          _allValid = false;
-          _loginErrorMassage.password =
-              "Password must contain at least one special character";
-        } else if (state is LoginPasswordHasMinLengthState) {
-          _hasMinLength = true;
-          _allValid = false;
-          _loginErrorMassage.password =
-              "Password must be at least 8 characters";
         } else if (state is LoginPasswordEmptyState) {
           _emptyPassword = true;
+          _loginErrorMassage.password = ""; //state.errorMassage;
+        } else if (state is LoginPasswordHasLowerCaseState) {
+          _hasLowerCase = true;
+          _loginErrorMassage.password = "";
+        } else if (state is LoginPasswordHasUpperCaseState) {
+          _hasUpperCase = true;
+          _loginErrorMassage.password = "";
+        } else if (state is LoginPasswordHasNumberState) {
+          _hasNumber = true;
+          _loginErrorMassage.password = "";
+        } else if (state is LoginPasswordHasSpecialCharactersState) {
+          _hasSpecialCharacters = true;
+          _loginErrorMassage.password = "";
+        } else if (state is LoginPasswordHasMinLengthState) {
+          _hasMinLength = true;
+          _loginErrorMassage.password = "";
+        } else if (state is LoginPasswordNotEmptyState) {
+          _emptyPassword = false;
           _allValid = false;
-          _loginErrorMassage.password = "Password must not be empty";
+          _loginErrorMassage.password = " "; //state.errorMassage;
+        } else if (state is LoginPasswordNotHasLowerCaseState) {
+          _hasLowerCase = false;
+          _allValid = false;
+          _loginErrorMassage.password = " ";
+        } else if (state is LoginPasswordNotHasUpperCaseState) {
+          _hasUpperCase = false;
+          _allValid = false;
+          _loginErrorMassage.password = " ";
+        } else if (state is LoginPasswordNotHasNumberState) {
+          _hasNumber = false;
+          _allValid = false;
+          _loginErrorMassage.password = " ";
+        } else if (state is LoginPasswordNotHasSpecialCharactersState) {
+          _hasSpecialCharacters = false;
+          _allValid = false;
+          _loginErrorMassage.password = " ";
+        } else if (state is LoginPasswordNotHasMinLengthState) {
+          _hasMinLength = false;
+          _allValid = false;
+          _loginErrorMassage.password = " ";
         }
       },
       builder: (bloc, state) {

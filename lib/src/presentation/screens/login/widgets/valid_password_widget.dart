@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/config/theme/styles.dart';
+import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PasswordValidations extends StatelessWidget {
   final bool hasLowerCase;
@@ -8,6 +11,8 @@ class PasswordValidations extends StatelessWidget {
   final bool hasSpecialCharacters;
   final bool hasNumber;
   final bool hasMinLength;
+  final bool hasEmpty;
+
   const PasswordValidations({
     super.key,
     required this.hasLowerCase,
@@ -15,37 +20,41 @@ class PasswordValidations extends StatelessWidget {
     required this.hasSpecialCharacters,
     required this.hasNumber,
     required this.hasMinLength,
+    required this.hasEmpty,
   });
 
   @override
   Widget build(BuildContext context) {
-    print(hasMinLength);
-    return Column(
-      children: [
-        buildValidationRow('Password must not be empty', hasMinLength),
-        const SizedBox(
-          height: 3,
-        ),
-        buildValidationRow('At least 1 lowercase letter', hasLowerCase),
-        const SizedBox(
-          height: 3,
-        ),
-        buildValidationRow('At least 1 uppercase letter', hasUpperCase),
-        const SizedBox(
-          height: 3,
-        ),
-        buildValidationRow(
-            'At least 1 special character', hasSpecialCharacters),
-        const SizedBox(
-          height: 3,
-        ),
-        buildValidationRow('At least 1 number', hasNumber),
-        const SizedBox(
-          height: 3,
-        ),
-        buildValidationRow('At least 8 characters long', hasMinLength),
-      ],
-    );
+    return BlocConsumer<LogInBloc, LoginState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Column(
+            children: [
+              buildValidationRow('Password must not be empty', hasEmpty),
+              const SizedBox(
+                height: 3,
+              ),
+              buildValidationRow('At least 1 lowercase letter', hasLowerCase),
+              const SizedBox(
+                height: 3,
+              ),
+              buildValidationRow('At least 1 uppercase letter', hasUpperCase),
+              const SizedBox(
+                height: 3,
+              ),
+              buildValidationRow(
+                  'At least 1 special character', hasSpecialCharacters),
+              const SizedBox(
+                height: 3,
+              ),
+              buildValidationRow('At least 1 number', hasNumber),
+              const SizedBox(
+                height: 3,
+              ),
+              buildValidationRow('At least 8 characters long', hasMinLength),
+            ],
+          );
+        });
   }
 
   Widget buildValidationRow(String text, bool hasValidated) {

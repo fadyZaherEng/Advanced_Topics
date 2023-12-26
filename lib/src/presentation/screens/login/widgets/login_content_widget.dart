@@ -56,7 +56,6 @@ class LogInContentWidget extends StatefulWidget {
 }
 
 class _LogInContentWidgetState extends State<LogInContentWidget> {
-  bool _emptyPassword = false;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LogInBloc, LoginState>(
@@ -92,6 +91,7 @@ class _LogInContentWidgetState extends State<LogInContentWidget> {
                         hasSpecialCharacters: widget.hasSpecialCharacters,
                         hasNumber: widget.hasNumber,
                         hasMinLength: widget.hasMinLength,
+                        hasEmpty: widget.emptyPassword,
                       ),
                     SizedBox(height: 20.h),
                     ForgetPasswordWidget(

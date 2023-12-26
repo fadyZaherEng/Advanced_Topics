@@ -37,6 +37,21 @@ class LoginPasswordHasSpecialCharactersState extends LoginState {}
 
 class LoginPasswordHasMinLengthState extends LoginState {}
 
+class LoginPasswordNotEmptyState extends LoginState {
+  String errorMassage;
+  LoginPasswordNotEmptyState({required this.errorMassage});
+}
+
+class LoginPasswordNotHasLowerCaseState extends LoginState {}
+
+class LoginPasswordNotHasUpperCaseState extends LoginState {}
+
+class LoginPasswordNotHasNumberState extends LoginState {}
+
+class LoginPasswordNotHasSpecialCharactersState extends LoginState {}
+
+class LoginPasswordNotHasMinLengthState extends LoginState {}
+
 class LoginPopState extends LoginState {}
 
 class LoginNavigateToForgetPasswordState extends LoginState {}

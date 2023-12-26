@@ -69,8 +69,33 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
     if (validationStatePassword
         .contains(ValidationState.passwordHasSpecialCharacters)) {
       emit(LoginPasswordHasSpecialCharactersState());
-    } else if (validationStatePassword
-        .contains(ValidationState.passwordValid)) {
+    }
+
+    if (validationStatePassword.contains(ValidationState.passwordNotEmpty)) {
+      emit(LoginPasswordNotEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasMinLength)) {
+      emit(LoginPasswordNotHasMinLengthState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasNumber)) {
+      emit(LoginPasswordNotHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasUppercase)) {
+      emit(LoginPasswordNotHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasLowercase)) {
+      emit(LoginPasswordNotHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasSpecialCharacters)) {
+      emit(LoginPasswordNotHasSpecialCharactersState());
+    }
+
+    if (validationStatePassword.contains(ValidationState.passwordValid)) {
       emit(LoginPasswordValidState());
     }
   }
@@ -115,6 +140,30 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
         .contains(ValidationState.passwordHasSpecialCharacters)) {
       emit(LoginPasswordHasSpecialCharactersState());
     }
+    if (validationStatePassword.contains(ValidationState.passwordNotEmpty)) {
+      emit(LoginPasswordNotEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasMinLength)) {
+      emit(LoginPasswordNotHasMinLengthState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasNumber)) {
+      emit(LoginPasswordNotHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasUppercase)) {
+      emit(LoginPasswordNotHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasLowercase)) {
+      emit(LoginPasswordNotHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasSpecialCharacters)) {
+      emit(LoginPasswordNotHasSpecialCharactersState());
+    }
+
     if (validationStateEmail == ValidationState.emailNotValid) {
       emit(LoginEmailNotValidState(
           errorMassage: "please Enter Valid Email Address "));
