@@ -88,6 +88,7 @@ dependencies:
   dotted_border:
   syncfusion_flutter_charts:
   skeletons:
+  flutter_file_downloader:
 
 
 
