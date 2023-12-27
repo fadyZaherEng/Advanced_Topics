@@ -1,15 +1,8 @@
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/routes/routes_manager.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/constants.dart';
-import 'package:city_eye/src/di/injector.dart';
-import 'package:city_eye/src/domain/usecase/get_remember_me_use_case.dart';
-import 'package:city_eye/src/domain/usecase/get_restart_app_use_case.dart';
-import 'package:city_eye/src/domain/usecase/remove_user_information_use_case.dart';
-import 'package:city_eye/src/domain/usecase/set_restart_app_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -66,45 +59,45 @@ class _SplashScreenState extends State<SplashScreen>
     ));
 
     _animationController.forward();
-
-    _isRememberMe = GetRememberMeUseCase(injector())();
-        false;
-    _isRestart = GetRestartAppUseCase(injector())();
-    if (!_hasInitialized) {
-      _hasInitialized = true;
-      if (_isRestart) {
-        await SetRestartAppUseCase(injector())(false);
-        await Future.delayed(const Duration(seconds: 3), () {
-          if (!mounted) return;
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Routes.main,
-            (route) => false,
-          );
-        });
-      } else {
-        if (_isRememberMe) {
-          await Future.delayed(const Duration(seconds: 3), () {
-            if (!mounted) return;
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              Routes.main,
-              (route) => false,
-            );
-          });
-        } else {
-          RemoveUserInformationUseCase(injector())();
-          await Future.delayed(const Duration(seconds: 3), () {
-            if (!mounted) return;
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              Routes.login,
-              (route) => false,
-            );
-          });
-        }
-      }
-    }
+    //
+    // _isRememberMe = GetRememberMeUseCase(injector())();
+    //     false;
+    // _isRestart = GetRestartAppUseCase(injector())();
+    // if (!_hasInitialized) {
+    //   _hasInitialized = true;
+    //   if (_isRestart) {
+    //     await SetRestartAppUseCase(injector())(false);
+    //     await Future.delayed(const Duration(seconds: 3), () {
+    //       if (!mounted) return;
+    //       Navigator.pushNamedAndRemoveUntil(
+    //         context,
+    //         Routes.main,
+    //         (route) => false,
+    //       );
+    //     });
+    //   } else {
+    //     if (_isRememberMe) {
+    //       await Future.delayed(const Duration(seconds: 3), () {
+    //         if (!mounted) return;
+    //         Navigator.pushNamedAndRemoveUntil(
+    //           context,
+    //           Routes.main,
+    //           (route) => false,
+    //         );
+    //       });
+    //     } else {
+    //       RemoveUserInformationUseCase(injector())();
+    //       await Future.delayed(const Duration(seconds: 3), () {
+    //         if (!mounted) return;
+    //         Navigator.pushNamedAndRemoveUntil(
+    //           context,
+    //           Routes.login,
+    //           (route) => false,
+    //         );
+    //       });
+    //     }
+    //   }
+    // }
   }
 
   @override
@@ -147,7 +140,7 @@ class _SplashScreenState extends State<SplashScreen>
                         child: FadeTransition(
                           opacity: _fadeAnimation,
                           child: Text(
-                            S.of(context).stayConnectedStaySmarter,
+                            "", //S.of(context).stayConnectedStaySmarter,
                             style:
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                                       color: ColorSchemes.black,
@@ -173,7 +166,7 @@ class _SplashScreenState extends State<SplashScreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            S.of(context).poweredBy,
+                            "", // S.of(context).poweredBy,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
@@ -186,7 +179,7 @@ class _SplashScreenState extends State<SplashScreen>
                             width: 2,
                           ),
                           Text(
-                            S.of(context).cityEye,
+                            "", // S.of(context).cityEye,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
