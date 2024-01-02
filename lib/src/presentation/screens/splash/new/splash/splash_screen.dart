@@ -126,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: FadeTransition(
                         opacity: _fadeAnimation,
                         child: Image.asset(
-                          ImagePaths.splashLogo,
+                          ImagePaths.google,
                         ),
                       ),
                     ),
@@ -200,7 +200,7 @@ class _SplashScreenState extends State<SplashScreen>
                       opacity: _fadeAnimation,
                       child: SvgPicture.asset(
                         width: MediaQuery.sizeOf(context).width,
-                        ImagePaths.splashBackground,
+                        ImagePaths.splashScreen,
                       )),
                 ),
               ),
