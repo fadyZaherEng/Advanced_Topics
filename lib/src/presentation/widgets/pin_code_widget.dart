@@ -27,10 +27,10 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   @override
   void initState() {
     super.initState();
-    _focusNodes = List.generate(4, (index) => FocusNode());
+    _focusNodes = List.generate(6, (index) => FocusNode());
     _controllers = widget.controllers ?? [];
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 6; i++) {
       _focusNodes[i].addListener(() {
         setState(() {});
       });
@@ -48,7 +48,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
-            4,
+            6,
             (index) => _buildOtpField(index),
           ),
         ),
@@ -79,14 +79,14 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
 
   Widget _buildOtpField(int index) {
     return Container(
-      width: 55,
+      width: MediaQuery.of(context).size.width * 0.12,
       height: 55,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.01),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
-            width: 55,
             height: 55,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -113,7 +113,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
             onChanged: (value) {
               widget.onOtpChange(_getOtp());
               if (value.isNotEmpty) {
-                if (index < 4 - 1) {
+                if (index < 6 - 1) {
                   _focusNodes[index + 1].requestFocus();
                 } else {
                   _focusNodes[index].unfocus();
