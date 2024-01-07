@@ -33,7 +33,7 @@
 # QR_Code_Scanner_widget
 # Album_Widget_using_Page_View
 # Upload_File_Custom_Widget_And_Show_Bottom_sheet_With_New_style
-# App_Localization
+# App_Localization--
 # Custom_Dropdown_Text_Field_With_Label_Widget
 # Bar_Chart_Widget
 # skeletons_And_Custom_Skeletons
@@ -45,3 +45,4 @@
 # Pin_Code
 # Animation_Splash_Screen
 # Media_Widgets_Voice_Video_images_record_And_Show
+# Custom_Switch_Widget
