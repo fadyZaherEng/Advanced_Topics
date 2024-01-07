@@ -15,6 +15,9 @@ class _LogUpScreenState extends BaseState<LogUpScreen> {
 
   @override
   Widget baseBuild(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+        body: Center(
+      child: Text("Log Up Screen"),
+    ));
   }
 }

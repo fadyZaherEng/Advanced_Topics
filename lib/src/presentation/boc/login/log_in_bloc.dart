@@ -1,22 +1,32 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter_advanced_topics/src/core/resource/data_state.dart';
+import 'package:flutter_advanced_topics/src/core/utils/network/api_error_handler.dart';
 import 'package:flutter_advanced_topics/src/core/utils/validation/login_validation.dart';
+import 'package:flutter_advanced_topics/src/data/sources/remote/doc_doc/auth/sign_in/request/sign_in_request.dart';
+import 'package:flutter_advanced_topics/src/domain/entities/auth/sign_in_response.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/email_validation_use_case.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/password_validation_use_case.dart';
+import 'package:flutter_advanced_topics/src/domain/use_case/authentication/login/sign_in_use_case.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_event.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_state.dart';
 
 class LogInBloc extends Bloc<LoginEvent, LoginState> {
   final EmailValidationUseCase _emailValidationUseCase;
   final PasswordValidationUseCase _passwordValidationUseCase;
+  final SignInUseCase _signInUseCase;
 
   LogInBloc(
     this._emailValidationUseCase,
     this._passwordValidationUseCase,
+    this._signInUseCase,
   ) : super(LoginInitial()) {
     on<ValidateEmailEvent>(_onValidateEmailEvent);
     on<ValidatePasswordEvent>(_onValidatePasswordEvent);
     on<LoginPopEvent>(_onLoginPopEvent);
     on<NavigateToForgetPasswordEvent>(_onNavigateToForgetPasswordEvent);
+    on<LogInApiEvent>(_onLogInEvent);
   }
 
   void _onValidateEmailEvent(
@@ -35,11 +45,57 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
 
   void _onValidatePasswordEvent(
       ValidatePasswordEvent event, Emitter<LoginState> emit) {
-    ValidationState validationState =
-        _passwordValidationUseCase(event.password);
-    if (validationState == ValidationState.passwordEmpty) {
-      emit(LoginPasswordNotValidState(errorMassage: "Password Is Required"));
-    } else {
+    List<ValidationState> validationStatePassword = _passwordValidationUseCase(
+      password: event.password,
+    );
+    if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
+      emit(LoginPasswordEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasMinLength)) {
+      emit(LoginPasswordHasMinLengthState());
+    }
+    if (validationStatePassword.contains(ValidationState.passwordHasNumber)) {
+      emit(LoginPasswordHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasUppercase)) {
+      emit(LoginPasswordHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasLowercase)) {
+      emit(LoginPasswordHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasSpecialCharacters)) {
+      emit(LoginPasswordHasSpecialCharactersState());
+    }
+
+    if (validationStatePassword.contains(ValidationState.passwordNotEmpty)) {
+      emit(LoginPasswordNotEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasMinLength)) {
+      emit(LoginPasswordNotHasMinLengthState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasNumber)) {
+      emit(LoginPasswordNotHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasUppercase)) {
+      emit(LoginPasswordNotHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasLowercase)) {
+      emit(LoginPasswordNotHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasSpecialCharacters)) {
+      emit(LoginPasswordNotHasSpecialCharactersState());
+    }
+
+    if (validationStatePassword.contains(ValidationState.passwordValid)) {
       emit(LoginPasswordValidState());
     }
   }
@@ -51,5 +107,93 @@ class LogInBloc extends Bloc<LoginEvent, LoginState> {
   void _onNavigateToForgetPasswordEvent(
       NavigateToForgetPasswordEvent event, Emitter<LoginState> emit) {
     emit(LoginNavigateToForgetPasswordState());
+  }
+
+  FutureOr<void> _onLogInEvent(
+      LogInApiEvent event, Emitter<LoginState> emit) async {
+    ValidationState validationStateEmail = _emailValidationUseCase(event.email);
+    List<ValidationState> validationStatePassword = _passwordValidationUseCase(
+      password: event.password,
+    );
+    if (validationStateEmail == ValidationState.emailEmpty) {
+      emit(LoginEmailNotValidState(errorMassage: "Email Address Is Required"));
+    }
+    if (validationStatePassword.contains(ValidationState.passwordEmpty)) {
+      emit(LoginPasswordEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasMinLength)) {
+      emit(LoginPasswordHasMinLengthState());
+    }
+    if (validationStatePassword.contains(ValidationState.passwordHasNumber)) {
+      emit(LoginPasswordHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasUppercase)) {
+      emit(LoginPasswordHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasLowercase)) {
+      emit(LoginPasswordHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordHasSpecialCharacters)) {
+      emit(LoginPasswordHasSpecialCharactersState());
+    }
+    if (validationStatePassword.contains(ValidationState.passwordNotEmpty)) {
+      emit(LoginPasswordNotEmptyState(errorMassage: "Password Is Required"));
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasMinLength)) {
+      emit(LoginPasswordNotHasMinLengthState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasNumber)) {
+      emit(LoginPasswordNotHasNumberState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasUppercase)) {
+      emit(LoginPasswordNotHasUpperCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasLowercase)) {
+      emit(LoginPasswordNotHasLowerCaseState());
+    }
+    if (validationStatePassword
+        .contains(ValidationState.passwordNotHasSpecialCharacters)) {
+      emit(LoginPasswordNotHasSpecialCharactersState());
+    }
+
+    if (validationStateEmail == ValidationState.emailNotValid) {
+      emit(LoginEmailNotValidState(
+          errorMassage: "please Enter Valid Email Address "));
+    }
+    if (validationStateEmail != ValidationState.emailNotValid &&
+        validationStateEmail != ValidationState.emailEmpty &&
+        validationStatePassword.contains(ValidationState.passwordValid)) {
+      {
+        emit(SignInLoadingState());
+        final response = await _signInUseCase(
+          signInRequest: SignInRequest(
+            email: event.email,
+            password: event.password,
+          ),
+        );
+        if (response is DataSuccess<SignIn>) {
+          emit(SignInSuccessState(
+              signIn: response.data ?? const SignIn(token: "", username: "")));
+        } else if (response is DataFailed) {
+          emit(
+            SignInFailApiState(
+                errorMassage: ErrorHandler.handle(response.error)
+                        .apiErrorModel
+                        .error!
+                        .response!
+                        .statusMessage ??
+                    ""),
+          );
+        }
+      }
+    }
   }
 }
