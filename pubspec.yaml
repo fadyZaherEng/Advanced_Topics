@@ -89,7 +89,8 @@ dependencies:
   syncfusion_flutter_charts:
   skeletons:
   flutter_file_downloader:
-
+  flutter_sound:
+  image_picker:
 
 
 
