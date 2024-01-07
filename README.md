@@ -46,3 +46,6 @@
 # Animation_Splash_Screen
 # Media_Widgets_Voice_Video_images_record_And_Show
 # Custom_Switch_Widget
+# Refresh_Widget
+# Enhance_Phone_based_On_Language
+########################################################
