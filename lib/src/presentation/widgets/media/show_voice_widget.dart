@@ -31,8 +31,6 @@ class _ShowMicrophoneWidgetState extends State<ShowMicrophoneWidget> {
   Duration _position = Duration.zero;
   bool _isMuted = false;
 
-  // CountdownController countdownController = CountdownController();
-
   @override
   void setState(fn) {
     if (mounted) {
@@ -51,52 +49,52 @@ class _ShowMicrophoneWidgetState extends State<ShowMicrophoneWidget> {
     return BlocConsumer<NeedPaymentBloc, NeedPaymentState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Column(
-          children: [
-            // Countdown(
-            //   controller: countdownController,
-            //   seconds: 10,
-            //   build: (_, double time) {
-            //     return Text(
-            //       '${time.toInt()} seconds remaining',
-            //       style: TextStyle(fontSize: 20.0),
-            //     );
-            //   },
-            //   interval: Duration(milliseconds: 100),
-            //   onFinished: () {
-            //     audioPlayer.stop();
-            //   },
-            // ),
-            Stack(
-              alignment: AlignmentDirectional.topStart,
-              children: [
-                Container(
-                  height: 63,
-                  clipBehavior: Clip.antiAlias,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsetsDirectional.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    color: ColorSchemes.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: ColorSchemes.gray.withOpacity(0.2),
-                        blurRadius: 25,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 0),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      color: ColorSchemes.primary.withOpacity(0.03),
-                      borderRadius: BorderRadius.circular(15),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "audio",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: ColorSchemes.black,
+                      letterSpacing: -0.24,
                     ),
-                    child: SizedBox(
-                      height: 40,
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Stack(
+                clipBehavior: Clip.none,
+                alignment: AlignmentDirectional.topStart,
+                children: [
+                  Container(
+                    height: 70,
+                    clipBehavior: Clip.none,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(0, 0),
+                          spreadRadius: 0,
+                          blurRadius: 32,
+                          color: Color.fromRGBO(0, 0, 0, 0.12),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        width: 1,
+                        color: const Color.fromRGBO(241, 241, 241, 1),
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(242, 243, 245, 1),
+                        borderRadius: BorderRadius.circular(24),
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
                             onTap: () async {
@@ -115,115 +113,108 @@ class _ShowMicrophoneWidgetState extends State<ShowMicrophoneWidget> {
                               }
                             },
                             child: Container(
-                              width: 28,
-                              height: 28,
+                              width: 32,
+                              height: 32,
+                              margin:
+                                  const EdgeInsetsDirectional.only(start: 8),
                               decoration: const BoxDecoration(
-                                color: ColorSchemes.white,
+                                color: ColorSchemes.primary,
                                 shape: BoxShape.circle,
                               ),
                               child: SvgPicture.asset(
                                 _isPlaying
-                                    ? ImagePaths.pause
-                                    : ImagePaths.play,
+                                    ? ImagePaths.pauseAudio
+                                    : ImagePaths.playAudio,
                                 matchTextDirection: true,
                                 fit: BoxFit.scaleDown,
                                 // color: Colors.white,
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.45,
-                            child: SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                activeTrackColor: ColorSchemes.primary,
-                                inactiveTrackColor: ColorSchemes.gray,
-                                trackHeight: 1.0,
-                                thumbColor: ColorSchemes.primary,
-                              ),
-                              child: Slider(
-                                value: _position.inSeconds.toDouble(),
-                                max: _duration.inSeconds.toDouble(),
-                                activeColor: ColorSchemes.primary,
-                                inactiveColor: Colors.grey,
-                                thumbColor: ColorSchemes.primary,
-                                min: 0,
-                                onChanged: (value) {
-                                  _audioPlayer.seek(
-                                    Duration(
-                                      seconds: value.toInt(),
-                                    ),
-                                  );
-                                },
-                              ),
+                          Expanded(
+                            child: Slider(
+                              value: _position.inSeconds.toDouble(),
+                              max: _duration.inSeconds.toDouble(),
+                              min: 0,
+                              onChanged: (value) {
+                                _audioPlayer.seek(
+                                  Duration(
+                                    seconds: value.toInt(),
+                                  ),
+                                );
+                              },
                             ),
                           ),
-                          Text(
-                            _formatTime(_position),
-                            textAlign: TextAlign.center,
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      color: ColorSchemes.primary,
-                                      fontSize: 12,
-                                    ),
-                          ),
-                          //const SizedBox(width: 8),
-                          // SvgPicture.asset(
-                          //   ImagePaths.microphone,
-                          //   matchTextDirection: true,
-                          //   fit: BoxFit.scaleDown,
-                          // ),
-                          IconButton(
-                            onPressed: () async {
-                              await _toggleMute();
-                            },
-                            icon: _isMuted
-                                ? const Icon(Icons.mic_off, size: 20)
-                                : const Icon(Icons.mic, size: 20),
+                          Text(_formatTime(_position)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: InkWell(
+                              onTap: () async {
+                                await _toggleMute();
+                              },
+                              child: SvgPicture.asset(
+                                _isMuted
+                                    ? ImagePaths.volumeOff
+                                    : ImagePaths.volume,
+                                fit: BoxFit.scaleDown,
+                                color: ColorSchemes.gray,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 5),
-                  child: InkWell(
-                    onTap: () {
-                      _audioPlayer.pause();
-                      _audioPlayer.release();
-                      _audioPlayer.dispose();
-                      widget.onClosed();
-                    },
-                    child: Container(
-                      width: 17,
-                      height: 17,
-                      decoration: BoxDecoration(
-                        color: ColorSchemes.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorSchemes.gray.withOpacity(0.5),
-                            blurRadius: 25,
-                            spreadRadius: 0,
-                            offset: const Offset(0, 0),
-                          )
-                        ],
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          ImagePaths.close,
-                          color: ColorSchemes.black,
-                          fit: BoxFit.scaleDown,
+                  Positioned.directional(
+                    textDirection: Directionality.of(context),
+                    start: 5,
+                    top: -8,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 5),
+                      child: InkWell(
+                        onTap: () {
+                          _audioPlayer.pause();
+                          _audioPlayer.release();
+                          _audioPlayer.dispose();
+                          widget.onClosed();
+                        },
+                        child: Container(
                           width: 20,
                           height: 20,
+                          decoration: BoxDecoration(
+                            color: ColorSchemes.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: ColorSchemes.gray.withOpacity(0.5),
+                                blurRadius: 25,
+                                spreadRadius: 0,
+                                offset: const Offset(0, 0),
+                              )
+                            ],
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              ImagePaths.close,
+                              color: ColorSchemes.black,
+                              fit: BoxFit.scaleDown,
+                              width: 20,
+                              height: 20,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: 1,
+                color: ColorSchemes.border,
+              ),
+            ],
+          ),
         );
       },
     );

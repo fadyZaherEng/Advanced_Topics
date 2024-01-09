@@ -1,8 +1,9 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, deprecated_member_use, must_be_immutable
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
@@ -51,7 +52,7 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
             _onAudioTap(context);
           },
           child: SvgPicture.asset(
-            isRecording ? ImagePaths.play : ImagePaths.close,
+            isRecording ? ImagePaths.stopRecord : ImagePaths.microphone,
             fit: BoxFit.scaleDown,
             width: 20,
             height: 20,
@@ -70,6 +71,7 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
                         fontSize: 12,
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.w400,
+                        color: ColorSchemes.black,
                       ),
                 );
               }
@@ -150,10 +152,10 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
         .handleServicePermission(setting: Permission.microphone)) {
       showActionDialogWidget(
         context: context,
-        text: "youShouldHaveAudioPermission",
-        icon: ImagePaths.pause,
-        primaryText: "ok",
-        secondaryText: "cancel",
+        text: "S.of(context).youShouldHaveAudioPermission",
+        icon: "ImagePaths.microphone",
+        primaryText: "S.of(context).ok",
+        secondaryText: " S.of(context).cancel",
         primaryAction: () async {
           openAppSettings().then((value) => Navigator.pop(context));
         },

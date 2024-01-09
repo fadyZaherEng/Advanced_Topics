@@ -67,7 +67,7 @@ class _BottomSheetContentWidgetState
       if (state is OnNeedPaymentServiceValidClickState) {
         _errorServiceMessage = null;
       } else if (state is OnNeedPaymentServiceNotValidClickState) {
-        _errorServiceMessage = "serviceNotValid";
+        _errorServiceMessage = "This field is required";
       } else if (state is OnNeedPaymentProblemValidState) {
         _errorProblemMessage = null;
       } else if (state is OnNeedPaymentProblemNotValidState) {
@@ -165,7 +165,7 @@ class _BottomSheetContentWidgetState
                               context, "video", widget.maxLengthOfVideo);
                         },
                         errorMessage: _errorProblemMessage,
-                        title: "S.current.problemDescription",
+                        title: "Brief Description",
                         maxLinesOfProblem: widget.maxLengthOfProblem,
                       ),
                       const SizedBox(
@@ -315,7 +315,7 @@ class _BottomSheetContentWidgetState
           showActionDialogWidget(
               context: context,
               text: "youShouldHaveCameraPermission",
-              icon: "ImagePaths.camera",
+              icon: ImagePaths.cameraTwo,
               primaryText: "ok",
               secondaryText: "cancel",
               primaryAction: () async {
@@ -341,7 +341,7 @@ class _BottomSheetContentWidgetState
           showActionDialogWidget(
             context: context,
             text: "S.of(context).youShouldHaveStoragePermission",
-            icon: "ImagePaths.gallery",
+            icon: ImagePaths.gallery,
             primaryText: "S.of(context).ok",
             secondaryText: "S.of(context).cancel",
             primaryAction: () async {
@@ -367,7 +367,7 @@ class _BottomSheetContentWidgetState
     if (pickedImage != null) {
       _images.add(pickedImage);
       _errorProblemMessage = null;
-     // _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+      // _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
     }
   }
 
@@ -407,7 +407,7 @@ class _BottomSheetContentWidgetState
     showMessageDialogWidget(
       context: context,
       text: massage,
-      icon: "ImagePaths.logo",
+      icon: ImagePaths.logo,
       buttonText: "S.current.ok",
       onTap: () {
         Navigator.of(context).pop();
