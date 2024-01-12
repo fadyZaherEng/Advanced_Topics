@@ -69,7 +69,7 @@ class _DescribeWidgetState extends State<DescribeWidget> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            "S.of(context).problemDescription",
+            "problemDescription...",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: ColorSchemes.black,
                   letterSpacing: -0.13,

@@ -5,6 +5,7 @@ import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,9 +18,8 @@ class DocApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => injector<LogInBloc>(),
-        )
+        BlocProvider(create: (context) => injector<LogInBloc>()),
+        BlocProvider(create: (context) => injector<AddPaymentBloc>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:audio_session/audio_session.dart';
@@ -202,7 +204,7 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
             context: context,
             text: state.message,
             icon: ImagePaths.success,
-            buttonText: "S.of(context).ok",
+            buttonText: "ok",
             onTap: () {
               _navigateBackEvent();
               _navigateBackEvent();
@@ -222,10 +224,10 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
         } else if (state is ServiceAmountValidState) {
           _serviceAmountErrorMessage = null;
         } else if (state is ServiceAmountInvalidState) {
-          _serviceAmountErrorMessage = " S.of(context).thisFieldIsRequired";
+          _serviceAmountErrorMessage = " thisFieldIsRequired";
         } else if (state is OneAttachmentRequiredState) {
           Fluttertoast.showToast(
-            msg: "S.of(context).toastMessage",
+            msg: "toastMessage",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
@@ -246,7 +248,7 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
                   selectedVideo != null) {
                 showActionDialogWidget(
                   context: context,
-                  text: "S.of(context).allChangesWillBeLostIfYouLeaveThisPage",
+                  text: "allChangesWillBeLostIfYouLeaveThisPage",
                   icon: ImagePaths.warning,
                   primaryAction: () {
                     Navigator.pop(context);
@@ -255,8 +257,8 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },
-                  primaryText: "S.of(context).keep",
-                  secondaryText: "S.of(context).discard",
+                  primaryText: "keep",
+                  secondaryText: "discard",
                 );
               } else {
                 Navigator.pop(context);
@@ -716,7 +718,7 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
   Future<void> _stopRecording() async {
     String audioPath = await _recorder.stopRecorder() ?? "";
     if (_audioPath.isEmpty) {
-      _bloc.add(AudioStatusChangeEvent(
+      _bloc.add(const AudioStatusChangeEvent(
         isRecording: false,
         duration: 0,
       ));

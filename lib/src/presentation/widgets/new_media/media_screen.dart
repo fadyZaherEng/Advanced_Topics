@@ -16,11 +16,13 @@ class _MediaScreenState extends State<MediaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: TextButton(
-          onPressed: () {
-            _showBottomSheet(context);
-          },
-          child: const Text("Show bottom Sheet"),
+        child: Center(
+          child: TextButton(
+            onPressed: () {
+              _showBottomSheet(context);
+            },
+            child: const Text("Show bottom Sheet"),
+          ),
         ),
       ),
     );
@@ -34,7 +36,7 @@ class _MediaScreenState extends State<MediaScreen> {
       isDismissible: false,
       isPadding: false,
       content: AddPaymentBottomSheet(
-        id: 1,//widget.requestId,
+        id: 1, //widget.requestId,
         onClose: (bool isClose) {
           isCanClose = isClose;
         },
