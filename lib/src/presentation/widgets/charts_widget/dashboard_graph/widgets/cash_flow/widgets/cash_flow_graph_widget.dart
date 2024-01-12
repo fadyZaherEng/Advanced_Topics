@@ -19,129 +19,119 @@ class CashFlowGraphWidget extends StatefulWidget {
 }
 
 class _CashFlowGraphWidgetState extends State<CashFlowGraphWidget> {
-  bool enable = true;
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SfCartesianChart(
-              primaryXAxis: CategoryAxis(
-                isVisible: true,
-                interactiveTooltip: InteractiveTooltip(
-                  enable: true,
-                  color: ColorSchemes.dashboardCardColor,
-                  borderColor: ColorSchemes.dashboardCardColor,
-                  canShowMarker: true,
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .labelSmall
-                      ?.copyWith(color: Colors.green),
-                ),
-                title: AxisTitle(
-                  text: "Days \n(Nov)\n 2023",
-                  textStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: ColorSchemes.black,
-                      ),
-                  alignment: ChartAlignment.far,
-                ),
-              ),
-              // onSelectionChanged: (args) {
-              //   setState(() {
-              //     print(args.pointIndex);
-              //   });
-              // },
-              primaryYAxis: NumericAxis(
-                isVisible: true,
-                interactiveTooltip: const InteractiveTooltip(
-                  enable: false,
-                  canShowMarker: false,
-                ),
-              ),
-              // Chart title
-              title: ChartTitle(
-                text: 'Amount (EGP)',
-                textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: ColorSchemes.black,
-                    ),
-                alignment: ChartAlignment.near,
-              ),
-              tooltipBehavior: TooltipBehavior(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 390,
+          child: SfCartesianChart(
+            primaryXAxis: CategoryAxis(
+              isVisible: true,
+              majorGridLines: const MajorGridLines(width: 0),
+              interactiveTooltip: InteractiveTooltip(
                 enable: true,
-                canShowMarker: true,
-                activationMode: ActivationMode.singleTap,
-                shared: true,
                 color: ColorSchemes.dashboardCardColor,
-                tooltipPosition: TooltipPosition.auto,
-                shouldAlwaysShow: true,
-                builder: (dynamic data, dynamic point, dynamic series,
-                    int index, int c) {
-                  return CustomToolTipWidget(data: data);
-                },
+                borderColor: ColorSchemes.dashboardCardColor,
+                canShowMarker: true,
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(color: ColorSchemes.gray),
               ),
-              enableAxisAnimation: true,
-              enableSideBySideSeriesPlacement: true,
-              crosshairBehavior: CrosshairBehavior(
-                enable: true,
-                shouldAlwaysShow: true,
-                lineType: CrosshairLineType.none,
-                activationMode: ActivationMode.singleTap,
-                lineColor: Colors.green,
+              title: AxisTitle(
+                text: "${"S.current.days"} \n(Nov)\n 2023",
+                textStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: const Color(0xFF222222),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      fontFamily: "Montserrat",
+                    ),
+                alignment: ChartAlignment.far,
               ),
-              enableMultiSelection: true,
-              trackballBehavior: TrackballBehavior(
-                activationMode: ActivationMode.singleTap,
-                enable: true,
-                shouldAlwaysShow: true,
-                lineType: TrackballLineType.none,
-                tooltipDisplayMode: TrackballDisplayMode.none,
-                markerSettings: const TrackballMarkerSettings(
-                  color: Colors.green,
-                  markerVisibility: TrackballVisibilityMode.visible,
-                ),
-              ),
-              series: <CartesianSeries>[
-                LineSeries<ChartData, String>(
-                  dataSource: widget.chartData,
-                  xValueMapper: (ChartData data, _) => data.x,
-                  yValueMapper: (ChartData data, _) => data.y,
-                  xAxisName: "Days (Nov) 2023",
-                  yAxisName: "Amount (EGP)",
-                  pointColorMapper: (ChartData data, idx) =>
-                      ColorSchemes.gray.withOpacity(0.4),
-                  isVisible: true,
-                  enableTooltip: true,
-                  // onPointTap: (ChartPointDetails details) {
-                  //   setState(() {
-                  //     print(details.dataPoints![0].y);
-                  //     print(details.pointIndex);
-                  //     print(details.seriesIndex);
-                  //     // if(details.pointIndex)
-                  //   });
-                  // },
-                  // Renders the marker
-                  markerSettings: const MarkerSettings(
-                    isVisible: true,
-                    color: ColorSchemes.primary,
-                    shape: DataMarkerType.circle,
-                    borderWidth: 0,
-                  ),
-                  emptyPointSettings: EmptyPointSettings(
-                    mode: EmptyPointMode.average,
-                    borderColor: ColorSchemes.primary,
-                    color: ColorSchemes.gray,
-                  ),
-                )
-              ],
             ),
-          ],
+            primaryYAxis: NumericAxis(
+              interval: 100,
+              isVisible: true,
+              interactiveTooltip: const InteractiveTooltip(
+                enable: false,
+                canShowMarker: false,
+              ),
+            ),
+            // Chart title
+            title: ChartTitle(
+              text: '${"S.current.amount"} (EGP)',
+              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF222222),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    fontFamily: "Montserrat",
+                  ),
+              alignment: ChartAlignment.near,
+            ),
+            tooltipBehavior: TooltipBehavior(
+              enable: true,
+              canShowMarker: true,
+              activationMode: ActivationMode.singleTap,
+              shared: true,
+              color: ColorSchemes.dashboardCardColor,
+              tooltipPosition: TooltipPosition.auto,
+              shouldAlwaysShow: true,
+              builder: (dynamic data, dynamic point, dynamic series, int index,
+                  int c) {
+                return CustomToolTipWidget(data: data);
+              },
+            ),
+            enableAxisAnimation: true,
+            enableSideBySideSeriesPlacement: true,
+            crosshairBehavior: CrosshairBehavior(
+              enable: true,
+              shouldAlwaysShow: true,
+              lineType: CrosshairLineType.none,
+              activationMode: ActivationMode.singleTap,
+              lineColor: Colors.green,
+            ),
+            enableMultiSelection: true,
+            trackballBehavior: TrackballBehavior(
+              activationMode: ActivationMode.singleTap,
+              enable: true,
+              shouldAlwaysShow: true,
+              lineType: TrackballLineType.none,
+              tooltipDisplayMode: TrackballDisplayMode.none,
+              markerSettings: const TrackballMarkerSettings(
+                color: ColorSchemes.gray,
+                markerVisibility: TrackballVisibilityMode.visible,
+              ),
+            ),
+            series: <CartesianSeries>[
+              LineSeries<ChartData, String>(
+                dataSource: widget.chartData,
+                xValueMapper: (ChartData data, _) => data.x,
+                yValueMapper: (ChartData data, _) => data.y,
+                xAxisName: "${"S.current.days"} (Nov) 2023",
+                yAxisName: "${"S.current.amount"} (EGP)",
+                pointColorMapper: (ChartData data, idx) =>
+                    ColorSchemes.gray.withOpacity(0.4),
+                isVisible: true,
+                enableTooltip: true,
+                markerSettings: const MarkerSettings(
+                  isVisible: true,
+                  color: ColorSchemes.primary,
+                  shape: DataMarkerType.circle,
+                  borderWidth: 0,
+                ),
+                emptyPointSettings: EmptyPointSettings(
+                  mode: EmptyPointMode.average,
+                  borderColor: ColorSchemes.primary,
+                  color: ColorSchemes.gray,
+                ),
+              )
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
