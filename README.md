@@ -47,7 +47,7 @@
 # New_Custom_Massage_Dialog
 # Password_Validation_Widget
 # Download_File_From_Url
-# Pin_Code
+# Custom_Pin_Code_With_Text_Field
 # Animation_Splash_Screen
 # Media_Widgets_Voice_Video_images_record_And_Show
 # Custom_Switch_Widget
