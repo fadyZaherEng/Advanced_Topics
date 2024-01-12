@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/forget/foeget_password_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/home/home_screen.dart';
@@ -7,7 +9,11 @@ import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onbo
 import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/bar_chart_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_screen/full_video_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/media_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/play_video_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/video_trimmer_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr/qr_code_scanner_screen.dart';
+import 'package:video_player/video_player.dart';
 
 class AppRoutes {
   static const String onBoardingScreen = "/onBoardingScreen";
@@ -19,6 +25,9 @@ class AppRoutes {
   static const String qrCodeScannerScreen = "/QrCodeScannerScreen";
   static const String splashScreen = "/splashScreen";
   static const String barChartScreen = "/barChartScreen";
+  static const String videoTrimmer = "/videoTrimmer";
+  static const String playVideoScreen = "/playVideoScreen";
+  static const String mediaScreen = "/mediaScreen";
 }
 
 class RouteGenerator {
@@ -43,6 +52,27 @@ class RouteGenerator {
         return _materialRoute(const SplashScreen());
       case AppRoutes.barChartScreen:
         return _materialRoute(const BarChartScreen());
+      case AppRoutes.videoTrimmer:
+        Map<String, dynamic> arg =
+            routeSettings.arguments as Map<String, dynamic>;
+        return _materialRoute(
+          VideoTrimmerScreen(
+            file: arg["video"] as File,
+            maxDuration: arg["maxDuration"] as int,
+          ),
+        );
+      case AppRoutes.playVideoScreen:
+        Map<String, dynamic> arg =
+            routeSettings.arguments as Map<String, dynamic>;
+        return _materialRoute(
+          PlayVideoScreen(
+            video: arg["video"] as File,
+            videoController:
+                arg["videoPlayerController"] as VideoPlayerController,
+          ),
+        );
+      case AppRoutes.mediaScreen:
+        return _materialRoute(const MediaScreen());
       default:
         return unDefinedRoute();
     }

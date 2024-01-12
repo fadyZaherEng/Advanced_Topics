@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../../generated/l10n.dart';
 import 'pin_code_text_field_widget.dart';
 
 class ContentPinCodeWidget extends StatelessWidget {
