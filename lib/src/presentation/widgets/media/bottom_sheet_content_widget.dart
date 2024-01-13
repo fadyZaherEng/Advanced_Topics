@@ -1,8 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
@@ -16,11 +20,17 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_te
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_video_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/need_payment/need_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/show_voice_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/convert_asset_entities_to_files.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/formate_time.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/generate_thumbnail.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class BottomSheetContentWidget extends BaseStatefulWidget {
   final int maxLengthOfVoice;
@@ -55,6 +65,7 @@ class _BottomSheetContentWidgetState
   String _audioPath = "";
   String _videoPath = "";
   final List<XFile> _images = [];
+
   // JobDetailsController _jobDetailsController = JobDetailsController(
   //   problemTextEditingController: TextEditingController(),
   //   serviceTextEditingController: TextEditingController(),
@@ -175,33 +186,39 @@ class _BottomSheetContentWidgetState
                         max: widget.maxlengthOfImages,
                         min: widget.minLengthOfImages,
                       ),
-                      if (_audioPath != "")
-                        ShowMicrophoneWidget(
-                          audioPath: _audioPath,
-                          maxRecordingDuration: widget.maxLengthOfVoice,
-                          onClosed: () {
-                            _bloc.add(OnNeedPaymentClearAudioEvent());
-                          },
-                        ),
+                      _audioWidget(),
+                      // ShowMicrophoneWidget(
+                      //   audioPath: _audioPath,
+                      //   maxRecordingDuration: widget.maxLengthOfVoice,
+                      //   onClosed: () {
+                      //     _bloc.add(OnNeedPaymentClearAudioEvent());
+                      //   },
+                      // ),
+
                       if (_audioPath != "")
                         const SizedBox(
                           height: 10,
                         ),
+                      state is ShowVideoSkeletonState
+                          ? _buildVideoSkeleton()
+                          : const SizedBox.shrink(),
                       if (_videoPath != "")
-                        SizedBox(
-                          height: 150,
-                          width: double.infinity,
-                          child: CustomVideoWidget(
-                            videoController:
-                                VideoPlayerController.file(File(_videoPath))
-                                  ..initialize().then(
-                                    (value) {},
-                                  ),
-                            onClosed: () {
-                              _bloc.add(OnNeedPaymentClearVideoEvent());
-                            },
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 150,
+                        //   width: double.infinity,
+                        //   child: CustomVideoWidget(
+                        //     videoController:
+                        //         VideoPlayerController.file(File(_videoPath))
+                        //           ..initialize().then(
+                        //             (value) {},
+                        //           ),
+                        //     onClosed: () {
+                        //       _bloc.add(OnNeedPaymentClearVideoEvent());
+                        //     },
+                        //   ),
+                        // ),
+
+                        _videoWidget(),
                       if (_videoPath != "")
                         const SizedBox(
                           height: 10,
@@ -266,6 +283,244 @@ class _BottomSheetContentWidgetState
     });
   }
 
+  VideoPlayerController? videoPlayerController;
+
+  Widget _buildVideoSkeleton() => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Container(
+          width: double.infinity,
+          height: 150,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8), color: Colors.grey),
+          child: const SkeletonLine(
+            style: SkeletonLineStyle(
+              width: double.infinity,
+              height: 150,
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+            ),
+          ),
+        ),
+      );
+
+  void _onNavigateToTrimmerScreenState({
+    required File video,
+    required int maxDuration,
+  }) {
+    Navigator.pushNamed(
+      context,
+      AppRoutes.videoTrimmer,
+      arguments: {
+        "video": video,
+        "maxDuration": maxDuration,
+      },
+    ).then((value) {
+      if (value != null) {
+        _videoPath = value.toString();
+        videoPlayerController = VideoPlayerController.file(
+          File(_videoPath),
+        )..initialize().then((_) {
+            setState(() {});
+            FocusScope.of(context).unfocus();
+          });
+      }
+    });
+  }
+
+  Widget _videoWidget() {
+    videoPlayerController = VideoPlayerController.file(
+      File(_videoPath),
+    )..initialize().then((_) {
+        if (videoPlayerController!.value.duration.inSeconds >
+            widget.maxLengthOfVideo) {
+          // _bloc.add(NavigateToVideoTrimmerScreenEvent(
+          //   video: selectedVideo!,
+          //   maxDuration: _maxVideoDuration,
+          // ));
+          // Navigator.pushNamed(context, AppRoutes.videoTrimmer, arguments: {
+          //   "video": File(_videoPath),
+          //   "maxDuration": widget.maxLengthOfVideo,
+          // });
+          _onNavigateToTrimmerScreenState(
+            video: File(_videoPath),
+            maxDuration: widget.maxLengthOfVideo,
+          );
+          _videoPath = "";
+          videoPlayerController = null;
+        } else {
+          // _widgets.removeWhere(
+          //       (element) => element.id == WidgetId.video,
+          // );
+          // setState(() {});
+          // _widgets.add(WidgetModel(
+          //   widget: _videoWidget(),
+          //   id: WidgetId.video,
+          // ));
+          FocusScope.of(context).unfocus();
+        }
+      });
+
+    return videoPlayerController == null
+        ? const SizedBox.shrink()
+        : videoPlayerController!.value.isInitialized
+            ? Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 150,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.grey),
+                          child: InkWell(
+                            onTap: () {
+                              // _navigateToPlayVideoScreenEvent(
+                              //     selectedVideo, videoPlayerController!);
+                              Navigator.pushNamed(
+                                  context, AppRoutes.playVideoScreen,
+                                  arguments: {
+                                    "video": File(_videoPath),
+                                    "videoPlayerController":
+                                        videoPlayerController
+                                  });
+                            },
+                            child: SizedBox(
+                              height: 150,
+                              child: FutureBuilder<Uint8List?>(
+                                future: generateThumbnail(_videoPath),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<Uint8List?> snapshot) {
+                                  if (snapshot.connectionState ==
+                                          ConnectionState.done &&
+                                      snapshot.data != null) {
+                                    return Image.memory(
+                                      snapshot.data!,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                    );
+                                  } else if (snapshot.error != null) {
+                                    return Image.asset(
+                                      ImagePaths.imagePlaceHolder,
+                                      fit: BoxFit.fill,
+                                    );
+                                  } else {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned.directional(
+                          textDirection: Directionality.of(context),
+                          start: 6,
+                          top: -10,
+                          child: InkWell(
+                            onTap: () {
+                              showActionDialogWidget(
+                                context: context,
+                                icon: ImagePaths.warning,
+                                secondaryAction: () {
+                                  Navigator.pop(context);
+                                  _videoPath = "";
+                                  //_navigateBackEvent();
+                                  //_bloc.add(RemoveVideoEvent());
+                                },
+                                primaryAction: () {
+                                  Navigator.pop(context);
+                                  //_navigateBackEvent();
+                                },
+                                secondaryText: "Yes",
+                                primaryText: "No",
+                                text: "areYouSureYouWantToDeleteThisVideo",
+                              );
+                            },
+                            child: Container(
+                              width: 20,
+                              height: 20,
+                              decoration: const BoxDecoration(
+                                color: ColorSchemes.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: SvgPicture.asset(
+                                ImagePaths.close,
+                                fit: BoxFit.scaleDown,
+                                color: ColorSchemes.gray,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // _navigateToPlayVideoScreenEvent(
+                      //     selectedVideo, videoPlayerController!);
+                      Navigator.pushNamed(context, AppRoutes.playVideoScreen,
+                          arguments: {
+                            "video": File(_videoPath),
+                            "videoPlayerController": videoPlayerController
+                          });
+                    },
+                    child: SvgPicture.asset(
+                      fit: BoxFit.scaleDown,
+                      ImagePaths.play,
+                      color: Colors.white,
+                      width: 45,
+                      height: 45,
+                    ),
+                  ),
+                  Positioned.directional(
+                    end: 18,
+                    bottom: 18,
+                    textDirection: Directionality.of(context),
+                    child: Text(
+                      formatTime(videoPlayerController!.value.duration),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: ColorSchemes.white,
+                          ),
+                    ),
+                  ),
+                ],
+              )
+            : const SizedBox.shrink();
+  }
+
+  Widget _audioWidget() {
+    return _audioPath.isEmpty
+        ? const SizedBox.shrink()
+        : AudioWidget(
+            audioPath: _audioPath,
+            onClearAudioTap: () {
+              showActionDialogWidget(
+                context: context,
+                icon: ImagePaths.warning,
+                secondaryAction: () {
+                  Navigator.pop(context);
+                  _audioPath = "";
+                  setState(() {});
+                  // _removeAudioFileEvent();
+                },
+                primaryAction: () {
+                  Navigator.pop(context);
+                },
+                secondaryText: "yes",
+                primaryText: "no",
+                text: "areYouSureYouWantToDeleteThisAudio",
+              );
+            },
+          );
+  }
+
   void _onClose(
     BuildContext context,
     String audioPath,
@@ -298,66 +553,92 @@ class _BottomSheetContentWidgetState
 
   void _showBottomSheetMedia(
       BuildContext context, String type, int maxDuration) async {
-    showBottomSheetUploadMedia(
-      context: context,
-      onTapCamera: () async {
-        if (await PermissionServiceHandler().handleServicePermission(
-          setting: Permission.camera,
-        )) {
+    FocusScope.of(context).unfocus();
+    if (_images.length == widget.maxlengthOfImages&&type == "image") {
+      showMessageDialogWidget(
+        context: context,
+        text: "youHaveReachedTheMaximumImageLimit",
+        icon: ImagePaths.info,
+        buttonText: "ok",
+        onTap: () {
           Navigator.pop(context);
-          if (type == "image") {
-            _pickImage(context);
-          } else {
-            _pickVideo(context, maxDuration);
+        },
+      );
+    } else {
+      showBottomSheetUploadMedia(
+        context: context,
+        onTapCamera: () async {
+          if (await PermissionServiceHandler().handleServicePermission(
+            setting: PermissionServiceHandler.getCameraPermission(),
+          )) {
+            Navigator.pop(context);
+            if (type == "image") {
+              _pickImage(context);
+            } else {
+              _pickVideo(context, maxDuration);
+            }
+          } else if (!await PermissionServiceHandler().handleServicePermission(
+            setting: PermissionServiceHandler.getCameraPermission(),
+          )) {
+            showActionDialogWidget(
+                context: context,
+                text: "youShouldHaveCameraPermission",
+                icon: ImagePaths.cameraTwo,
+                primaryText: "ok",
+                secondaryText: "cancel",
+                primaryAction: () async {
+                  openAppSettings().then((value) => Navigator.pop(context));
+                },
+                secondaryAction: () {
+                  Navigator.of(context).pop();
+                });
           }
-        } else if (!await PermissionServiceHandler()
-            .handleServicePermission(setting: Permission.camera)) {
-          showActionDialogWidget(
+        },
+        onTapGallery: () async {
+          Permission permission =type == "image"
+              ? PermissionServiceHandler.getGalleryPermission(
+            true,
+            androidDeviceInfo: Platform.isAndroid
+                ? await DeviceInfoPlugin().androidInfo
+                : null,
+          )
+              : PermissionServiceHandler.getSingleVideoGalleryPermission(
+            androidDeviceInfo: Platform.isAndroid
+                ? await DeviceInfoPlugin().androidInfo
+                : null,
+          );
+          if (await PermissionServiceHandler().handleServicePermission(
+            setting: permission,
+          )) {
+            Navigator.pop(context);
+            if (type == "image") {
+              _getImageFromGallery(context);
+            } else {
+              _getVideoFromGallery(context);
+            }
+          } else if (!await PermissionServiceHandler()
+              .handleServicePermission(setting: permission)) {
+            showActionDialogWidget(
               context: context,
-              text: "youShouldHaveCameraPermission",
-              icon: ImagePaths.cameraTwo,
-              primaryText: "ok",
-              secondaryText: "cancel",
+              text: "S.of(context).youShouldHaveStoragePermission",
+              icon: ImagePaths.gallery,
+              primaryText: "S.of(context).ok",
+              secondaryText: "S.of(context).cancel",
               primaryAction: () async {
-                openAppSettings().then((value) => Navigator.pop(context));
+                openAppSettings().then(
+                  (value) async {
+                    Navigator.pop(context);
+                  },
+                );
               },
               secondaryAction: () {
                 Navigator.of(context).pop();
-              });
-        }
-      },
-      onTapGallery: () async {
-        if (await PermissionServiceHandler().handleServicePermission(
-          setting: Permission.storage,
-        )) {
-          Navigator.pop(context);
-          if (type == "image") {
-            _getImageFromGallery(context);
-          } else {
-            _getVideoFromGallery(context);
+              },
+            );
           }
-        } else if (!await PermissionServiceHandler()
-            .handleServicePermission(setting: Permission.storage)) {
-          showActionDialogWidget(
-            context: context,
-            text: "S.of(context).youShouldHaveStoragePermission",
-            icon: ImagePaths.gallery,
-            primaryText: "S.of(context).ok",
-            secondaryText: "S.of(context).cancel",
-            primaryAction: () async {
-              openAppSettings().then(
-                (value) async {
-                  Navigator.pop(context);
-                },
-              );
-            },
-            secondaryAction: () {
-              Navigator.of(context).pop();
-            },
-          );
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
   void _pickImage(BuildContext context) async {
@@ -367,21 +648,51 @@ class _BottomSheetContentWidgetState
     if (pickedImage != null) {
       _images.add(pickedImage);
       _errorProblemMessage = null;
-      // _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+       _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
     }
   }
+  List<AssetEntity> imagesAssets = [];
 
   void _getImageFromGallery(BuildContext context) async {
-    final pickedImage = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+    List<AssetEntity>? images = [];
+    //to pick multiple images or single image
+    //to pick multiple video or single video
+    //to pick multiple audio or single audio
+    images = await AssetPicker.pickAssets(
+      context,
+      pickerConfig: AssetPickerConfig(
+        selectedAssets: imagesAssets,//list select before add images
+        maxAssets: widget.maxlengthOfImages - _images.length,
+        requestType: RequestType.image,//type of media
+      ),
     );
-    if (pickedImage != null) {
-      _images.add(pickedImage);
-      _errorProblemMessage = null;
-      //_bloc.add(OnNeedPaymentAddGalleryEvent(_images));
-    }
-  }
 
+    if (images != null) {
+      imagesAssets = images;
+    }
+    List<File> imagesList = [];
+
+    await convertAssetEntitiesToFiles(images).then((value) {
+      imagesList = value;
+    });
+    for (int i = 0; i < imagesList.length; i++) {
+      if (!_images.contains(XFile(imagesList[i].path))) {
+          _images.add(XFile(imagesList[i].path));
+        }
+      }
+      _errorProblemMessage = null;
+      _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+      //_bloc.add(AddMultipleImagesEvent(images: imagesList));
+      // final pickedImage = await ImagePicker().pickImage(
+      //   source: ImageSource.gallery,
+      // );
+      // if (pickedImage != null) {
+      //   _images.add(pickedImage);
+      //   _errorProblemMessage = null;
+      //   //_bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+      // }
+
+  }
   void _pickVideo(BuildContext context, int maxDuration) async {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.camera,

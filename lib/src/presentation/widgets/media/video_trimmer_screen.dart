@@ -117,14 +117,14 @@ class _VideoTrimmerScreenState extends State<VideoTrimmerScreen> {
           const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             height: 100,
             child: TrimViewer(
               trimmer: _trimmer,
               viewerHeight: 60.0,
               showDuration: true,
               durationStyle: DurationStyle.FORMAT_HH_MM_SS,
-              durationTextStyle: TextStyle(color: Colors.black),
+              durationTextStyle: const TextStyle(color: Colors.black),
               viewerWidth: MediaQuery.of(context).size.width,
               onChangeStart: (value) {
                 _startValue = value;

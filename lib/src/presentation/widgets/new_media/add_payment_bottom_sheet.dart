@@ -59,20 +59,20 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
       TextEditingController();
 
   final GlobalKey _descriptionKey = GlobalKey();
-  int _maxVideoDuration = 30;
-  int _maxCharacter = 150;
-  int _minCharacter = 20;
-  int _maxImageCount = 3;
-  int _miniImageCount = 1;
-  int _maxAudioDuration = 30;
+  final int _maxVideoDuration = 30;
+  final int _maxCharacter = 150;
+  final int _minCharacter = 20;
+  final int _maxImageCount = 3;
+  final int _miniImageCount = 1;
+  final int _maxAudioDuration = 30;
   File? selectedVideo;
   bool _isDescribeYourProblemValid = true;
   List<File> images = [];
   VideoPlayerController? videoPlayerController;
 
-  bool _isAudioIconVisible = true;
-  bool _isImageIconVisible = true;
-  bool _isVideoIconVisible = true;
+  final bool _isAudioIconVisible = true;
+  final bool _isImageIconVisible = true;
+  final bool _isVideoIconVisible = true;
 
   var describeWidgetKey = GlobalKey();
 
@@ -84,11 +84,12 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
   String _audioPath = "";
   bool _isReachedMax = false;
 
-  List<WidgetModel> _widgets = [];
+  final List<WidgetModel> _widgets = [];
   String? _serviceAmountErrorMessage;
 
   @override
   void didUpdateWidget(covariant AddPaymentBottomSheet oldWidget) {
+    //callback for update widget after set state called or emit for bloc to rebuild widget
     widget.onClose?.call(_isCanClose());
     super.didUpdateWidget(oldWidget);
   }
@@ -240,6 +241,9 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
       },
       builder: (context, state) {
         return WillPopScope(
+            //call when you press back button
+            //to close bottom sheet and go back to previous screen
+            // and in on will pop implementation of condition of back button
             onWillPop: () async {
               if (_describeYourProblemController.text.isNotEmpty ||
                   _serviceAmountController.text.isNotEmpty ||
@@ -624,6 +628,7 @@ class _AddPaymentBottomSheetState extends BaseState<AddPaymentBottomSheet> {
     }
   }
 
+  //some configuration for start record in ios
   Future<void> _handleIOSAudio() async {
     final session = await AudioSession.instance;
     await session.configure(AudioSessionConfiguration(

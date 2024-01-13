@@ -30,7 +30,8 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
     widget.videoController!.addListener(() {
       if (widget.videoController!.value.position ==
           widget.videoController!.value.duration) {
-        if (mounted) setState(() {});
+        if(mounted)
+        setState(() {});
       }
     });
     super.initState();
@@ -41,7 +42,8 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
     widget.videoController!.addListener(() {
       if (widget.videoController!.value.position ==
           widget.videoController!.value.duration) {
-        if (mounted) setState(() {});
+        if(mounted)
+        setState(() {});
       }
     });
     super.didChangeDependencies();
@@ -87,48 +89,49 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
         },
       ),
       body: Container(
-          color: ColorSchemes.black.withOpacity(0.8),
-          child: Stack(
-            alignment: Alignment.center,
-            fit: StackFit.loose,
-            children: [
-              VideoPlayer(
-                widget.videoController!,
+        color: ColorSchemes.black.withOpacity(0.8),
+        child: Stack(
+          alignment: Alignment.center,
+          fit: StackFit.loose,
+          children: [
+            VideoPlayer(
+              widget.videoController!,
+            ),
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                widget.videoController!.value.isPlaying
+                    ? widget.videoController!.pause()
+                    : widget.videoController!.play();
+                setState(() {});
+              },
+              child: Stack(
+                children: <Widget>[
+                  _buildPlay(),
+                  Positioned(
+                      left: 8,
+                      bottom: 28,
+                      child: StreamBuilder<String>(
+                          stream: getVideoPosition(),
+                          builder: (context, snapshot) {
+                            return Text(snapshot.data ?? "");
+                          })),
+                  Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Row(
+                        children: [
+                          Expanded(child: _buildIndicator()),
+                          const SizedBox(width: 8),
+                        ],
+                      )),
+                ],
               ),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  widget.videoController!.value.isPlaying
-                      ? widget.videoController!.pause()
-                      : widget.videoController!.play();
-                  setState(() {});
-                },
-                child: Stack(
-                  children: <Widget>[
-                    _buildPlay(),
-                    Positioned(
-                        left: 8,
-                        bottom: 28,
-                        child: StreamBuilder<String>(
-                            stream: getVideoPosition(),
-                            builder: (context, snapshot) {
-                              return Text(snapshot.data ?? "");
-                            })),
-                    Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Row(
-                          children: [
-                            Expanded(child: _buildIndicator()),
-                            const SizedBox(width: 8),
-                          ],
-                        )),
-                  ],
-                ),
-              ),
-            ],
-          )),
+            ),
+          ],
+        )
+      ),
     );
   }
 
@@ -179,9 +182,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
 
   String _isPlayIcon(bool isPlaying) {
     if (isPlaying) {
-      setState(
-        () {},
-      );
+      setState(() {});
       return ImagePaths.pause;
     } else {
       setState(() {});

@@ -28,10 +28,10 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
       children: [
         Text(
           "video",
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: ColorSchemes.black,
-                letterSpacing: -0.24,
-              ),
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(color: ColorSchemes.black, letterSpacing: -0.24),
         ),
         const SizedBox(
           height: 16,

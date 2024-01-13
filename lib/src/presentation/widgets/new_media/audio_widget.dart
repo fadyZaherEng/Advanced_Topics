@@ -124,7 +124,6 @@ class _AudioWidgetState extends State<AudioWidget> {
                                 isPlaying = false;
                               });
                             } else {
-                              print("Hassan ${widget.audioPath}");
                               await audioPlayer
                                   .play(DeviceFileSource(widget.audioPath));
                               setState(() {

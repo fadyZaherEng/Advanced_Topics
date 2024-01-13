@@ -39,9 +39,9 @@ class OnBottomNeedPaymentClickEvent extends NeedPaymentEvent {
 class OnNeedPaymentClickEvent extends NeedPaymentEvent {}
 
 class OnNeedPaymentAddGalleryEvent extends NeedPaymentEvent {
-  // List<XFile> images;
-  //
-  // OnNeedPaymentAddGalleryEvent(this.images);
+  List<XFile> images;
+
+  OnNeedPaymentAddGalleryEvent(this.images);
 }
 
 class OnNeedPaymentAddMediaEvent extends NeedPaymentEvent {}

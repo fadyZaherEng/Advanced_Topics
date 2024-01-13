@@ -41,9 +41,8 @@ class CustomTextFiledServiceWidget extends StatelessWidget {
           ),
           controller: textEditingController,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                fontWeight: Constants.fontWeightRegular,
-                color: ColorSchemes.black,
-              ),
+              fontWeight: Constants.fontWeightRegular,
+              color: ColorSchemes.black),
           onChanged: onChanged,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,}'))

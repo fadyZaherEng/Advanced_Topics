@@ -21,7 +21,9 @@ class _MediaScreenState extends State<MediaScreen> {
             onPressed: () {
               _showBottomSheet(context);
             },
-            child: const Text("Show bottom Sheet"),
+            child: const Text(
+              "Show bottom Sheet",
+            ),
           ),
         ),
       ),

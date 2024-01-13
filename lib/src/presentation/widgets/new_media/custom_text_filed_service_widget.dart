@@ -59,30 +59,6 @@ class CustomTextFiledServiceWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12)),
             errorText: errorMessage,
             hintText: "setAmount",
-            // suffixIcon: Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.end,
-            //     mainAxisSize: MainAxisSize.min,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     children: [
-            //       Container(
-            //         width: 1,
-            //         height: 15,
-            //         color: ColorSchemes.gray,
-            //       ),
-            //       const SizedBox(
-            //         width: 5,
-            //       ),
-            //       Text(
-            //         "EGP",
-            //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            //           color: ColorSchemes.black,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(

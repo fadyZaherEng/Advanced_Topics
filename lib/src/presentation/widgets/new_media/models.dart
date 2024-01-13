@@ -10,8 +10,5 @@ class WidgetModel {
   final int id;
   final Widget widget;
 
-  WidgetModel({
-    required this.widget,
-    required this.id,
-  });
+  WidgetModel({required this.widget, required this.id});
 }

@@ -35,7 +35,7 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
       listener: (context, state) {
         if (state is OnNeedPaymentAddGalleryState) {
           _images.clear();
-          //  _images.addAll(state.images);
+          _images.addAll(state.images);
         }
       },
       builder: (context, state) {

@@ -87,7 +87,7 @@ class _CustomTextFieldProblemWidgetState
                       borderRadius: BorderRadius.circular(12),
                     ),
                     counterText: "",
-                    hintText: " S.current.briefDescription",
+                    hintText: "briefDescription",
                     hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: const Color(0xFF989898),
                           fontSize: 12,

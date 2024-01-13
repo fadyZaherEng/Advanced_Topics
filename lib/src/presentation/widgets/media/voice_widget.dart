@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
 
 class RecordVoiceWidget extends StatefulWidget {
   int maxRecordingDuration;
@@ -38,7 +40,8 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
   @override
   void initState() {
     super.initState();
-    initialRecorder();
+
+    ///initRecorder();
 
     max = widget.maxRecordingDuration;
   }
@@ -58,49 +61,117 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
             height: 20,
           ),
         ),
-        if (isRecording)
-          StreamBuilder(
-            stream: recorder.onProgress,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
+        Visibility(
+          visible: isRecording,
+          child: StreamBuilder<RecordingDisposition>(
+              stream: recorder.onProgress,
+              builder: (context, snapshot) {
                 final duration =
                     snapshot.hasData ? snapshot.data!.duration : Duration.zero;
+                final remainingTime =
+                    Duration(seconds: widget.maxRecordingDuration) - duration;
+                String twoDigitsInMinutes =
+                    twoDigits(remainingTime.inMinutes.remainder(60));
+                String twoDigitsInSeconds =
+                    twoDigits(remainingTime.inSeconds.remainder(60));
                 return Text(
-                  '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontSize: 12,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w400,
+                  "$twoDigitsInMinutes:$twoDigitsInSeconds",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        letterSpacing: -0.24,
                         color: ColorSchemes.black,
                       ),
                 );
-              }
-              return Container();
-            },
-          ),
+              }),
+        ),
+        // if (isRecording)
+        //   StreamBuilder(
+        //     stream: recorder.onProgress,
+        //     builder: (context, snapshot) {
+        //       if (snapshot.hasData) {
+        //         final duration =
+        //             snapshot.hasData ? snapshot.data!.duration : Duration.zero;
+        //         return Text(
+        //           '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
+        //           style: Theme.of(context).textTheme.bodySmall!.copyWith(
+        //                 fontSize: 12,
+        //                 fontFamily: "Montserrat",
+        //                 fontWeight: FontWeight.w400,
+        //                 color: ColorSchemes.black,
+        //               ),
+        //         );
+        //       }
+        //       return Container();
+        //     },
+        //   ),
         const SizedBox(width: 10),
       ],
     );
   }
 
-  Future record() async {
+  Future _startRecording() async {
     if (!isRecorderReady) return;
     setState(() {
       isRecording = true;
     });
-    return recorder.startRecorder(toFile: "audio");
+    Directory? dir;
+    if (Platform.isIOS) {
+      dir = await getApplicationDocumentsDirectory();
+    } else {
+      dir = await getApplicationDocumentsDirectory();
+    }
+    final record =
+        await recorder.startRecorder(toFile: "${dir.path}/audio.aac");
+    // recorder.onProgress!.listen((time) async {
+    //   _bloc.add(AudioStatusChangeEvent(
+    //     isRecording: true,
+    //     duration: time.duration.inSeconds,
+    //   ));
+    // });
+    recorder.onProgress!.listen((event) {
+      setState(() {
+        playbackProgress = event.duration.inSeconds.toDouble();
+        if (playbackProgress > max) {
+          _stopRecording();
+        }
+      });
+    });
+    return record;
   }
 
-  Future stop() async {
+  Future<void> _stopRecording() async {
     if (!isRecorderReady) return;
     setState(() {
       isRecording = false;
     });
-    final path = await recorder.stopRecorder();
-    audioFile = File(path!);
-    _bloc.add(OnGetAudioPathEvent(audioFile!.path));
-    widget.maxRecordingDuration = max;
+    String audioPath = await recorder.stopRecorder() ?? "";
+
+    if (audioPath.isEmpty) {
+      ///emit audio path event empty
+    } else {
+      audioFile = File(audioPath);
+      _bloc.add(OnGetAudioPathEvent(audioFile!.path));
+      widget.maxRecordingDuration = max;
+    }
   }
+
+  // Future record() async {
+  //   if (!isRecorderReady) return;
+  //   setState(() {
+  //     isRecording = true;
+  //   });
+  //   return recorder.startRecorder(toFile: "audio");
+  // }
+  //
+  // Future stop() async {
+  //   if (!isRecorderReady) return;
+  //   setState(() {
+  //     isRecording = false;
+  //   });
+  //   final path = await recorder.stopRecorder();
+  //   audioFile = File(path!);
+  //   _bloc.add(OnGetAudioPathEvent(audioFile!.path));
+  //   widget.maxRecordingDuration = max;
+  // }
 
   @override
   void dispose() {
@@ -108,54 +179,84 @@ class _RecordVoiceWidgetState extends State<RecordVoiceWidget> {
     super.dispose();
   }
 
-  void initialRecorder() async {
-    await recorder.openRecorder();
-    isRecorderReady = true;
-    recorder.setSubscriptionDuration(
-      const Duration(
-        milliseconds: 500,
+  //some configuration for start record in ios
+  Future<void> _handleIOSAudio() async {
+    final session = await AudioSession.instance;
+    await session.configure(AudioSessionConfiguration(
+      avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+      avAudioSessionCategoryOptions:
+          AVAudioSessionCategoryOptions.allowBluetooth |
+              AVAudioSessionCategoryOptions.defaultToSpeaker,
+      avAudioSessionMode: AVAudioSessionMode.spokenAudio,
+      avAudioSessionRouteSharingPolicy:
+          AVAudioSessionRouteSharingPolicy.defaultPolicy,
+      avAudioSessionSetActiveOptions: AVAudioSessionSetActiveOptions.none,
+      androidAudioAttributes: const AndroidAudioAttributes(
+        contentType: AndroidAudioContentType.speech,
+        flags: AndroidAudioFlags.none,
+        usage: AndroidAudioUsage.voiceCommunication,
       ),
-    );
+      androidAudioFocusGainType: AndroidAudioFocusGainType.gain,
+      androidWillPauseWhenDucked: true,
+    ));
   }
 
   Future initRecorder() async {
+    if (Platform.isIOS) {
+      await _handleIOSAudio();
+    }
     await recorder.openRecorder();
     isRecorderReady = true;
-    recorder.setSubscriptionDuration(
-      const Duration(
-        milliseconds: 500,
-      ),
-    );
-    recorder.onProgress!.listen((event) {
-      setState(() {
-        playbackProgress = event.duration.inSeconds.toDouble();
-        if (playbackProgress > max) {
-          stop();
-        }
-      });
-    });
+    await recorder.setSubscriptionDuration(const Duration(
+      milliseconds: 500,
+    ));
     return recorder;
   }
 
   void _onAudioTap(BuildContext context) async {
+    FocusScope.of(context).unfocus();
+    if (audioFile!.path.isNotEmpty && !recorder.isRecording) {
+      showActionDialogWidget(
+        context: context,
+        icon: ImagePaths.warning,
+        primaryAction: () {
+          Navigator.pop(context);
+        },
+        primaryText: "no",
+        secondaryAction: () async {
+          Navigator.pop(context);
+          //init Recording with replace
+          _requestMicrophonePermission();
+        },
+        secondaryText: "yes",
+        text: "areYouWantToChooseAnotherAudio",
+      );
+    } else {
+      _requestMicrophonePermission();
+    }
+  }
+
+  String twoDigits(int n) => n.toString().padLeft(2, "0");
+
+  _requestMicrophonePermission() async {
     if (await PermissionServiceHandler().handleServicePermission(
       setting: Permission.microphone,
     )) {
-      if (isRecording) {
-        stop();
+      await initRecorder();
+      if (recorder.isRecording) {
+        await _stopRecording();
       } else {
-        await initRecorder();
-        await record();
-        widget.maxRecordingDuration = max;
+        await _startRecording();
       }
+      widget.maxRecordingDuration = max;
     } else if (!await PermissionServiceHandler()
         .handleServicePermission(setting: Permission.microphone)) {
       showActionDialogWidget(
         context: context,
-        text: "S.of(context).youShouldHaveAudioPermission",
+        text: "youShouldHaveAudioPermission",
         icon: "ImagePaths.microphone",
-        primaryText: "S.of(context).ok",
-        secondaryText: " S.of(context).cancel",
+        primaryText: "ok",
+        secondaryText: "cancel",
         primaryAction: () async {
           openAppSettings().then((value) => Navigator.pop(context));
         },

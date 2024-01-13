@@ -21,6 +21,8 @@ class OnNeedPaymentSubmitSuccessMediaState extends NeedPaymentState {
 
 class HideLoadingState extends NeedPaymentState {}
 
+class ShowVideoSkeletonState extends NeedPaymentState {}
+
 class OnGetAudioPathState extends NeedPaymentState {
   final String path;
 
@@ -52,9 +54,9 @@ class OnNeedPaymentServiceValidClickState extends NeedPaymentState {}
 class OnNeedPaymentServiceNotValidClickState extends NeedPaymentState {}
 
 class OnNeedPaymentAddGalleryState extends NeedPaymentState {
-  // List<XFile> images;
-  //
-  // OnNeedPaymentAddGalleryState(this.images);
+  List<XFile> images;
+
+  OnNeedPaymentAddGalleryState(this.images);
 }
 
 class OnNeedPaymentAddMediaState extends NeedPaymentState {}

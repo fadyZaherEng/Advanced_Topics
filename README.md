@@ -62,6 +62,20 @@
 # Media_Libraries
 # Custom_Page_Vew_Wth_Indicator
 # Advanced_Media_Styles //// feature/new-media-advanced
+# implementation in Widgets--> Media with my Style
+  -- upload and download file with file picker and dio or asset picker
+  -- select image or multi and show with image picker and asset picker for multi
+  -- select video with fixed duration with image picker or multi with asset picker 
+     -- and show with skeleton and thumbnail then display in full screen  and
+     -- if length lager then fixed navigate to video trimmer  
+  -- select audio with handle ios configuration and android with fixed duration
+     -- and show voice with beauty custom widget with all feature with timer
+  -- more libraries and all permission for audio and file and camera and gallery
+     -- and Calendar and Microphone with all version and all platform ios and android
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------
+
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

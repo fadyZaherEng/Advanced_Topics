@@ -7,8 +7,6 @@ Future<File?> compressVideo(String path) async {
     path,
     quality: VideoQuality.LowQuality,
     deleteOrigin: false,
-
   );
-
   return mediaInfo?.file;
 }

@@ -19,8 +19,9 @@ Future showBottomSheetWidget({
     isDismissible: isDismissible,
     isScrollControlled: true,
     builder: (context) => Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: BottomSheetWidget(
         height: height,
         content: content,

@@ -147,29 +147,27 @@ class _DescribeWidgetState extends State<DescribeWidget> {
                   Visibility(
                     visible: widget.isRecording,
                     child: StreamBuilder<RecordingDisposition>(
-                        stream: widget.onProgress,
-                        builder: (context, snapshot) {
-                          final duration = snapshot.hasData
-                              ? snapshot.data!.duration
-                              : Duration.zero;
-                          final remainingTime =
-                              Duration(seconds: widget.maxAudioLength) -
-                                  duration;
-                          String twoDigitsInMinutes =
-                              twoDigits(remainingTime.inMinutes.remainder(60));
-                          String twoDigitsInSeconds =
-                              twoDigits(remainingTime.inSeconds.remainder(60));
-                          return Text(
-                            "$twoDigitsInMinutes:$twoDigitsInSeconds",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  letterSpacing: -0.24,
-                                  color: ColorSchemes.black,
-                                ),
-                          );
-                        }),
+                      stream: widget.onProgress,
+                      builder: (context, snapshot) {
+                        final duration = snapshot.hasData
+                            ? snapshot.data!.duration
+                            : Duration.zero;
+                        final remainingTime =
+                            Duration(seconds: widget.maxAudioLength) - duration;
+                        String twoDigitsInMinutes =
+                            twoDigits(remainingTime.inMinutes.remainder(60));
+                        String twoDigitsInSeconds =
+                            twoDigits(remainingTime.inSeconds.remainder(60));
+                        return Text(
+                          "$twoDigitsInMinutes:$twoDigitsInSeconds",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    letterSpacing: -0.24,
+                                    color: ColorSchemes.black,
+                                  ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
