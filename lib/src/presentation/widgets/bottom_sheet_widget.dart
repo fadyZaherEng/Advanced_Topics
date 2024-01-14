@@ -7,12 +7,13 @@ class BottomSheetWidget extends StatelessWidget {
   final Widget content;
   final String titleLabel;
   final double height;
-
+  final bool isClosed;
   const BottomSheetWidget({
     Key? key,
     required this.content,
     required this.titleLabel,
     this.height = 300,
+    this.isClosed = false,
   }) : super(key: key);
 
   @override
@@ -37,21 +38,22 @@ class BottomSheetWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: InkWell(
-                onTap: () => Navigator.pop(context),
-                child: Padding(
-                  padding: titleLabel != null
-                      ? const EdgeInsets.all(16)
-                      : const EdgeInsets.fromLTRB(0.0, 16.0, 16.0, 0.0),
-                  child: SvgPicture.asset(
-                    ImagePaths.close,
-                    fit: BoxFit.scaleDown,
+            if (!isClosed)
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: Padding(
+                    padding: titleLabel != null
+                        ? const EdgeInsets.all(16)
+                        : const EdgeInsets.fromLTRB(0.0, 16.0, 16.0, 0.0),
+                    child: SvgPicture.asset(
+                      ImagePaths.close,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 ),
               ),
-            ),
             titleLabel.isEmpty
                 ? const SizedBox.shrink()
                 : Column(

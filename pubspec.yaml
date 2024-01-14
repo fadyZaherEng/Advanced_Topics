@@ -47,6 +47,7 @@ dependencies:
   # Automatically generate code for converting to and from JSON by annotating Dart classes
   json_serializable:
   json_annotation:
+  build_runner:
   # Networking
   dio:
   retrofit:
@@ -87,7 +88,9 @@ dependencies:
   dotted_border:
   syncfusion_flutter_charts:
   skeletons:
-
+  flutter_file_downloader:
+  flutter_sound:
+  image_picker:
 
 
 
