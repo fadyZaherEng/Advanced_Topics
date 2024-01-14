@@ -14,18 +14,17 @@ Future showNeedPaymentBottomSheet({
   required bool isPadding,
 }) async {
   return showBottomSheetWidget(
-    context: context,
-    height: MediaQuery.of(context).size.height * 0.6,
-    isClosed: true,
-    content: BottomSheetContentWidget(
-      maxLengthOfVoice: maxLengthOfVoice,
-      maxLengthOfVideo: maxLengthOfVideo,
-      maxlengthOfImages: maxlengthOfImages,
-      minLengthOfImages: minLengthOfImages,
-      maxLengthOfProblem: maxLengthOfProblem,
-      minLengthOfProblem: minLengthOfProblem,
-      requestId: requestId,
-    ),
-    titleLabel: "",
-  );
+      context: context,
+      height: MediaQuery.of(context).size.height * 0.6,
+      isClosed: true,
+      content: BottomSheetContentWidget(
+        maxLengthOfVoice: maxLengthOfVoice,
+        maxLengthOfVideo: maxLengthOfVideo,
+        maxlengthOfImages: maxlengthOfImages,
+        minLengthOfImages: minLengthOfImages,
+        maxLengthOfProblem: maxLengthOfProblem,
+        minLengthOfProblem: minLengthOfProblem,
+        requestId: requestId,
+      ),
+      titleLabel: "");
 }

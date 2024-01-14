@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
@@ -42,9 +41,8 @@ class CustomTextFiledServiceWidget extends StatelessWidget {
           ),
           controller: textEditingController,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                fontWeight: Constants.fontWeightRegular,
-                color: ColorSchemes.black,
-              ),
+              fontWeight: Constants.fontWeightRegular,
+              color: ColorSchemes.black),
           onChanged: onChanged,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,}'))

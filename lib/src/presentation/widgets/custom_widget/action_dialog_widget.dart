@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ActionDialogWidget extends StatelessWidget {

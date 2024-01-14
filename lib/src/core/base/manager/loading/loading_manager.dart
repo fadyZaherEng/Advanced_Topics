@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 mixin LoadingManager {
   void runChangeState();
@@ -33,12 +35,17 @@ mixin LoadingManager {
 
   /// use this method if you want to change the default loading login_widget
   Widget customLoadingWidget() {
-    return const InkWell(
+    return InkWell(
       onTap: null,
       child: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: Center(child: CircularProgressIndicator()),
+        child: Center(
+          child: LoadingAnimationWidget.threeArchedCircle(
+            color: ColorSchemes.primary,
+            size: 50,
+          ),
+        ),
       ),
     );
   }

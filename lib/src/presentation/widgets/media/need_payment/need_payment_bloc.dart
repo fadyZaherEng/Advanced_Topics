@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:meta/meta.dart';
 
 part 'need_payment_event.dart';
@@ -11,9 +14,10 @@ class NeedPaymentBloc extends Bloc<NeedPaymentEvent, NeedPaymentState> {
   // final JopDescriptionValidationUseCase _jopDescriptionValidationUseCase;
 
   NeedPaymentBloc(
-    // this._changeSupportUseCase,
-    // this._jopDescriptionValidationUseCase,
-  ) : super(NeedPaymentInitial()) {
+      // this._changeSupportUseCase,
+      // this._jopDescriptionValidationUseCase,
+      )
+      : super(NeedPaymentInitial()) {
     on<OnNeedPaymentProblemValidateEvent>(_onOnNeedPaymentProblemValidateEvent);
     on<OnNeedPaymentServiceValidateEvent>(_onOnNeedPaymentServiceValidateEvent);
     on<OnNeedPaymentAddGalleryEvent>(_onOnNeedPaymentAddGalleryEvent);
@@ -58,7 +62,7 @@ class NeedPaymentBloc extends Bloc<NeedPaymentEvent, NeedPaymentState> {
 
   FutureOr<void> _onOnNeedPaymentAddGalleryEvent(
       OnNeedPaymentAddGalleryEvent event, Emitter<NeedPaymentState> emit) {
-  //  emit(OnNeedPaymentAddGalleryState(event.images));
+      emit(OnNeedPaymentAddGalleryState(event.images));
   }
 
   FutureOr<void> _onGetAudioPathEvent(
@@ -67,8 +71,10 @@ class NeedPaymentBloc extends Bloc<NeedPaymentEvent, NeedPaymentState> {
   }
 
   FutureOr<void> _onGetVideoPathEvent(
-      OnGetVideoPathEvent event, Emitter<NeedPaymentState> emit) {
-    emit(OnGetVideoPathState(event.path));
+      OnGetVideoPathEvent event, Emitter<NeedPaymentState> emit) async {
+    emit(ShowVideoSkeletonState());
+    File? compressedFile = await compressVideo(event.path);
+    emit(OnGetVideoPathState(compressedFile!.path));
   }
 
   FutureOr<void> _onNeedPaymentGalleryEvent(
@@ -148,9 +154,8 @@ class NeedPaymentBloc extends Bloc<NeedPaymentEvent, NeedPaymentState> {
     //       massage: jobState.message ?? "",
     //     ));
     //   }
-      emit(HideLoadingState());
-    }
-
+    emit(HideLoadingState());
+  }
 
   FutureOr<void> _onNeedPaymentClearVideoEvent(
       OnNeedPaymentClearVideoEvent event, Emitter<NeedPaymentState> emit) {

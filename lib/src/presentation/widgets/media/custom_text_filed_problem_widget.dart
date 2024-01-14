@@ -55,7 +55,7 @@ class _CustomTextFieldProblemWidgetState
           height: 10,
         ),
         Container(
-          height: 172.0,
+          height: 160,
           color: ColorSchemes.white,
           child: Stack(
             children: [
@@ -67,42 +67,34 @@ class _CustomTextFieldProblemWidgetState
                   onChanged: widget.onChangeTextEditingController,
                   expands: true,
                   maxLines: null,
-                  minLines: null,
                   maxLength: widget.maxLinesOfProblem,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: Constants.fontWeightSemiBold,
-                        color: ColorSchemes.black,
-                      ),
                   textAlign: TextAlign.start,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: ColorSchemes.border),
+                        borderSide: BorderSide(color: _getBorderColor()),
                         borderRadius: BorderRadius.circular(12)),
                     enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: ColorSchemes.border),
+                        borderSide: BorderSide(color: _getBorderColor()),
                         borderRadius: BorderRadius.circular(12)),
                     errorBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: ColorSchemes.redError),
+                        borderSide: BorderSide(color: _getBorderColor()),
                         borderRadius: BorderRadius.circular(12)),
                     border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: ColorSchemes.border),
+                      borderSide: BorderSide(color: _getBorderColor()),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     counterText: "",
-                    errorText: widget.errorMessage,
-                    hintText: "Describe Your Problem...",
+                    hintText: "briefDescription",
                     hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: const Color(0xFF989898),
                           fontSize: 12,
                           fontFamily: "Montserrat",
                           fontWeight: FontWeight.w400,
                         ),
+                    errorMaxLines: 2,
                   ),
                 ),
               ),
@@ -110,7 +102,7 @@ class _CustomTextFieldProblemWidgetState
                 alignment: AlignmentDirectional.bottomEnd,
                 child: Padding(
                   padding: EdgeInsetsDirectional.symmetric(
-                    vertical: widget.errorMessage != null ? 30 : 10,
+                    vertical: widget.errorMessage != null ? 10 : 10,
                   ),
                   child: SizedBox(
                     // width: 100,
@@ -122,7 +114,7 @@ class _CustomTextFieldProblemWidgetState
                         InkWell(
                           onTap: widget.onVideoTap,
                           child: SvgPicture.asset(
-                            "ImagePaths.video",
+                            ImagePaths.video,
                             fit: BoxFit.scaleDown,
                             width: 20,
                             height: 20,
@@ -134,7 +126,7 @@ class _CustomTextFieldProblemWidgetState
                         InkWell(
                           onTap: widget.onGalleyTap,
                           child: SvgPicture.asset(
-                            "ImagePaths.newGallery",
+                            ImagePaths.newGallery,
                             fit: BoxFit.scaleDown,
                             width: 20,
                             height: 20,
@@ -154,20 +146,58 @@ class _CustomTextFieldProblemWidgetState
             ],
           ),
         ),
-        if (widget.errorMessage != null)
-          Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: Text(
-              "Minimum ${widget.minLinesOfProblem} , Maximum ${widget.maxLinesOfProblem} characters",
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: const Color(0xFF222222),
-                    fontSize: 12,
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w600,
-                  ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            const Expanded(child: SizedBox()),
+            Text(
+              "  S.of(context).minimum",
+              style: _getTextStyleColor(),
             ),
-          ),
+            Text(
+              " ${widget.minLinesOfProblem} ",
+              style: _getTextStyleColor().copyWith(
+                color: widget.errorMessage != null
+                    ? ColorSchemes.redError
+                    : ColorSchemes.black,
+              ),
+            ),
+            Text(
+              ", ${"S.of(context).maximum"}",
+              style: _getTextStyleColor(),
+            ),
+            Text(
+              " ${widget.maxLinesOfProblem} ",
+              style: _getTextStyleColor().copyWith(
+                color: widget.errorMessage != null
+                    ? ColorSchemes.redError
+                    : ColorSchemes.black,
+              ),
+            ),
+            Text(
+              " S.of(context).characters",
+              style: _getTextStyleColor(),
+            ),
+          ],
+        ),
       ],
     );
+  }
+
+  Color _getBorderColor() {
+    return widget.errorMessage != null
+        ? ColorSchemes.redError
+        : ColorSchemes.border;
+  }
+
+  TextStyle _getTextStyleColor() {
+    return Theme.of(context).textTheme.bodySmall!.copyWith(
+          color: widget.errorMessage != null
+              ? ColorSchemes.redError
+              : ColorSchemes.gray,
+          fontSize: 12,
+        );
   }
 }

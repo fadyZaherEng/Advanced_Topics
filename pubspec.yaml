@@ -91,8 +91,18 @@ dependencies:
   flutter_file_downloader:
   flutter_sound:
   image_picker:
-
-
+  flutter_image_compress: ^2.0.4
+  video_compress: ^3.1.2
+  video_thumbnail: ^0.5.3
+  video_trimmer: ^2.1.0
+  audio_session: ^0.1.16
+  multi_image_picker_plus: ^0.0.3
+  wechat_assets_picker: ^9.0.0-dev.2
+  loading_animation_widget: ^1.2.0+4
+  fluttertoast:
+  path_provider:
+  file_picker:
+  downloads_path_provider_28: ^0.1.2
 
 
 dev_dependencies:

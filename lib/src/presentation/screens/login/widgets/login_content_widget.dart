@@ -11,10 +11,10 @@ import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/f
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/log_in_title_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/login_alternative_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/login/widgets/valid_password_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_button_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_text_form_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/password_text_field_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/terms_and_condition_text_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_text_form_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/password_text_field_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/terms_and_condition_text_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

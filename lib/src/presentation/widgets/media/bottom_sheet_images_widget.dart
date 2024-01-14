@@ -34,8 +34,8 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
     return BlocConsumer<NeedPaymentBloc, NeedPaymentState>(
       listener: (context, state) {
         if (state is OnNeedPaymentAddGalleryState) {
-          // _images.clear();
-          // _images.addAll(state.images);
+          _images.clear();
+          _images.addAll(state.images);
         }
       },
       builder: (context, state) {
@@ -47,8 +47,18 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              "images",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: ColorSchemes.black,
+                    letterSpacing: -0.24,
+                  ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
             SizedBox(
-              height: 80,
+              height: 110,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
@@ -56,15 +66,15 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
                     children: [
                       Center(
                         child: SizedBox(
-                          height: 70,
-                          width: 70,
+                          height: 95,
+                          width: 95,
                           child: Stack(
                             children: [
                               Align(
                                 alignment: AlignmentDirectional.bottomEnd,
                                 child: Container(
-                                  width: 60,
-                                  height: 60,
+                                  width: 90,
+                                  height: 85,
                                   clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
@@ -89,8 +99,8 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
                                           OnNeedPaymentDeleteMediaEvent(index));
                                     },
                                     child: Container(
-                                      width: 17,
-                                      height: 17,
+                                      width: 24,
+                                      height: 24,
                                       decoration: BoxDecoration(
                                         color: ColorSchemes.white,
                                         shape: BoxShape.circle,
@@ -104,14 +114,12 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
                                           ),
                                         ],
                                       ),
-                                      child: Center(
-                                        child: SvgPicture.asset(
-                                          ImagePaths.close,
-                                          color: ColorSchemes.black,
-                                          fit: BoxFit.scaleDown,
-                                          width: 20,
-                                          height: 20,
-                                        ),
+                                      child: SvgPicture.asset(
+                                        ImagePaths.close,
+                                        color: ColorSchemes.black,
+                                        fit: BoxFit.scaleDown,
+                                        width: 20,
+                                        height: 20,
                                       ),
                                     ),
                                   ),
@@ -136,8 +144,8 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
                               }
                             },
                             child: Container(
-                              width: 60,
-                              height: 60,
+                              width: 90,
+                              height: 85,
                               margin: const EdgeInsets.only(top: 10),
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
@@ -147,12 +155,18 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
                                   color: ColorSchemes.primary,
                                 ),
                               ),
-                              child: CircleAvatar(
-                                radius: 15,
-                                backgroundColor: ColorSchemes.white,
-                                child: Center(
+                              child: Center(
+                                child: Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: ColorSchemes.primary,
+                                    ),
+                                    shape: BoxShape.circle,
+                                  ),
                                   child: SvgPicture.asset(
-                                    ImagePaths.imagesBlus,
+                                    ImagePaths.add,
                                     color: ColorSchemes.primary,
                                   ),
                                 ),
@@ -175,6 +189,13 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
               const SizedBox(
                 height: 10,
               ),
+            Container(
+              height: 1,
+              color: ColorSchemes.border,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
           ],
         );
       },
@@ -185,7 +206,7 @@ class _BottomSheetImagesWidgetState extends State<BottomSheetImagesWidget> {
     showMessageDialogWidget(
         context: context,
         text: "You can't add more images",
-        icon: ImagePaths.face,
+        icon: "ImagePaths.logo",
         buttonText: "Ok",
         onTap: () {
           Navigator.pop(context);

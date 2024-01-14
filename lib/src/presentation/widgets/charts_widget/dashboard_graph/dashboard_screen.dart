@@ -1,10 +1,10 @@
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/build_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/cash_flow/cash_flow_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/maintainance/maintainance_request_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/services/services_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/user_states/user_states_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
