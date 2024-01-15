@@ -232,6 +232,51 @@ class _AudioWidgetState extends State<AudioWidget> {
           const SizedBox(
             height: 16,
           ),
+          //     Expanded(
+          //       child: Slider(
+          //         min: 0,
+          //         max: duration.inSeconds.toDouble(),
+          //         value: position.inSeconds.toDouble(),
+          //         onChanged: (value) async {
+          //           await audioPlayer
+          //               .seek(Duration(seconds: value.toInt()));
+          //           await audioPlayer.resume();
+          //         },
+          //       ),
+          //     ),
+          //     Row(
+          //       children: [
+          //         Text("${formatTime(position)} - ${formatTime(duration)}"),
+          //       ],
+          //     ),
+          //     const SizedBox(
+          //       width: 16,
+          //     ),
+          //     InkWell(
+          //       onTap: () {
+          //         if (_isMuted) {
+          //           audioPlayer.setVolume(1);
+          //           setState(() {
+          //             _isMuted = false;
+          //           });
+          //         } else {
+          //           audioPlayer.setVolume(0);
+          //           setState(() {
+          //             _isMuted = true;
+          //           });
+          //         }
+          //       },
+          //       child: SvgPicture.asset(
+          //         _isMuted ? ImagePaths.volumeOff : ImagePaths.volume,
+          //         fit: BoxFit.scaleDown,
+          //         color: ColorSchemes.gray,
+          //       ),
+          //     ),
+          //     const SizedBox(
+          //       width: 16,
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );

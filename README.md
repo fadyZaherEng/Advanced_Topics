@@ -72,6 +72,8 @@
      -- and show voice with beauty custom widget with all feature with timer
   -- more libraries and all permission for audio and file and camera and gallery
      -- and Calendar and Microphone with all version and all platform ios and android
+  --ناقص تنزيل صوره او فويس او فيديو ممكن اهملهم ب dio as file
+  or flutter file downloader or ....
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
