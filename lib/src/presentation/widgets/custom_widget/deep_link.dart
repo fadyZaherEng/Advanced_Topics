@@ -12,16 +12,18 @@ class _DeepLinkWidgetState extends State<DeepLinkWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Deep Link'),
+      appBar: AppBar(
+        title: const Text('Deep Link'),
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            createDynamicLink();
+          },
+          child: const Text('Deep Link'),
         ),
-        body: Center(
-          child: TextButton(
-              onPressed: () {
-                createDynamicLink();
-              },
-              child: Text('Deep Link')),
-        ));
+      ),
+    );
   }
 
   //on tap
