@@ -5,6 +5,20 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/r
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // await initializeDependencies();
+  // Bloc.observer = const SimpleBlocObserver();
+  // await NotificationService().initializeNotificationService();
+  // FlutterError.onError = (errorDetails) {
+  //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  // };
+  // PlatformDispatcher.instance.onError = (error, stack) {
+  //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+  //   return true;
+  // };
   await initializeDependencies();
   runApp(const RestartWidget(DocApp()));
 }
