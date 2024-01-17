@@ -23,14 +23,3 @@ class DynamicLinkService {
     debugPrint("${dynamicLink.shortUrl}");
   }
 }
-
-//mainfest code
-// <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
-//
-// <intent-filter android:autoVerify="true">
-// <action android:name="android.intent.action.VIEW" />
-// <category android:name="android.intent.category.DEFAULT" />
-// <category android:name="android.intent.category.BROWSABLE" />
-// <data android:scheme="http" android:host="flutteradvancedtopics.page.link" />
-// <data android:scheme="https" />
-// </intent-filter>

@@ -110,6 +110,7 @@ dependencies:
   firebase_messaging:
   cloud_firestore:
   flutter_local_notifications: ^15.1.0+1
+  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:
