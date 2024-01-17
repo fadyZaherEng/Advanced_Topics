@@ -1,15 +1,16 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/deep_link.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
 
 class DocApp extends StatelessWidget {
   const DocApp({super.key});
@@ -35,8 +36,9 @@ class DocApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: AppRoutes.mediaScreen,
+          //  initialRoute: AppRoutes.mediaScreen,
           theme: AppTheme("en").light,
+          home: const DeepLinkWidget(),
         ),
       ),
     );

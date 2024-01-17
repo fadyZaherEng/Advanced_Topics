@@ -2,30 +2,28 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 
 /// [DynamicLinkService]
-class DynamicLinkService{
+class DynamicLinkService {
   static final DynamicLinkService _singleton = DynamicLinkService._internal();
   DynamicLinkService._internal();
   static DynamicLinkService get instance => _singleton;
 
   // Create new dynamic link
-  void createDynamicLink() async{
+  void createDynamicLink() async {
     final dynamicLinkParams = DynamicLinkParameters(
-      link: Uri.parse("https://flutteradvancedtopics.page.link/amTC"),
+      link: Uri.parse("https://flutteradvancedtopics.page.link.com/test"),
       uriPrefix: "https://flutteradvancedtopics.page.link",
-      androidParameters: const AndroidParameters(packageName: "com.sarj33t.flutter_deeplink_demo"),
+      androidParameters: const AndroidParameters(
+          packageName: "com.example.flutter_advanced_topics"),
       iosParameters: const IOSParameters(
-          bundleId: "com.sarj33t.flutterDeeplinkDemo",
-          appStoreId: "123456789"
-      ),
+          bundleId: "com.example.flutter_advanced_topics",
+          appStoreId: "123456789"),
     );
-    final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(dynamicLinkParams);
+    final dynamicLink =
+        await FirebaseDynamicLinks.instance.buildShortLink(dynamicLinkParams);
     debugPrint("${dynamicLink.shortUrl}");
   }
 }
-//on tap
-void createDynamicLink() async{
-  DynamicLinkService.instance.createDynamicLink();
-}
+
 //mainfest code
 // <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
 //
