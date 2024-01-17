@@ -108,6 +108,7 @@ dependencies:
   firebase_core:
   firebase_auth:
   firebase_messaging:
+  cloud_firestore:
   flutter_local_notifications: ^15.1.0+1
 
 dev_dependencies:
