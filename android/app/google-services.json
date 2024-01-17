@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1061507424704",
+    "project_id": "docapp-51369",
+    "storage_bucket": "docapp-51369.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061507424704:android:3187f097684f3af1466825",
+        "android_client_info": {
+          "package_name": "com.example.flutter_advanced_topics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSkvmLEtHsOGIKk3_gBdK8CeAhFEMI_dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
