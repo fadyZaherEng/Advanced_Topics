@@ -82,6 +82,7 @@
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
 # Custom_Animation_Widgets
+# Another_Way_To_Fix_No_Internet_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
