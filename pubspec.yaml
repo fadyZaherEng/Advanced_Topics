@@ -103,11 +103,14 @@ dependencies:
   file_picker:
   downloads_path_provider_28:
   #firebase
-  firebase_dynamic_links: ^5.4.4
-  firebase_crashlytics: ^3.4.4
-  firebase_core: ^2.1.1
-  firebase_messaging: ^14.6.4
+  firebase_dynamic_links:
+  firebase_crashlytics:
+  firebase_core:
+  firebase_auth:
+  firebase_messaging:
+  cloud_firestore:
   flutter_local_notifications: ^15.1.0+1
+  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:
