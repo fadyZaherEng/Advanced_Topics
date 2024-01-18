@@ -35,9 +35,10 @@ class _SplashScreenOldState extends State<SplashScreenOld> {
     );
   }
 
-  void _navigateToMainScreen() {
+  void _navigateToMainScreen() async {
+    if (!mounted) return;
     if (mounted) {
-      Timer(
+      await Future.delayed(
           const Duration(seconds: 3),
           () => Navigator.pushNamedAndRemoveUntil(
               context, AppRoutes.onBoardingScreen, (route) => false));
