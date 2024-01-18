@@ -49,7 +49,7 @@ class RouteGenerator {
       case AppRoutes.qrCodeScannerScreen:
         return _materialRoute(const QrCodeScannerScreen());
       case AppRoutes.splashScreen:
-        return _materialRoute(const SplashScreen());
+        return _materialRoute(const SplashScreenOld());
       case AppRoutes.barChartScreen:
         return _materialRoute(const BarChartScreen());
       case AppRoutes.videoTrimmer:
