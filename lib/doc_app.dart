@@ -6,7 +6,6 @@ import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/deep_link.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -36,9 +35,9 @@ class DocApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          //initialRoute: AppRoutes.splashScreen,
+          initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
-          home: const DeepLinkWidget(),
+          //home: const DeepLinkWidget(),
         ),
       ),
     );
