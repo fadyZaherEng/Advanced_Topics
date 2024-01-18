@@ -129,7 +129,7 @@ dependencies:
   cloud_firestore:
   flutter_local_notifications: ^15.1.0+1
   firebase_analytics: ^10.8.0
-  # for page navigate with animation
+   # for page navigate with animation
   page_transition:
   like_button:   
 
