@@ -130,6 +130,7 @@ dependencies:
   flutter_local_notifications:
   firebase_analytics:
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

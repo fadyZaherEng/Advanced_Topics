@@ -11,8 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DocApp extends StatelessWidget {
+class DocApp extends StatefulWidget {
   const DocApp({super.key});
+
+  @override
+  State<DocApp> createState() => _DocAppState();
+}
+
+class _DocAppState extends State<DocApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +38,7 @@ class DocApp extends StatelessWidget {
         minTextAdapt: true,
         child: MaterialApp(
           title: 'Doc Doc',
+          navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           supportedLocales: S.delegate.supportedLocales,
           localizationsDelegates: const [
@@ -37,7 +50,6 @@ class DocApp extends StatelessWidget {
           onGenerateRoute: RouteGenerator.getRoute,
           initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
-          //home: const DeepLinkWidget(),
         ),
       ),
     );
