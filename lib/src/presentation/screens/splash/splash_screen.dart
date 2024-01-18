@@ -5,14 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 
-class SplashScreenOld extends StatefulWidget {
-  const SplashScreenOld({Key? key}) : super(key: key);
-
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
   @override
-  State<SplashScreenOld> createState() => _SplashScreenOldState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenOldState extends State<SplashScreenOld> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -35,13 +34,10 @@ class _SplashScreenOldState extends State<SplashScreenOld> {
     );
   }
 
-  void _navigateToMainScreen() async {
-    if (!mounted) return;
-    if (mounted) {
-      await Future.delayed(
-          const Duration(seconds: 3),
-          () => Navigator.pushNamedAndRemoveUntil(
-              context, AppRoutes.onBoardingScreen, (route) => false));
-    }
+  void _navigateToMainScreen() {
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.pushNamedAndRemoveUntil(
+            context, AppRoutes.onBoardingScreen, (route) => false));
   }
 }
