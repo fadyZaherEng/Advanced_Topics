@@ -27,6 +27,6 @@ class _DeepLinkWidgetState extends State<DeepLinkWidget> {
   }
 
   void createDynamicLink() async {
-    DynamicLinkService.getInstance.createDynamicLink();
+    DynamicLinkService.getInstances.createDynamicLink();
   }
 }

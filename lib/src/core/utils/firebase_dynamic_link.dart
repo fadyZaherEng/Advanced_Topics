@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DynamicLinkService {
   DynamicLinkService._();
   static final DynamicLinkService _instance = DynamicLinkService._();
-  static DynamicLinkService get getInstance => _instance;
+  static DynamicLinkService get getInstances => _instance;
 
   // Create new dynamic link
   void createDynamicLink() async {
