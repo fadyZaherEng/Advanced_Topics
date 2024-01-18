@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/another_way_to_fix_internet/no_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/no_internet_widget.dart';
 
 Future showNoInternetDialogWidget({
   required BuildContext context,
