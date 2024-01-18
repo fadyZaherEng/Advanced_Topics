@@ -81,8 +81,6 @@
 # Dynamic_Link_Firebase_Implementation_In_Widgets
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
-# Custom_Animation_Widgets
-# Advanced_Way_To_Fix_No_Internet_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
