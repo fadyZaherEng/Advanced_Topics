@@ -27,7 +27,7 @@ class _DocAppState extends State<DocApp> {
 
   @override
   void initState() {
-    _internetConnectionListener();
+    //   _internetConnectionListener();
     super.initState();
   }
 
