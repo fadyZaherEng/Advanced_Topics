@@ -27,8 +27,10 @@ class _DocAppState extends State<DocApp> {
 
   @override
   void initState() {
-    //   _internetConnectionListener();
     super.initState();
+    if (mounted) {
+     // _internetConnectionListener();
+    }
   }
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
