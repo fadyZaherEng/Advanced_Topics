@@ -62,3 +62,4 @@ class _DocAppState extends State<DocApp> {
       ),
     );
   }
+}
