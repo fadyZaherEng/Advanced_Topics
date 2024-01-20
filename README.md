@@ -1,8 +1,8 @@
 # Flutter Advanced Topics
-# 🎨 :System Design 
+# 🎨 :System Design
 ![design](https://github.com/fadyZaherEng/Advanced_Topics/assets/60519197/44857b2f-c382-449c-8017-6e6c2aed94ee)
 # ----------------------------------------------------------
-# General Custom Widget 
+# General Custom Widget
 # ----------------------------------------------------------
 #####################################################--:DONE:
 # -----------------------------------------------------------
@@ -53,7 +53,7 @@
 # Animation_Splash_Screen
 # Media_Widgets_Voice_Video_images_record_And_Show
 # Custom_Switch_Widget
-# Refresh_Widget 
+# Refresh_Widget
 # Enhance_Phone_based_On_Language
 # ------------------------------------------------------------
 ######################################################--:DONE:
@@ -63,26 +63,26 @@
 # Custom_Page_Vew_Wth_Indicator
 # Advanced_Media_Styles //// feature/new-media-advanced
 # implementation in Widgets--> Media with my Style
-  -- upload and download file with file picker and dio or asset picker
-  -- select image or multi and show with image picker and asset picker for multi
-  -- select video with fixed duration with image picker or multi with asset picker 
-     -- and show with skeleton and thumbnail then display in full screen  and
-     -- if length lager then fixed navigate to video trimmer  
-  -- select audio with handle ios configuration and android with fixed duration
-     -- and show voice with beauty custom widget with all feature with timer
-  -- more libraries and all permission for audio and file and camera and gallery
-     -- and Calendar and Microphone with all version and all platform ios and android
-  --ناقص تنزيل صوره او فويس او فيديو ممكن اهملهم ب dio as file
-  or flutter file downloader or ....
+-- upload and download file with file picker and dio or asset picker
+-- select image or multi and show with image picker and asset picker for multi
+-- select video with fixed duration with image picker or multi with asset picker
+-- and show with skeleton and thumbnail then display in full screen  and
+-- if length lager then fixed navigate to video trimmer  
+-- select audio with handle ios configuration and android with fixed duration
+-- and show voice with beauty custom widget with all feature with timer
+-- more libraries and all permission for audio and file and camera and gallery
+-- and Calendar and Microphone with all version and all platform ios and android
+--ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
+or flutter file downloader or ....
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
-# New_Loading_circle_widget_Animation 
+# New_Loading_circle_widget_Animation
 # Dynamic_Link_Firebase_Implementation_In_Widgets
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
-# Custom_Animation_Widgets
-# Advanced_Way_To_Fix_No_Internet_Widget
+-->Using_Two_way_original_And_Advanced
+#
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
