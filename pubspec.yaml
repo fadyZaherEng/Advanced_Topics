@@ -84,26 +84,56 @@ dependencies:
   qr_code_scanner: ^1.0.1
   # for show photo with high resolutions
   photo_view:
+  # fro return data of class
   equatable:
+ # for make dotted border for container
   dotted_border:
+  # for make different charts
   syncfusion_flutter_charts:
+  # for skeleton
   skeletons:
+  # for downloading files
   flutter_file_downloader:
+  # record voice
   flutter_sound:
+  # for image picker to get image in gallery or camera
   image_picker:
+  # for compress image
   flutter_image_compress: ^2.0.4
+  # for compress video
   video_compress: ^3.1.2
+  # for video thumbnail
   video_thumbnail: ^0.5.3
+  # for video trim or crop video
   video_trimmer: ^2.1.0
+  # for handle ios voice
   audio_session: ^0.1.16
+  # for using data type of assets
   multi_image_picker_plus: ^0.0.3
+  # for get mutli image from gallery or camera or mylti video or voic or file as asset using asset Picker
   wechat_assets_picker: ^9.0.0-dev.2
+  # for create loading animation
   loading_animation_widget: ^1.2.0+4
+  # for show toast
   fluttertoast:
-  path_provider:
+  # for select file
   file_picker:
-  downloads_path_provider_28: ^0.1.2
-
+  # for get path of file
+  downloads_path_provider_28:
+  #firebase
+  firebase_dynamic_links:
+  firebase_crashlytics:
+  firebase_core:
+  firebase_auth:
+  firebase_messaging:
+  cloud_firestore:
+  flutter_local_notifications: ^15.1.0+1
+  firebase_analytics: ^10.8.0
+   # for page navigate with animation
+  page_transition:
+  like_button:
+  # to fix no internet
+  connectivity_plus:
 
 dev_dependencies:
   flutter_test:
