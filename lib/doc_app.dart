@@ -29,7 +29,7 @@ class _DocAppState extends State<DocApp> {
   void initState() {
     super.initState();
     if (mounted) {
-     // _internetConnectionListener();
+      _internetConnectionListener();
     }
   }
 
