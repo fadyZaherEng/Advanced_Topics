@@ -14,7 +14,8 @@ class VacationBalancePieChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ArcProgressBar(
-      //or do it like this from syncfusion_flutter_charts package https://pub.dev/packages/syncfusion_flutter_charts
+      //or do it like this from syncfusion_flutter_charts package
+      // https://pub.dev/packages/syncfusion_flutter_charts
       animationDuration: const Duration(seconds: 2),
       percentage: 20, //remainingBalance.percentage,
       arcThickness: 10,

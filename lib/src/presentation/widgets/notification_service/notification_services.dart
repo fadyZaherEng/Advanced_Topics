@@ -102,12 +102,19 @@ class NotificationService {
         icon: '@mipmap/ic_launcher',
       );
 
-  void _showNotificationAsLocal(
-      {String? title, String? message, Map<String, dynamic>? data}) async {
+  void _showNotificationAsLocal({
+    String? title,
+    String? message,
+    Map<String, dynamic>? data,
+  }) async {
     await _getFlutterLocalNotificationsPluginInitializer.whenComplete(() async {
       await _getFlutterLocalNotificationsPlugin.show(
-          0, title, message, _getNotificationDetails,
-          payload: json.encode(data));
+        0,
+        title,
+        message,
+        _getNotificationDetails,
+        payload: json.encode(data),
+      );
     });
   }
 
@@ -127,9 +134,10 @@ class NotificationService {
 
   void _setNotificationMessage(RemoteMessage message, bool isBackGround) {
     _showNotificationAsLocal(
-        data: message.data,
-        message: message.notification?.body ?? "",
-        title: message.notification?.title ?? "");
+      data: message.data,
+      message: message.notification?.body ?? "",
+      title: message.notification?.title ?? "",
+    );
   }
 }
 
