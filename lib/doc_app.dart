@@ -41,5 +41,5 @@ class DocApp extends StatelessWidget {
         ),
       ),
     );
-  }
+  } 
 }

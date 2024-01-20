@@ -28,12 +28,12 @@ void main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
-  // await initializeDependencies();
-  // //fcm rest api and local notification and call firebase massaging using api
-  // await LocalNotificationService.initialize();
-  // await LocalNotificationService.callFirebaseMassaging();
-  // //another way to show local notification
-  // await NotificationService().initializeNotificationService();
+  await initializeDependencies();
+  //fcm rest api and local notification and call firebase massaging using api
+  await LocalNotificationService.initialize();
+  await LocalNotificationService.callFirebaseMassaging();
+  //another way to show local notification
+  await NotificationService().initializeNotificationService();
 
   runApp(const RestartWidget(DocApp()));
 }
