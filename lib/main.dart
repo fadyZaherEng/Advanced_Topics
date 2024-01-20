@@ -20,7 +20,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = const SimpleBlocObserver();
-  // await NotificationService().initializeNotificationService();
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
