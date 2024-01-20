@@ -72,7 +72,7 @@
      -- and show voice with beauty custom widget with all feature with timer
   -- more libraries and all permission for audio and file and camera and gallery
      -- and Calendar and Microphone with all version and all platform ios and android
-  --ناقص تنزيل صوره او فويس او فيديو ممكن اهملهم ب dio as file
+  --ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
   or flutter file downloader or ....
 # ------------------------------------------------------------
 ######################################################--:DONE:
@@ -81,6 +81,8 @@
 # Dynamic_Link_Firebase_Implementation_In_Widgets
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
+  -->Using_Two_way_original_And_Advanced
+#
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
