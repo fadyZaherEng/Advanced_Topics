@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
@@ -59,45 +60,53 @@ class _SplashScreenState extends State<SplashScreen>
     ));
 
     _animationController.forward();
+    await Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.onBoardingScreen,
+        (route) => false,
+      );
+    });
 
-    //  _isRememberMe = GetRememberMeUseCase(injector())();
-    false;
-    //_isRestart = GetRestartAppUseCase(injector())();
-    if (!_hasInitialized) {
-      _hasInitialized = true;
-      if (_isRestart) {
-        // await SetRestartAppUseCase(injector())(false);
-        // await Future.delayed(const Duration(seconds: 3), () {
-        //   if (!mounted) return;
-        //   Navigator.pushNamedAndRemoveUntil(
-        //     context,
-        //     Routes.main,
-        //     (route) => false,
-        //   );
-        // });
-      } else {
-        if (_isRememberMe) {
-          // await Future.delayed(const Duration(seconds: 3), () {
-          //   if (!mounted) return;
-          //   Navigator.pushNamedAndRemoveUntil(
-          //     context,
-          //     Routes.main,
-          //     (route) => false,
-          //   );
-          // });
-        } else {
-          // RemoveUserInformationUseCase(injector())();
-          // await Future.delayed(const Duration(seconds: 3), () {
-          //   if (!mounted) return;
-          //   Navigator.pushNamedAndRemoveUntil(
-          //     context,
-          //     Routes.login,
-          //     (route) => false,
-          //   );
-          // });
-        }
-      }
-    }
+    // //  _isRememberMe = GetRememberMeUseCase(injector())();
+    // false;
+    // //_isRestart = GetRestartAppUseCase(injector())();
+    // if (!_hasInitialized) {
+    //   _hasInitialized = true;
+    //   if (_isRestart) {
+    //     // await SetRestartAppUseCase(injector())(false);
+    //     // await Future.delayed(const Duration(seconds: 3), () {
+    //     //   if (!mounted) return;
+    //     //   Navigator.pushNamedAndRemoveUntil(
+    //     //     context,
+    //     //     Routes.main,
+    //     //     (route) => false,
+    //     //   );
+    //     // });
+    //   } else {
+    //     if (_isRememberMe) {
+    //       // await Future.delayed(const Duration(seconds: 3), () {
+    //       //   if (!mounted) return;
+    //       //   Navigator.pushNamedAndRemoveUntil(
+    //       //     context,
+    //       //     Routes.main,
+    //       //     (route) => false,
+    //       //   );
+    //       // });
+    //     } else {
+    //       // RemoveUserInformationUseCase(injector())();
+    //       // await Future.delayed(const Duration(seconds: 3), () {
+    //       //   if (!mounted) return;
+    //       //   Navigator.pushNamedAndRemoveUntil(
+    //       //     context,
+    //       //     Routes.login,
+    //       //     (route) => false,
+    //       //   );
+    //       // });
+    //     }
+    //   }
+    // }
   }
 
   @override
