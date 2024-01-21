@@ -41,19 +41,18 @@ class NetworkConnectivity {
 
   void showOrHideNoInternetDialog(bool isOnline, BuildContext context) async {
     if (
-        //GetNoInternetUseCase(injector())()
-        // &&
+        //GetNoInternetUseCase(injector())() &&
         isOnline) {
       Navigator.pop(context);
-      //   await SetNoInternetUseCase(injector())(false);
+      // await SetNoInternetUseCase(injector())(false);
     } else if (!isOnline
-        //&& !GetNoInternetUseCase(injector())()
+        //    && !GetNoInternetUseCase(injector())()
         ) {
       showNoInternetDialogWidget(
         context: context,
         onTapTryAgain: () {},
       );
-      // await SetNoInternetUseCase(injector())(true);
+      //await SetNoInternetUseCase(injector())(true);
     }
   }
 

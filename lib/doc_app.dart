@@ -27,10 +27,8 @@ class _DocAppState extends State<DocApp> {
 
   @override
   void initState() {
+    _internetConnectionListener();
     super.initState();
-    if (mounted) {
-      _internetConnectionListener();
-    }
   }
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -46,7 +44,6 @@ class _DocAppState extends State<DocApp> {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         child: MaterialApp(
-          title: 'Doc Doc',
           navigatorKey: navigatorKey,
           debugShowCheckedModeBanner: false,
           supportedLocales: S.delegate.supportedLocales,
@@ -59,7 +56,7 @@ class _DocAppState extends State<DocApp> {
           onGenerateRoute: RouteGenerator.getRoute,
           initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
-          // home: const DeepLinkWidget(),
+          locale: const Locale('en'),
         ),
       ),
     );
@@ -80,8 +77,10 @@ class _DocAppState extends State<DocApp> {
         default:
           isOnline = false;
       }
-      _networkConnectivity.showOrHideNoInternetDialog(
-          isOnline, navigatorKey.currentState!.context);
+      if (mounted && navigatorKey.currentState != null) {
+        _networkConnectivity.showOrHideNoInternetDialog(
+            isOnline, navigatorKey.currentState!.context);
+      }
     });
   }
 }
