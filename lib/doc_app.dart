@@ -77,7 +77,7 @@ class _DocAppState extends State<DocApp> {
         default:
           isOnline = false;
       }
-      if (mounted && navigatorKey.currentState != null) {
+      if (!mounted && navigatorKey.currentState != null) {
         _networkConnectivity.showOrHideNoInternetDialog(
             isOnline, navigatorKey.currentState!.context);
       }
