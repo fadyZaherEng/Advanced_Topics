@@ -85,6 +85,7 @@ or flutter file downloader or ....
 # Splash_Screen_Updated
 # CustomButtonOptionWidget
 # CustomFilterButtonAnimationWidget
+# Badges-Icons-Animation-Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
