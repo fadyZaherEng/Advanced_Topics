@@ -7,6 +7,7 @@ import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/restart_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/local_notification.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'firebase_options.dart';
 
@@ -22,5 +23,7 @@ void main() async {
   await LocalNotificationService.callFirebaseMassaging();
   //another way to show local notification
   await NotificationService().initializeNotificationService();
+  // for fix text begain hidden bug in screen util release
+  await ScreenUtil.ensureScreenSize();
   runApp(const RestartWidget(DocApp()));
 }

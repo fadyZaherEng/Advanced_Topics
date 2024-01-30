@@ -10,6 +10,7 @@ import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/restart_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/local_notification.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'firebase_options.dart';
 
@@ -18,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   Bloc.observer = const SimpleBlocObserver();
   await initializeDependencies();
   //fcm rest api and local notification and call firebase massaging using api
@@ -33,5 +35,7 @@ void main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+  // for fix text begain hidden bug in screen util release
+  await ScreenUtil.ensureScreenSize();
   runApp(const RestartWidget(DocApp()));
 }
