@@ -86,6 +86,7 @@ or flutter file downloader or ....
 # CustomButtonOptionWidget
 # CustomFilterButtonAnimationWidget
 # Badges-Icons-Animation-Widget
+# Change_App_Icon_With_Flutter_Launcher_Icons_Library
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
