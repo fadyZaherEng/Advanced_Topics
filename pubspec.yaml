@@ -134,6 +134,8 @@ dependencies:
   like_button:
   # to fix no internet
   connectivity_plus:
+  # for icons animation
+  badges:
 
 dev_dependencies:
   flutter_test:
