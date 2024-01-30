@@ -81,10 +81,12 @@ or flutter file downloader or ....
 # Dynamic_Link_Firebase_Implementation_In_Widgets
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
--->Using_Two_way_original_And_Advanced
+-- Using_Two_way_original_And_Advanced
 # Splash_Screen_Updated
 # CustomButtonOptionWidget
 # CustomFilterButtonAnimationWidget
+# Badges-Icons-Animation-Widget
+# Change_App_Icon_With_Flutter_Launcher_Icons_Library_InPubSpecYaml
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
