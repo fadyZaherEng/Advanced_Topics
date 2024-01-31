@@ -138,7 +138,7 @@ dependencies:
   badges:
  # change app icon
   flutter_launcher_icons:
-  flutter_flavor: ^3.1.3
+  flutter_flavorizr: ^2.2.1
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
@@ -217,7 +217,8 @@ flutter:
 
 flutter_intl:
   enabled: true
-#flavors using flutter_flavor
+
+#flavors using flutter_flavorizr
 flavorizr:
   app:
     android:
@@ -228,21 +229,22 @@ flavorizr:
       app:
         name: "Development Flavor"
       android:
-        applicationId: "com.dev.flavor_app"
-        icon: "assets/app_icons/1.png"
+        applicationId: ".dev"
+        icon: "assets/images/ios_android_logo.png"
 
 
     staging:
       app:
-        name: "Staging App"
+        name: "Staging Flavor"
       android:
-        applicationId: "com.staging.flavor_app"
-        icon: "assets/app_icons/1.png"
+        applicationId: ".staging"
+        icon: "assets/images/ios_android_logo.png"
 
     production:
       app:
-        name: "Production App"
+        name: "Production Flavor"
       android:
-        icon: "assets/app_icons/2.png"
-        applicationId: "com.production.flavor_app"
+        icon: "assets/images/ios_android_logo.png"
+        applicationId: ".production"
+
 

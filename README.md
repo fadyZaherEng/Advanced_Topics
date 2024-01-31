@@ -91,8 +91,21 @@ or flutter file downloader or ....
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
-# Create_Flavors_Using_https://pub.dev/packages/flutter_flavor_library
--- flutter pub add flutter_flavor --commands
+# Create_Flavors_Using_https://pub.dev/packages/flutter_flavorizr
+-- flutter pub run flutter_flavorizr --commands
+-- step 1
+   add flutter_flavorizr and floverizr with differet app to pubspec.yaml
+-- step 2
+   run flutter pub run flutter_flavorizr --commands
+-- step 3
+   add flavorModel
+-- step 4
+   add all main
+-- step 5
+   flutter pub run flutter_flavorizr --commands
+   step 6
+   flutter run --flavor Staging Flavor -t lib/main_staging.dart
+   or create from edit configuration in run
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
