@@ -92,7 +92,7 @@ or flutter file downloader or ....
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # Create_Flavors_Using_https://pub.dev/packages/flutter_flavor_library
---flutter pub add flutter_flavor --commands
+-- flutter pub add flutter_flavor --commands
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
