@@ -175,6 +175,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   # webview flutter
   webview_flutter: ^3.0.4
+  change_app_package_name:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
