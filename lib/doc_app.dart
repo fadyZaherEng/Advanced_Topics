@@ -13,6 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'src/presentation/widgets/flutter_flavorizr/flavors.dart';
+
 class DocApp extends StatefulWidget {
   const DocApp({super.key});
 
@@ -45,6 +47,7 @@ class _DocAppState extends State<DocApp> {
         minTextAdapt: true,
         child: MaterialApp(
           navigatorKey: navigatorKey,
+          title: F.title,
           debugShowCheckedModeBanner: false,
           supportedLocales: S.delegate.supportedLocales,
           localizationsDelegates: const [
