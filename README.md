@@ -15,7 +15,6 @@
 # card_widget
 # Custom_Circle_Icon
 # Custom_button
-# Custom_button
 # ----------------------------------------------------------
 #####################################################--:DONE:
 # -----------------------------------------------------------
@@ -42,7 +41,7 @@
 # Custom_Dropdown_Text_Field_With_Label_Widget
 # Bar_Chart_Widget
 # skeletons_And_Custom_Skeletons
-# ------------------------------------------------------------
+# -----------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # different_Custom_Graph_Widget
@@ -55,7 +54,7 @@
 # Custom_Switch_Widget
 # Refresh_Widget
 # Enhance_Phone_based_On_Language
-# ------------------------------------------------------------
+# -----------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # New_Switch_in_The_Same_File
@@ -66,7 +65,7 @@
 -- upload and download file with file picker and dio or asset picker
 -- select image or multi and show with image picker and asset picker for multi
 -- select video with fixed duration with image picker or multi with asset picker
--- and show with skeleton and thumbnail then display in full screen  and
+-- and show with skeleton and thumbnail then display in full screen and
 -- if length lager then fixed navigate to video trimmer  
 -- select audio with handle ios configuration and android with fixed duration
 -- and show voice with beauty custom widget with all feature with timer
@@ -99,27 +98,27 @@ or flutter file downloader or ....
 # Create_Flavors_Using_https://pub.dev/packages/flutter_flavorizr
 -- flutter pub run flutter_flavorizr --commands
 -- step 1
-add flutter_flavorizr and floverizr with differet app to pubspec.yaml
+add flutter_flavorizr pubspec.yaml
 -- step 2
 run flutter pub run flutter_flavorizr --commands
 -- step 3
-add flavorModel
+add flavorModel and android->app->build.gradle
 -- step 4
 add all main
 -- step 5
 flutter pub run flutter_flavorizr --commands
 step 6
 flutter run --flavor Staging Flavor -t lib/main_staging.dart
-or create from edit configuration in run
+or create from edit configuration in run by add main and args --flavor Staging or Development or
+Production
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # Change_App_Package_Name_Using//////////////change_app_package_name: ^0.1.3
-  step 1 
-  add change_app_package_name: ^0.1.3 to pubspec.yaml
-  step 2
-  flutter pub run change_app_package_name:main com.doc.package.docdoc
-#
+step 1
+add change_app_package_name: ^0.1.3 to pubspec.yaml
+step 2
+flutter pub run change_app_package_name:main com.doc.package.docdoc
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

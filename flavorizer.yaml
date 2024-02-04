@@ -1,4 +1,3 @@
-
 #flavors using flutter_flavorizr
 flavorizr:
   app:
@@ -26,4 +25,7 @@ flavorizr:
         name: "Production Flavor"
       android:
         icon: "assets/images/ios_android_logo.png"
+
         applicationId: ".production"
+
+
