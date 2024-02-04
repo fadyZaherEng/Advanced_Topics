@@ -94,11 +94,11 @@ or flutter file downloader or ....
 # Create_Flavors_Using_https://pub.dev/packages/flutter_flavorizr
 -- flutter pub run flutter_flavorizr --commands
 -- step 1
-   add flutter_flavorizr and floverizr with differet app to pubspec.yaml
+   add flutter_flavorizr  pubspec.yaml
 -- step 2
    run flutter pub run flutter_flavorizr --commands
 -- step 3
-   add flavorModel
+   add flavorModel and android->app->build.gradle
 -- step 4
    add all main
 -- step 5
