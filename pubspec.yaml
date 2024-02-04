@@ -217,34 +217,3 @@ flutter:
 
 flutter_intl:
   enabled: true
-
-#flavors using flutter_flavorizr
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-
-  flavors:
-    development:
-      app:
-        name: "Development Flavor"
-      android:
-        applicationId: ".dev"
-        icon: "assets/images/ios_android_logo.png"
-
-
-    staging:
-      app:
-        name: "Staging Flavor"
-      android:
-        applicationId: ".staging"
-        icon: "assets/images/ios_android_logo.png"
-
-    production:
-      app:
-        name: "Production Flavor"
-      android:
-        icon: "assets/images/ios_android_logo.png"
-        applicationId: ".production"
-
-
