@@ -1,31 +1,28 @@
 #flavors using flutter_flavorizr
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-
-  flavors:
+flavors:
     development:
       app:
         name: "Development Flavor"
       android:
-        applicationId: ".dev"
+        applicationId: "com.example.flutter_advanced_topics"
         icon: "assets/images/ios_android_logo.png"
-
-
+      ios:
+        bundleId: "com.example.flutter_advanced_topics"
     staging:
       app:
         name: "Staging Flavor"
       android:
-        applicationId: ".staging"
+        applicationId: "com.example.flutter_advanced_topics"
         icon: "assets/images/ios_android_logo.png"
+      ios:
+        bundleId: "com.example.flutter_advanced_topics"
 
     production:
       app:
         name: "Production Flavor"
       android:
         icon: "assets/images/ios_android_logo.png"
-
-        applicationId: ".production"
-
+        applicationId: "com.example.flutter_advanced_topics"
+      ios:
+        bundleId: "com.example.flutter_advanced_topics"
 

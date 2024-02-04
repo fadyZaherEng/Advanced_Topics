@@ -108,9 +108,9 @@ add all main
 -- step 5
 flutter pub run flutter_flavorizr --commands
 step 6
-flutter run --flavor Staging Flavor -t lib/main_staging.dart
+flutter run --flavor Staging -t lib/main_staging.dart
 or create from edit configuration in run by add main and args --flavor Staging or Development or
-Production
+Production (name of flavorizer ymal file)
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

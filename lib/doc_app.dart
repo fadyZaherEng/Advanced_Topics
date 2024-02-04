@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'src/presentation/widgets/flutter_flavorizr/flavors.dart';
+import 'flavor.dart';
 
 class DocApp extends StatefulWidget {
   const DocApp({super.key});

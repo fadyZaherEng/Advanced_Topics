@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import "package:flutter_advanced_topics/main.dart" as runner;
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 
-import 'src/presentation/widgets/flutter_flavorizr/flavors.dart';
+import 'flavor.dart';
 
 Future<void> main() async {
   F.imageLocation = ImagePaths.google;
