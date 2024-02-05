@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CustomBtnAnim extends StatefulWidget {
   const CustomBtnAnim({super.key});
 
@@ -81,7 +83,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                         borderRadius: BorderRadius.circular(8),
                         border: const Border(
                           bottom:
-                          BorderSide(color: Colors.blueAccent, width: 2),
+                              BorderSide(color: Colors.blueAccent, width: 2),
                           left: BorderSide(color: Colors.blueAccent, width: 2),
                         ),
                       ),
@@ -94,7 +96,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
               Text(
                 "Text",
                 style:
-                TextStyle(color: _isAnimate ? Colors.blue : Colors.white),
+                    TextStyle(color: _isAnimate ? Colors.blue : Colors.white),
               ),
             ],
           ),
