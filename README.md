@@ -122,9 +122,6 @@ Summary:
 -- first way Using Image.network
 -- second Way CachedNetworkImage that high performance compare to image.network because
    it store image in your device 
-# ------------------------------------------------------------
-######################################################--:DONE:
-# ------------------------------------------------------------
 # Change_App_Package_Name_Using//////////////change_app_package_name: ^0.1.3
 step 1
 add change_app_package_name: ^0.1.3 to pubspec.yaml
