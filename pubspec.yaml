@@ -140,7 +140,8 @@ dependencies:
   flutter_launcher_icons:
   # flutter flavors
   flutter_flavorizr:
-
+  # Cashed Network image high performance because save image in device
+  cached_network_image:
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
