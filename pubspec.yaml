@@ -139,6 +139,7 @@ dependencies:
  # change app icon
   flutter_launcher_icons:
   # flutter flavors
+  flutter_flavorizr:
 
 
 flutter_launcher_icons:

@@ -2,6 +2,7 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/flavors.dart';
 import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
@@ -45,6 +46,7 @@ class _DocAppState extends State<DocApp> {
         minTextAdapt: true,
         child: MaterialApp(
           navigatorKey: navigatorKey,
+          title: F.title,
           debugShowCheckedModeBanner: false,
           supportedLocales: S.delegate.supportedLocales,
           localizationsDelegates: const [
