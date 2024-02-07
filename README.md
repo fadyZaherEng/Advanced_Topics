@@ -91,3 +91,27 @@ or flutter file downloader or ....
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
+# Create_Flavors_Using_https://pub.dev/packages/flutter_flavor_library
+--flutter pub add flutter_flavor --commands -->add for android only
+#-------------------------------------------------------------
+-- another way for ios android and macos flutter_flavoizer
+# ------------------------------------------------------------
+# Create_Flavors_Using_https://pub.dev/packages/flutter_flavorizr
+-- flutter pub run flutter_flavorizr --commands
+-- step 1
+add flutter_flavorizr pubspec.yaml
+-- step 2
+run flutter pub run flutter_flavorizr --commands
+-- step 3
+add flavorModel and android->app->build.gradle
+-- step 4
+add all main
+-- step 5
+flutter pub run flutter_flavorizr --commands
+step 6
+flutter run --flavor Staging -t lib/main_staging.dart
+or create from edit configuration in run by add main and args --flavor Staging or Development or
+Production (name of flavorizer ymal file)
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------
