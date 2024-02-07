@@ -138,6 +138,8 @@ dependencies:
   badges:
  # change app icon
   flutter_launcher_icons:
+  # flutter flavors
+
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
