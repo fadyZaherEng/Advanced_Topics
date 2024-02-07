@@ -110,11 +110,11 @@ flutter pub run flutter_flavorizr --commands
 -- step 5
 flutter run --flavor Staging -t lib/main_staging.dart
 or create from edit configuration in run by add main and args --flavor Staging or Development or
-Production (name of flavorizer ymal file)
+Production (name of flavorizer yaml file)
 Summary:
-  add flutter_flavorizr in pubspec.yaml
+  add flutter_flavorizer in pubspec.yaml
   then Add flavorizer pubspecYaml
-  ten run  flutter pub run flutter_flavorizr --commands as doc here //https://pub.dev/packages/flutter_flavorizr
+  ten run  flutter pub run flutter_flavorizer --commands as doc here //https://pub.dev/packages/flutter_flavorizr
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
