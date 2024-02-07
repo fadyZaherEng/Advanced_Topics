@@ -9,23 +9,28 @@ class CustomImageBuilderWidget extends StatelessWidget {
       matchTextDirection: true,
       frameBuilder:
           (context, child, frame, wasSynchronouslyLoaded) =>
-          Container(
-            clipBehavior: Clip.antiAlias,
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: ColorSchemes.primary,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(14),
-              clipBehavior: Clip.antiAlias,
-              child: child,
-            ),
+      wasSynchronouslyLoaded
+          ? child
+          : Container(
+        clipBehavior: Clip.antiAlias,
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: ColorSchemes.primary,
+            width: 2,
           ),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          clipBehavior: Clip.antiAlias,
+          child: SvgPicture.asset(
+            ImagePaths.profile,
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
       errorBuilder: (context, error, stackTrace) => Container(
         clipBehavior: Clip.antiAlias,
         width: 48,
@@ -35,10 +40,10 @@ class CustomImageBuilderWidget extends StatelessWidget {
             color: ColorSchemes.primary,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
           clipBehavior: Clip.antiAlias,
           child: SvgPicture.asset(
             ImagePaths.profile,
@@ -59,20 +64,20 @@ class CustomImageBuilderWidget extends StatelessWidget {
             color: ColorSchemes.primary,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
           clipBehavior: Clip.antiAlias,
           child: SkeletonLine(
             style: SkeletonLineStyle(
               width: 48,
               height: 48,
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
       ),
-    ),
+    );
   }
 }
