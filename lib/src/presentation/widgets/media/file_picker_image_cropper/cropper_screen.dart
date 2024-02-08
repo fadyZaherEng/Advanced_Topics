@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CropperImageScreen extends StatelessWidget {
   const CropperImageScreen({super.key});
 
