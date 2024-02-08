@@ -23,14 +23,28 @@ class CustomOtpFieldWidget extends StatefulWidget {
 class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   late List<FocusNode> _focusNodes;
   late List<TextEditingController> _controllers;
-
+  bool _waiting = false;
   @override
   void initState() {
     super.initState();
-    _focusNodes = List.generate(5, (index) => FocusNode());
+    _focusNodes = List.generate(
+      6,
+      (index) => FocusNode(
+        onKeyEvent: (node, event) {
+          if (event.logicalKey == LogicalKeyboardKey.backspace && _waiting) {
+            _controllers[index - 1].text = "";
+            _focusNodes[index - 1].requestFocus();
+            widget.onOtpChange(_getOtp());
+            _waiting = false;
+            _delay();
+            return KeyEventResult.ignored;
+          }
+          return KeyEventResult.ignored;
+        },
+      ),
+    );
     _controllers = widget.controllers ?? [];
-
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
       _focusNodes[i].addListener(() {
         setState(() {});
       });
@@ -48,7 +62,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
-            5,
+            6,
             (index) => _buildOtpField(index),
           ),
         ),
@@ -79,14 +93,14 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
 
   Widget _buildOtpField(int index) {
     return Container(
-      width: 50,
+      width: MediaQuery.of(context).size.width * 0.12,
       height: 55,
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.01),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
-            width: 50,
             height: 55,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -110,10 +124,12 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
             controller: _controllers[index],
             focusNode: _focusNodes[index],
             maxLength: 1,
+            autofocus: false,
             onChanged: (value) {
+              _waiting = true;
               widget.onOtpChange(_getOtp());
               if (value.isNotEmpty) {
-                if (index < 5 - 1) {
+                if (index < 6 - 1) {
                   _focusNodes[index + 1].requestFocus();
                 } else {
                   _focusNodes[index].unfocus();
@@ -154,6 +170,13 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   }
 
   String _getOtp() {
+    print("Otp: ${_controllers.map((controller) => controller.text).join()}");
     return _controllers.map((controller) => controller.text).join();
+  }
+
+  void _delay() async {
+    await Future.delayed(const Duration(milliseconds: 200)).then((value) {
+      _waiting = true;
+    });
   }
 }
