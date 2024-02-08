@@ -85,6 +85,7 @@ or flutter file downloader or ....
 # Splash_Screen_Updated
 # CustomButtonOptionWidget
 # CustomFilterButtonAnimationWidget
+# CustomTextAnimationWidget
 # Badges-Icons-Animation-Widget
 # Change_App_Icon_With_Flutter_Launcher_Icons_Library_InPubSpecYaml
 # Create_Flavors_For_Android_From_https://docs.flutter.dev/deployment/flavors

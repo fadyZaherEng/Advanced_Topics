@@ -138,12 +138,8 @@ dependencies:
   badges:
  # change app icon
   flutter_launcher_icons:
-  # flutter flavors
+#  for flavor
   flutter_flavorizr:
-  # Cashed Network image high performance because save image in device
-  cached_network_image:
-    # change package name
-  change_app_package_name:
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
@@ -181,6 +177,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   # webview flutter
   webview_flutter: ^3.0.4
+  change_app_package_name:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -222,3 +219,4 @@ flutter:
 
 flutter_intl:
   enabled: true
+
