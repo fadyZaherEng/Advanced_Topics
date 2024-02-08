@@ -116,7 +116,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   # for show toast
   fluttertoast:
-  # for select file
+  # to select file from device
   file_picker:
   # for get path of file
   downloads_path_provider_28:
@@ -142,6 +142,8 @@ dependencies:
   cached_network_image:
  # change package name
   change_app_package_name:
+ # to cropper image
+  image_cropper:
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
