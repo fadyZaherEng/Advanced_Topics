@@ -62,7 +62,8 @@
 # Media_Libraries
 # Custom_Page_Vew_Wth_Indicator
 # Advanced_Media_Styles //// feature/new-media-advanced
-# implementation in Widgets--> Media with my Style
+# File_Picker Image_Cropper_Widgets //Implementation in media
+# implementation in Widgets--> Media with my Style//Implementation in media
 -- upload and download file with file picker and dio or asset picker
 -- select image or multi and show with image picker and asset picker for multi
 -- select video with fixed duration with image picker or multi with asset picker
@@ -72,6 +73,7 @@
 -- and show voice with beauty custom widget with all feature with timer
 -- more libraries and all permission for audio and file and camera and gallery
 -- and Calendar and Microphone with all version and all platform ios and android
+-- file picker and image cropper implementation in widgets media
 --ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
 or flutter file downloader or ....
 # ------------------------------------------------------------
@@ -129,7 +131,6 @@ add change_app_package_name: ^0.1.3 to pubspec.yaml
 step 2
 flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Notification_Service_With_FCM_RESTAPI_DONE_AUTOMATICALLY
-# File_Picker_And_Image_Cropper_Widgets //Implementation in media
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

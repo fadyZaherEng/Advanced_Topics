@@ -23,21 +23,27 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (cropperPicker != null)
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                child: Image.file(cropperPicker!),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                  child: Image.file(cropperPicker!),
+                ),
               ),
             ),
-          MaterialButton(
-            color: Colors.blue,
-            onPressed: () async {
-              _pickImage().whenComplete(() => _cropperImage());
-            },
-            child: const Text("Pick Image"),
+          Center(
+            child: MaterialButton(
+              color: Colors.blue,
+              onPressed: () async {
+                _pickImage().whenComplete(() => _cropperImage());
+              },
+              child: const Text("Pick Image"),
+            ),
           ),
         ],
       ),
@@ -74,6 +80,7 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
     if (result != null) {
       PlatformFile file = result.files.first;
       imagePicker = File(file.path ?? "");
+      setState(() {});
     }
   }
 }

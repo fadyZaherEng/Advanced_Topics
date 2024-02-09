@@ -57,7 +57,7 @@ class _DocAppState extends State<DocApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: AppRoutes.splashScreen,
+          //  initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
           home: const CropperImageScreen(),

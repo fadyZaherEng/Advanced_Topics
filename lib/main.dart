@@ -22,9 +22,9 @@ Future<void> main() async {
   await initializeDependencies();
   //fcm rest api and local notification and call firebase massaging using api
   await LocalNotificationService.initialize();
-  await LocalNotificationService.callFirebaseMassaging();
-  //another way to show local notification
-  await NotificationService().initializeNotificationService();
+  // await LocalNotificationService.callFirebaseMassaging();
+  // //another way to show local notification
+  // await NotificationService().initializeNotificationService();
   //flutter crashlytics for crash report
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
