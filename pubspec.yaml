@@ -84,7 +84,7 @@ dependencies:
   qr_code_scanner: ^1.0.1
   # for show photo with high resolutions
   photo_view:
-  # fro return data of class
+  # for return data of class
   equatable:
  # for make dotted border for container
   dotted_border:
@@ -110,7 +110,8 @@ dependencies:
   audio_session: ^0.1.16
   # for using data type of assets
   multi_image_picker_plus: ^0.0.3
-  # for get mutli image from gallery or camera or mylti video or voic or file as asset using asset Picker
+  # for get multi image from gallery or camera
+  #or multi video or voice or file as asset using asset Picker
   wechat_assets_picker: ^9.0.0-dev.2
   # for create loading animation
   loading_animation_widget: ^1.2.0+4
