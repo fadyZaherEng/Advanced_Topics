@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:city_eye/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,10 +18,7 @@ class CustomSnackBarWidget {
       behavior: SnackBarBehavior.floating,
       hitTestBehavior: HitTestBehavior.opaque,
       content: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 10,
@@ -48,8 +45,7 @@ class CustomSnackBarWidget {
               Text(
                 message,
                 maxLines: 3,
-                style: Theme
-                    .of(context)
+                style: Theme.of(context)
                     .textTheme
                     .bodyLarge
                     ?.copyWith(color: ColorSchemes.black),
