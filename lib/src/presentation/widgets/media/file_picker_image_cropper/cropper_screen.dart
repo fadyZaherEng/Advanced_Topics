@@ -1,8 +1,12 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CropperImageScreen extends StatefulWidget {
   const CropperImageScreen({super.key});
@@ -43,14 +47,42 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
             child: MaterialButton(
               color: Colors.blue,
               onPressed: () async {
-                _pickImage().whenComplete(() => _cropperImage());
+                _openFile(context);
               },
-              child: const Text("Pick Image"),
+              child: const Text("Pick File"),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _openFile(context) async {
+    if (await PermissionServiceHandler().handleServicePermission(
+      setting: Permission.storage,
+    )) {
+      _pickFile().whenComplete(() => _cropperImage());
+    } else {
+      showActionDialogWidget(
+        context: context,
+        icon: ImagePaths.icWarningNew,
+        primaryAction: () {
+          openAppSettings().then((value) async {
+            if (await PermissionServiceHandler()
+                .handleServicePermission(setting: Permission.storage)) {
+              _pickFile().whenComplete(() => _cropperImage());
+            }
+            Navigator.pop(context);
+          });
+        },
+        secondaryAction: () {
+          Navigator.pop(context);
+        },
+        primaryText: "OK",
+        secondaryText: "CANCEL",
+        text: "you don't have permission to access this feature",
+      );
+    }
   }
 
   Future _cropperImage() async {
@@ -104,7 +136,7 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
     }
   }
 
-  Future _pickImage() async {
+  Future _pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
       allowMultiple: false,
