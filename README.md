@@ -62,7 +62,8 @@
 # Media_Libraries
 # Custom_Page_Vew_Wth_Indicator
 # Advanced_Media_Styles //// feature/new-media-advanced
-# File_Picker Image_Cropper_Widgets //Implementation in media
+# File_Picker_To_Select_More_Image_Video_Audio_File_Asset //Implementation in media
+# Image_Cropper_Need_Add_in_mainFest_UCropActivity_To_RUN//Implementation in media
 # implementation in Widgets--> Media with my Style//Implementation in media
 -- upload and download file with file picker and dio or asset picker
 -- select image or multi and show with image picker and asset picker for multi
@@ -74,6 +75,8 @@
 -- more libraries and all permission for audio and file and camera and gallery
 -- and Calendar and Microphone with all version and all platform ios and android
 -- file picker and image cropper implementation in widgets media
+-- file picker to select more image as asset picker 
+-- and add permission to select file as image, vide, file
 --ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
 or flutter file downloader or ....
 # ------------------------------------------------------------

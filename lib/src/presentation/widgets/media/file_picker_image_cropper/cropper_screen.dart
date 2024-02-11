@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
@@ -62,25 +63,31 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
       setting: Permission.storage,
     )) {
       _pickFile().whenComplete(() => _cropperImage());
-    } else {
+    } else if (!await PermissionServiceHandler().handleServicePermission(
+      setting: Permission.storage,
+    )) {
       showActionDialogWidget(
         context: context,
         icon: ImagePaths.icWarningNew,
         primaryAction: () {
-          openAppSettings().then((value) async {
-            if (await PermissionServiceHandler()
-                .handleServicePermission(setting: Permission.storage)) {
-              _pickFile().whenComplete(() => _cropperImage());
-            }
-            Navigator.pop(context);
-          });
+          openAppSettings().whenComplete(() => Navigator.pop(context));
+          //     .then((value) async {
+          //   Navigator.pop(context);
+          //
+          //   if (value) {
+          //     if (await PermissionServiceHandler()
+          //         .handleServicePermission(setting: Permission.storage)) {
+          //       _pickFile().whenComplete(() => _cropperImage());
+          //     }
+          //   }
+          // });
         },
         secondaryAction: () {
           Navigator.pop(context);
         },
         primaryText: "OK",
         secondaryText: "CANCEL",
-        text: "you don't have permission to access this feature",
+        text: "you need to allow storage permission",
       );
     }
   }
@@ -105,8 +112,8 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
         uiSettings: [
           AndroidUiSettings(
             toolbarTitle: 'Cropper',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
+            toolbarColor: ColorSchemes.primary,
+            toolbarWidgetColor: ColorSchemes.white,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false,
           ),
@@ -114,15 +121,9 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
           WebUiSettings(
             context: context,
             presentStyle: CropperPresentStyle.dialog,
-            boundary: const CroppieBoundary(
-              width: 520,
-              height: 520,
-            ),
-            viewPort: const CroppieViewPort(
-              width: 480,
-              height: 480,
-              type: 'circle',
-            ),
+            boundary: const CroppieBoundary(width: 520, height: 520),
+            viewPort:
+                const CroppieViewPort(width: 480, height: 480, type: 'circle'),
             enableExif: true,
             enableZoom: true,
             showZoomer: true,
@@ -139,7 +140,7 @@ class _CropperImageScreenState extends State<CropperImageScreen> {
   Future _pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
-      allowMultiple: false,
+      allowMultiple: true,
     );
     try {
       if (result != null) {
