@@ -142,6 +142,8 @@ dependencies:
   cached_network_image:
  # change package name
   change_app_package_name:
+# image cropper
+  image_cropper:
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
