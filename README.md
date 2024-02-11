@@ -79,6 +79,9 @@
 -- and add permission to select file as image, vide, file
 --ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
 or flutter file downloader or ....
+--NOTTTTTTTTTTTTTE
+- AssetPicker Better Then FilePicker in more select 
+- Cropper image to add feature crop image as whatsapp
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
