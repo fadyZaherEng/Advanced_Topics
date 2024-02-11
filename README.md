@@ -139,6 +139,7 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Notification_Service_With_FCM_RESTAPI_DONE_AUTOMATICALLY
 # CustomSnackBarWidget
 # CustomTapBarWidget
+# Custom_Text_Animation_With_Dynamic_Width_And_Height //Implementation in ButtonAnimation
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
