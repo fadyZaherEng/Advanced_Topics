@@ -9,31 +9,10 @@ class CustomBtnAnim extends StatefulWidget {
   State<CustomBtnAnim> createState() => _CustomBtnAnimState();
 }
 
-class _CustomBtnAnimState extends State<CustomBtnAnim>
-    with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-
+class _CustomBtnAnimState extends State<CustomBtnAnim> {
   bool _isAnimate = false;
-
-  double _height = 60;
-  double _width = 120;
-
-  @override
-  void initState() {
-    super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        milliseconds: 700,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    animationController.dispose();
-  }
+  final double _height = 60;
+  final double _width = 120;
 
   @override
   Widget build(BuildContext context) {

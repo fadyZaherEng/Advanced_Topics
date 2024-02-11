@@ -1,4 +1,4 @@
-package com.doc.package.doctoreye
+package com.doc.doctoreye
 
 import io.flutter.embedding.android.FlutterActivity
 
