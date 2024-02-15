@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/cash_flow/cash_flow_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/maintainance/widgets/custom_tool_tip_widget.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -114,7 +114,8 @@ class _CashFlowGraphWidgetState extends State<CashFlowGraphWidget> {
                 yAxisName: "${"S.current.amount"} (EGP)",
                 pointColorMapper: (ChartData data, idx) =>
                     ColorSchemes.gray.withOpacity(0.4),
-                isVisible: true,
+                //  isVisible: true,
+
                 enableTooltip: true,
                 markerSettings: const MarkerSettings(
                   isVisible: true,
