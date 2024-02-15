@@ -1,0 +1,25 @@
+flavors:
+  development:
+    app:
+      name: "Doc Doc Development"
+
+    android:
+      applicationId: "com.example.flutter_advanced_topics"
+    ios:
+      bundleId: "com.example.flutterAdvancedTopics"
+
+  production:
+    app:
+      name: "Doc Doc Production"
+    android:
+      applicationId: "com.example.flutter_advanced_topics"
+    ios:
+      bundleId: "com.example.flutterAdvancedTopics"
+  staging:
+    app:
+       name: "Doc Doc Staging"
+
+    android:
+        applicationId: "com.example.flutter_advanced_topics"
+    ios:
+        bundleId: "com.example.flutterAdvancedTopics"

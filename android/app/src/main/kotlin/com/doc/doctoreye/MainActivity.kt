@@ -1,4 +1,4 @@
-package com.example.flutter_advanced_topics
+package com.doc.doctoreye
 
 import io.flutter.embedding.android.FlutterActivity
 

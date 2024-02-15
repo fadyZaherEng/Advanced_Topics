@@ -13,7 +13,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/notification_se
 
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -22,9 +22,9 @@ void main() async {
   await initializeDependencies();
   //fcm rest api and local notification and call firebase massaging using api
   await LocalNotificationService.initialize();
-  await LocalNotificationService.callFirebaseMassaging();
-  //another way to show local notification
-  await NotificationService().initializeNotificationService();
+  // await LocalNotificationService.callFirebaseMassaging();
+  // //another way to show local notification
+  // await NotificationService().initializeNotificationService();
   //flutter crashlytics for crash report
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);

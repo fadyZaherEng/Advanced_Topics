@@ -2,12 +2,14 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/flavors.dart';
 import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/vibration_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -45,6 +47,7 @@ class _DocAppState extends State<DocApp> {
         minTextAdapt: true,
         child: MaterialApp(
           navigatorKey: navigatorKey,
+          title: F.title,
           debugShowCheckedModeBanner: false,
           supportedLocales: S.delegate.supportedLocales,
           localizationsDelegates: const [
@@ -54,10 +57,10 @@ class _DocAppState extends State<DocApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: AppRoutes.splashScreen,
+          //initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          //home: BadgesWidget(),
+          home: const VibrationScreen(),
         ),
       ),
     );
