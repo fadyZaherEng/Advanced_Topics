@@ -144,3 +144,7 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
+# Loading_Animation_Different_Shapes_Widgets
+# Bottom_Navigation_Bar_Different_Shapes_Animation_Widgets
+# ------------------------------------------------------------
+######################################################--:DONE:
