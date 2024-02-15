@@ -46,6 +46,7 @@ class _BottomNavBarAnimationScreenState
             child: PageView.builder(
                 itemCount: _listOfWidget.length,
                 itemBuilder: (context, index) {
+                  print(index);
                   return _listOfWidget[index];
                 },
                 physics: const BouncingScrollPhysics(),
@@ -106,12 +107,13 @@ class _BottomNavBarAnimationScreenState
           : SlidingClippedNavBar(
               backgroundColor: ColorSchemes.white,
               onButtonPressed: (index) {
+                print(index);
                 setState(() {
                   selectedIndex = index;
                 });
-                _pageController.animateToPage(selectedIndex,
+                _pageController.animateToPage(index,
                     duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeOutQuad);
+                    curve: Curves.bounceInOut);
               },
               iconSize: 30,
               activeColor: const Color(0xFF01579B),
