@@ -147,5 +147,6 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Loading_Animation_Different_Shapes_Widgets
 # Bottom_Navigation_Bar_Different_Shapes_Animation_Widgets //first SlidingClippedNavBar
 # Bottom_Navigation_Bar_Different_Shapes_Animation_Widgets //second  water_drop_nav_bar
+# Vibration_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
