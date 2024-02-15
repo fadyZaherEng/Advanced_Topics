@@ -144,6 +144,9 @@ dependencies:
   change_app_package_name:
 # image cropper
   image_cropper:
+  # for sliding nav bar Animation
+  sliding_clipped_nav_bar:
+  water_drop_nav_bar:
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
