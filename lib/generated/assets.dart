@@ -291,8 +291,4 @@ class Assets {
   static const String imagesUnit = 'assets/images/unit.svg';
   static const String imagesVideo = 'assets/images/video.svg';
   static const String imagesVisitor = 'assets/images/visitor.svg';
-  static const String icOldDate = 'assets/images/ic_old_date.svg';
-  static const String icRecentAdded = 'assets/images/ic_recent_add.svg';
-  static const String icSortAscending = 'assets/images/ic_sort_ascending.svg';
-  static const String icSortDescending = 'assets/images/ic_sort_descending.svg';
 }

@@ -2,6 +2,8 @@ import 'package:city_eye/generated/l10n.dart';
 import 'package:city_eye/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SortBottomSheetWidget extends StatelessWidget {
@@ -168,27 +170,27 @@ List<Sort> sorts = [
     S.current.sortAscending,
     "projectName",
     "asc",
-    ImagePaths.sortAscending,
+    ImagePaths.icSortAscending,
   ),
   Sort(
     1,
     S.current.sortDescending,
     "projectName",
     "desc",
-    ImagePaths.sortDescending,
+    ImagePaths.icSortDescending,
   ),
   Sort(
     2,
     S.current.recentlyAdded,
     "creationDate",
     "asc",
-    ImagePaths.recentlyAdded,
+    ImagePaths.icRecentAdded,
   ),
   Sort(
     3,
     S.current.oldDate,
     "creationDate",
     "desc",
-    ImagePaths.oldDate,
+    ImagePaths.icOldDate,
   ),
 ];

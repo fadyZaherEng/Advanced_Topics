@@ -368,4 +368,8 @@ class ImagePaths {
   static const String icWarningNew = "assets/images/ic_warning_new.svg";
   static const String icCancelNew = "assets/images/ic_cancel_new.svg";
   static const String stopRecord = "assets/images/ic_stop.svg";
+  static const String icOldDate = 'assets/images/ic_old_date.svg';
+  static const String icRecentAdded = 'assets/images/ic_recent_add.svg';
+  static const String icSortAscending = 'assets/images/ic_sort_ascending.svg';
+  static const String icSortDescending = 'assets/images/ic_sort_descending.svg';
 }
