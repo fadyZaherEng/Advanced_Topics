@@ -182,6 +182,7 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 intl_phone_field: ^3.2.0
 libphonenumber_plugin: ^0.3.2
 country_ip: ^3.0.0
+custom refresh indicator
 # ------------------------------------------------------------
 ######################################################--:DONE:
 
