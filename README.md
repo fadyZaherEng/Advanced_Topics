@@ -160,6 +160,7 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # ------------------------------------------------------------
 # Custom_Back_Button_Widget
 # Custom_Different_Widgets__Button_Widget
+# Custom_LinearPercentIndicatorItemWidget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 

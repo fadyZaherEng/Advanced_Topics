@@ -147,6 +147,7 @@ dependencies:
   # for sliding nav bar Animation
   sliding_clipped_nav_bar:
   water_drop_nav_bar:
+  percent_indicator:
 
 
 flutter_launcher_icons:
