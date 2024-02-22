@@ -83,6 +83,9 @@ or flutter file downloader or ....
 - AssetPicker Better Then FilePicker in more select 
 - Cropper image to add feature crop image as whatsapp
 - Another way to download file with dio
+- upload -->
+-        -- upload file Widget 
+-        -- upload image Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
