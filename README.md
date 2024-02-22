@@ -169,6 +169,12 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Custom_Card_widget
 # Custom_CheckBox_Widget
 # Custom_remark_text_field_widget
+# Image_Bottom_Sheet_Widget
+# File_Bottom_Sheet_Widget
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------
+# 
 # ------------------------------------------------------------
 ######################################################--:DONE:
 
