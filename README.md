@@ -178,6 +178,10 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Custom_Gradient_Button_Widget
 # Custom_Numeric_Text_Field_With_Label_Widget
 # Custom_Time_Text_Field_With_Label_Widget
+//smplemnt this
+intl_phone_field: ^3.2.0
+libphonenumber_plugin: ^0.3.2
+country_ip: ^3.0.0
 # ------------------------------------------------------------
 ######################################################--:DONE:
 
