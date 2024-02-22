@@ -163,6 +163,8 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Custom_LinearPercentIndicatorItemWidget
 # showYesNoDialog
 # Date_Difference_Formatter_Utils
+# Custom_Card_widget
+# Custom_CheckBox_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 
