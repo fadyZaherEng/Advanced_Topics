@@ -1,7 +1,7 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/utils/constants.dart';
 
 class CustomTextFieldWithSuffixIconWidget extends StatefulWidget {
   final TextEditingController controller;

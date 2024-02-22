@@ -1,11 +1,12 @@
 import 'dart:io';
 
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/android_date_picker.dart';
-import 'package:city_eye/src/core/utils/ios_date_picker.dart';
-import 'package:city_eye/src/presentation/widgets/custom_text_field_with_suffix_icon_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/android_date_picker.dart';
+import 'package:flutter_advanced_topics/src/core/utils/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/ios_date_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomDateTextFieldWithLabelWidget extends StatefulWidget {
@@ -23,7 +24,7 @@ class CustomDateTextFieldWithLabelWidget extends StatefulWidget {
     required this.title,
     required this.globalKey,
     this.errorMassage,
-    this.imagePath = ImagePaths.icExpiredDate,
+    this.imagePath = ImagePaths.icOldDate,
     this.label = '',
   }) : super(key: key);
 
@@ -134,5 +135,117 @@ class _CustomDateTextFieldWithLabelWidgetState
         },
       );
     }
+  }
+}
+
+class CustomTextFieldWithSuffixIconWidget extends StatefulWidget {
+  final TextEditingController controller;
+  final String labelTitle;
+  final String? errorMessage;
+  final TextInputType textInputType;
+  final List<TextInputFormatter>? inputFormatters;
+  final Function() onTap;
+  final void Function(String value) onChanged;
+  final Widget suffixIcon;
+  final bool isReadOnly;
+
+  const CustomTextFieldWithSuffixIconWidget({
+    Key? key,
+    required this.controller,
+    required this.labelTitle,
+    this.errorMessage,
+    this.textInputType = TextInputType.text,
+    this.inputFormatters,
+    required this.onTap,
+    required this.suffixIcon,
+    this.isReadOnly = false,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  State<CustomTextFieldWithSuffixIconWidget> createState() =>
+      _CustomTextFieldWithSuffixIconWidgetState();
+}
+
+class _CustomTextFieldWithSuffixIconWidgetState
+    extends State<CustomTextFieldWithSuffixIconWidget> {
+  final FocusNode _focus = FocusNode();
+  bool _textFieldHasFocus = false;
+
+  @override
+  void initState() {
+    _focus.addListener(() {
+      setState(() {
+        _textFieldHasFocus = _focus.hasFocus;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      focusNode: _focus,
+      onTap: widget.onTap,
+      readOnly: widget.isReadOnly,
+      keyboardType: widget.textInputType,
+      controller: widget.controller,
+      inputFormatters: widget.inputFormatters,
+      onChanged: (value) => widget.onChanged(value),
+      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          fontWeight: Constants.fontWeightRegular,
+          color: ColorSchemes.black,
+          letterSpacing: -0.13),
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: ColorSchemes.border),
+            borderRadius: BorderRadius.circular(10)),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: ColorSchemes.border),
+            borderRadius: BorderRadius.circular(10)),
+        errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: ColorSchemes.redError),
+            borderRadius: BorderRadius.circular(10)),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: ColorSchemes.border),
+            borderRadius: BorderRadius.circular(10)),
+        errorText: widget.errorMessage,
+        labelText: widget.labelTitle,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        labelStyle: _labelStyle(context, _textFieldHasFocus),
+        errorMaxLines: 2,
+        suffixIcon: widget.suffixIcon,
+      ),
+      onTapOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
+    );
+  }
+
+  TextStyle _labelStyle(BuildContext context, bool hasFocus) {
+    if (hasFocus || widget.controller.text.isNotEmpty) {
+      return Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontWeight: Constants.fontWeightRegular,
+            color: widget.errorMessage == null
+                ? ColorSchemes.gray
+                : ColorSchemes.redError,
+            letterSpacing: -0.13,
+          );
+    } else {
+      return Theme.of(context).textTheme.titleSmall!.copyWith(
+            fontWeight: Constants.fontWeightRegular,
+            color: widget.errorMessage == null
+                ? ColorSchemes.gray
+                : ColorSchemes.redError,
+            letterSpacing: -0.13,
+          );
+    }
+  }
+
+  @override
+  void dispose() {
+    _focus.dispose();
+    super.dispose();
   }
 }

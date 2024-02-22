@@ -1,6 +1,5 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/domain/entities/home/city_eye/choice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
 class CompareDiagramItemWidget extends StatelessWidget {
   final HomeChoice choice;
@@ -73,4 +72,13 @@ class CompareDiagramItemWidget extends StatelessWidget {
   double getWidthBasedOnPercentage(int countAnswer, BuildContext context) =>
       MediaQuery.of(context).size.width * (countAnswer / 100) -
       (countAnswer == 0 ? 0 : 30);
+}
+
+class HomeChoice {
+  int countAnswer;
+  String value;
+  HomeChoice({
+    required this.countAnswer,
+    required this.value,
+  });
 }
