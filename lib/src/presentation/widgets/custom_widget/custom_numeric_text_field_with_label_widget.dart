@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:talent_link/generated/l10n.dart';
-import 'package:talent_link/src/config/theme/color_schemes.dart';
-import 'package:talent_link/src/presentation/widgets/custom_text_field_widget.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_text_form_widget.dart';
 
 class CustomNumericTextFieldWithLabelWidget extends StatefulWidget {
   final String title;
@@ -27,7 +27,8 @@ class CustomNumericTextFieldWithLabelWidget extends StatefulWidget {
       required this.controller,
       this.hasMaxDays = false,
       this.readOnly = false,
-      this.maxDays = '', this.inputFormatters})
+      this.maxDays = '',
+      this.inputFormatters})
       : super(key: key);
 
   @override
@@ -52,13 +53,13 @@ class _CustomNumericTextFieldWithLabelWidgetState
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(color: ColorSchemes.semiBlack),
+                      ?.copyWith(color: ColorSchemes.black),
                 ),
                 const SizedBox(width: 12),
                 Visibility(
                   visible: widget.hasMaxDays,
                   child: Text(
-                    "${S.of(context).maximumDays} =${widget.maxDays}",
+                    "${"S.of(context).maximumDays"} =${widget.maxDays}",
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -70,13 +71,14 @@ class _CustomNumericTextFieldWithLabelWidgetState
             const SizedBox(height: 16.0),
             SizedBox(
               child: CustomTextFieldWidget(
-                  readOnly: widget.readOnly,
-                  controller: widget.controller,
-                  labelTitle: widget.label,
-                  onChange: (value) => widget.onChange(value),
-                  inputFormatters: widget.inputFormatters,
-                  textInputType: TextInputType.number,
-                  errorMessage: widget.errorMassage),
+                readOnly: widget.readOnly,
+                controller: widget.controller,
+                labelTitle: widget.label,
+                onChange: (value) => widget.onChange(value),
+                inputFormatters: widget.inputFormatters,
+                textInputType: TextInputType.number,
+                errorMessage: widget.errorMassage,
+              ),
             ),
           ],
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_link/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
 class CustomGradientButtonWidget extends StatelessWidget {
   final String text;

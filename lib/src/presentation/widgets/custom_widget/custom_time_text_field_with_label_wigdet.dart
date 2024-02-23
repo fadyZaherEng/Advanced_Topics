@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/android_time_picker.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/ios_time_picker.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_text_field_with_suffix_icon_widget/custom_text_field_with_suffix_icon_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:talent_link/src/config/theme/color_schemes.dart';
-import 'package:talent_link/src/core/resources/image_paths.dart';
-import 'package:talent_link/src/core/utils/android_time_picker.dart';
-import 'package:talent_link/src/core/utils/ios_time_picker.dart';
-import 'package:talent_link/src/presentation/widgets/custom_text_field_with_suffix_icon_widget.dart';
 
 class CustomTimeTextFieldWithLabelWidget extends StatefulWidget {
   final void Function(String value) pickTime;
@@ -59,7 +59,7 @@ class _CustomTimeTextFieldWithLabelWidgetState
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(color: ColorSchemes.semiBlack),
+                  ?.copyWith(color: ColorSchemes.black),
             ),
             const SizedBox(height: 16.0),
             SizedBox(
@@ -71,7 +71,7 @@ class _CustomTimeTextFieldWithLabelWidgetState
                 },
                 suffixIcon: selectedTime == null || controller.text == ""
                     ? SvgPicture.asset(
-                        ImagePaths.time,
+                        "ImagePaths.time",
                         fit: BoxFit.scaleDown,
                         matchTextDirection: true,
                       )
