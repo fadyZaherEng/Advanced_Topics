@@ -125,7 +125,7 @@ class _UserStatesQRScanWidgetState extends State<UserStatesQRScanWidget> {
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y,
                           enableTooltip: true,
-                          isVisible: true,
+                          //  isVisible: true,
                           pointColorMapper: (ChartData data, _) => data.color,
                           dataLabelSettings: const DataLabelSettings(
                             isVisible: true,
@@ -135,7 +135,7 @@ class _UserStatesQRScanWidgetState extends State<UserStatesQRScanWidget> {
                             ),
                           ),
                         ),
-                      ],
+                      ] as List<CartesianSeries<ChartData, String>>,
                     ),
                   ),
                 ],
