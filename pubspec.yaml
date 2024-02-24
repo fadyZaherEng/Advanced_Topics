@@ -146,9 +146,16 @@ dependencies:
   image_cropper:
   # for sliding nav bar Animation
   sliding_clipped_nav_bar:
+  # for water drop nav bar
   water_drop_nav_bar:
+  # for linear percent indicator compare to other
   percent_indicator:
-
+  # for reading sms
+  readsms: ^0.0.2+2
+  # for slider in side menu
+  slider_side_menu: ^0.1.0
+  # for awesome card
+  awesome_card: ^1.1.7
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
