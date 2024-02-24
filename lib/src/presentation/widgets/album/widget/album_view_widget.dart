@@ -1,16 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/album/grid_album_screen.dart';
 import 'package:photo_view/photo_view.dart';
 
 class AlbumViewWidget extends StatefulWidget {
   PageController pageController;
   int currentIndex;
   ImagesAlbum imagesAlbum;
+  ImageType imageType;
   AlbumViewWidget({
     super.key,
     required this.pageController,
     required this.currentIndex,
     required this.imagesAlbum,
+    required this.imageType,
   });
 
   @override
@@ -43,9 +48,7 @@ class _AlbumViewWidgetState extends State<AlbumViewWidget> {
           index = 0;
         }
         return PhotoView(
-          imageProvider: NetworkImage(
-            widget.imagesAlbum.images[index].pathUrl,
-          ),
+          imageProvider: _imageWidget(index),
           initialScale: PhotoViewComputedScale.contained,
           minScale: PhotoViewComputedScale.contained * 0.8,
           maxScale: PhotoViewComputedScale.covered * 1.8,
@@ -53,4 +56,10 @@ class _AlbumViewWidgetState extends State<AlbumViewWidget> {
       },
     );
   }
+
+  _imageWidget(int index) => widget.imageType == ImageType.network
+      ? NetworkImage(widget.imagesAlbum.images[index].pathUrl)
+      : widget.imageType == ImageType.asset
+          ? Image.asset(widget.imagesAlbum.images[index].pathUrl)
+          : FileImage(File(widget.imagesAlbum.images[index].pathUrl));
 }
