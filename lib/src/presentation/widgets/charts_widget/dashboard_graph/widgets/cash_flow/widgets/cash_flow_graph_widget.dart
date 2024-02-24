@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/cash_flow/cash_flow_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/maintainance/widgets/custom_tool_tip_widget.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -21,117 +21,160 @@ class CashFlowGraphWidget extends StatefulWidget {
 class _CashFlowGraphWidgetState extends State<CashFlowGraphWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 390,
-          child: SfCartesianChart(
-            primaryXAxis: CategoryAxis(
-              isVisible: true,
-              majorGridLines: const MajorGridLines(width: 0),
-              interactiveTooltip: InteractiveTooltip(
-                enable: true,
-                color: ColorSchemes.dashboardCardColor,
-                borderColor: ColorSchemes.dashboardCardColor,
-                canShowMarker: true,
-                textStyle: Theme.of(context)
-                    .textTheme
-                    .labelSmall
-                    ?.copyWith(color: ColorSchemes.gray),
-              ),
-              title: AxisTitle(
-                text: "${"S.current.days"} \n(Nov)\n 2023",
-                textStyle: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: const Color(0xFF222222),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      fontFamily: "Montserrat",
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: SizedBox(
+        height: 370,
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 370,
+                child: SfCartesianChart(
+                  plotAreaBorderWidth: 0,
+                  primaryXAxis: CategoryAxis(
+                    isVisible: true,
+                    placeLabelsNearAxisLine: true,
+                    majorGridLines: const MajorGridLines(width: 0),
+                    minorGridLines: const MinorGridLines(width: 0),
+                    majorTickLines: const MajorTickLines(width: 0),
+                    minorTickLines: const MinorTickLines(width: 0),
+                    borderWidth: 0,
+                    interactiveTooltip: InteractiveTooltip(
+                      enable: _checkIfCashFlowEmpty() ? false : true,
+                      color: ColorSchemes.dashboardCardColor,
+                      borderColor: ColorSchemes.dashboardCardColor,
+                      canShowMarker: _checkIfCashFlowEmpty() ? false : true,
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .labelSmall
+                          ?.copyWith(color: Colors.green),
                     ),
-                alignment: ChartAlignment.far,
-              ),
-            ),
-            primaryYAxis: NumericAxis(
-              interval: 100,
-              isVisible: true,
-              interactiveTooltip: const InteractiveTooltip(
-                enable: false,
-                canShowMarker: false,
-              ),
-            ),
-            // Chart title
-            title: ChartTitle(
-              text: '${"S.current.amount"} (EGP)',
-              textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF222222),
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12,
-                    fontFamily: "Montserrat",
+                    labelStyle: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(color: ColorSchemes.black),
                   ),
-              alignment: ChartAlignment.near,
-            ),
-            tooltipBehavior: TooltipBehavior(
-              enable: true,
-              canShowMarker: true,
-              activationMode: ActivationMode.singleTap,
-              shared: true,
-              color: ColorSchemes.dashboardCardColor,
-              tooltipPosition: TooltipPosition.auto,
-              shouldAlwaysShow: true,
-              builder: (dynamic data, dynamic point, dynamic series, int index,
-                  int c) {
-                return CustomToolTipWidget(data: data);
-              },
-            ),
-            enableAxisAnimation: true,
-            enableSideBySideSeriesPlacement: true,
-            crosshairBehavior: CrosshairBehavior(
-              enable: true,
-              shouldAlwaysShow: true,
-              lineType: CrosshairLineType.none,
-              activationMode: ActivationMode.singleTap,
-              lineColor: Colors.green,
-            ),
-            enableMultiSelection: true,
-            trackballBehavior: TrackballBehavior(
-              activationMode: ActivationMode.singleTap,
-              enable: true,
-              shouldAlwaysShow: true,
-              lineType: TrackballLineType.none,
-              tooltipDisplayMode: TrackballDisplayMode.none,
-              markerSettings: const TrackballMarkerSettings(
-                color: ColorSchemes.gray,
-                markerVisibility: TrackballVisibilityMode.visible,
+                  primaryYAxis: NumericAxis(
+                    placeLabelsNearAxisLine: true,
+                    labelStyle: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(color: ColorSchemes.black),
+                    minorGridLines: const MinorGridLines(width: 0),
+                    majorTickLines: const MajorTickLines(width: 0),
+                    minorTickLines: const MinorTickLines(width: 0),
+                    interval: 100,
+                    isVisible: true,
+                    interactiveTooltip: const InteractiveTooltip(
+                      enable: false,
+                      canShowMarker: false,
+                    ),
+                  ),
+                  // Chart title
+                  title: ChartTitle(
+                    text: '${"S.current.amount"} (EGP) \n',
+                    textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: ColorSchemes.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    alignment: ChartAlignment.near,
+                  ),
+                  tooltipBehavior: TooltipBehavior(
+                    enable: true,
+                    canShowMarker: true,
+                    activationMode: ActivationMode.singleTap,
+                    shared: true,
+                    color: ColorSchemes.dashboardCardColor,
+                    tooltipPosition: TooltipPosition.auto,
+                    shouldAlwaysShow: true,
+                    builder: (dynamic data, dynamic point, dynamic series,
+                        int index, int c) {
+                      return CustomToolTipWidget(data: data);
+                    },
+                  ),
+                  enableAxisAnimation: true,
+                  enableSideBySideSeriesPlacement: false,
+                  crosshairBehavior: CrosshairBehavior(
+                    enable: _checkIfCashFlowEmpty() ? false : true,
+                    shouldAlwaysShow: true,
+                    lineType: CrosshairLineType.none,
+                    activationMode: ActivationMode.singleTap,
+                    lineColor: Colors.green,
+                  ),
+                  enableMultiSelection: true,
+                  trackballBehavior: TrackballBehavior(
+                    activationMode: ActivationMode.singleTap,
+                    enable: _checkIfCashFlowEmpty() ? false : true,
+                    shouldAlwaysShow: true,
+                    lineType: TrackballLineType.none,
+                    tooltipDisplayMode: TrackballDisplayMode.none,
+                    markerSettings: const TrackballMarkerSettings(
+                      color: Colors.green,
+                      markerVisibility: TrackballVisibilityMode.visible,
+                    ),
+                  ),
+                  series: <CartesianSeries>[
+                    LineSeries<ChartData, String>(
+                      dataSource: widget.chartData,
+                      xValueMapper: (ChartData data, _) => data.x,
+                      yValueMapper: (ChartData data, _) => data.y,
+                      pointColorMapper: (ChartData data, idx) =>
+                          _checkIfCashFlowEmpty()
+                              ? ColorSchemes.dashboardCardColor
+                              : ColorSchemes.black,
+                      isVisible: true,
+                      enableTooltip: _checkIfCashFlowEmpty() ? false : true,
+                      markerSettings: MarkerSettings(
+                        isVisible: _checkIfCashFlowEmpty() ? false : true,
+                        color: ColorSchemes.primary,
+                        shape: DataMarkerType.circle,
+                        borderWidth: 0,
+                      ),
+                      dataLabelSettings: const DataLabelSettings(
+                        showZeroValue: false,
+                        isVisible: false,
+                        showCumulativeValues: false,
+                      ),
+                      emptyPointSettings: EmptyPointSettings(
+                        mode: EmptyPointMode.zero,
+                        borderColor: ColorSchemes.dashboardCardColor,
+                        color: ColorSchemes.dashboardCardColor,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            series: <CartesianSeries>[
-              LineSeries<ChartData, String>(
-                dataSource: widget.chartData,
-                xValueMapper: (ChartData data, _) => data.x,
-                yValueMapper: (ChartData data, _) => data.y,
-                xAxisName: "${"S.current.days"} (Nov) 2023",
-                yAxisName: "${"S.current.amount"} (EGP)",
-                pointColorMapper: (ChartData data, idx) =>
-                    ColorSchemes.gray.withOpacity(0.4),
-                isVisible: true,
-                enableTooltip: true,
-                markerSettings: const MarkerSettings(
-                  isVisible: true,
-                  color: ColorSchemes.primary,
-                  shape: DataMarkerType.circle,
-                  borderWidth: 0,
-                ),
-                emptyPointSettings: EmptyPointSettings(
-                  mode: EmptyPointMode.average,
-                  borderColor: ColorSchemes.primary,
-                  color: ColorSchemes.gray,
-                ),
-              )
-            ],
-          ),
+            const SizedBox(
+              width: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Text(
+                "${"S.current.days"} \n(Nov)\n 2023",
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: ColorSchemes.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+            )
+          ],
         ),
-      ],
+      ),
     );
+  }
+
+  bool _checkIfCashFlowEmpty() {
+    bool isEmpty = true;
+    for (var element in widget.chartData) {
+      if (element.y != 0) {
+        isEmpty = false;
+      }
+    }
+    return isEmpty;
   }
 }

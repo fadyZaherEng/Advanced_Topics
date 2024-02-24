@@ -26,47 +26,44 @@ class _ServiceSubscriptionGraphWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SfCircularChart(
+    return SizedBox(
+      height: 318,
+      child: Center(
+        child: SfCircularChart(
           series: <CircularSeries<ChartData, String>>[
             DoughnutSeries<ChartData, String>(
               dataSource: chartData,
               xValueMapper: (ChartData data, _) => data.x,
               yValueMapper: (ChartData data, _) => data.y,
-              dataLabelMapper: (ChartData data, _) => data.x,
+              dataLabelMapper: (ChartData data, _) => data.x.toString()
+                  .split(" ")
+                  .asMap()
+                  .entries
+                  .map((e) => e.key == 0 ? "${e.value}\n" : " ${e.value}")
+                  .join(),
               pointColorMapper: (ChartData data, _) => data.color,
               groupMode: CircularChartGroupMode.point,
-              radius: '50%',
+              radius: '57%',
               enableTooltip: true,
+              groupTo: chartData.length.toDouble(),
               //  explodeAll: true,
               explode: true,
               //explodeIndex: 1,
-              innerRadius: "60%",
-              //pointRenderMode: ,
-              dataLabelSettings: const DataLabelSettings(
+              innerRadius: "67%",
+              dataLabelSettings: DataLabelSettings(
                 isVisible: true,
-                textStyle: TextStyle(
+                textStyle: ThemeData().textTheme.bodyMedium?.copyWith(
                   color: ColorSchemes.black,
-                  fontSize: 12,
-                  fontStyle: FontStyle.normal,
-                  decoration: TextDecoration.none,
-                  letterSpacing: -1,
-                  wordSpacing: 0,
-                  leadingDistribution: TextLeadingDistribution.proportional,
-                  decorationStyle: TextDecorationStyle.solid,
-                  decorationColor: ColorSchemes.black,
                 ),
                 showZeroValue: true,
                 showCumulativeValues: false,
                 labelIntersectAction: LabelIntersectAction.shift,
                 labelPosition: ChartDataLabelPosition.outside,
                 useSeriesColor: false,
-                connectorLineSettings: ConnectorLineSettings(
+                connectorLineSettings: const ConnectorLineSettings(
                   type: ConnectorType.line,
                   width: 1,
-                  length: '20%',
+                  length: '25%',
                   color: ColorSchemes.gray,
                 ),
               ),
@@ -76,14 +73,13 @@ class _ServiceSubscriptionGraphWidgetState
             CircularChartAnnotation(
               widget: Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    'Top five \n subscribed \n services',
+                    "S.current.topFiveSubscribedServices",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: ColorSchemes.black,
-                          fontSize: 13,
-                        ),
+                      color: ColorSchemes.black,
+                    ),
                   ),
                 ),
               ),
@@ -99,9 +95,10 @@ class _ServiceSubscriptionGraphWidgetState
           ),
           selectionGesture: ActivationMode.singleTap,
         ),
-      ],
+      ),
     );
   }
+
 }
 
 class ChartData {

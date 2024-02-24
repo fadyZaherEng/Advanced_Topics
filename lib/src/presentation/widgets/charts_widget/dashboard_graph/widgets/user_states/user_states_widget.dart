@@ -10,6 +10,7 @@ class UserStatesWidget extends StatefulWidget {
   @override
   State<UserStatesWidget> createState() => _UserStatesWidgetState();
 }
+
 class ChartData {
   ChartData(this.x, this.y, this.color);
 
@@ -17,6 +18,7 @@ class ChartData {
   final String x;
   final double y;
 }
+
 class _UserStatesWidgetState extends State<UserStatesWidget> {
   final List<String> _userStatesCardItems = [
     ImagePaths.apple,
@@ -56,7 +58,10 @@ class _UserStatesWidgetState extends State<UserStatesWidget> {
           ),
           UserStatesQRScanWidget(
             chartData: _chartData,
-            onTap: () {},
+            onTapFilter: () {},
+            allQrNumber: 100,
+            isClickedFilterButton: false,
+            isOpacityFilterButton: false,
           ),
         ],
       ),

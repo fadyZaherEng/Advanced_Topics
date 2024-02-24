@@ -89,7 +89,7 @@ dependencies:
  # for make dotted border for container
   dotted_border:
   # for make different charts
-  syncfusion_flutter_charts:
+  syncfusion_flutter_charts: ^23.2.7
   # for skeleton
   skeletons:
   # for downloading files
@@ -147,6 +147,7 @@ dependencies:
   # for sliding nav bar Animation
   sliding_clipped_nav_bar:
   water_drop_nav_bar:
+  percent_indicator:
 
 
 flutter_launcher_icons:
