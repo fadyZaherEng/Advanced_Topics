@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button_animation/custom_filter_button_with_animation_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/dashboard_graph/widgets/user_states/user_states_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class UserStatesQRScanWidget extends StatefulWidget {
   final List<ChartData> chartData;
-  void Function() onTap;
+  void Function() onTapFilter;
+  final int allQrNumber;
+  final bool isClickedFilterButton;
+  final bool isOpacityFilterButton;
 
   UserStatesQRScanWidget({
     super.key,
     required this.chartData,
-    required this.onTap,
+    required this.onTapFilter,
+    required this.allQrNumber,
+    required this.isClickedFilterButton,
+    required this.isOpacityFilterButton,
   });
 
   @override
@@ -22,136 +30,227 @@ class UserStatesQRScanWidget extends StatefulWidget {
 class _UserStatesQRScanWidgetState extends State<UserStatesQRScanWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 280,
-      child: Container(
-        padding: const EdgeInsetsDirectional.all(12),
-        decoration: const BoxDecoration(
-          color: ColorSchemes.dashboardCardColor,
-          borderRadius: BorderRadiusDirectional.all(Radius.circular(8)),
-          boxShadow: [
-            BoxShadow(
-              color: ColorSchemes.white,
-              blurRadius: 10,
-              spreadRadius: 15,
-            ),
-          ],
-        ),
+    return Container(
+      height: 270,
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
+      decoration: const BoxDecoration(
+        color: ColorSchemes.dashboardCardColor,
+        borderRadius: BorderRadiusDirectional.all(Radius.circular(8)),
+        boxShadow: [
+          BoxShadow(
+            color: ColorSchemes.white,
+            blurRadius: 10,
+            spreadRadius: 15,
+          ),
+        ],
+      ),
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "QRs Scan",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: ColorSchemes.black,
-                      ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: widget.onTap,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorSchemes.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      side: const BorderSide(
-                        color: ColorSchemes.primary,
-                        width: 1,
-                        style: BorderStyle.solid,
+            SizedBox(
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(top: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: FittedBox(
+                        child: SizedBox(
+                          height: 22,
+                          child: Text(
+                            "${"S.current.qRsScan"}   ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  color: ColorSchemes.black,
+                                ),
+                          ),
+                        ),
                       ),
                     ),
-                    minimumSize: const Size(100, 30),
-                  ),
-                  label: Text(
-                    "Filter",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: ColorSchemes.white,
-                        ),
-                  ),
-                  icon: SvgPicture.asset(
-                    ImagePaths.imagesBlus,
-                    color: ColorSchemes.white,
-                    width: 16,
-                    height: 16,
-                    fit: BoxFit.scaleDown,
-                  ),
+                    CustomFilterButtonWidget(
+                      onTapFilter: widget.onTapFilter,
+                      isClicked: widget.isClickedFilterButton,
+                      isOpacity: widget.isOpacityFilterButton,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
             const SizedBox(
-              height: 10,
+              height: 12,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  const RotatedBox(
+                  RotatedBox(
                     quarterTurns: 3,
-                    child: Text(
-                      "States",
-                      softWrap: true,
-                      strutStyle: StrutStyle(
-                        forceStrutHeight: true,
-                      ),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 16,
-                        textBaseline: TextBaseline.ideographic,
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        " S.current.states",
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: _checkIfQrScansEmpty()
+                                  ? ColorSchemes.black
+                                  : ColorSchemes.gray,
+                            ),
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   SizedBox(
-                    height: 170,
-                    child: SfCartesianChart(
-                      primaryXAxis: CategoryAxis(
-                        isVisible: true,
-                      ),
-                      primaryYAxis: CategoryAxis(
-                        isVisible: true,
-                        title: AxisTitle(
-                          text: "All (20)",
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: ColorSchemes.primary,
+                    height: 165,
+                    width: 271,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: SizedBox(
+                            height: 159,
+                            child: SfCartesianChart(
+                              plotAreaBorderWidth: 0,
+                              margin: const EdgeInsets.only(
+                                left: 20,
+                              ),
+                              primaryXAxis: CategoryAxis(
+                                isVisible: true,
+                                minorTickLines: const MinorTickLines(
+                                  width: 0,
+                                  size: 15,
+                                  color: ColorSchemes.gray,
+                                ),
+                                majorTickLines: const MajorTickLines(
+                                  width: 0,
+                                  size: 15,
+                                  color: ColorSchemes.gray,
+                                ),
+                                majorGridLines: const MajorGridLines(
+                                  width: 0,
+                                ),
+                                labelPlacement: LabelPlacement.betweenTicks,
+                                minorGridLines: const MinorGridLines(
+                                  width: 0,
+                                ),
+                                placeLabelsNearAxisLine: true,
+                                crossesAt: 0.5,
+                                labelStyle: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge
+                                    ?.copyWith(
+                                      color: ColorSchemes.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                autoScrollingMode: AutoScrollingMode.start,
+                                labelAlignment: LabelAlignment.end,
+                                labelPosition: ChartDataLabelPosition.outside,
+                              ),
+                              primaryYAxis: CategoryAxis(
+                                isVisible: true,
+                                rangePadding: widget.allQrNumber == 0
+                                    ? ChartRangePadding.none
+                                    : ChartRangePadding.normal,
+                                labelPlacement: widget.allQrNumber == 0
+                                    ? LabelPlacement.onTicks
+                                    : LabelPlacement.betweenTicks,
+                                tickPosition: TickPosition.outside,
+                                title: AxisTitle(
+                                  text:
+                                      "${"S.current.all"} ( ${widget.allQrNumber} )",
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: _checkIfQrScansEmpty()
+                                            ? ColorSchemes.black
+                                            : null,
+                                      ),
+                                  alignment: ChartAlignment.far,
+                                ),
+                              ),
+                              series: <ChartSeries<ChartData, String>>[
+                                BarSeries<ChartData, String>(
+                                  dataSource: widget.chartData,
+                                  xValueMapper: (ChartData data, _) => data.x,
+                                  yValueMapper: (ChartData data, _) =>
+                                      _checkIfQrScansEmpty() ? null : data.y,
+                                  isTrackVisible: false,
+                                  enableTooltip: false,
+                                  isVisible: true,
+                                  width: 1.4,
+                                  spacing: 0.4,
+                                  pointColorMapper: (ChartData data, _) =>
+                                      data.color,
+                                  dataLabelSettings: DataLabelSettings(
+                                    isVisible: true,
+                                    showZeroValue: true,
+                                    margin: const EdgeInsets.all(0),
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          color: ColorSchemes.black,
+                                        ),
                                   ),
-                          alignment: ChartAlignment.far,
-                        ),
-                      ),
-                      series: <ChartSeries<ChartData, String>>[
-                        BarSeries<ChartData, String>(
-                          dataSource: widget.chartData,
-                          xValueMapper: (ChartData data, _) => data.x,
-                          yValueMapper: (ChartData data, _) => data.y,
-                          enableTooltip: true,
-                          //  isVisible: true,
-                          pointColorMapper: (ChartData data, _) => data.color,
-                          dataLabelSettings: const DataLabelSettings(
-                            isVisible: true,
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ] as List<CartesianSeries<ChartData, String>>,
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: widget.allQrNumber == 0 ? 105 : 92,
+                              bottom: 15,
+                            ),
+                            child: Text(
+                              "0",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
+                                    color: _checkIfQrScansEmpty()
+                                        ? ColorSchemes.black
+                                        : ColorSchemes.gray,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            const Text(
-              "Number Of Scans",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.grey,
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                "S.current.numberOfScans",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: _checkIfQrScansEmpty()
+                          ? ColorSchemes.black
+                          : ColorSchemes.gray,
+                    ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
+
+  bool _checkIfQrScansEmpty() => widget.allQrNumber == 0 ? true : false;
 }

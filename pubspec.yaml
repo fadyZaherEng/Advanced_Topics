@@ -89,7 +89,7 @@ dependencies:
  # for make dotted border for container
   dotted_border:
   # for make different charts
-  syncfusion_flutter_charts:
+  syncfusion_flutter_charts: ^23.2.7
   # for skeleton
   skeletons:
   # for downloading files
