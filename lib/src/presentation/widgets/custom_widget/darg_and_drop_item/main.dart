@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_diffrent_ui_part2/modules/darg_and_drop_item/menuitem.dart';
+import '..//../darg_and_drop_item/menuitem.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -34,18 +34,18 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffe8e8e8),
       appBar: appbar(),
       body: Stack(
-        children:
-        [
-           Column(
+        children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:
-            [ //first title
+            children: [
+              //first title
               Container(
                 margin: const EdgeInsets.only(left: 16),
                 child: const Text(
@@ -72,9 +72,9 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
           checkoutBottomSheet(),
         ],
       ),
-
     );
   }
+
   //fill list of item not draggble
   createData() {
     listMenuItem = [];
@@ -84,6 +84,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       listMenuItem!.add(menuItem);
     }
   }
+
   //appbar
   appbar() {
     return AppBar(
@@ -113,6 +114,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       ),
     );
   }
+
   //tab bar
   customTabBar() {
     return TabBar(
@@ -130,6 +132,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       controller: tabController,
     );
   }
+
   //page view
   tabBarPagesPageView() {
     return Expanded(
@@ -149,11 +152,13 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       ),
     );
   }
+
   //page view item
   pageViewItem() {
     return GridView.builder(
         itemCount: listMenuItem!.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
           return Draggable(
             child: gridItem(),
@@ -183,6 +188,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
           );
         });
   }
+
   //grid view item
   gridItem() {
     return Container(
@@ -227,6 +233,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
       ),
     );
   }
+
   //bottom sheet
   checkoutBottomSheet() {
     var draggableBottomSheet = DraggableScrollableSheet(
@@ -246,7 +253,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
+                children: [
                   //space
                   const SizedBox(
                     height: 16,
@@ -267,7 +274,7 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
                   //text
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:[
+                    children: [
                       Container(
                         margin: const EdgeInsets.only(left: 8),
                         child: const Text(
@@ -301,13 +308,14 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
                   Container(
                     margin: const EdgeInsets.only(top: 8),
                     child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4),
                       primary: false,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Stack(
-                          children:
-                          [
+                          children: [
                             //item target
                             DragTarget(
                               builder: (context, candidateData, rejectedData) {
@@ -349,7 +357,8 @@ class _MyAppState extends State<MainApp> with TickerProviderStateMixin {
                                     });
                                   },
                                   child: Container(
-                                    margin: const EdgeInsets.only(right: 4, top: 4),
+                                    margin:
+                                        const EdgeInsets.only(right: 4, top: 4),
                                     decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Colors.red),
