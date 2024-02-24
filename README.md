@@ -178,6 +178,11 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Custom_Gradient_Button_Widget
 # Custom_Numeric_Text_Field_With_Label_Widget
 # Custom_Time_Text_Field_With_Label_Widget
+# Awesome_Credit_Card
+# Draggable_Widget
+# Drag_And_Drop_Widget
+# Read_SMS_Widget
+# Slider_side_menu_widget
 //implement this
 intl_phone_field: ^3.2.0
 libphonenumber_plugin: ^0.3.2
