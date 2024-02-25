@@ -173,7 +173,6 @@ class Assets {
       'assets/images/ic_more_selected.svg';
   static const String imagesIcMoreUnSelected =
       'assets/images/ic_more_un_selected.svg';
-  static const String imagesIcNeedpayment = 'assets/images/ic_need payment.svg';
   static const String imagesIcNoInternet = 'assets/images/ic_no_internet.svg';
   static const String imagesIcNoti = 'assets/images/ic_noti.svg';
   static const String imagesIcNotification =
@@ -184,6 +183,7 @@ class Assets {
       'assets/images/ic_notifications_empty.svg';
   static const String imagesIcNotificationsMore =
       'assets/images/ic_notifications_more.svg';
+  static const String imagesIcOldDate = 'assets/images/ic_old_date.svg';
   static const String imagesIcOnlinePayment =
       'assets/images/ic_online_payment.svg';
   static const String imagesIcOwner = 'assets/images/ic_owner.svg';
@@ -202,6 +202,7 @@ class Assets {
   static const String imagesIcProfileUnSelected =
       'assets/images/ic_profile_un_selected.svg';
   static const String imagesIcReceive = 'assets/images/ic_receive.svg';
+  static const String imagesIcRecentAdd = 'assets/images/ic_recent_add.svg';
   static const String imagesIcReciver = 'assets/images/ic_reciver.svg';
   static const String imagesIcReportissues =
       'assets/images/ic_reportissues.svg';
@@ -228,6 +229,10 @@ class Assets {
       'assets/images/ic_small_squares.svg';
   static const String imagesIcSocialMedia = 'assets/images/ic_social_media.svg';
   static const String imagesIcSort = 'assets/images/ic_sort.svg';
+  static const String imagesIcSortAscending =
+      'assets/images/ic_sort_ascending.svg';
+  static const String imagesIcSortDescending =
+      'assets/images/ic_sort_descending.svg';
   static const String imagesIcSplashBackground =
       'assets/images/ic_splash_background.svg';
   static const String imagesIcSplashLogo = 'assets/images/ic_splash_logo.png';

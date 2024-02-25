@@ -82,6 +82,10 @@ or flutter file downloader or ....
 --NOTTTTTTTTTTTTTE
 - AssetPicker Better Then FilePicker in more select 
 - Cropper image to add feature crop image as whatsapp
+- Another way to download file with dio
+- upload -->
+-        -- upload file Widget 
+-        -- upload image Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
@@ -148,5 +152,42 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Bottom_Navigation_Bar_Different_Shapes_Animation_Widgets //first SlidingClippedNavBar
 # Bottom_Navigation_Bar_Different_Shapes_Animation_Widgets //second  water_drop_nav_bar
 # Vibration_Widget
+# Custom_Sort_Bottom_Sheet_widget
+# Custom_Compare_Degree_widget
+# Custom_Date_Text_Field_With_Label_and_close_widget
+# CustomTextFieldWithSuffixIconWidget
+# CustomDottedBorderWidget
+# Custom_Build_Question_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
+# ------------------------------------------------------------//implement in custom_widgets
+# Custom_Back_Button_Widget
+# Custom_Different_Widgets__Button_Widget
+# Custom_LinearPercentIndicatorItemWidget --Equal My Custom_Compare_Degree_widget
+# showYesNoDialog
+# Date_Difference_Formatter_Utils
+# Custom_Card_widget
+# Custom_CheckBox_Widget
+# Custom_remark_text_field_widget
+# Image_Bottom_Sheet_Widget
+# File_Bottom_Sheet_Widget
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------//implement in custom_widgets
+# Custom_Dropdown_Text_Field_With_Label_Widget
+# Custom_Gradient_Button_Widget
+# Custom_Numeric_Text_Field_With_Label_Widget
+# Custom_Time_Text_Field_With_Label_Widget
+# Awesome_Credit_Card
+# Draggable_Widget
+# Drag_And_Drop_Widget
+# Read_SMS_Widget
+# Slider_side_menu_widget
+//implement this
+intl_phone_field: ^3.2.0
+libphonenumber_plugin: ^0.3.2
+country_ip: ^3.0.0
+custom refresh indicator
+# ------------------------------------------------------------
+######################################################--:DONE:
+

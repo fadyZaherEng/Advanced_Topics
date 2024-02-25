@@ -59,8 +59,6 @@ class _NextScreenState extends State<NextScreen> {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                  onPrimary: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: const BorderSide(

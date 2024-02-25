@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/album/grid_album_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/album_custom_indicator_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/album_view_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/close_image_widget.dart';
@@ -8,10 +9,11 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/sh
 
 class AlbumImageScreen extends BaseStatefulWidget {
   final ImagesAlbum imagesAlbum;
-
+  final ImageType imageType;
   const AlbumImageScreen({
     Key? key,
     required this.imagesAlbum,
+    required this.imageType,
   }) : super(key: key);
 
   @override
@@ -40,6 +42,7 @@ class _AlbumImageScreenState extends BaseState<AlbumImageScreen> {
             imagesAlbum: widget.imagesAlbum,
             currentIndex: _currentIndex,
             pageController: _pageController,
+            imageType: widget.imageType,
           ),
           const CloseImagesWidget(),
           ShowImageNumberWidget(
