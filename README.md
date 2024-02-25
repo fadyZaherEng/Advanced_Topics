@@ -127,7 +127,7 @@
    Summary:
           add flutter_flavorizer in pubspec.yaml
           then Add flavorizer pubspecYaml
-      then run  flutter pub run flutter_flavorizer --commands as doc here //https://pub.dev/packages/flutter_flavorizr
+      then run  flutter pub run flutter_flavorizer --commands as doc here // https://pub.dev/packages/flutter_flavorizr
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
@@ -159,8 +159,8 @@
 # CustomDottedBorderWidget
 # Custom_Build_Question_Widget
 # ------------------------------------------------------------
-######################################################--:DONE:
-# ------------------------------------------------------------//implement in custom_widgets
+######################################################--:DONE://implement in custom_widgets
+# ------------------------------------------------------------
 # Custom_Back_Button_Widget
 # Custom_Different_Widgets__Button_Widget
 # Custom_LinearPercentIndicatorItemWidget --Equal My Custom_Compare_Degree_widget
@@ -172,8 +172,8 @@
 # Image_Bottom_Sheet_Widget
 # File_Bottom_Sheet_Widget
 # ------------------------------------------------------------
-######################################################--:DONE:
-# ------------------------------------------------------------//implement in custom_widgets
+######################################################--:DONE://implement in custom_widgets
+# ------------------------------------------------------------
 # Custom_Dropdown_Text_Field_With_Label_Widget
 # Custom_Gradient_Button_Widget
 # Custom_Numeric_Text_Field_With_Label_Widget
