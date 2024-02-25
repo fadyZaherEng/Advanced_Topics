@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/custom_explicit_animation/custom_explicit_animated_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/custom_explicit_animation/custom_explicit_animation_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/explicit_animation/defult_text_style_transition_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/explicit_animation/rotation_scale_size_fade_transition_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/explicit_animation/slide_decoration_align_transition_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/impliced_animation/animated_container_opacity_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/impliced_animation/animated_default_text_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/impliced_animation/animated_padding_align_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/impliced_animation/animated_positioned.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/animatios_widget/impliced_animation/tween_animation_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/custom_explicit_animation/custom_explicit_animated_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/custom_explicit_animation/custom_explicit_animation_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/explicit_animation/defult_text_style_transition_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/explicit_animation/rotation_scale_size_fade_transition_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/explicit_animation/slide_decoration_align_transition_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/impliced_animation/animated_container_opacity_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/impliced_animation/animated_default_text_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/impliced_animation/animated_padding_align_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/impliced_animation/animated_positioned.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/impliced_animation/tween_animation_widget.dart';
 
 class AnimationWidgets extends StatefulWidget {
   const AnimationWidgets({super.key});
