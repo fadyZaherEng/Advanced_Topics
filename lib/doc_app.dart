@@ -59,7 +59,6 @@ class _DocAppState extends State<DocApp> {
           initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          //home: const VibrationScreen(),
         ),
       ),
     );

@@ -15,7 +15,7 @@
 # card_widget
 # Custom_Circle_Icon
 # Custom_button
-# Custom_button
+# Custom_Vertical_And_Horizontal_Stepper_widget
 # ----------------------------------------------------------
 #####################################################--:DONE:
 # -----------------------------------------------------------
@@ -65,27 +65,27 @@
 # File_Picker_To_Select_More_Image_Video_Audio_File_Asset //Implementation in media
 # Image_Cropper_Need_Add_in_mainFest_UCropActivity_To_RUN//Implementation in media
 # implementation in Widgets--> Media with my Style//Implementation in media
--- upload and download file with file picker and dio or asset picker
--- select image or multi and show with image picker and asset picker for multi
--- select video with fixed duration with image picker or multi with asset picker
--- and show with skeleton and thumbnail then display in full screen  and
--- if length lager then fixed navigate to video trimmer  
--- select audio with handle ios configuration and android with fixed duration
--- and show voice with beauty custom widget with all feature with timer
--- more libraries and all permission for audio and file and camera and gallery
--- and Calendar and Microphone with all version and all platform ios and android
--- file picker and image cropper implementation in widgets media
--- file picker to select more image as asset picker 
--- and add permission to select file as image, vide, file
+  -- upload and download file with file picker and dio or asset picker
+  -- select image or multi and show with image picker and asset picker for multi
+  -- select video with fixed duration with image picker or multi with asset picker
+  -- and show with skeleton and thumbnail then display in full screen  and
+  -- if length lager then fixed navigate to video trimmer  
+  -- select audio with handle ios configuration and android with fixed duration
+  -- and show voice with beauty custom widget with all feature with timer
+  -- more libraries and all permission for audio and file and camera and gallery
+  -- and Calendar and Microphone with all version and all platform ios and android
+  -- file picker and image cropper implementation in widgets media
+  -- file picker to select more image as asset picker 
+  -- and add permission to select file as image, vide, file
 --ناقص تنزيل صوره او فويس او فيديو ممكن اعملهم ب dio as file
 or flutter file downloader or ....
---NOTTTTTTTTTTTTTE
-- AssetPicker Better Then FilePicker in more select 
-- Cropper image to add feature crop image as whatsapp
-- Another way to download file with dio
-- upload -->
--        -- upload file Widget 
--        -- upload image Widget
+  --NOTTTTTTTTTTTTTE
+  -- AssetPicker Better Then FilePicker in more select 
+  -- Cropper image to add feature crop image as whatsapp
+  -- Another way to download file with dio
+  -- upload -->
+  --        -- upload file Widget 
+  --        -- upload image Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
@@ -93,7 +93,7 @@ or flutter file downloader or ....
 # Dynamic_Link_Firebase_Implementation_In_Widgets
 # Crashlytics_Firebase_Implementation_In_Main
 # Service_Notification_using_Firebase_Messaging_and_Local_Notification
--- Using_Two_way_original_And_Advanced
+  -- Using_Two_way_original_And_Advanced
 # Splash_Screen_Updated
 # CustomButtonOptionWidget
 # CustomFilterButtonAnimationWidget
@@ -105,9 +105,9 @@ or flutter file downloader or ....
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # Create_Flavors_Using_https://pub.dev/packages/flutter_flavor_library
---flutter pub add flutter_flavor --commands -->add for android only
+  -- flutter pub add flutter_flavor --commands -->add for android only
 #-------------------------------------------------------------
--- another way for ios android and macos flutter_flavoizer
+  -- another way for ios android and macos flutter_flavoizer
 # ------------------------------------------------------------
 # Create_Flavors_Using_https://pub.dev/packages/flutter_flavorizr
 -- add flutter_flavorizr  in pubspec then flutter pub run flutter_flavorizr --commands
@@ -183,11 +183,13 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # Drag_And_Drop_Widget
 # Read_SMS_Widget
 # Slider_side_menu_widget
-//implement this
-intl_phone_field: ^3.2.0
-libphonenumber_plugin: ^0.3.2
-country_ip: ^3.0.0
-custom refresh indicator
+# Custom_Draggable_Expandable_Fab_widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
-
+# ------------------------------------------------------------
+# IntlPhoneWidget
+# Country_Ip_Widget
+# CustomRefreshIndicatorWidget
+# Custom_Separator_extension_widget
+# ------------------------------------------------------------
+######################################################--:DONE:
