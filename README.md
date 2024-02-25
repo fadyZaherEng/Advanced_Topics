@@ -189,7 +189,6 @@ flutter pub run change_app_package_name:main com.doc.package.doctoreye
 # ------------------------------------------------------------
 # IntlPhoneWidget
 # Country_Ip_Widget
-//implement this
-custom refresh indicator
+# CustomRefreshIndicatorWidget
 # ------------------------------------------------------------
 ######################################################--:DONE:
