@@ -89,7 +89,7 @@ dependencies:
  # for make dotted border for container
   dotted_border:
   # for make different charts
-  syncfusion_flutter_charts:
+  syncfusion_flutter_charts: ^23.2.7
   # for skeleton
   skeletons:
   # for downloading files
@@ -146,8 +146,21 @@ dependencies:
   image_cropper:
   # for sliding nav bar Animation
   sliding_clipped_nav_bar:
+  # for water drop nav bar
   water_drop_nav_bar:
-
+  # for linear percent indicator compare to other
+  percent_indicator:
+  # for reading sms
+  readsms: ^0.0.2+2
+  # for slider in side menu
+  slider_side_menu: ^0.1.0
+  # for awesome card
+  awesome_card: ^1.1.7
+  im_stepper: ^1.0.1+1
+  draggable_expandable_fab: ^1.0.0
+  intl_phone_field: ^3.2.0
+  country_ip: ^3.0.0
+  custom_refresh_indicator: ^3.0.0
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
