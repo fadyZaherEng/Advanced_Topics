@@ -441,6 +441,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
+  draggable_expandable_fab:
+    dependency: "direct main"
+    description:
+      name: draggable_expandable_fab
+      sha256: f17bad2a22824fead9795dbf65dab25c0ae8018229f4f0b9259a6fbb3f27748d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   easy_localization:
     dependency: "direct main"
     description:
