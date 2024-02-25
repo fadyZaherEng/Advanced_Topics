@@ -156,6 +156,7 @@ dependencies:
   slider_side_menu: ^0.1.0
   # for awesome card
   awesome_card: ^1.1.7
+  im_stepper: ^1.0.1+1
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"

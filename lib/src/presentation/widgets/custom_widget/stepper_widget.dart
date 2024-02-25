@@ -1,5 +1,10 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_snack_bar_widget.dart';
+import 'package:im_stepper/stepper.dart';
 
 class StepperWidget extends StatefulWidget {
   const StepperWidget({super.key});
@@ -164,5 +169,198 @@ class _StepperWidgetState extends State<StepperWidget> {
         ),
       ),
     );
+  }
+}
+
+class IconStepperDemo extends StatefulWidget {
+  const IconStepperDemo({super.key});
+
+  @override
+  _IconStepperDemo createState() => _IconStepperDemo();
+}
+
+class _IconStepperDemo extends State<IconStepperDemo> {
+  // THE FOLLOWING TWO VARIABLES ARE REQUIRED TO CONTROL THE STEPPER.
+  int activeStep = 0; // Initial step set to 5.
+
+  int upperBound = 6; // upperBound MUST BE total number of icons minus 1.
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('IconStepper Example'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            IconStepper(
+              icons: const [
+                Icon(Icons.supervised_user_circle),
+                Icon(Icons.flag),
+                Icon(Icons.access_alarm),
+                Icon(Icons.supervised_user_circle),
+                Icon(Icons.flag),
+                Icon(Icons.access_alarm),
+                Icon(Icons.supervised_user_circle),
+              ],
+              activeStep: activeStep,
+              enableStepTapping: true,
+              stepRadius: 20,
+              lineColor: Colors.tealAccent,
+              lineDotRadius: 1,
+              lineLength: 100,
+              alignment: Alignment.center,
+              stepColor: Colors.red,
+              stepPadding: 5,
+              steppingEnabled: true,
+              enableNextPreviousButtons: true,
+              nextButtonIcon: const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+                size: 20,
+              ),
+              previousButtonIcon: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black,
+                size: 20,
+              ),
+              onStepReached: (index) {
+                if (index == upperBound) {
+                  CustomSnackBarWidget.show(
+                    context: context,
+                    message: 'Completed',
+                    path: ImagePaths.icSuccessNew,
+                    backgroundColor: Colors.green,
+                  );
+                }
+                setState(() {
+                  activeStep = index;
+                });
+              },
+              activeStepBorderColor: Colors.teal,
+              activeStepColor: Colors.green,
+              activeStepBorderPadding: 5,
+              activeStepBorderWidth: 2,
+              direction: Axis.horizontal,
+              // enableNextPreviousButtons: true,
+              // enableStepTapping: true,
+              //   previousButtonIcon: const Icon(
+              //     Icons.arrow_back,
+              //     color: Colors.black,
+              //   ),
+              //   nextButtonIcon: const Icon(
+              //     Icons.arrow_forward,
+              //     color: Colors.black,
+              //   ),
+              stepReachedAnimationDuration: const Duration(seconds: 1),
+              stepReachedAnimationEffect: Curves.easeInCubic,
+            ),
+            header(),
+            Expanded(
+              child: FittedBox(
+                child: Center(
+                  child: Text('$activeStep'),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                previousButton(),
+                nextButton(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Returns the next button.
+  Widget nextButton() {
+    return ElevatedButton(
+      onPressed: () {
+        if (activeStep < upperBound) {
+          setState(() {
+            activeStep++;
+          });
+        }
+        if (activeStep == upperBound) {
+          CustomSnackBarWidget.show(
+            context: context,
+            message: 'Completed',
+            path: ImagePaths.icSuccessNew,
+            backgroundColor: Colors.green,
+          );
+        }
+      },
+      child: const Text('Next'),
+    );
+  }
+
+  /// Returns the previous button.
+  Widget previousButton() {
+    return ElevatedButton(
+      onPressed: () {
+        if (activeStep > 0) {
+          setState(() {
+            activeStep--;
+          });
+        }
+      },
+      child: const Text('Prev'),
+    );
+  }
+
+  /// Returns the header wrapping the header text.
+  Widget header() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.orange,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              headerText(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Returns the header text based on the activeStep.
+  String headerText() {
+    switch (activeStep) {
+      case 1:
+        return 'Preface';
+
+      case 2:
+        return 'Table of Contents';
+
+      case 3:
+        return 'About the Author';
+
+      case 4:
+        return 'Publisher Information';
+
+      case 5:
+        return 'Reviews';
+
+      case 6:
+        return 'Chapters #1';
+
+      default:
+        return 'Introduction';
+    }
   }
 }

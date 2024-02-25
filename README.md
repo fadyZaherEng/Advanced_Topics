@@ -15,7 +15,7 @@
 # card_widget
 # Custom_Circle_Icon
 # Custom_button
-# Custom_Vertical_Stepper_widget
+# Custom_Vertical_And_Horizontal_Stepper_widget
 # ----------------------------------------------------------
 #####################################################--:DONE:
 # -----------------------------------------------------------
