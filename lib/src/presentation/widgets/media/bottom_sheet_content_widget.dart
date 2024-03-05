@@ -2,7 +2,9 @@
 
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:typed_data';
 
+import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
@@ -23,7 +25,6 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/show_voic
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/convert_asset_entities_to_files.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/formate_time.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/generate_thumbnail.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -724,5 +725,16 @@ class _BottomSheetContentWidgetState
         Navigator.of(context).pop();
       },
     );
+  }
+
+
+  Future<Uint8List?> generateThumbnail(String videoPath) async {
+    final uint8list = await VideoThumbnail.thumbnailData(
+      video: videoPath,
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 128,
+      quality: 100,
+    );
+    return uint8list;
   }
 }
