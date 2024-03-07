@@ -11,6 +11,10 @@
 // https://pub.dev/packages/app_version_update
 //
 // there are another way but not mandatory only option show to the user
+// as flutter_autoupdate(https://pub.dev/packages/flutter_autoupdate) , upgrader (https://pub.dev/packages/upgrader)
+// new version (https://pub.dev/packages/new_version)
+//
+
 
 
 //############################################################################
