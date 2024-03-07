@@ -69,7 +69,8 @@ void _getRegionBasedMobileLocation() async {
   String region = await FlutterNativeTimezone.getLocalTimezone();
   List<String> regions = await FlutterNativeTimezone.getAvailableTimezones();
 }
-void _getCurrentTime() async {
+
+void _getCurrentTime2() async {
   tz.initializeTimeZones();
   List<String> regions = await FlutterNativeTimezone.getAvailableTimezones();
   List<tz.Location>? locations;
@@ -90,27 +91,39 @@ void _getCurrentTime() async {
       final currentTime = tz.TZDateTime.now(location);
       formattedTime = DateFormat.jm().format(currentTime);
       _currentTime = formattedTime;
-      setState(() {});
+      //setState(() {});
     } catch (e) {}
   } else {
-    for (String city in states) {
+    print('Timezone information not found for ${region}');
+  }
+}
+
+String _currentCity = "";
+void _getCurrentTime1() async {
+  tz.initializeTimeZones();
+  List<tz.Location>? locations;
+  String region = "";
+  for (String city in states) {
+    if (city == _currentCity) {
+      locations = tz.timeZoneDatabase.locations.values
+          .where((location) => location.name.contains(city))
+          .toList();
       try {
-        if (regions.firstWhere((element) => element.contains(city),
-            orElse: () => "") != "") {
-          region = regions.firstWhere((element) => element.contains(city),
-              orElse: () => "");
-          break;
-        }
+        region = locations.first.name;
+        break;
       } catch (e) {}
     }
+  }
+  if (locations != null) {
     String? formattedTime;
     try {
       final location = tz.getLocation(region);
       final currentTime = tz.TZDateTime.now(location);
       formattedTime = DateFormat.jm().format(currentTime);
       _currentTime = formattedTime;
-      setState(() {});
+      //setState(() {});
     } catch (e) {}
-    //  print('Timezone information not found for ${region}');
+  } else {
+    print('Timezone information not found for ${region}');
   }
 }
