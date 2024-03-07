@@ -1,4 +1,5 @@
 import 'package:country_state_city/country_state_city.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -62,4 +63,8 @@ void _getCurrentTimeBasedOnCity(String city) async {
   } else {
     print('Timezone information not found for $city');
   }
+}
+
+void _getRegionBasedMobileLocation() async {
+  String region = await FlutterNativeTimezone.getLocalTimezone();
 }
