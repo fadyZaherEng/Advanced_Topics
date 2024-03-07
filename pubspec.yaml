@@ -161,6 +161,9 @@ dependencies:
   intl_phone_field: ^3.2.0
   country_ip: ^3.0.0
   custom_refresh_indicator: ^3.0.0
+  #to get time in different zones
+  timezone: ^0.9.2
+  country_state_city: ^0.1.6
 
 
 flutter_launcher_icons:
