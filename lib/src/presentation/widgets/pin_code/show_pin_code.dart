@@ -12,12 +12,12 @@ void onPinCodeSubmit(context, _controllers) => showBottomSheetWidget(
           controllers: _controllers.toList(),
           onOtpChange: (pinCode) {
             if (pinCode.length == 4) {
-//_bloc.add(ValidationPinCodeEvent(pinCode: pinCode));
+              //_bloc.add(ValidationPinCodeEvent(pinCode: pinCode));
             }
           },
           errorMessage: value,
           onTapSubmit: (pinCode) {
-//_onPinCodeSubmit(pinCode);
+            //_onPinCodeSubmit(pinCode);
           },
           error: value.isEmpty ? false : true,
         ),
@@ -27,6 +27,6 @@ void onPinCodeSubmit(context, _controllers) => showBottomSheetWidget(
     ).then(
       (_) {
         pinCodeErrorMessage.value = "";
-//_bloc.add(RemoveValuesFromPinCodeTextFieldEvent());
+        //_bloc.add(RemoveValuesFromPinCodeTextFieldEvent());
       },
     );
