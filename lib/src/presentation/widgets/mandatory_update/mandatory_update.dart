@@ -15,10 +15,7 @@
 // new version (https://pub.dev/packages/new_version)
 //
 
-
-
 //############################################################################
-
 
 //first way
 // app_upgrade_flutter_sdk:
@@ -128,8 +125,9 @@ class MyApp extends StatelessWidget {
         // App Platform, android or ios
         environment: 'development',
         // Environment in which app is running, production, staging or development etc.
-        appLanguage: 'en' // App language ex: en, es etc. Optional.
-    );
+        appLanguage: 'en',
+        appId: '' // App language ex: en, es etc. Optional.
+        );
 
     DialogConfig dialogConfig = DialogConfig(
       dialogStyle: DialogStyle.material,
@@ -162,8 +160,5 @@ class MyApp extends StatelessWidget {
 //second way using app_version_update :
 //https://pub.dev/packages/app_version_update
 
-
 //third way using in_app_update :
 //https://pub.dev/packages/in_app_update
-
-

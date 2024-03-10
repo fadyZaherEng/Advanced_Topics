@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  app_upgrade_flutter_sdk:
+    dependency: "direct main"
+    description:
+      name: app_upgrade_flutter_sdk
+      sha256: cfff1faf4851c03d1dda6e85b88f845f112eab145a860463fb4b6bc48c208cec
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   arc_progress_bar_new:
     dependency: "direct main"
     description:
