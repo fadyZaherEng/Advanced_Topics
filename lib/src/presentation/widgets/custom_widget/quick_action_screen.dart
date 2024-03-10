@@ -16,7 +16,6 @@ class _QuickActionScreenState extends State<QuickActionScreen> {
   @override
   void initState() {
     super.initState();
-
     const QuickActions quickActions = QuickActions();
     quickActions.initialize((String shortcutType) {
       setState(() {
