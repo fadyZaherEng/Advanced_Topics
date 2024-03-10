@@ -170,6 +170,7 @@ dependencies:
   star_menu: ^4.0.0
   ntp: ^2.0.0
   spinner_dropdown: ^1.0.0
+  rxdart:
 
 
 flutter_launcher_icons:

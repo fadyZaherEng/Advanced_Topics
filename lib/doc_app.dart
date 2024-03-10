@@ -9,7 +9,7 @@ import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/value_lisenter_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/subject_behivour.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -60,7 +60,7 @@ class _DocAppState extends State<DocApp> {
           //initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          home: const ValueLisenterScreen(),
+          home: const SubjectBehivourScreen(),
         ),
       ),
     );
