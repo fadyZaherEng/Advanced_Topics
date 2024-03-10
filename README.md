@@ -204,5 +204,6 @@
 # ExpansionPanelList_With_listView_widget
 # ValueListenableBuilder_Widget
 # Check_version_To_Update_the_app_from_app_store
+# Quick_Action_widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
