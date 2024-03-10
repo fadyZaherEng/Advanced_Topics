@@ -171,6 +171,7 @@ dependencies:
   ntp: ^2.0.0
   spinner_dropdown: ^1.0.0
   rxdart:
+  version_check: ^0.7.1
 
 
 flutter_launcher_icons:
