@@ -481,6 +481,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.9"
   easy_localization:
     dependency: "direct main"
     description:
@@ -1309,6 +1317,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  ntp:
+    dependency: "direct main"
+    description:
+      name: ntp
+      sha256: "198db73e5059b334b50dbe8c626011c26576778ee9fc53f4c55c1d89d08ed2d2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -1738,6 +1754,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  spinner_dropdown:
+    dependency: "direct main"
+    description:
+      name: spinner_dropdown
+      sha256: "2ac3974581415171d1bac5e16c0650127bea3bc77daca511f4a87275bb9fb576"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   sqflite:
     dependency: transitive
     description:
@@ -1762,6 +1786,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  star_menu:
+    dependency: "direct main"
+    description:
+      name: star_menu
+      sha256: a027b168c66f19dda41df0755f2ab9ab00e36532d52cdaa0e02b6225e9f90e2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   stream_channel:
     dependency: transitive
     description:

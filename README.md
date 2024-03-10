@@ -192,5 +192,15 @@
 # CustomRefreshIndicatorWidget
 # Custom_Separator_extension_widget
 # Get_Time_Zone_Based_City_And_Country_Code_OR_Local_current_device
+# Star_Menu_Widget
+# Side_Menu_Widget
+# Context_Menu_Widget
+# Drop_Down_Menu_With_Different_Way_Widget
+# Spinner_Dropdown_Widget
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------
+# SelectedBottomSheetItemWithSearch
+#
 # ------------------------------------------------------------
 ######################################################--:DONE:

@@ -166,6 +166,10 @@ dependencies:
   country_state_city: ^0.1.6
   flutter_native_timezone:
   app_upgrade_flutter_sdk:
+  dropdown_button2: ^2.3.9
+  star_menu: ^4.0.0
+  ntp: ^2.0.0
+  spinner_dropdown: ^1.0.0
 
 
 flutter_launcher_icons:
