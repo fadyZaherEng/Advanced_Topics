@@ -208,5 +208,7 @@
 # Qr_Image_Widget
 # Crasoul_Slider_widget
 # Rating_Bar_widget 
+# App_Settings_widget
+# Signature_widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
