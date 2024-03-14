@@ -213,5 +213,6 @@
 # Signature_widget
 # Custom_Stepper_widget //steps_widget in custom_widgets
 # Badge_Identification_widget
+# Payment_Widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
