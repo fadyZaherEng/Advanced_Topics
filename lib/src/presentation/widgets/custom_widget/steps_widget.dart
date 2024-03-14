@@ -1,9 +1,16 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/constants.dart';
-import 'package:city_eye/src/domain/entities/steps/steps.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+class Steps {
+  final int id;
+  final String name;
+  final bool isSelected;
+
+  Steps({required this.id, required this.name, this.isSelected = false});
+}
 
 class StepsWidget extends StatelessWidget {
   final List<Steps> steps;

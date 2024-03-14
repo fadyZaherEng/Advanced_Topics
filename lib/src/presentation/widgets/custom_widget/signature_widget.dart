@@ -2,13 +2,11 @@
 
 import 'dart:typed_data';
 
-import 'package:city_eye/flavors.dart';
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/is_url.dart';
-import 'package:city_eye/src/presentation/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/flavors.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
 import 'package:signature/signature.dart';
 
 class SignatureWidget extends StatefulWidget {
@@ -67,14 +65,10 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                     child: Image.network(
                       signatureImageNetwork,
                       fit: BoxFit.fill,
-                      errorBuilder: (context, error,
-                          stackTrace) =>
+                      errorBuilder: (context, error, stackTrace) =>
                           _buildPlaceHolderImage(),
-                      loadingBuilder:
-                          (BuildContext context,
-                          Widget child,
-                          ImageChunkEvent?
-                          loadingProgress) {
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
                         if (loadingProgress == null) {
                           return child;
                         }
@@ -82,17 +76,11 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                           width: double.infinity,
                           height: 200,
                           child: Center(
-                            child:
-                            CircularProgressIndicator(
-                              color:
-                              ColorSchemes.primary,
-                              value: loadingProgress
-                                  .expectedTotalBytes !=
-                                  null
-                                  ? loadingProgress
-                                  .cumulativeBytesLoaded /
-                                  loadingProgress
-                                      .expectedTotalBytes!
+                            child: CircularProgressIndicator(
+                              color: ColorSchemes.primary,
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
                                   : null,
                             ),
                           ),
@@ -125,7 +113,7 @@ class _SignatureWidgetState extends State<SignatureWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: CustomButtonWidget(
+              child: CustomButtonInternetWidget(
                 onTap: () {
                   if (isNetworkImage) {
                     isNetworkImage = false;
@@ -145,19 +133,19 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                 },
                 text: isNetworkImage
                     ? (signatureImageNetwork.isEmpty)
-                        ? S.of(context).save
-                        : S.of(context).addNew
+                        ? "S.of(context).save"
+                        : " S.of(context).addNew"
                     : (signatureImage == null)
-                        ? S.of(context).save
-                        : S.of(context).addNew,
-                backgroundColor: F.isNiceTouch
-                    ? ColorSchemes.ghadeerDarkBlue
+                        ? "S.of(context).save"
+                        : "S.of(context).addNew",
+                backgroundColor: F.name == Flavor.production
+                    ? ColorSchemes.gray
                     : ColorSchemes.primary,
               ),
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: CustomButtonWidget(
+              child: CustomButtonInternetWidget(
                 backgroundColor: ColorSchemes.gray,
                 onTap: () {
                   // if (widget.signatureImage == null) {
@@ -171,7 +159,7 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                     widget.signatureImage = Uint8List.fromList([]);
                   });*/
                 },
-                text: S.of(context).cancel,
+                text: "S.of(context).cancel",
               ),
             ),
           ],

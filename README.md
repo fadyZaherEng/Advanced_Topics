@@ -205,10 +205,13 @@
 # ValueListenableBuilder_Widget
 # Check_version_To_Update_the_app_from_app_store
 # Quick_Action_widget
+//review from here and show output 
 # Qr_Image_Widget
 # Crasoul_Slider_widget
 # Rating_Bar_widget 
 # App_Settings_widget
 # Signature_widget
+# Custom_Stepper_widget //steps_widget in custom_widgets
+# Badge_Identification_widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
