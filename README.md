@@ -205,5 +205,7 @@
 # ValueListenableBuilder_Widget
 # Check_version_To_Update_the_app_from_app_store
 # Quick_Action_widget
+# Qr_Image_Widget
+# Crasoul_Slider_widget
 # ------------------------------------------------------------
 ######################################################--:DONE:
