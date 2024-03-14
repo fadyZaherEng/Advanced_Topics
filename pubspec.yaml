@@ -182,6 +182,8 @@ dependencies:
   quick_actions: ^1.0.7
   # crasoul slider
   carousel_slider:
+  # rating bar
+  flutter_rating_bar: ^4.0.1
 
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"

@@ -207,5 +207,6 @@
 # Quick_Action_widget
 # Qr_Image_Widget
 # Crasoul_Slider_widget
+# Rating_Bar_widget 
 # ------------------------------------------------------------
 ######################################################--:DONE:
