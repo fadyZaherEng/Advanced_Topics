@@ -2,11 +2,50 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/badge_identity/bloc/badge_identity_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/badge_identity/skeleton/badge_identity_skeleton.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:no_screenshot/no_screenshot.dart';
 import 'package:skeletons/skeletons.dart';
+
+class BadgeIdentity extends Equatable {
+  final int id;
+  final String qrImage;
+  final int pinCode;
+  final String expiredDate;
+
+  const BadgeIdentity({
+    this.id = 0,
+    this.qrImage = "",
+    this.pinCode = 0,
+    this.expiredDate = "",
+  });
+
+  @override
+  List<Object> get props => [
+        id,
+        qrImage,
+        pinCode,
+        expiredDate,
+      ];
+}
+
+class CompoundConfiguration {
+  final String name;
+  final String description;
+  const CompoundConfiguration({
+    this.name = "",
+    this.description = "",
+  });
+}
 
 class BadgeIdentityScreen extends BaseStatefulWidget {
   const BadgeIdentityScreen({super.key});
@@ -37,7 +76,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     WidgetsBinding.instance.addObserver(this);
     _setSecureFlag();
     _preventShake();
-    _bloc.add(GetCompoundConfigurationEvent());
+    //_bloc.add(GetCompoundConfigurationEvent());
     _internetConnectionListener();
     super.initState();
   }
@@ -47,7 +86,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   }
 
   void _preventShake() async {
-    await SetCanNavigateToBadgeScreenUseCase(injector())(false);
+    // await SetCanNavigateToBadgeScreenUseCase(injector())(false);
   }
 
   bool _isReadyToCallAPI = true;
@@ -95,7 +134,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   }
 
   void startTimer() {
-    _secondsRemaining = _compoundConfiguration.compoundSetting.badgeExpiredTime;
+    // _secondsRemaining = _compoundConfiguration.compoundSetting.badgeExpiredTime;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (_secondsRemaining > 0) {
@@ -114,41 +153,42 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<BadgeIdentityBloc, BadgeIdentityState>(
       listener: (context, state) {
-        if (state is ShowLoadingState) {
-          showLoading();
-        } else if (state is HideLoadingState) {
-          hideLoading();
-        } else if (state is GetCompoundConfigurationState) {
-          _compoundConfiguration = state.compoundConfiguration;
-          _getBadgeIdentityEvent(isShowSkeleton: true);
-          _isFirstCall = true;
-          // _internetConnectionListener();
-        } else if (state is GetBadgeIdentitySuccessState) {
-          _badgeIdentity = state.badgeIdentity;
-          _timer?.cancel();
-          startTimer();
-        } else if (state is GetBadgeIdentityErrorState) {
-          showMassageDialogWidget(
-            context: context,
-            text: state.errorMessage,
-            icon: ImagePaths.error,
-            buttonText: S.of(context).ok,
-            onTap: () {
-              Navigator.pop(context);
-            },
-          );
-        }
+        // if (state is ShowLoadingState) {
+        //   showLoading();
+        // } else if (state is HideLoadingState) {
+        //   hideLoading();
+        // } else if (state is GetCompoundConfigurationState) {
+        //   _compoundConfiguration = state.compoundConfiguration;
+        //   _getBadgeIdentityEvent(isShowSkeleton: true);
+        //   _isFirstCall = true;
+        //   // _internetConnectionListener();
+        // } else if (state is GetBadgeIdentitySuccessState) {
+        //   _badgeIdentity = state.badgeIdentity;
+        //   _timer?.cancel();
+        //   startTimer();
+        // } else if (state is GetBadgeIdentityErrorState) {
+        //   showMassageDialogWidget(
+        //     context: context,
+        //     text: state.errorMessage,
+        //     icon: ImagePaths.error,
+        //     buttonText: S.of(context).ok,
+        //     onTap: () {
+        //       Navigator.pop(context);
+        //     },
+        //   );
+        // }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: buildAppBarWidget(
             context,
-            title: S.of(context).badgeIdentity,
+            title: "S.of(context).badgeIdentity",
             isHaveBackButton: true,
             onBackButtonPressed: () => Navigator.pop(context),
           ),
-          body: state is ShowSkeletonState ||
-                  state is GetCompoundConfigurationState
+          body: false
+              // state is ShowSkeletonState ||
+              //         state is GetCompoundConfigurationState
               ? _buildSkeleton()
               : _buildBody(),
         );
@@ -164,14 +204,14 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                 children: [
                   const SizedBox(height: 30),
                   InkWell(
-                    onTap: () => _onTapImage(_badgeIdentity.users.image),
+                    onTap: () => _onTapImage("_badgeIdentity.users.image"),
                     child: Container(
                       height: 180,
                       width: 180,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: ColorSchemes.greyDivider,
+                          color: ColorSchemes.gray,
                           // color of the border
                           width: 2, // width of the border
                         ),
@@ -188,7 +228,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         child: Image.network(
                           height: 145,
                           width: 145,
-                          _badgeIdentity.users.image,
+                          " _badgeIdentity.users.image",
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(
@@ -219,11 +259,11 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         horizontal: 16, vertical: 10),
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
-                      color: ColorSchemes.paymentCardColor,
+                      color: ColorSchemes.gray,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
-                      _badgeIdentity.users.userName,
+                      " _badgeIdentity.users.userName",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: ColorSchemes.primary,
                             letterSpacing: -0.24,
@@ -286,8 +326,8 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                     ),
                   ),
                   const SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     child: DottedLine(
                       dashColor: ColorSchemes.primary,
                       dashGapLength: 4,
@@ -311,7 +351,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         ),
                         Expanded(
                           child: Text(
-                            S.of(context).unit,
+                            "S.of(context).unit",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -322,7 +362,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                           ),
                         ),
                         Text(
-                          _badgeIdentity.compoundUnits.name,
+                          " _badgeIdentity.compoundUnits.name",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style:
@@ -348,7 +388,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         ),
                         Expanded(
                           child: Text(
-                            _badgeIdentity.userType.name,
+                            " _badgeIdentity.userType.name",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -359,7 +399,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                           ),
                         ),
                         Text(
-                          _badgeIdentity.users.userName,
+                          " _badgeIdentity.users.userName",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style:
@@ -394,20 +434,20 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     _timer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     await _noScreenshot.screenshotOn();
-    await SetCanNavigateToBadgeScreenUseCase(injector())(true);
+    // await SetCanNavigateToBadgeScreenUseCase(injector())(true);
   }
 
   void _getBadgeIdentityEvent({required bool isShowSkeleton}) {
-    if (GetNoInternetUseCase(injector())() ||
-        !_isReadyToCallAPI ||
-        _isAppInBackground) return;
-    _bloc.add(GetBadgeIdentityEvent(isShowSkeleton: isShowSkeleton));
+    // if (GetNoInternetUseCase(injector())() ||
+    //     !_isReadyToCallAPI ||
+    //     _isAppInBackground) return;
+    // _bloc.add(GetBadgeIdentityEvent(isShowSkeleton: isShowSkeleton));
   }
 
   void _onTapImage(String image) {
-    Navigator.pushNamed(context, Routes.galleryImages,
-        arguments: GalleryImages(initialIndex: 0, images: [
-          GalleryAttachment(attachment: image),
-        ]));
+    // Navigator.pushNamed(context, Routes.galleryImages,
+    //     arguments: GalleryImages(initialIndex: 0, images: [
+    //       GalleryAttachment(attachment: image),
+    //     ]));
   }
 }
