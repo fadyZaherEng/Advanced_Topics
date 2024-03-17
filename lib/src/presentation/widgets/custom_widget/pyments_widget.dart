@@ -1,16 +1,42 @@
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/convert_string_to_date_format.dart';
-import 'package:city_eye/src/core/utils/english_numbers.dart';
-import 'package:city_eye/src/core/utils/extensions/color_extension.dart';
-import 'package:city_eye/src/core/utils/format_date_time.dart';
-import 'package:city_eye/src/core/utils/payments_key.dart';
-import 'package:city_eye/src/domain/entities/payment/payment.dart';
-import 'package:city_eye/src/domain/entities/settings/compound_currency.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:super_banners/super_banners.dart';
+import 'package:equatable/equatable.dart';
+
+class CompoundCurrency {
+  final String currency;
+  final double amount;
+
+  const CompoundCurrency({
+    required this.currency,
+    required this.amount,
+  });
+}
+
+extension ColorExtension on String {
+  toColor() {
+    if (isEmpty) return ColorSchemes.primary;
+    // var hexString = this;
+    // int hexValue = int.parse(hexString, radix: 16); // Convert hexadecimal to integer
+    //
+    // int red = (hexValue >> 24) & 0xFF; // Extract red value
+    // int green = (hexValue >> 16) & 0xFF; // Extract green value
+    // int blue = (hexValue >> 8) & 0xFF; // Extract blue value
+    // double opacity = (hexValue & 0xFF) / 255.0; // Extract opacity value and normalize to 0.0-1.0
+    // return Color(int.parse(this.replaceAll("#", "0xFF"), radix: 16));
+    return Color(int.parse(replaceAll("#", "ff"), radix: 16) | 0xFF000000);
+
+    //return Color.fromRGBO(red, green, blue, opacity);
+  }
+}
+
+class PaymentsKey {
+  static const String needPayment = "needPayment";
+  static const String paid = "paid";
+}
 
 class PaymentsWidget extends StatelessWidget {
   final List<Payment> payments;
@@ -60,7 +86,7 @@ class PaymentsWidget extends StatelessWidget {
                         Container(
                           width: double.infinity,
                           decoration: const BoxDecoration(
-                            color: ColorSchemes.paymentCardColor,
+                            color: ColorSchemes.gray,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(16),
                                 topRight: Radius.circular(16)),
@@ -86,8 +112,7 @@ class PaymentsWidget extends StatelessWidget {
                                 ),
                                 const Expanded(child: SizedBox()),
                                 Text(
-                                  englishNumbers(formatDateTime(convertStringToDateFormat(
-                                      payments[index].createDate))),
+                                  payments[index].createDate,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge!
@@ -162,7 +187,7 @@ class PaymentsWidget extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                S.of(context).dueDate,
+                                                "  S.of(context).dueDate",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .labelLarge!
@@ -174,10 +199,7 @@ class PaymentsWidget extends StatelessWidget {
                                               ),
                                               const SizedBox(width: 20),
                                               Text(
-                                                formatDateTime(
-                                                    convertStringToDateFormat(
-                                                        payments[index]
-                                                            .dueDate)),
+                                                payments[index].dueDate,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .labelLarge!
@@ -234,7 +256,7 @@ class PaymentsWidget extends StatelessWidget {
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
-                                            S.of(context).payNow,
+                                            "  S.of(context).payNow",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall!
@@ -261,21 +283,132 @@ class PaymentsWidget extends StatelessWidget {
   }
 }
 
-//Directionality(
-//                     textDirection: Directionality.of(context),
-//                     child: CornerBanner(
-//                       bannerPosition: Directionality.of(context) == TextDirection.ltr ? CornerBannerPosition.topLeft : CornerBannerPosition.topRight,
-//                       bannerColor: payments[index].paymentStatus.extraValue1.toColor(),
-//                       child: Padding(
-//                         padding: const EdgeInsets.symmetric(
-//                           vertical: 2,
-//                         ),
-//                         child: Text(payments[index].paymentStatus.name,
-//                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-//                               color: ColorSchemes.white,
-//                               fontSize: 14,
-//                               letterSpacing: -0.24,
-//                             )),
-//                       ),
-//                     ),
-//                   ),
+class Payment extends Equatable {
+  final int id;
+  final String title;
+  final String description;
+  final double amount;
+  final double discount;
+  final double totalAmount;
+  final String paymentDate;
+  final String paymentRef;
+  final String paymentResponse;
+  final String paymentTransactionId;
+  final bool isPaid;
+  final String paymentResponseDate;
+  final String createDate;
+  final String invoiceNumber;
+  final String dueDate;
+  final bool isIncludeTax;
+  final bool isIncludeVat;
+  final double tax;
+  final double vat;
+  final double taxValue;
+  final double vatValue;
+  final PaymentSourceType paymentSourceType;
+  final Currency currency;
+  final PaymentMethod paymentMethod;
+  final PaymentStatus paymentStatus;
+  final List<PaymentDetails> paymentDetails;
+  final List<PaymentRequestPaymentMethods> paymentRequestPaymentMethods;
+
+  const Payment({
+    this.id = 0,
+    this.title = "",
+    this.description = "",
+    this.invoiceNumber = "",
+    this.amount = 0.0,
+    this.discount = 0.0,
+    this.totalAmount = 0.0,
+    this.paymentDate = "",
+    this.paymentRef = "",
+    this.paymentResponse = "",
+    this.paymentTransactionId = "",
+    this.isPaid = false,
+    this.paymentResponseDate = "",
+    this.createDate = "",
+    this.dueDate = "",
+    this.isIncludeTax = false,
+    this.isIncludeVat = false,
+    this.tax = 0.0,
+    this.vat = 0.0,
+    this.taxValue = 0.0,
+    this.vatValue = 0.0,
+    this.paymentSourceType = const PaymentSourceType(),
+    this.currency = const Currency(),
+    this.paymentMethod = const PaymentMethod(),
+    this.paymentStatus = const PaymentStatus(),
+    this.paymentDetails = const [],
+    this.paymentRequestPaymentMethods = const [],
+  });
+
+  @override
+  List<Object> get props => [
+        id,
+        title,
+        description,
+        amount,
+        discount,
+        totalAmount,
+        paymentDate,
+        paymentRef,
+        paymentResponse,
+        paymentTransactionId,
+        isPaid,
+        paymentResponseDate,
+        createDate,
+        dueDate,
+        isIncludeTax,
+        isIncludeVat,
+        tax,
+        vat,
+        taxValue,
+        vatValue,
+        paymentSourceType,
+        currency,
+        paymentMethod,
+        paymentStatus,
+        paymentDetails,
+        paymentRequestPaymentMethods,
+      ];
+}
+
+class PaymentRequestPaymentMethods {}
+
+class PaymentDetails {
+  const PaymentDetails();
+}
+
+class PaymentStatus {
+  final String code;
+  final String name;
+  final String extraValue1;
+
+  const PaymentStatus({
+    this.code = "",
+    this.name = "",
+    this.extraValue1 = "",
+  });
+}
+
+class PaymentMethod {
+  const PaymentMethod();
+}
+
+class Currency {
+  final String code;
+
+  const Currency({
+    this.code = "",
+  });
+}
+
+class PaymentSourceType {
+  final String name;
+  final String extraValue1;
+
+  const PaymentSourceType({
+    this.name = "",
+    this.extraValue1 = "",
+  });
+}
