@@ -16,37 +16,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:no_screenshot/no_screenshot.dart';
 import 'package:skeletons/skeletons.dart';
 
-class BadgeIdentity extends Equatable {
-  final int id;
-  final String qrImage;
-  final int pinCode;
-  final String expiredDate;
-
-  const BadgeIdentity({
-    this.id = 0,
-    this.qrImage = "",
-    this.pinCode = 0,
-    this.expiredDate = "",
-  });
-
-  @override
-  List<Object> get props => [
-        id,
-        qrImage,
-        pinCode,
-        expiredDate,
-      ];
-}
-
-class CompoundConfiguration {
-  final String name;
-  final String description;
-  const CompoundConfiguration({
-    this.name = "",
-    this.description = "",
-  });
-}
-
 class BadgeIdentityScreen extends BaseStatefulWidget {
   const BadgeIdentityScreen({super.key});
 
@@ -59,8 +28,9 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     with WidgetsBindingObserver {
   BadgeIdentityBloc get _bloc => BlocProvider.of<BadgeIdentityBloc>(context);
 
-  CompoundConfiguration _compoundConfiguration = const CompoundConfiguration();
-  BadgeIdentity _badgeIdentity = const BadgeIdentity();
+  final CompoundConfiguration _compoundConfiguration =
+      const CompoundConfiguration();
+  final BadgeIdentity _badgeIdentity = const BadgeIdentity();
 
   final _noScreenshot = NoScreenshot.instance;
 
@@ -91,7 +61,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
 
   bool _isReadyToCallAPI = true;
   bool _isAppInBackground = false;
-  bool _isFirstCall = false;
+  final bool _isFirstCall = false;
 
   void _internetConnectionListener() {
     _networkConnectivity.initialise();
@@ -153,6 +123,8 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   Widget baseBuild(BuildContext context) {
     return BlocConsumer<BadgeIdentityBloc, BadgeIdentityState>(
       listener: (context, state) {
+        _timer?.cancel();
+        startTimer();
         // if (state is ShowLoadingState) {
         //   showLoading();
         // } else if (state is HideLoadingState) {
@@ -450,4 +422,35 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     //       GalleryAttachment(attachment: image),
     //     ]));
   }
+}
+
+class BadgeIdentity extends Equatable {
+  final int id;
+  final String qrImage;
+  final int pinCode;
+  final String expiredDate;
+
+  const BadgeIdentity({
+    this.id = 0,
+    this.qrImage = "",
+    this.pinCode = 0,
+    this.expiredDate = "",
+  });
+
+  @override
+  List<Object> get props => [
+        id,
+        qrImage,
+        pinCode,
+        expiredDate,
+      ];
+}
+
+class CompoundConfiguration {
+  final String name;
+  final String description;
+  const CompoundConfiguration({
+    this.name = "",
+    this.description = "",
+  });
 }

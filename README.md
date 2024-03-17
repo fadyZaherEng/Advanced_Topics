@@ -208,11 +208,17 @@
 //review from here and show output 
 # Qr_Image_Widget
 # Crasoul_Slider_widget
-# Rating_Bar_widget 
-# App_Settings_widget
-# Signature_widget
+# Rating_Bar_widget //using flutter_rating_bar rating as rating show on any course udemy
+# App_Settings_widget //Flutter plugin for opening iOS and Android phone settings from an app
 # Custom_Stepper_widget //steps_widget in custom_widgets
-# Badge_Identification_widget
-# Payment_Widget
+# Badge_Identification_widget //delay
+# Payment_Widget using Corner_Baner //using  CornerBanner(bannerPosition: Directionality.of(context) ==
+  -- TextDirection.ltr? CornerBannerPosition.topLeft: CornerBannerPosition.topRight//library super_banners
+# No_Screenshot_widget //flutter pub add no_screenshot  to prevent user from taking screenshot
+# signature_widget //Flutter plugin providing performance optimized signature canvas 
+ -- with ability to set custom style, boundaries and initial state (provide with convas to darw signature)
+# ------------------------------------------------------------
+######################################################--:DONE:
+#
 # ------------------------------------------------------------
 ######################################################--:DONE:

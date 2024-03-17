@@ -184,9 +184,12 @@ dependencies:
   carousel_slider:
   # rating bar
   flutter_rating_bar: ^4.0.1
+  # to opne ios and android app settings
   app_settings: ^5.0.0
+  # Flutter plugin providing performance optimized signature canvas with ability to set custom style, boundaries and initial state
   signature: ^5.4.0
   dotted_line:
+  # for show banner
   super_banners: ^0.0.1
   no_screenshot: ^0.0.1+6
 

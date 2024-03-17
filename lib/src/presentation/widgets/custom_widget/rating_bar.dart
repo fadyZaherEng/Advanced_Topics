@@ -28,7 +28,9 @@ class RatingBarWidget extends StatelessWidget {
             ImagePaths.icRecentAdded,
             fit: BoxFit.scaleDown,
           ),
-          onRatingUpdate: (rating) {},
+          onRatingUpdate: (rating) {
+            print(rating);
+          },
         ),
       ),
     );
