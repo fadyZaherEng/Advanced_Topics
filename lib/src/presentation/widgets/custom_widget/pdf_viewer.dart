@@ -40,17 +40,13 @@ class _PdfViewerScreen extends State<PdfViewerScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SfPdfViewer.network(
-            'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
-            key: _pdfViewerKey,
+          Expanded(
+            child: SfPdfViewer.network(
+              'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+              key: _pdfViewerKey,
+              password: 'password',
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          SfPdfViewer.network(
-            'https://cdn.syncfusion.com/content/PDFViewer/encrypted.pdf',
-            password: 'password',
-          )
         ],
       ),
     );
