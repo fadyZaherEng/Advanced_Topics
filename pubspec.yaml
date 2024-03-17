@@ -187,6 +187,9 @@ dependencies:
   app_settings: ^5.0.0
   signature: ^5.4.0
   dotted_line:
+  super_banners: ^0.0.1
+  no_screenshot: ^0.0.1+6
+
 flutter_launcher_icons:
    image_path_android: "assets/images/ios_android_logo.png"
    image_path_ios: "assets/images/ios_android_logo.png"
