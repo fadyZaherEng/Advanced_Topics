@@ -219,6 +219,7 @@
  -- with ability to set custom style, boundaries and initial state (provide with convas to darw signature)
 # ------------------------------------------------------------
 ######################################################--:DONE:
+# flutter_keyboard_visibility // to show for user open keyboard or not
 #
 # ------------------------------------------------------------
 ######################################################--:DONE:
