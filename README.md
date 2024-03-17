@@ -210,7 +210,7 @@
 # Crasoul_Slider_widget
 # Rating_Bar_widget //using flutter_rating_bar rating as rating show on any course udemy
 # App_Settings_widget //Flutter plugin for opening iOS and Android phone settings from an app
-# Custom_Stepper_widget //steps_widget in custom_widgets
+# Custom_Stepper_widget //steps_widget in custom_widgets Custom_Steps_widget
 # Badge_Identification_widget //delay
 # Payment_Widget using Corner_Baner //using  CornerBanner(bannerPosition: Directionality.of(context) ==
   -- TextDirection.ltr? CornerBannerPosition.topLeft: CornerBannerPosition.topRight//library super_banners
