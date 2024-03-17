@@ -13,24 +13,34 @@ class RatingBarWidget extends StatelessWidget {
         title: const Text('Rating Bar'),
       ),
       body: Center(
-        child: RatingBar.builder(
+        child:  RatingBar.builder(
           initialRating: 3,
           minRating: 1,
           direction: Axis.horizontal,
-          allowHalfRating: true,
+          itemPadding: const EdgeInsets.symmetric(
+              horizontal: 2, vertical: 0),
           itemCount: 5,
-          itemSize: 20,
+          itemSize: 12,
           ignoreGestures: true,
-          wrapAlignment: WrapAlignment.center,
-          glowRadius: 0.6,
-          itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-          itemBuilder: (context, _) => SvgPicture.asset(
-            ImagePaths.icRecentAdded,
-            fit: BoxFit.scaleDown,
-          ),
-          onRatingUpdate: (rating) {
-            print(rating);
+          allowHalfRating: false,
+          itemBuilder: (context, index) {
+            if (index < 3) {
+              return SvgPicture.asset(
+                ImagePaths.ratingStarYellow,
+                width: 8,
+                height: 8,
+                fit: BoxFit.scaleDown,
+              );
+            } else {
+              return SvgPicture.asset(
+                ImagePaths.ratingStarGrey,
+                width: 8,
+                height: 8,
+                fit: BoxFit.scaleDown,
+              );
+            }
           },
+          onRatingUpdate: (rating) {},
         ),
       ),
     );
