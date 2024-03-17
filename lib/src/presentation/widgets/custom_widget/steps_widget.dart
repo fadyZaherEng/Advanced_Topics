@@ -5,13 +5,53 @@ import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Steps {
-  final int id;
+  final int id; //equal to index
   final String name;
   final bool isSelected;
 
   Steps({required this.id, required this.name, this.isSelected = false});
 }
 
+//Calling StepsWidget
+// StepsWidget(
+// currentIndex: 0,
+// onTapStep: (int index) {},
+// pageController: PageController(),
+// steps: [
+// Steps(
+// name: "home",
+// id: 0,
+// isSelected: true,
+// ),
+// Steps(
+// name: "profile",
+// id: 1,
+// isSelected: false,
+// ),
+// Steps(
+// name: "payment",
+// id: 2,
+// isSelected: false,
+// ),
+// Steps(
+// name: " badge",
+// id: 3,
+// isSelected: false,
+// ),
+// Steps(
+// name: " settings",
+// id: 4,
+// isSelected: false,
+// ),
+// ],
+// pages: const [
+// Home(),
+// Center(child: Text("Profile")),
+// Center(child: Text("Payment")),
+// Center(child: Text("Badge")),
+// Center(child: Text("Settings")),
+// ],
+// )
 class StepsWidget extends StatelessWidget {
   final List<Steps> steps;
   final List<Widget> pages;
