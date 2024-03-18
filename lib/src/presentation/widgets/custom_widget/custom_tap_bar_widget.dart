@@ -20,7 +20,7 @@ class CustomTabBarWidget extends BaseStatefulWidget {
   BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabbarWidgetState();
 }
 
-class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
+class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -32,64 +32,71 @@ class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
 
   @override
   Widget baseBuild(BuildContext context) {
-    return DefaultTabController(
-      animationDuration: const Duration(milliseconds: 700),
-      length: 2,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 48,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
+    return Scaffold(
+      body: DefaultTabController(
+        animationDuration: const Duration(milliseconds: 700),
+        length: 2,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 48,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                          height: 6,
+                          decoration:
+                          const BoxDecoration(color: ColorSchemes.lightGray)),
+                    ),
+                  ),
+                  TabBar(
+                    unselectedLabelColor: ColorSchemes.black,
+                    unselectedLabelStyle: Theme
+                        .of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(
+                        color: ColorSchemes.black, letterSpacing: -0.24),
+                    labelStyle: Theme
+                        .of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(
+                        color: ColorSchemes.black, letterSpacing: -0.24),
+                    labelColor: ColorSchemes.black,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                        height: 6,
-                        decoration:
-                            const BoxDecoration(color: ColorSchemes.lightGray)),
-                  ),
-                ),
-                TabBar(
-                  unselectedLabelColor: ColorSchemes.black,
-                  unselectedLabelStyle: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(
-                          color: ColorSchemes.black, letterSpacing: -0.24),
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: ColorSchemes.black, letterSpacing: -0.24),
-                  labelColor: ColorSchemes.black,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  controller: _tabController,
-                  indicator: const UnderlineTabIndicator(
-                    borderSide:
-                        BorderSide(width: 6.0, color: ColorSchemes.primary),
-                  ),
-                  tabs: [
-                    Tab(
-                      text: widget.titleOfTapOne,
+                    controller: _tabController,
+                    indicator: const UnderlineTabIndicator(
+                      borderSide:
+                      BorderSide(width: 6.0, color: ColorSchemes.primary),
                     ),
-                    Tab(
-                      text: widget.titleOfTapTwo,
-                    ),
-                  ],
-                ),
-              ],
+                    tabs: [
+                      Tab(
+                        text: widget.titleOfTapOne,
+                      ),
+                      Tab(
+                        text: widget.titleOfTapTwo,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                widget.contentOfTapOne,
-                widget.contentOfTapTwo,
-              ],
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  widget.contentOfTapOne,
+                  widget.contentOfTapTwo,
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      )
     );
   }
 
