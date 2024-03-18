@@ -10,8 +10,8 @@ import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/badge_identity/bloc/badge_identity_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/pdf_viewer.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/sensor/senesor_blus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +62,7 @@ class _DocAppState extends State<DocApp> {
           //initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          home: PdfViewerScreen(),
+          home: SensorScreen(),
         ),
       ),
     );

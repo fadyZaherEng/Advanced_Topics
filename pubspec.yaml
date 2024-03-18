@@ -196,6 +196,7 @@ dependencies:
   no_screenshot: ^0.0.1+6
   flutter_keyboard_visibility:
   syncfusion_flutter_pdfviewer: ^23.1.39
+  sensors_plus: ^4.0.2
 
 
 
