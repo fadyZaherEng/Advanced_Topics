@@ -15,6 +15,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:no_screenshot/no_screenshot.dart';
 import 'package:skeletons/skeletons.dart';
+//ACCELERATION VALUE
+//The value of acceleration of a body that is not moving is zero.
+// Acceleration is defined as the rate of change of velocity with respect to time.
+// If an object is not changing its velocity, then its acceleration is zero.
+// This means that the object is either at rest or moving at a constant velocity.
+//العجلة معدل التغير في السرعه فلة الجسم ماشي بسرعه منتظمه العجله تساوي صفر
+//او لو الجسم ساكن او واقف فهنا لما احرك ال فون حركة شديده فيمه العجله بتتغير
+// من صفر ل value قيمتها على حسب قوة حركه الفون فهو هنا بيسمع لل قيمه لو وصلت 30 بيدخل على ال dentifyومحدد فيمه كبيره
+// عشان ميدخلش الا لما اليوزر يهز الفون هزه قوه ميدخلش على الفاضي والمليان
 
 class BadgeIdentityScreen extends BaseStatefulWidget {
   const BadgeIdentityScreen({super.key});
