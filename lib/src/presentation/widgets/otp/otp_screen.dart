@@ -1,17 +1,16 @@
 import 'dart:async';
 
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/routes/routes_manager.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/base/widget/base_stateful_widget.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/core/utils/show_massage_dialog_widget.dart';
-import 'package:city_eye/src/core/utils/show_snack_bar.dart';
-import 'package:city_eye/src/data/sources/remote/city_eye/register/request/request_otp_request.dart';
-import 'package:city_eye/src/presentation/blocs/otp/otp_bloc.dart';
-import 'package:city_eye/src/presentation/screens/otp/utils/show_edit_number_bottom_sheet.dart';
-import 'package:city_eye/src/presentation/screens/otp/widgets/otp_content_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/generated/l10n.dart';
+import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_snack_bar_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp/otp_bloc/otp_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp/utils/show_edit_number_bottom_sheet.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp/widgets/otp_content_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OTPScreen extends BaseStatefulWidget {
@@ -55,10 +54,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
       Timer.run(() {
         if (widget.otp.isNotEmpty) {
           if (context.mounted) {
-            showSnackBar(
+            CustomSnackBarWidget.show(
               context: _scaffoldKey.currentContext ?? context,
               message: widget.otp,
-              color: ColorSchemes.green,
+              backgroundColor: ColorSchemes.barGreen,
+              path: ImagePaths.success,
             );
           }
         }
@@ -86,7 +86,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
               action: () {
                 Navigator.pushNamed(
                   context,
-                  Routes.signIn,
+                  AppRoutes.loginScreen,
                   arguments: {
                     "unitId": -1,
                     "isFromDeepLink": widget.isFromDeepLink,
@@ -124,10 +124,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
       } else if (state is RequestOTPSuccessState) {
         isEnableResendCode = false;
         _bloc.add(TimerStartedEvent(duration: 30));
-        showSnackBar(
-          context: context,
-          message: state.otp,
-          color: ColorSchemes.green,
+        CustomSnackBarWidget.show(
+          context: _scaffoldKey.currentContext ?? context,
+          message: state.message,
+          backgroundColor: ColorSchemes.barGreen,
+          path: ImagePaths.success,
         );
       } else if (state is SelectCompoundState) {
         _onSelectCompoundState();
@@ -154,10 +155,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         _otpTextFieldError = state.errorMessage;
       } else if (state is ChangeMobileNumberSuccessState) {
         mobileNumber = state.phoneNumber;
-        showSnackBar(
-          context: context,
-          message: state.otp,
-          color: ColorSchemes.green,
+        CustomSnackBarWidget.show(
+          context: _scaffoldKey.currentContext ?? context,
+          message: state.message,
+          backgroundColor: ColorSchemes.barGreen,
+          path: ImagePaths.success,
         );
         _bloc.add(NavigationPopEvent());
       } else if (state is ChangeMobileNumberErrorState) {
@@ -252,7 +254,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         context: context,
         text: text,
         icon: icon,
-        buttonText: S.of(context).ok,
+        buttonText: "S.of(context).ok",
         onTap: action);
   }
 

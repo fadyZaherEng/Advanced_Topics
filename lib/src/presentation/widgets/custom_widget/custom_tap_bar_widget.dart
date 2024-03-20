@@ -17,13 +17,13 @@ class CustomTabBarWidget extends BaseStatefulWidget {
   }) : super(key: key);
 
   @override
-  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabbarWidgetState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabBarWidgetState();
 }
 
 class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  int selectedIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -33,7 +33,8 @@ class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
   @override
   Widget baseBuild(BuildContext context) {
     return Scaffold(
-      body: DefaultTabController(
+        body: SafeArea(
+      child: DefaultTabController(
         animationDuration: const Duration(milliseconds: 700),
         length: 2,
         child: Column(
@@ -45,33 +46,45 @@ class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                      ),
                       child: Container(
-                          height: 6,
-                          decoration:
-                          const BoxDecoration(color: ColorSchemes.lightGray)),
+                        height: 6,
+                        decoration: const BoxDecoration(
+                          color: ColorSchemes.lightGray,
+                        ),
+                      ),
                     ),
                   ),
                   TabBar(
+                    onTap: (int index) {
+                      FocusScope.of(context).unfocus();
+                      _tabController.animateTo(index);
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
                     unselectedLabelColor: ColorSchemes.black,
-                    unselectedLabelStyle: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(
-                        color: ColorSchemes.black, letterSpacing: -0.24),
-                    labelStyle: Theme
-                        .of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(
-                        color: ColorSchemes.black, letterSpacing: -0.24),
+                    unselectedLabelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: ColorSchemes.black,
+                              letterSpacing: -0.24,
+                            ),
+                    labelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: ColorSchemes.black,
+                              letterSpacing: -0.24,
+                            ),
                     labelColor: ColorSchemes.black,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     controller: _tabController,
+                    indicatorSize: TabBarIndicatorSize.tab,
                     indicator: const UnderlineTabIndicator(
-                      borderSide:
-                      BorderSide(width: 6.0, color: ColorSchemes.primary),
+                      borderSide: BorderSide(
+                        width: 6.0,
+                        color: ColorSchemes.primary,
+                      ),
                     ),
                     tabs: [
                       Tab(
@@ -96,8 +109,8 @@ class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
             ),
           ],
         ),
-      )
-    );
+      ),
+    ));
   }
 
   @override
