@@ -7,14 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/di/injector.dart';
+import 'package:flutter_advanced_topics/src/domain/use_case/internet/get_no_internet_use_case.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/badge_identity/bloc/badge_identity_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/badge_identity/skeleton/badge_identity_skeleton.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_bloc/badge_identity_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/skeleton/badge_identity_skeleton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:no_screenshot/no_screenshot.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletons/skeletons.dart';
+
 //ACCELERATION VALUE
 //The value of acceleration of a body that is not moving is zero.
 // Acceleration is defined as the rate of change of velocity with respect to time.
@@ -37,9 +42,8 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     with WidgetsBindingObserver {
   BadgeIdentityBloc get _bloc => BlocProvider.of<BadgeIdentityBloc>(context);
 
-  final CompoundConfiguration _compoundConfiguration =
-      const CompoundConfiguration();
-  final BadgeIdentity _badgeIdentity = const BadgeIdentity();
+  CompoundConfiguration _compoundConfiguration = const CompoundConfiguration();
+  BadgeIdentity _badgeIdentity = const BadgeIdentity();
 
   final _noScreenshot = NoScreenshot.instance;
 
@@ -55,7 +59,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     WidgetsBinding.instance.addObserver(this);
     _setSecureFlag();
     _preventShake();
-    //_bloc.add(GetCompoundConfigurationEvent());
+    _bloc.add(GetCompoundConfigurationEvent());
     _internetConnectionListener();
     super.initState();
   }
@@ -65,12 +69,12 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   }
 
   void _preventShake() async {
-    // await SetCanNavigateToBadgeScreenUseCase(injector())(false);
+    await SetCanNavigateToBadgeScreenUseCase(injector())(false);
   }
 
   bool _isReadyToCallAPI = true;
   bool _isAppInBackground = false;
-  final bool _isFirstCall = false;
+  bool _isFirstCall = false;
 
   void _internetConnectionListener() {
     _networkConnectivity.initialise();
@@ -113,7 +117,8 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
   }
 
   void startTimer() {
-    // _secondsRemaining = _compoundConfiguration.compoundSetting.badgeExpiredTime;
+    _secondsRemaining =
+        7; // _compoundConfiguration.compoundSetting.badgeExpiredTime;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (_secondsRemaining > 0) {
@@ -134,30 +139,30 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
       listener: (context, state) {
         _timer?.cancel();
         startTimer();
-        // if (state is ShowLoadingState) {
-        //   showLoading();
-        // } else if (state is HideLoadingState) {
-        //   hideLoading();
-        // } else if (state is GetCompoundConfigurationState) {
-        //   _compoundConfiguration = state.compoundConfiguration;
-        //   _getBadgeIdentityEvent(isShowSkeleton: true);
-        //   _isFirstCall = true;
-        //   // _internetConnectionListener();
-        // } else if (state is GetBadgeIdentitySuccessState) {
-        //   _badgeIdentity = state.badgeIdentity;
-        //   _timer?.cancel();
-        //   startTimer();
-        // } else if (state is GetBadgeIdentityErrorState) {
-        //   showMassageDialogWidget(
-        //     context: context,
-        //     text: state.errorMessage,
-        //     icon: ImagePaths.error,
-        //     buttonText: S.of(context).ok,
-        //     onTap: () {
-        //       Navigator.pop(context);
-        //     },
-        //   );
-        // }
+        if (state is ShowLoadingState) {
+          showLoading();
+        } else if (state is HideLoadingState) {
+          hideLoading();
+        } else if (state is GetCompoundConfigurationState) {
+          _compoundConfiguration = state.compoundConfiguration;
+          _getBadgeIdentityEvent(isShowSkeleton: true);
+          _isFirstCall = true;
+          _internetConnectionListener();
+        } else if (state is GetBadgeIdentitySuccessState) {
+          _badgeIdentity = state.badgeIdentity;
+          _timer?.cancel();
+          startTimer();
+        } else if (state is GetBadgeIdentityErrorState) {
+          showMassageDialogWidget(
+            context: context,
+            text: state.errorMessage,
+            icon: ImagePaths.error,
+            buttonText: "OK",
+            onTap: () {
+              Navigator.pop(context);
+            },
+          );
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -167,9 +172,8 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
             isHaveBackButton: true,
             onBackButtonPressed: () => Navigator.pop(context),
           ),
-          body: false
-              // state is ShowSkeletonState ||
-              //         state is GetCompoundConfigurationState
+          body: state is ShowSkeletonState ||
+                  state is GetCompoundConfigurationState
               ? _buildSkeleton()
               : _buildBody(),
         );
@@ -209,7 +213,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         child: Image.network(
                           height: 145,
                           width: 145,
-                          " _badgeIdentity.users.image",
+                          "_badgeIdentity.users.image",
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(
@@ -332,7 +336,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
                         ),
                         Expanded(
                           child: Text(
-                            "S.of(context).unit",
+                            "Unit",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -415,14 +419,14 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
     _timer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     await _noScreenshot.screenshotOn();
-    // await SetCanNavigateToBadgeScreenUseCase(injector())(true);
+    await SetCanNavigateToBadgeScreenUseCase(injector())(true);
   }
 
   void _getBadgeIdentityEvent({required bool isShowSkeleton}) {
-    // if (GetNoInternetUseCase(injector())() ||
-    //     !_isReadyToCallAPI ||
-    //     _isAppInBackground) return;
-    // _bloc.add(GetBadgeIdentityEvent(isShowSkeleton: isShowSkeleton));
+    if (GetNoInternetUseCase(injector())() ||
+        !_isReadyToCallAPI ||
+        _isAppInBackground) return;
+    _bloc.add(GetBadgeIdentityEvent(isShowSkeleton: isShowSkeleton));
   }
 
   void _onTapImage(String image) {
@@ -462,4 +466,14 @@ class CompoundConfiguration {
     this.name = "",
     this.description = "",
   });
+}
+
+class SetCanNavigateToBadgeScreenUseCase {
+  final SharedPreferences sharedPreferences;
+
+  SetCanNavigateToBadgeScreenUseCase(this.sharedPreferences);
+
+  Future<bool> call(bool value) {
+    return sharedPreferences.setBool("isNavigationToBadge", value);
+  }
 }
