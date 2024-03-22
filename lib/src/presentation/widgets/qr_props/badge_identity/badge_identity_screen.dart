@@ -168,7 +168,7 @@ class _BadgeIdentityScreenState extends BaseState<BadgeIdentityScreen>
         return Scaffold(
           appBar: buildAppBarWidget(
             context,
-            title: "S.of(context).badgeIdentity",
+            title: "Badge Identity",
             isHaveBackButton: true,
             onBackButtonPressed: () => Navigator.pop(context),
           ),

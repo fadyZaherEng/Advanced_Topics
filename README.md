@@ -221,5 +221,8 @@
 ######################################################--:DONE:
 # flutter_keyboard_visibility // to show for user open keyboard or not
 # PDFViewerWidget //syncfusion_flutter_pdfviewer //in widgets and media
+# Sensors_Plus_Widget //sensors_plus
+# Share_Plus_Widget //share_plus to share files with title and text 
+# Qr_Property_Widget //qr_code_scanner and qr_code_generator in widgets
 # ------------------------------------------------------------
 ######################################################--:DONE:
