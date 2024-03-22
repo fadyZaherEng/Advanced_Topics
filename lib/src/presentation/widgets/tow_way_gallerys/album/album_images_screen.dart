@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/grid_album_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/album_custom_indicator_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/album_view_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/close_image_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/widget/show_image_number_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/grid_album_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/widget/album_custom_indicator_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/widget/album_view_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/widget/close_image_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/widget/show_image_number_widget.dart';
 
 class AlbumImageScreen extends BaseStatefulWidget {
   final ImagesAlbum imagesAlbum;

@@ -3,7 +3,7 @@ import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/album_images_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/album_images_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletons/skeletons.dart';
 

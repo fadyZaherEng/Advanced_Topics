@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/album/grid_album_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/grid_album_screen.dart';
 import 'package:photo_view/photo_view.dart';
 
 class AlbumViewWidget extends StatefulWidget {

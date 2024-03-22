@@ -86,6 +86,8 @@
   -- upload ---->
                -- upload file Widget 
                -- upload image Widget
+  -- save_and_share_file with dio and share_plus
+# Galleries_Widget in //tow_way_gallerys with all details as phone Gallery
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
