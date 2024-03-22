@@ -188,7 +188,7 @@
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # IntlPhoneWidget
-# Country_Ip_Widget
+# Country_Ip_Widget // to get country property from ip address given or ip of current device
 # CustomRefreshIndicatorWidget
 # Custom_Separator_extension_widget
 # Get_Time_Zone_Based_City_And_Country_Code_OR_Local_current_device
