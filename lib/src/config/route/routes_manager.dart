@@ -12,7 +12,9 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_scre
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/media_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/play_video_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/video_trimmer_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/qr/qr_code_scanner_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr/qr_code_scanner_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class AppRoutes {
@@ -28,6 +30,8 @@ class AppRoutes {
   static const String videoTrimmer = "/videoTrimmer";
   static const String playVideoScreen = "/playVideoScreen";
   static const String mediaScreen = "/mediaScreen";
+  static const String badgeIdentityScreen = "/badgeIdentityScreen";
+  static const String galleryImagesScreen = "/galleryImagesScreen";
 }
 
 class RouteGenerator {
@@ -73,6 +77,13 @@ class RouteGenerator {
         );
       case AppRoutes.mediaScreen:
         return _materialRoute(const MediaScreen());
+      case AppRoutes.badgeIdentityScreen:
+        return _materialRoute(const BadgeIdentityScreen());
+      case AppRoutes.galleryImagesScreen:
+        GalleryImages imagesScreen = routeSettings.arguments as GalleryImages;
+        return _materialRoute(GalleryImagesScreen(
+          imagesScreen: imagesScreen,
+        ));
       default:
         return unDefinedRoute();
     }

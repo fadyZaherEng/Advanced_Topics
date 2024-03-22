@@ -180,6 +180,25 @@ dependencies:
   # to show for user if there are any updates or new version
   version_check: ^0.7.1
   quick_actions: ^1.0.7
+  # crasoul slider
+  carousel_slider:
+  # rating bar
+  flutter_rating_bar: ^4.0.1
+  # to opne ios and android app settings
+  app_settings: ^5.0.0
+  # Flutter plugin providing performance optimized signature canvas with ability to set custom style, boundaries and initial state
+  signature: ^5.4.0
+  # for dotted line
+  dotted_line:
+  # for show banner
+  super_banners: ^0.0.1
+  # for no_screenshot
+  no_screenshot: ^0.0.1+6
+  flutter_keyboard_visibility:
+  syncfusion_flutter_pdfviewer: ^23.1.39
+  sensors_plus: ^4.0.2
+  share_plus:
+
 
 
 flutter_launcher_icons:

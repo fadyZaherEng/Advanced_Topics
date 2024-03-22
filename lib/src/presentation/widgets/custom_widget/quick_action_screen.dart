@@ -27,7 +27,7 @@ class _QuickActionScreenState extends State<QuickActionScreen> {
       <ShortcutItem>[
         // NOTE: This first action icon will only work on iOS.
         // In a real world project keep the same file name for both platforms.
-        const ShortcutItem(
+        ShortcutItem(
           type: 'action_one',
           localizedTitle: 'Action one',
           icon: ImagePaths.logo,

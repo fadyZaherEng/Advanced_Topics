@@ -42,6 +42,9 @@ class _CountryIpWidgetState extends State<CountryIpWidget> {
                 final countryIpResponse2 =
                     await CountryIp.findFromIP('9.9.9.9');
 
+                // Find country of local device
+                final countryIpResponse5 = await CountryIp.find();
+
                 print("countryIpResponse : $countryIpResponse2");
                 // countryIpResponse : CountryResponse(country: United States, countryCode: US, ip: 9.9.9.9)
                 print(

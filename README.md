@@ -86,6 +86,8 @@
   -- upload ---->
                -- upload file Widget 
                -- upload image Widget
+  -- save_and_share_file with dio and share_plus
+# Galleries_Widget in //tow_way_gallerys with all details as phone Gallery
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------
@@ -188,7 +190,7 @@
 ######################################################--:DONE:
 # ------------------------------------------------------------
 # IntlPhoneWidget
-# Country_Ip_Widget
+# Country_Ip_Widget // to get country property from ip address given or ip of current device
 # CustomRefreshIndicatorWidget
 # Custom_Separator_extension_widget
 # Get_Time_Zone_Based_City_And_Country_Code_OR_Local_current_device
@@ -205,5 +207,24 @@
 # ValueListenableBuilder_Widget
 # Check_version_To_Update_the_app_from_app_store
 # Quick_Action_widget
+//review from here and show output 
+# Qr_Image_Widget
+# Crasoul_Slider_widget
+# Rating_Bar_widget //using flutter_rating_bar rating as rating show on any course udemy
+# App_Settings_widget //Flutter plugin for opening iOS and Android phone settings from an app
+# Custom_Stepper_widget //steps_widget in custom_widgets Custom_Steps_widget
+# Badge_Identification_widget //delay
+# Payment_Widget using Corner_Baner //using  CornerBanner(bannerPosition: Directionality.of(context) ==
+  -- TextDirection.ltr? CornerBannerPosition.topLeft: CornerBannerPosition.topRight//library super_banners
+# No_Screenshot_widget //flutter pub add no_screenshot  to prevent user from taking screenshot
+# signature_widget //Flutter plugin providing performance optimized signature canvas 
+ -- with ability to set custom style, boundaries and initial state (provide with convas to darw signature)
+# ------------------------------------------------------------
+######################################################--:DONE:
+# flutter_keyboard_visibility // to show for user open keyboard or not
+# PDFViewerWidget //syncfusion_flutter_pdfviewer //in widgets and media
+# Sensors_Plus_Widget //sensors_plus
+# Share_Plus_Widget //share_plus to share files with title and text 
+# Qr_Property_Widget //qr_code_scanner and qr_code_generator in widgets
 # ------------------------------------------------------------
 ######################################################--:DONE:

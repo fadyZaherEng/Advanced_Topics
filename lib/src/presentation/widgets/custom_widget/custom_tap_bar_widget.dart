@@ -17,13 +17,13 @@ class CustomTabBarWidget extends BaseStatefulWidget {
   }) : super(key: key);
 
   @override
-  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabbarWidgetState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabBarWidgetState();
 }
 
-class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
+class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  int selectedIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -32,65 +32,85 @@ class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
 
   @override
   Widget baseBuild(BuildContext context) {
-    return DefaultTabController(
-      animationDuration: const Duration(milliseconds: 700),
-      length: 2,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 48,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
+    return Scaffold(
+        body: SafeArea(
+      child: DefaultTabController(
+        animationDuration: const Duration(milliseconds: 700),
+        length: 2,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 48,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                      ),
+                      child: Container(
                         height: 6,
-                        decoration:
-                            const BoxDecoration(color: ColorSchemes.lightGray)),
-                  ),
-                ),
-                TabBar(
-                  unselectedLabelColor: ColorSchemes.black,
-                  unselectedLabelStyle: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(
-                          color: ColorSchemes.black, letterSpacing: -0.24),
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: ColorSchemes.black, letterSpacing: -0.24),
-                  labelColor: ColorSchemes.black,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  controller: _tabController,
-                  indicator: const UnderlineTabIndicator(
-                    borderSide:
-                        BorderSide(width: 6.0, color: ColorSchemes.primary),
-                  ),
-                  tabs: [
-                    Tab(
-                      text: widget.titleOfTapOne,
+                        decoration: const BoxDecoration(
+                          color: ColorSchemes.lightGray,
+                        ),
+                      ),
                     ),
-                    Tab(
-                      text: widget.titleOfTapTwo,
+                  ),
+                  TabBar(
+                    onTap: (int index) {
+                      FocusScope.of(context).unfocus();
+                      _tabController.animateTo(index);
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    unselectedLabelColor: ColorSchemes.black,
+                    unselectedLabelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: ColorSchemes.black,
+                              letterSpacing: -0.24,
+                            ),
+                    labelStyle:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: ColorSchemes.black,
+                              letterSpacing: -0.24,
+                            ),
+                    labelColor: ColorSchemes.black,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    controller: _tabController,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: const UnderlineTabIndicator(
+                      borderSide: BorderSide(
+                        width: 6.0,
+                        color: ColorSchemes.primary,
+                      ),
                     ),
-                  ],
-                ),
-              ],
+                    tabs: [
+                      Tab(
+                        text: widget.titleOfTapOne,
+                      ),
+                      Tab(
+                        text: widget.titleOfTapTwo,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                widget.contentOfTapOne,
-                widget.contentOfTapTwo,
-              ],
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  widget.contentOfTapOne,
+                  widget.contentOfTapTwo,
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    );
+    ));
   }
 
   @override
