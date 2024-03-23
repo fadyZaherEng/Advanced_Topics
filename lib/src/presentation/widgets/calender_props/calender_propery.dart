@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/events_screen.dart';
 
 class CalenderPropertyScreen extends StatefulWidget {
   const CalenderPropertyScreen({super.key});
@@ -10,10 +11,6 @@ class CalenderPropertyScreen extends StatefulWidget {
 class _CalenderPropertyScreenState extends State<CalenderPropertyScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Calender Property"),
-      ),
-    );
+    return const EventsScreen();
   }
 }

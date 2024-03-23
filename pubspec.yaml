@@ -198,7 +198,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^23.1.39
   sensors_plus: ^4.0.2
   share_plus:
-
+  # calender device
+  device_calendar: ^4.3.2
 
 
 flutter_launcher_icons:
