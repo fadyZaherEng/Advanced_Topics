@@ -226,5 +226,14 @@
 # Sensors_Plus_Widget //sensors_plus
 # Share_Plus_Widget //share_plus to share files with title and text 
 # Qr_Property_Widget //qr_code_scanner and qr_code_generator in widgets
+//test from here
+# Calender_Props_Directory //device_calendar to show events in calendar and add events and remove
+# Custom_Button_Border_Widget
+# Custom_Button_Border_With_Close_Icon_Widget
+# Extra_Fileds_Widget //in extra_fields
+# MultiSelectionItemsWidget //in widgets or extra_fields
+# SingleSelectionItemsWidget //in widgets or extra_fields
+# UploadImageWidget //in extra_fields
+
 # ------------------------------------------------------------
 ######################################################--:DONE:

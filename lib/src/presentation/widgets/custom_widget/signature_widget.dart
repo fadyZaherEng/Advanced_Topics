@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/flavors.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:signature/signature.dart';
 
 class SignatureWidget extends StatefulWidget {

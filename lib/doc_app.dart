@@ -9,6 +9,7 @@ import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/calender_propery.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_bloc/badge_identity_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/shake_and_sensor_screen.dart';

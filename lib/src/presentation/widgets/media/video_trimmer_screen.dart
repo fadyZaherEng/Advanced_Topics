@@ -4,8 +4,8 @@ import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
 import 'package:video_trimmer/video_trimmer.dart';
 
 class VideoTrimmerScreen extends StatefulWidget {

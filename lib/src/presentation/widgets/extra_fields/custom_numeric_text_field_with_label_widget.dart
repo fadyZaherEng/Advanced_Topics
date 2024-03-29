@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_text_form_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_form_widget.dart';
 
 class CustomNumericTextFieldWithLabelWidget extends StatefulWidget {
   final String title;
