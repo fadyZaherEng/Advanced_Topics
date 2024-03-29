@@ -1,8 +1,9 @@
+// ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PasswordTextFieldWidget extends StatefulWidget {
@@ -10,8 +11,6 @@ class PasswordTextFieldWidget extends StatefulWidget {
   final String labelTitle;
   final String? errorMessage;
   final Function(String) onChange;
-  final TextInputType textInputType;
-  final bool showPrefix;
 
   const PasswordTextFieldWidget({
     Key? key,
@@ -19,8 +18,6 @@ class PasswordTextFieldWidget extends StatefulWidget {
     required this.labelTitle,
     required this.onChange,
     this.errorMessage,
-    this.textInputType = TextInputType.text,
-    this.showPrefix = false,
   }) : super(key: key);
 
   @override
@@ -48,42 +45,46 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
   Widget build(BuildContext context) {
     return TextField(
       focusNode: _focus,
-      keyboardType: widget.textInputType,
       controller: widget.controller,
       onChanged: widget.onChange,
       style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          fontWeight: Constants.fontWeightRegular,
-          color: ColorSchemes.black,
-          letterSpacing: -0.13),
+            fontWeight: Constants.fontWeightRegular,
+            color: ColorSchemes.black,
+            letterSpacing: -0.13,
+          ),
       obscureText: _showPassword,
       decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: ColorSchemes.border),
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(10)),
           enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: ColorSchemes.border),
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(10)),
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: ColorSchemes.redError),
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(10)),
           border: OutlineInputBorder(
               borderSide: const BorderSide(color: ColorSchemes.border),
-              borderRadius: BorderRadius.circular(12)),
+              borderRadius: BorderRadius.circular(10)),
           errorText: widget.errorMessage,
           labelText: widget.labelTitle,
-          prefixIcon: widget.showPrefix ? Padding(
-            padding: const EdgeInsets.only(left: 28, right: 8),
-            child: SvgPicture.asset(
-             ImagePaths.passwordLock,
-              color: ColorSchemes.gray,
-            ),
-          ): null,
           suffixIcon: IconButton(
-            icon: SvgPicture.asset(_passwordIcon),
+            icon: SvgPicture.asset(
+              _passwordIcon,
+              fit: BoxFit.scaleDown,
+              matchTextDirection: true,
+              color: ColorSchemes.primary,
+            ),
             onPressed: _toggleVisibilityIcon,
           ),
+          // prefixIcon: SvgPicture.asset(
+          //   ImagePaths.lock,
+          //   fit: BoxFit.scaleDown,
+          //   matchTextDirection: true,
+          //   color: ColorSchemes.black,
+          // ),
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           labelStyle: _labelStyle(context, _textFieldHasFocus),
           errorMaxLines: 2),
     );
@@ -95,7 +96,7 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
       if (_showPassword) {
         _passwordIcon = ImagePaths.showPassword;
       } else {
-        _passwordIcon = ImagePaths.headPassword;
+        _passwordIcon = ImagePaths.hidePassword;
       }
     });
   }

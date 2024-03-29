@@ -17,7 +17,6 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/widgets/events_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_empty_list_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/search_text_field_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:permission_handler/permission_handler.dart';

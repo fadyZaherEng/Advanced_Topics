@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_border_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_border_widget.dart';
 
 class SingleSelectionFieldWidget extends StatefulWidget {
   final PageField pageField;
@@ -93,7 +93,8 @@ class _SingleSelectionFieldWidgetState
                     const SizedBox(
                       height: 8,
                     ),
-                    Text("thisFieldIsRequired",
+                    Text(
+                      "thisFieldIsRequired",
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             color: ColorSchemes.redError,
                             letterSpacing: -.24,

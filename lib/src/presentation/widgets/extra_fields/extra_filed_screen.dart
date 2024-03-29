@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_text_field_with_button_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_text_form_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/password_text_field_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/search_text_field_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_field_with_button_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_date_picker_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_mobile_number_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_field_with_suffix_icon_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_form_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/date_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/extra_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/multi_selection_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/numaric_text_field_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/password_text_field_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/search_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/searchable_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/signle_selection_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/upload_image_field_widget.dart';
@@ -74,6 +74,7 @@ class _ExtraFiledWidgetState extends State<ExtraFiledWidget> {
               controller: TextEditingController(),
               labelTitle: "Text Field",
               onTap: () {},
+              onChanged: (v) {},
               suffixIcon: const Icon(Icons.calendar_month),
             ),
             const SizedBox(height: 16),

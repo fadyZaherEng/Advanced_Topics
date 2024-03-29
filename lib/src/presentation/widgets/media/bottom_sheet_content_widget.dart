@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:typed_data';
 
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_ha
 import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_bottom_sheet_upload_media.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_massage_dialog_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/bottom_sheet_images_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_text_filed_problem_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_text_filed_service_widget.dart';
@@ -555,7 +555,7 @@ class _BottomSheetContentWidgetState
   void _showBottomSheetMedia(
       BuildContext context, String type, int maxDuration) async {
     FocusScope.of(context).unfocus();
-    if (_images.length == widget.maxlengthOfImages&&type == "image") {
+    if (_images.length == widget.maxlengthOfImages && type == "image") {
       showMessageDialogWidget(
         context: context,
         text: "youHaveReachedTheMaximumImageLimit",
@@ -596,18 +596,18 @@ class _BottomSheetContentWidgetState
           }
         },
         onTapGallery: () async {
-          Permission permission =type == "image"
+          Permission permission = type == "image"
               ? PermissionServiceHandler.getGalleryPermission(
-            true,
-            androidDeviceInfo: Platform.isAndroid
-                ? await DeviceInfoPlugin().androidInfo
-                : null,
-          )
+                  true,
+                  androidDeviceInfo: Platform.isAndroid
+                      ? await DeviceInfoPlugin().androidInfo
+                      : null,
+                )
               : PermissionServiceHandler.getSingleVideoGalleryPermission(
-            androidDeviceInfo: Platform.isAndroid
-                ? await DeviceInfoPlugin().androidInfo
-                : null,
-          );
+                  androidDeviceInfo: Platform.isAndroid
+                      ? await DeviceInfoPlugin().androidInfo
+                      : null,
+                );
           if (await PermissionServiceHandler().handleServicePermission(
             setting: permission,
           )) {
@@ -649,9 +649,10 @@ class _BottomSheetContentWidgetState
     if (pickedImage != null) {
       _images.add(pickedImage);
       _errorProblemMessage = null;
-       _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+      _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
     }
   }
+
   List<AssetEntity> imagesAssets = [];
 
   void _getImageFromGallery(BuildContext context) async {
@@ -662,9 +663,9 @@ class _BottomSheetContentWidgetState
     images = await AssetPicker.pickAssets(
       context,
       pickerConfig: AssetPickerConfig(
-        selectedAssets: imagesAssets,//list select before add images
+        selectedAssets: imagesAssets, //list select before add images
         maxAssets: widget.maxlengthOfImages - _images.length,
-        requestType: RequestType.image,//type of media
+        requestType: RequestType.image, //type of media
       ),
     );
 
@@ -678,22 +679,22 @@ class _BottomSheetContentWidgetState
     });
     for (int i = 0; i < imagesList.length; i++) {
       if (!_images.contains(XFile(imagesList[i].path))) {
-          _images.add(XFile(imagesList[i].path));
-        }
+        _images.add(XFile(imagesList[i].path));
       }
-      _errorProblemMessage = null;
-      _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
-      //_bloc.add(AddMultipleImagesEvent(images: imagesList));
-      // final pickedImage = await ImagePicker().pickImage(
-      //   source: ImageSource.gallery,
-      // );
-      // if (pickedImage != null) {
-      //   _images.add(pickedImage);
-      //   _errorProblemMessage = null;
-      //   //_bloc.add(OnNeedPaymentAddGalleryEvent(_images));
-      // }
-
+    }
+    _errorProblemMessage = null;
+    _bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+    //_bloc.add(AddMultipleImagesEvent(images: imagesList));
+    // final pickedImage = await ImagePicker().pickImage(
+    //   source: ImageSource.gallery,
+    // );
+    // if (pickedImage != null) {
+    //   _images.add(pickedImage);
+    //   _errorProblemMessage = null;
+    //   //_bloc.add(OnNeedPaymentAddGalleryEvent(_images));
+    // }
   }
+
   void _pickVideo(BuildContext context, int maxDuration) async {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.camera,
@@ -726,7 +727,6 @@ class _BottomSheetContentWidgetState
       },
     );
   }
-
 
   Future<Uint8List?> generateThumbnail(String videoPath) async {
     final uint8list = await VideoThumbnail.thumbnailData(

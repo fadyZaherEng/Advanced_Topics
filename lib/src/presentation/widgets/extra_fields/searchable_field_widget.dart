@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_text_field_with_suffix_icon_widget/custom_text_field_with_suffix_icon_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_date_text_field_with_label_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchableFieldWidget extends StatefulWidget {

@@ -14,7 +14,7 @@ import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_ha
 import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_bottom_sheet_upload_media.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_massage_dialog_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/audio_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/custom_text_filed_service_widget.dart';

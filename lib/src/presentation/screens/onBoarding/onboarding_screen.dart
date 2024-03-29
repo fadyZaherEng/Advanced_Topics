@@ -5,7 +5,7 @@ import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/widget/onboarding_body_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/widget/onboarding_logo_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoardingScreen extends BaseStatefulWidget {

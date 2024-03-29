@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_button_border_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_border_widget.dart';
 
 class EventActionWidget extends StatelessWidget {
   final List<HomeEventOption> actions;
