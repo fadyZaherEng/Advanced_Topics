@@ -9,6 +9,7 @@ import 'package:skeletons/skeletons.dart';
 
 class GridAlbumScreen extends StatefulWidget {
   final List<SupportAttachment> images;
+
   const GridAlbumScreen({
     required this.images,
     super.key,
@@ -52,7 +53,11 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
         const SizedBox(height: 16),
         Text(
           " S.of(context).images",
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          style: Theme
+              .of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(
               color: ColorSchemes.black, fontSize: 16, letterSpacing: -0.24),
         ),
         const SizedBox(height: 16),
@@ -116,9 +121,13 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
                 child: Center(
                   child: Text(
                     "+${widget.images.length - 6}",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorSchemes.white,
-                        ),
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(
+                      color: ColorSchemes.white,
+                    ),
                   ),
                 ),
               ),
@@ -136,13 +145,14 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => AlbumImageScreen(
-          imagesAlbum: ImagesAlbum(
-            initialIndex: initialIndex,
-            images: images,
-          ),
-          imageType: ImageType.network,
-        ),
+        builder: (context) =>
+            AlbumImageScreen(
+              imagesAlbum: ImagesAlbum(
+                initialIndex: initialIndex,
+                images: images,
+              ),
+              imageType: ImageType.network,
+            ),
       ),
     );
   }
