@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_massage_dialog/massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/new_massage_dialog/massage_dialog_widget.dart';
 
 Future showMassageDialogWidget({
   required BuildContext context,

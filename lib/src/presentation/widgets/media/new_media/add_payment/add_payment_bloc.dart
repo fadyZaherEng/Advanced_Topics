@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment_bottom_sheet.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_file.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/add_payment_bottom_sheet.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/compress_file.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/compress_video.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'add_payment_event.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/skeleton/gallery_skeleton_item_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/skeleton/gallery_skeleton_item_widget.dart';
 
 class GallerySkeletonScreen extends StatefulWidget {
   const GallerySkeletonScreen({

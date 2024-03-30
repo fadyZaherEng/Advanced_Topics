@@ -3,7 +3,7 @@ import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/domain/entities/album/album_class.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/album/album_images_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/album/album_images_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -53,11 +53,7 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
         const SizedBox(height: 16),
         Text(
           " S.of(context).images",
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               color: ColorSchemes.black, fontSize: 16, letterSpacing: -0.24),
         ),
         const SizedBox(height: 16),
@@ -121,13 +117,9 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
                 child: Center(
                   child: Text(
                     "+${widget.images.length - 6}",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(
-                      color: ColorSchemes.white,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: ColorSchemes.white,
+                        ),
                   ),
                 ),
               ),
@@ -145,14 +137,13 @@ class _ImagesWidgetListState extends State<ImagesWidgetList> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            AlbumImageScreen(
-              imagesAlbum: ImagesAlbum(
-                initialIndex: initialIndex,
-                images: images,
-              ),
-              imageType: ImageType.network,
-            ),
+        builder: (context) => AlbumImageScreen(
+          imagesAlbum: ImagesAlbum(
+            initialIndex: initialIndex,
+            images: images,
+          ),
+          imageType: ImageType.network,
+        ),
       ),
     );
   }

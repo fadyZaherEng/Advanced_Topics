@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/compress_video.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:meta/meta.dart';
 
@@ -62,7 +62,7 @@ class NeedPaymentBloc extends Bloc<NeedPaymentEvent, NeedPaymentState> {
 
   FutureOr<void> _onOnNeedPaymentAddGalleryEvent(
       OnNeedPaymentAddGalleryEvent event, Emitter<NeedPaymentState> emit) {
-      emit(OnNeedPaymentAddGalleryState(event.images));
+    emit(OnNeedPaymentAddGalleryState(event.images));
   }
 
   FutureOr<void> _onGetAudioPathEvent(

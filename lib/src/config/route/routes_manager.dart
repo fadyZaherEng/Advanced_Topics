@@ -8,13 +8,14 @@ import 'package:flutter_advanced_topics/src/presentation/screens/login/login_scr
 import 'package:flutter_advanced_topics/src/presentation/screens/onBoarding/onboarding_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/charts_widget/bar_chart/bar_chart_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/full_video_screen/full_video_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/media_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/play_video_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/video_trimmer_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/full_video_screen/full_video_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/media_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/play_video_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/video_trimmer_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
+
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr/qr_code_scanner_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class AppRoutes {

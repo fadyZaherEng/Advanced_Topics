@@ -5,6 +5,8 @@ import 'dart:typed_data';
 import 'dart:typed_data';
 
 import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/convert_asset_entities_to_files.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/formate_time.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,6 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_te
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_video_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/need_payment/need_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/show_voice_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/compress_video.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/convert_asset_entities_to_files.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/formate_time.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';

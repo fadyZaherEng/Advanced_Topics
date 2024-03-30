@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service_with_fcm_rest_api/notification_service/firebase_notification.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/notification_service/firebase_notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_massage_dialog/custom_gradient_button_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_gradient_button_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MassageDialogWidget extends StatelessWidget {

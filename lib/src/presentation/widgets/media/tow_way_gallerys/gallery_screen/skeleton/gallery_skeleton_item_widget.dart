@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/skeleton/gallery_skeleton_images_item_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/skeleton/gallery_skeleton_images_item_widget.dart';
 import 'package:skeletons/skeletons.dart';
 
 class GallerySkeletonItemWidget extends StatefulWidget {

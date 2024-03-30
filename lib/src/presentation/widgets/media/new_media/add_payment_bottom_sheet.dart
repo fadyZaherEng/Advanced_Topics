@@ -15,15 +15,16 @@ import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_wi
 import 'package:flutter_advanced_topics/src/core/utils/show_bottom_sheet_upload_media.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/add_payment/add_payment_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/audio_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/custom_text_filed_service_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/describe_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/images_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/convert_asset_entities_to_files.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/new_media/utils/formate_time.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/describe_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/another_show_images_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/add_payment/add_payment_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/audio_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/custom_text_filed_service_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/models.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/convert_asset_entities_to_files.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/formate_time.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';

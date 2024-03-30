@@ -3,7 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/firebase_options.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/fcm_rest_api.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service_with_fcm_rest_api/notification_service/local_notification.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/notification_service/local_notification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
