@@ -177,8 +177,6 @@ dependencies:
   spinner_dropdown: ^1.0.0
   # for use subject behavior and publish subject
   rxdart:
-  # to show for user if there are any updates or new version
-  version_check: ^0.7.1
   quick_actions: ^1.0.7
   # crasoul slider
   carousel_slider:
@@ -200,6 +198,9 @@ dependencies:
   share_plus:
   # calender device
   device_calendar: ^4.3.2
+  # to show for user if there are any updates or new version
+  version_check: ^0.7.1
+  huawei_hmsavailability: ^6.11.0+301
 
 
 flutter_launcher_icons:

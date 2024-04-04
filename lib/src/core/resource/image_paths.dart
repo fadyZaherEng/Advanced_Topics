@@ -573,4 +573,5 @@ class ImagePaths {
   static const String icRecentAdded = 'assets/images/ic_recent_add.svg';
   static const String icSortAscending = 'assets/images/ic_sort_ascending.svg';
   static const String icSortDescending = 'assets/images/ic_sort_descending.svg';
+  static const String icUpdate = "assets/images/ic_update.svg";
 }

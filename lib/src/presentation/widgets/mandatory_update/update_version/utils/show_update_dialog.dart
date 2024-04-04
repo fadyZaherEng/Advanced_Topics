@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/mandatory_update/update_version/utils/launch_store.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/mandatory_update/update_version/widget/custom_update_dialog_widget.dart';
 
 Future showUpdateDialog({
   required BuildContext context,
   required bool isMandatory,
+  required Function() onTapUpdate,
+  required Function() onSkipTab,
 }) async {
   return showDialog(
     barrierDismissible: false,
@@ -18,12 +19,8 @@ Future showUpdateDialog({
             bottom: MediaQuery.of(context).viewInsets.bottom + 20),
         child: CustomUpdateDialogWidget(
           isMandatory: isMandatory,
-          onTapUpdate: () async {
-            launchStore();
-          },
-          onTapSkip: () {
-            Navigator.of(context).pop();
-          },
+          onTapUpdate: onTapUpdate,
+          onTapSkip: onSkipTab,
         ),
       ),
     ),
