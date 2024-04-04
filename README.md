@@ -234,6 +234,6 @@
 # MultiSelectionItemsWidget //in widgets or extra_fields
 # SingleSelectionItemsWidget //in widgets or extra_fields
 # UploadImageWidget //in extra_fields
-
+# Update_Version_Bussiness_With_dialog //in widgets/mandatory_update_With_SingleTon
 # ------------------------------------------------------------
 ######################################################--:DONE:

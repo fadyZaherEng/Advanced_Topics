@@ -49,6 +49,46 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Update Now !`
+  String get updateNow {
+    return Intl.message(
+      'Update Now !',
+      name: 'updateNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application need to be updated to continue your process.`
+  String get YourApplicationNeedToBeUpdated {
+    return Intl.message(
+      'Your application need to be updated to continue your process.',
+      name: 'YourApplicationNeedToBeUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

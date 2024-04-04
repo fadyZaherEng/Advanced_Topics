@@ -1,1 +1,7 @@
-{}
+{
+  "updateNow": "تحديث الان",
+  "update": "تحديث",
+  "YourApplicationNeedToBeUpdated": "يجب تحديث تطبيقك لمواصلة عملية الاستخدام.",
+  "skip": "تخطي",
+  "updateNow": "قم بالتحديث الآن!"
+}
