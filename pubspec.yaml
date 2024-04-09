@@ -201,6 +201,7 @@ dependencies:
   # to show for user if there are any updates or new version
   version_check: ^0.7.1
   huawei_hmsavailability: ^6.11.0+301
+  scrollable_positioned_list: ^0.3.8
 
 
 flutter_launcher_icons:
