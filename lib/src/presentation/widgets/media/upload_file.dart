@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/permission_service_handler.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_action_dialog_widget.dart';
 import 'package:permission_handler/permission_handler.dart';
 

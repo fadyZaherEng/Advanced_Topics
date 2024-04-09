@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_event.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_state.dart';

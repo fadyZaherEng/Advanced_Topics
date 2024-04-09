@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/constants.dart';
 
 class SkipButtonWidget extends StatelessWidget {
   final void Function() onTap;
@@ -36,9 +35,9 @@ class SkipButtonWidget extends StatelessWidget {
           child: Text(
             buttonTitle,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: ColorSchemes.primary,
-              fontWeight: Constants.fontWeightMedium,
-            ),
+                  color: ColorSchemes.primary,
+                  fontWeight: Constants.fontWeightMedium,
+                ),
           ),
         ),
       ),

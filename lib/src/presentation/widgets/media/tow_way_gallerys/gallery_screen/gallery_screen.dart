@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/empty_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/gallery_bloc/gallery_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/skeleton/gallery_skeleton_screen.dart';

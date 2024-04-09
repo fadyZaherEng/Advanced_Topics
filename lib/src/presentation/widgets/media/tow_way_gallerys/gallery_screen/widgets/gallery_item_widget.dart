@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/constants.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_content_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_images_widget.dart';
 import 'package:intl/intl.dart';

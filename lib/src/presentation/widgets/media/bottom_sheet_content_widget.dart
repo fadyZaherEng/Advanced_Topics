@@ -2,27 +2,24 @@
 
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:typed_data';
 
-import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/convert_asset_entities_to_files.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/formate_time.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/permission_service_handler.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_action_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_bottom_sheet_upload_media.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_massage_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/bottom_sheet_images_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_text_filed_problem_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_text_filed_service_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/media/custom_video_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/need_payment/need_payment_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/convert_asset_entities_to_files.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/utils/formate_time.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/show_voice_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,6 +27,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class BottomSheetContentWidget extends BaseStatefulWidget {

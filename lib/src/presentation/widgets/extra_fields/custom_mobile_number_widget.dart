@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/constants.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 

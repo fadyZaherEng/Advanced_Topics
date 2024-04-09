@@ -6,14 +6,14 @@ import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/permission_service_handler.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/show_action_dialog_widget.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/permission_service_handler.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_action_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/need_payment/need_payment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class RecordVoiceWidget extends StatefulWidget {
   int maxRecordingDuration;

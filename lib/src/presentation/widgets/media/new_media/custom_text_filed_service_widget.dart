@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/constants.dart';
 
 class CustomTextFiledServiceWidget extends StatelessWidget {
   final TextEditingController textEditingController;

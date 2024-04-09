@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
