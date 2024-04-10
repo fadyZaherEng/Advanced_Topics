@@ -17,15 +17,15 @@ class EditPhoneNumberEvent extends OtpEvent {
 }
 
 class RequestAgainEvent extends OtpEvent {
-  final RequestOTPRequest requestOTPRequest;
-  final String phoneNumber;
-  final int compoundId;
-
-  RequestAgainEvent({
-    required this.requestOTPRequest,
-    required this.phoneNumber,
-    required this.compoundId,
-  });
+  // final RequestOTPRequest requestOTPRequest;
+  // final String phoneNumber;
+  // final int compoundId;
+  //
+  // RequestAgainEvent({
+  //   required this.requestOTPRequest,
+  //   required this.phoneNumber,
+  //   required this.compoundId,
+  // });
 }
 
 class VerifyEvent extends OtpEvent {

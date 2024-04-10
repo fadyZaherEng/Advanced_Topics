@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/bottom_sheet_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp/widgets/edit_number_bottom_sheet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/edit_number_bottom_sheet_widget.dart';
 
 Future showEditNumberBottomSheet({
   required BuildContext context,
@@ -17,7 +17,7 @@ Future showEditNumberBottomSheet({
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: BottomSheetWidget(
-        titleLabel: "S.of(context).editPhoneNumber",
+        titleLabel: "Edit phone number",
         height: 300,
         content: EditNumberBottomSheetWidget(
           phoneNumber: phoneNumber,

@@ -1,14 +1,7 @@
-import 'package:city_eye/flavors.dart';
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/utils/get_mobile_validation_error_message.dart';
-import 'package:city_eye/src/di/injector.dart';
-import 'package:city_eye/src/domain/usecase/get_current_country_code_use_case.dart';
-import 'package:city_eye/src/domain/usecase/get_language_use_case.dart';
-import 'package:city_eye/src/presentation/widgets/custom_button_widget.dart';
-import 'package:city_eye/src/presentation/widgets/custom_mobile_number_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_mobile_number_widget.dart';
 import 'package:libphonenumber_plugin/libphonenumber_plugin.dart';
 
 class EditNumberBottomSheetWidget extends StatefulWidget {
@@ -34,14 +27,7 @@ class _EditNumberBottomSheetWidgetState
   String? phoneNumberErrorMessage;
   bool? isValidMobileNumber = false;
   var phoneType = PhoneNumberType.UNKNOWN;
-  String _regionCode = "";
-
-  @override
-  void initState() {
-    _regionCode = GetCurrentCountryCodeUseCase(injector())();
-    super.initState();
-  }
-
+  String _regionCode = "US";
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,20 +44,20 @@ class _EditNumberBottomSheetWidgetState
         const SizedBox(height: 16),
         CustomMobileNumberWidget(
           controller: _phoneNumberController,
-          labelTitle: S.of(context).newMobileNumber,
+          labelTitle: "New phone number",
           onChange: (phoneNumber, code) {
             _phoneNumberController.text = phoneNumber;
             _checkPhoneNumberValidation(phoneNumber, code);
             setState(() {});
           },
-          countryCode: GetCurrentCountryCodeUseCase(injector())(),
+          countryCode: "en", // GetCurrentCountryCodeUseCase(injector())(),
           errorMessage: phoneNumberErrorMessage,
-          languageCode: GetLanguageUseCase(injector())(),
+          languageCode: "us", //" GetLanguageUseCase(injector())(),
         ),
         SizedBox(height: phoneNumberErrorMessage == null ? 32 : 16),
-        CustomButtonWidget(
+        CustomButtonInternetWidget(
           width: double.infinity,
-          text: S.of(context).save,
+          text: "save",
           onTap: () {
             if (isValidMobileNumber != null &&
                 isValidMobileNumber! &&
@@ -86,9 +72,7 @@ class _EditNumberBottomSheetWidgetState
               setState(() {});
             }
           },
-          backgroundColor: F.isNiceTouch
-              ? ColorSchemes.ghadeerDarkBlue
-              : ColorSchemes.primary,
+          backgroundColor: ColorSchemes.primary,
         ),
         const SizedBox(height: 16),
       ],
@@ -104,7 +88,7 @@ class _EditNumberBottomSheetWidgetState
     isValidMobileNumber =
         await PhoneNumberUtil.isValidPhoneNumber(phoneNumber, code);
     if (isValidMobileNumber != null &&
-        isValidMobileNumber! &&
+        isValidMobileNumber == true &&
         phoneType == PhoneNumberType.MOBILE) {
       phoneNumberErrorMessage = null;
     } else {
@@ -114,5 +98,30 @@ class _EditNumberBottomSheetWidgetState
       );
     }
     setState(() {});
+  }
+
+//check for egypt and iq elaraq
+  String getMobileValidationErrorMessage({
+    required String mobileNumber,
+    required String regionCode,
+  }) {
+    if ((regionCode == "EG" && mobileNumber.length == 3) ||
+        (regionCode == "IQ" && mobileNumber.length == 4)) {
+      return "Mobile number must not be empty";
+    } else if (regionCode == "EG" &&
+        (!mobileNumber.startsWith("+2010") &&
+            !mobileNumber.startsWith("+2011") &&
+            !mobileNumber.startsWith("+2012") &&
+            !mobileNumber.startsWith("+2015"))) {
+      return "Mobile should start with 2010, 2011, 2012, 2015";
+    } else if (regionCode == "EG" && mobileNumber.length >= 4) {
+      return "Mobile number must be 10 digits";
+    } else if (regionCode == "IQ" && !mobileNumber.startsWith("+9647")) {
+      return "Mobile should start with 9647";
+    } else if (regionCode == "IQ" && mobileNumber.length >= 5) {
+      return "Mobile number must be 11 digits";
+    } else {
+      return "Invalid mobile number";
+    }
   }
 }

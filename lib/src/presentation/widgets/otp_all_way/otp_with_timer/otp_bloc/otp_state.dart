@@ -87,11 +87,11 @@ class ErrorState extends OtpState {
 }
 
 class SignInSuccessState extends OtpState {
-  final List<UserUnit> userUnits;
-
-  SignInSuccessState({
-    required this.userUnits,
-  });
+  // final List<UserUnit> userUnits;
+  //
+  // SignInSuccessState({
+  //   required this.userUnits,
+  // });
 }
 
 class SelectCompoundState extends OtpState {}

@@ -1,13 +1,11 @@
-import 'package:city_eye/flavors.dart';
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/presentation/screens/otp/widgets/dont_recive_code_widget.dart';
-import 'package:city_eye/src/presentation/screens/otp/widgets/edit_phone_number_widget.dart';
-import 'package:city_eye/src/presentation/screens/otp/widgets/otp_text_feild_widget.dart';
-import 'package:city_eye/src/presentation/widgets/build_app_bar_widget.dart';
-import 'package:city_eye/src/presentation/widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/dont_recive_code_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/edit_phone_number_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/otp_text_feild_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OTPContentWidget extends StatefulWidget {
@@ -20,6 +18,7 @@ class OTPContentWidget extends StatefulWidget {
   final void Function(String value) onOtpChange;
   final bool haseTextFieldErrorBorder;
   final int currentDuration;
+  final List<TextEditingController> controllers;
 
   const OTPContentWidget({
     Key? key,
@@ -32,6 +31,7 @@ class OTPContentWidget extends StatefulWidget {
     required this.haseTextFieldErrorBorder,
     required this.otpTextFieldError,
     required this.currentDuration,
+    required this.controllers,
   }) : super(key: key);
 
   @override
@@ -49,7 +49,7 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
       child: Scaffold(
         appBar: buildAppBarWidget(
           context,
-          title: S.of(context).verifyYourAccount,
+          title: "verify your number",
           isHaveBackButton: true,
           onBackButtonPressed: widget.onBackButtonPressed,
         ),
@@ -76,7 +76,7 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                   padding: const EdgeInsets.symmetric(horizontal: 68),
                   child: Text(
                     textAlign: TextAlign.center,
-                    S.of(context).weHaveSentTheCodeVerificationToYourMobileNumber,
+                    "We have sent you a 4-digit code to verify your number",
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: ColorSchemes.black,
                           letterSpacing: -0.24,
@@ -100,6 +100,7 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                       widget.onOtpChange(value);
                     },
                     verifyAction: widget.verifyAction,
+                    controllers: widget.controllers,
                     error: widget.haseTextFieldErrorBorder,
                   ),
                 ),
@@ -110,13 +111,14 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      S.of(context).yourCodeWillExpireIn,
+                      "Your code expires in: ",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: ColorSchemes.black,
                           ),
                     ),
                     Text(
-                      '${((widget.currentDuration / 60) % 60).floor().toString().padLeft(2, '0')}:${(widget.currentDuration % 60).toString().padLeft(2, '0')}',
+                      '${((widget.currentDuration / 60) % 60).floor().toString().padLeft(2, '0')}:'
+                      '${(widget.currentDuration % 60).toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: ColorSchemes.black,
                           ),
@@ -145,11 +147,11 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                 const SizedBox(
                   height: 41,
                 ),
-                CustomButtonWidget(
+                CustomButtonInternetWidget(
                   width: double.infinity,
                   onTap: widget.verifyAction,
-                  text: S.of(context).verify,
-                  backgroundColor: F.isNiceTouch ? ColorSchemes.ghadeerDarkBlue : ColorSchemes.primary,
+                  text: "verify",
+                  backgroundColor: ColorSchemes.primary,
                 )
               ],
             ),

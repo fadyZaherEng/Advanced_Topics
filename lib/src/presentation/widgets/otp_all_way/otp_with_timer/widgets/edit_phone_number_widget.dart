@@ -1,6 +1,6 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EditPhoneNumberWidget extends StatelessWidget {
@@ -39,7 +39,7 @@ class EditPhoneNumberWidget extends StatelessWidget {
             child: Container(
               height: 28,
               width: 28,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: ColorSchemes.primary,
               ),

@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
-import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widget.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_snack_bar_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp/otp_bloc/otp_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp/utils/show_edit_number_bottom_sheet.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp/widgets/otp_content_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/otp_bloc/otp_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/utils/show_edit_number_bottom_sheet.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/otp_content_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OTPScreen extends BaseStatefulWidget {
@@ -25,7 +24,7 @@ class OTPScreen extends BaseStatefulWidget {
     required this.userId,
     required this.phoneNumber,
     this.invitationId = 0,
-    this.otp = "",
+    this.otp = "Your OTP is: " + "1234",
     this.compoundID = 0,
     this.isFromDeepLink = false,
   });
@@ -43,7 +42,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
   String _otpTextFieldError = '';
   bool _isDebouncing = false;
   String mobileNumber = '';
-
+  List<TextEditingController> _controllers = [];
   @override
   void initState() {
     super.initState();
@@ -63,6 +62,10 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         }
       });
     });
+    _controllers = List.generate(
+      4,
+      (index) => TextEditingController(),
+    );
   }
 
   bool isEnableResendCode = false;
@@ -77,45 +80,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
       } else if (state is HideLoadingState) {
         hideLoading();
       } else if (state is VerifyOTPSuccessState) {
-        // _onOtpSuccessState(successMessage: state.message);
-        if (widget.invitationId != 0) {
-          _dialogMessage(
-              text: state.message,
-              icon: ImagePaths.success,
-              action: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRoutes.loginScreen,
-                  arguments: {
-                    "unitId": -1,
-                    "isFromDeepLink": widget.isFromDeepLink,
-                  },
-                );
-              });
-        } else {
-          _bloc.tickerSubscription?.cancel();
-          _bloc.add(SelectCompoundEvent());
-          _dialogMessage(
-              text: state.message,
-              icon: ImagePaths.success,
-              action: () {
-                _bloc.add(NavigationPopEvent());
-              });
-        }
       } else if (state is VerifyOTPErrorState) {
-        _onOtpErrorState(
-          errorMessage: state.message,
-        );
-        _haseTextFieldErrorBorder = true;
-        _otpTextFieldError = "";
-      } else if (state is ErrorState) {
-        _dialogMessage(
-            text: state.errorMessage,
-            icon: ImagePaths.info,
-            action: () {
-              _bloc.add(NavigationPopEvent());
-              _bloc.add(NavigationPopEvent());
-            });
       } else if (state is EditPhoneNumberState) {
         _onEditPhoneNumberState(
           phoneNumber: state.phoneNumber,
@@ -125,12 +90,10 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         _bloc.add(TimerStartedEvent(duration: 30));
         CustomSnackBarWidget.show(
           context: _scaffoldKey.currentContext ?? context,
-          message: state.message,
+          message: "${state.message} ${state.otp}",
           backgroundColor: ColorSchemes.barGreen,
           path: ImagePaths.success,
         );
-      } else if (state is SelectCompoundState) {
-        _onSelectCompoundState();
       } else if (state is TimerRunInProgressState) {
         currentDuration = state.duration;
       } else if (state is TimerRunComplete) {
@@ -141,11 +104,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
           text: state.message,
           icon: ImagePaths.error,
           action: () {
-            _bloc.add(NavigationPopEvent());
+            Navigator.pop(context);
           },
         );
       } else if (state is NavigationPopState) {
-        _onNavigationPopState();
+        Navigator.pop(context);
       } else if (state is OTPValidState) {
         _haseTextFieldErrorBorder = false;
         _otpTextFieldError = '';
@@ -156,27 +119,32 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         mobileNumber = state.phoneNumber;
         CustomSnackBarWidget.show(
           context: _scaffoldKey.currentContext ?? context,
-          message: state.message,
+          message: "${state.message} ${state.otp}",
           backgroundColor: ColorSchemes.barGreen,
           path: ImagePaths.success,
         );
-        _bloc.add(NavigationPopEvent());
+        Navigator.pop(context);
+        _controllers = List.generate(
+          4,
+          (index) => TextEditingController(),
+        );
       } else if (state is ChangeMobileNumberErrorState) {
         _dialogMessage(
           text: state.message,
           icon: ImagePaths.error,
           action: () {
-            _bloc.add(NavigationPopEvent());
+            Navigator.pop(context);
           },
         );
       }
     }, builder: (context, state) {
       return OTPContentWidget(
         key: _scaffoldKey,
+        controllers: _controllers,
         currentDuration: currentDuration,
         onBackButtonPressed: () {
           _bloc.tickerSubscription?.cancel();
-          _onBack();
+          Navigator.pop(context);
         },
         editAction: () {
           _bloc.add(
@@ -205,43 +173,20 @@ class _OTPScreenState extends BaseState<OTPScreen> {
             });
           }
         },
-        requestAgainAction: isEnableResendCode
-            ? () {
-                _bloc.add(
-                  RequestAgainEvent(
-                    requestOTPRequest: RequestOTPRequest(
-                      userId: widget.userId,
-                    ),
-                    phoneNumber: mobileNumber,
-                    compoundId: widget.compoundID,
-                  ),
-                );
-              }
-            : null,
+        requestAgainAction:
+            isEnableResendCode ? () => _bloc.add(RequestAgainEvent()) : null,
         phoneNumber: mobileNumber,
         onOtpChange: (String value) async {
           List<int> otpNumber = convertStringToOTP(value);
           _otpNumber = otpNumber;
-
-          // _bloc.add(ValidateOTPNumberEvent(
-          //   otpNumber: otpNumber,
-          // ));
+          _bloc.add(ValidateOTPNumberEvent(
+            otpNumber: otpNumber,
+          ));
         },
         haseTextFieldErrorBorder: _haseTextFieldErrorBorder,
         otpTextFieldError: _otpTextFieldError,
       );
     });
-  }
-
-  void _onOtpErrorState({required String errorMessage}) {
-    _dialogMessage(
-        icon: ImagePaths.error,
-        action: () {
-          _bloc.add(
-            NavigationPopEvent(),
-          );
-        },
-        text: errorMessage);
   }
 
   void _dialogMessage({
@@ -274,37 +219,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
     );
   }
 
-  void _onNavigationPopState() => Navigator.pop(context);
-
   List<int> convertStringToOTP(String value) {
     List<int> otpNumber = [];
     for (int i = 0; i < value.length; i++) {
       otpNumber.add(int.parse(value[i]));
     }
     return otpNumber;
-  }
-
-  void _onSelectCompoundState() {
-    _bloc.tickerSubscription?.cancel();
-    Navigator.pushNamedAndRemoveUntil(context, Routes.main, (route) => false,
-        arguments: {
-          "selectIndex": 0,
-        });
-  }
-
-  void _onBack() {
-    if (widget.isFromDeepLink) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        Routes.signIn,
-        arguments: {
-          "unitId": -1,
-          "isFromDeepLink": widget.isFromDeepLink,
-        },
-        (route) => false,
-      );
-    } else {
-      _bloc.add(NavigationPopEvent());
-    }
   }
 }

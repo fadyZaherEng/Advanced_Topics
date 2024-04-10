@@ -1,17 +1,19 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
 class CustomOtpFieldWidget extends StatefulWidget {
   final void Function(String value) onOtpChange;
   final void Function() verifyAction;
   final bool error;
+  final List<TextEditingController> controllers;
 
   const CustomOtpFieldWidget({
     Key? key,
     required this.onOtpChange,
     required this.verifyAction,
     required this.error,
+    required this.controllers,
   }) : super(key: key);
 
   @override
@@ -20,17 +22,11 @@ class CustomOtpFieldWidget extends StatefulWidget {
 
 class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   late List<FocusNode> _focusNodes;
-  late List<TextEditingController> _controllers;
 
   @override
   void initState() {
     super.initState();
     _focusNodes = List.generate(4, (index) => FocusNode());
-    _controllers = List.generate(
-      4,
-      (index) => TextEditingController(),
-    );
-
     for (int i = 0; i < 4; i++) {
       _focusNodes[i].addListener(() {
         setState(() {});
@@ -54,7 +50,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
 
   @override
   void dispose() {
-    for (var controller in _controllers) {
+    for (var controller in widget.controllers) {
       controller.dispose();
     }
     for (var focusNode in _focusNodes) {
@@ -92,7 +88,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
             ),
           ),
           TextField(
-            controller: _controllers[index],
+            controller: widget.controllers[index],
             focusNode: _focusNodes[index],
             maxLength: 1,
             onChanged: (value) {
@@ -116,7 +112,7 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
               FilteringTextInputFormatter.allow(RegExp('[0-9]')),
             ],
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: ColorSchemes.primary),
@@ -140,6 +136,6 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   }
 
   String _getOtp() {
-    return _controllers.map((controller) => controller.text).join();
+    return widget.controllers.map((controller) => controller.text).join();
   }
 }

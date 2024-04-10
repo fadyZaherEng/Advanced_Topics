@@ -245,6 +245,8 @@
 # ScrollInListScreen//all way to scroll in list view
 # All_Method_fro_Calender_Device_Calendar //all method in device_calendar
 # OTP_All_Way //all method in otp
+# IntlPhoneField // intl_phone_field for phone number with country code and dial code //in otp
+# LibphonenumberPlugin//libphonenumber_plugin for check validation of phone number with country code and dial code//in otp
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

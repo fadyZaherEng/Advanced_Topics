@@ -1,6 +1,5 @@
-import 'package:city_eye/generated/l10n.dart';
-import 'package:city_eye/src/config/theme/color_schemes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
 class DontReceiveCodeWidget extends StatelessWidget {
   final Function()? requestAgainAction;
@@ -20,7 +19,7 @@ class DontReceiveCodeWidget extends StatelessWidget {
         children: [
           Text(
             textAlign: TextAlign.center,
-            "${S.of(context).dontReceiveCode} ",
+            "Don't receive code?",
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: ColorSchemes.black,
                   letterSpacing: -0.24,
@@ -30,7 +29,7 @@ class DontReceiveCodeWidget extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                " ${S.of(context).requestAgain} ",
+                "Request Again",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: ColorSchemes.black,
                       letterSpacing: -0.24,

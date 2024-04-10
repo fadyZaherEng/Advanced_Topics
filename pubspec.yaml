@@ -158,7 +158,10 @@ dependencies:
   awesome_card: ^1.1.7
   im_stepper: ^1.0.1+1
   draggable_expandable_fab: ^1.0.0
+  # for phone number field with country code and dial code in flutter
   intl_phone_field: ^3.2.0
+  # for check validation of phone number in flutter
+  libphonenumber_plugin: ^0.3.2
   country_ip: ^3.0.0
   custom_refresh_indicator: ^3.0.0
   #to get time in different zones
