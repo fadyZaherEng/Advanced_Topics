@@ -244,6 +244,7 @@
 # Different_Widget //all custom widgets in custom_widgets
 # ScrollInListScreen//all way to scroll in list view
 # All_Method_fro_Calender_Device_Calendar //all method in device_calendar
+# OTP_All_Way //all method in otp
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

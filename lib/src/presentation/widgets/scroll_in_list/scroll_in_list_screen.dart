@@ -19,9 +19,9 @@ class _ScrollInListScreenState extends State<ScrollInListScreen> {
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < 5000; i++) {
+    for (var i = 0; i < 1000000; i++) {
       _items.add(Item(GlobalKey(), 'Item $i'));
-      if (i == 4000) _selectedIndex = i;
+      if (i == 900000) _selectedIndex = i;
     }
     Future.delayed(const Duration(milliseconds: 500), () {
       _scrollToIndex(_selectedIndex);
