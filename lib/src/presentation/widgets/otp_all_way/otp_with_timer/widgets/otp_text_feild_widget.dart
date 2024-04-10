@@ -39,11 +39,13 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(
-        4,
-        (index) => _buildOtpField(index),
+    return SingleChildScrollView(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          4,
+          (index) => _buildOtpField(index),
+        ),
       ),
     );
   }
@@ -61,15 +63,15 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
 
   Widget _buildOtpField(int index) {
     return Container(
-      width: 55,
-      height: 55,
+      width: 45,
+      height: 45,
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Stack(
         alignment: Alignment.center,
         children: [
           Container(
-            width: 55,
-            height: 55,
+            width: 45,
+            height: 45,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: ColorSchemes.iconBackGround,
