@@ -3,6 +3,7 @@ import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'pin_code_text_field_widget.dart';
 
 class ContentPinCodeWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class ContentPinCodeWidget extends StatelessWidget {
           SvgPicture.asset(ImagePaths.lock),
           const SizedBox(height: 16.0),
           Text(
-            "enterPinCode",
+            "Enter Pin Code",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: ColorSchemes.black,
                 ),
@@ -49,7 +50,7 @@ class ContentPinCodeWidget extends StatelessWidget {
           CustomButtonInternetWidget(
             controllers: controllers,
             onTap: () {
-              onTapSubmit(controllers.map((e) => e.text).toList().join(''));
+              onTapSubmit(controllers.map((e) => e.text).toList().join());
             },
             text: "submit",
           )

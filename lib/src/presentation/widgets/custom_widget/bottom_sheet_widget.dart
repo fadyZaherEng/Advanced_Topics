@@ -8,9 +8,11 @@ class BottomSheetWidget extends StatelessWidget {
   final String titleLabel;
   final double height;
   final bool isClosed;
+  final void Function()? onClose;
   const BottomSheetWidget({
     Key? key,
     required this.content,
+    this.onClose,
     required this.titleLabel,
     this.height = 300,
     this.isClosed = false,
@@ -42,7 +44,7 @@ class BottomSheetWidget extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: InkWell(
-                  onTap: () => Navigator.pop(context),
+                  onTap: onClose ?? () => Navigator.pop(context),
                   child: Padding(
                     padding: titleLabel != null
                         ? const EdgeInsets.all(16)

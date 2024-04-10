@@ -5,6 +5,7 @@ Future showBottomSheetWidget({
   required BuildContext context,
   required Widget content,
   required String titleLabel,
+  final void Function()? onClosed,
   bool isClosed = false,
   double height = 300,
 }) async {
@@ -21,6 +22,7 @@ Future showBottomSheetWidget({
         height: height,
         isClosed: isClosed,
         content: content,
+        onClose: onClosed,
         titleLabel: titleLabel,
       ),
     ),

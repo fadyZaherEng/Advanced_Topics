@@ -170,7 +170,6 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   }
 
   String _getOtp() {
-    print("Otp: ${_controllers.map((controller) => controller.text).join()}");
     return _controllers.map((controller) => controller.text).join();
   }
 
