@@ -297,6 +297,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  chopper:
+    dependency: transitive
+    description:
+      name: chopper
+      sha256: "23aac2db54f6a7854ed8984fba4b33222e53123c71a0ccf01d2b1087a1b5aab7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.4"
+  chucker_flutter:
+    dependency: "direct main"
+    description:
+      name: chucker_flutter
+      sha256: "400b17d0c2f36eb751528bae9fd2699aac1659f28e9c04749669e44375b76ff7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.0"
   cli_util:
     dependency: transitive
     description:
@@ -1109,6 +1125,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  http_mock_adapter:
+    dependency: transitive
+    description:
+      name: http_mock_adapter
+      sha256: "00f48d69f31d79e389f7a8544b266a214020a8b79d9f376f54e84ae13d3e2965"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -1653,6 +1677,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.14.0"
+  pin_input_text_field:
+    dependency: transitive
+    description:
+      name: pin_input_text_field
+      sha256: "8d6fc670aa673a4df5976086f0e8039972a5b2bcb783c8db8dd3b9b4b072ca90"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.1"
   platform:
     dependency: transitive
     description:
@@ -1954,6 +1986,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0+4"
+  sms_autofill:
+    dependency: "direct main"
+    description:
+      name: sms_autofill
+      sha256: "43139a175fb3c57ff103ac4b82f2aa70b6c45cf93539d7974c2556810f355363"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   source_gen:
     dependency: transitive
     description:

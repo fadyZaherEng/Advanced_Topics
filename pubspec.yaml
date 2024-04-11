@@ -205,6 +205,8 @@ dependencies:
   version_check: ^0.7.1
   huawei_hmsavailability: ^6.11.0+301
   scrollable_positioned_list: ^0.3.8
+  chucker_flutter: ^1.6.0
+  sms_autofill: ^2.3.1
 
 
 flutter_launcher_icons:
