@@ -43,10 +43,12 @@ class EditPhoneNumberState extends OtpState {
 class RequestOTPSuccessState extends OtpState {
   final String message;
   final String otp;
+  final bool isFilledCode;
 
   RequestOTPSuccessState({
     required this.message,
     required this.otp,
+    required this.isFilledCode,
   });
 }
 

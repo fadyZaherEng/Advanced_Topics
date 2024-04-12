@@ -3,9 +3,10 @@ import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 
 class DontReceiveCodeWidget extends StatelessWidget {
   final Function()? requestAgainAction;
-
+  final String requestAgainText;
   const DontReceiveCodeWidget({
     Key? key,
+    required this.requestAgainText,
     required this.requestAgainAction,
   }) : super(key: key);
 
@@ -29,7 +30,7 @@ class DontReceiveCodeWidget extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                "Request Again",
+                requestAgainText,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: ColorSchemes.black,
                       letterSpacing: -0.24,

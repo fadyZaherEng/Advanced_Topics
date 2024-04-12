@@ -24,7 +24,7 @@ class OTPScreen extends BaseStatefulWidget {
     required this.userId,
     required this.phoneNumber,
     this.invitationId = 0,
-    this.otp = "Your OTP is: " + "1234",
+    this.otp = "Your OTP is: 1234",
     this.compoundID = 0,
     this.isFromDeepLink = false,
   });
@@ -94,6 +94,11 @@ class _OTPScreenState extends BaseState<OTPScreen> {
           backgroundColor: ColorSchemes.barGreen,
           path: ImagePaths.success,
         );
+        if (state.isFilledCode) {
+          for (int i = 0; i < _controllers.length; i++) {
+            _controllers[i].text = state.otp[i].toString();
+          }
+        }
       } else if (state is TimerRunInProgressState) {
         currentDuration = state.duration;
       } else if (state is TimerRunComplete) {
@@ -142,6 +147,8 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         key: _scaffoldKey,
         controllers: _controllers,
         currentDuration: currentDuration,
+        isFilledCode:
+            state is RequestOTPSuccessState ? state.isFilledCode : false,
         onBackButtonPressed: () {
           _bloc.tickerSubscription?.cancel();
           Navigator.pop(context);
@@ -166,15 +173,19 @@ class _OTPScreenState extends BaseState<OTPScreen> {
                 invitationId: widget.invitationId,
               ),
             );
-            Timer(Duration(seconds: 1), () {
+            Timer(const Duration(seconds: 1), () {
               setState(() {
                 _isDebouncing = false;
               });
             });
           }
         },
-        requestAgainAction:
-            isEnableResendCode ? () => _bloc.add(RequestAgainEvent()) : null,
+        requestAgainAction: isEnableResendCode
+            ? () => _bloc.add(RequestAgainEvent(isFilledCode: false))
+            : null,
+        requestAgainActionWithFilledCode: isEnableResendCode
+            ? () => _bloc.add(RequestAgainEvent(isFilledCode: true))
+            : null,
         phoneNumber: mobileNumber,
         onOtpChange: (String value) async {
           List<int> otpNumber = convertStringToOTP(value);
@@ -198,7 +209,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
         context: context,
         text: text,
         icon: icon,
-        buttonText: "S.of(context).ok",
+        buttonText: "OK",
         onTap: action);
   }
 

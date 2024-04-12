@@ -6,6 +6,7 @@ class CustomOtpFieldWidget extends StatefulWidget {
   final void Function(String value) onOtpChange;
   final void Function() verifyAction;
   final bool error;
+  final bool isFilledCode;
   final List<TextEditingController> controllers;
 
   const CustomOtpFieldWidget({
@@ -13,6 +14,7 @@ class CustomOtpFieldWidget extends StatefulWidget {
     required this.onOtpChange,
     required this.verifyAction,
     required this.error,
+    required this.isFilledCode,
     required this.controllers,
   }) : super(key: key);
 
@@ -62,6 +64,11 @@ class _CustomOtpFieldWidgetState extends State<CustomOtpFieldWidget> {
   }
 
   Widget _buildOtpField(int index) {
+    if (widget.isFilledCode) {
+      widget.onOtpChange(_getOtp());
+      _focusNodes[widget.controllers.length - 1].requestFocus();
+      setState(() {});
+    }
     return Container(
       width: 45,
       height: 45,

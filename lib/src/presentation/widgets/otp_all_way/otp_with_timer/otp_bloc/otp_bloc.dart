@@ -46,6 +46,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
     if (true) {
       print("OTP: ${Random().nextInt(9)}");
       emit(RequestOTPSuccessState(
+          isFilledCode: event.isFilledCode,
           message: "Your OTP is: ",
           otp:
               "${Random().nextInt(9)}${Random().nextInt(9)}${Random().nextInt(9)}${Random().nextInt(9)}"));

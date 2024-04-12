@@ -17,6 +17,8 @@ class EditPhoneNumberEvent extends OtpEvent {
 }
 
 class RequestAgainEvent extends OtpEvent {
+  final bool isFilledCode;
+  RequestAgainEvent({required this.isFilledCode});
   // final RequestOTPRequest requestOTPRequest;
   // final String phoneNumber;
   // final int compoundId;
@@ -27,6 +29,8 @@ class RequestAgainEvent extends OtpEvent {
   //   required this.compoundId,
   // });
 }
+
+class RequestAgainWithFilledOTPEvent extends OtpEvent {}
 
 class VerifyEvent extends OtpEvent {
   final int userId;

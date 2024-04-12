@@ -13,12 +13,14 @@ class OTPContentWidget extends StatefulWidget {
   final Function() editAction;
   final Function() verifyAction;
   final Function()? requestAgainAction;
+  final Function()? requestAgainActionWithFilledCode;
   final String phoneNumber;
   final String otpTextFieldError;
   final void Function(String value) onOtpChange;
   final bool haseTextFieldErrorBorder;
   final int currentDuration;
   final List<TextEditingController> controllers;
+  final bool isFilledCode;
 
   const OTPContentWidget({
     Key? key,
@@ -32,6 +34,8 @@ class OTPContentWidget extends StatefulWidget {
     required this.otpTextFieldError,
     required this.currentDuration,
     required this.controllers,
+    required this.isFilledCode,
+    required this.requestAgainActionWithFilledCode,
   }) : super(key: key);
 
   @override
@@ -99,6 +103,7 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                     onOtpChange: (value) {
                       widget.onOtpChange(value);
                     },
+                    isFilledCode: widget.isFilledCode,
                     verifyAction: widget.verifyAction,
                     controllers: widget.controllers,
                     error: widget.haseTextFieldErrorBorder,
@@ -142,7 +147,15 @@ class _OTPContentWidgetState extends State<OTPContentWidget> {
                     : const SizedBox(),
                 const SizedBox(height: 32),
                 DontReceiveCodeWidget(
+                  requestAgainText: "Request Again",
                   requestAgainAction: widget.requestAgainAction,
+                ),
+                const SizedBox(
+                  height: 41,
+                ),
+                DontReceiveCodeWidget(
+                  requestAgainText: "Request Again with filled code",
+                  requestAgainAction: widget.requestAgainActionWithFilledCode,
                 ),
                 const SizedBox(
                   height: 41,
