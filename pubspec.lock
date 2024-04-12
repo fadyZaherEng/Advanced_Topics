@@ -297,6 +297,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  chopper:
+    dependency: transitive
+    description:
+      name: chopper
+      sha256: "23aac2db54f6a7854ed8984fba4b33222e53123c71a0ccf01d2b1087a1b5aab7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.4"
+  chucker_flutter:
+    dependency: "direct main"
+    description:
+      name: chucker_flutter
+      sha256: "400b17d0c2f36eb751528bae9fd2699aac1659f28e9c04749669e44375b76ff7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.0"
   cli_util:
     dependency: transitive
     description:
@@ -979,6 +995,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.9.0"
+  flutter_sms:
+    dependency: "direct main"
+    description:
+      name: flutter_sms
+      sha256: "2fe5f584f02596343557eeca56348f9b82413fefe83a423fab880cdbdf54d8d8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.3"
   flutter_sound:
     dependency: "direct main"
     description:
@@ -1109,6 +1133,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  http_mock_adapter:
+    dependency: transitive
+    description:
+      name: http_mock_adapter
+      sha256: "00f48d69f31d79e389f7a8544b266a214020a8b79d9f376f54e84ae13d3e2965"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -1125,6 +1157,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  huawei_hmsavailability:
+    dependency: "direct main"
+    description:
+      name: huawei_hmsavailability
+      sha256: ec9d83a50a60b040195daef92babd04cafd894f9271e9e6e65a841f7b6460b21
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.12.0+300"
   im_stepper:
     dependency: "direct main"
     description:
@@ -1309,6 +1349,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  libphonenumber_platform_interface:
+    dependency: transitive
+    description:
+      name: libphonenumber_platform_interface
+      sha256: f801f6c65523f56504b83f0890e6dad584ab3a7507dca65fec0eed640afea40f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2"
+  libphonenumber_plugin:
+    dependency: "direct main"
+    description:
+      name: libphonenumber_plugin
+      sha256: c615021d9816fbda2b2587881019ed595ecdf54d999652d7e4cce0e1f026368c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
+  libphonenumber_web:
+    dependency: transitive
+    description:
+      name: libphonenumber_web
+      sha256: "8186f420dbe97c3132283e52819daff1e55d60d6db46f7ea5ac42f42a28cc2ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.2"
   like_button:
     dependency: "direct main"
     description:
@@ -1621,6 +1685,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.14.0"
+  pin_input_text_field:
+    dependency: transitive
+    description:
+      name: pin_input_text_field
+      sha256: "8d6fc670aa673a4df5976086f0e8039972a5b2bcb783c8db8dd3b9b4b072ca90"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.1"
   platform:
     dependency: transitive
     description:
@@ -1773,6 +1845,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  scrollable_positioned_list:
+    dependency: "direct main"
+    description:
+      name: scrollable_positioned_list
+      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.8"
   sensors_plus:
     dependency: "direct main"
     description:
@@ -1914,6 +1994,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0+4"
+  sms_autofill:
+    dependency: "direct main"
+    description:
+      name: sms_autofill
+      sha256: "43139a175fb3c57ff103ac4b82f2aa70b6c45cf93539d7974c2556810f355363"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   source_gen:
     dependency: transitive
     description:

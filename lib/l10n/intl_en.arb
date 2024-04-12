@@ -1,1 +1,7 @@
-{}
+{
+  "updateNow": "Update Now",
+  "update": "Update",
+  "YourApplicationNeedToBeUpdated": "Your application need to be updated to continue your process.",
+  "skip": "Skip",
+  "updateNow": "Update Now !"
+}

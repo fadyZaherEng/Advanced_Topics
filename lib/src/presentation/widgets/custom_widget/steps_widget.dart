@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/core/utils/new/constants.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Steps {
@@ -13,45 +13,43 @@ class Steps {
 }
 
 //Calling StepsWidget
-// StepsWidget(
-// currentIndex: 0,
-// onTapStep: (int index) {},
-// pageController: PageController(),
-// steps: [
-// Steps(
-// name: "home",
-// id: 0,
-// isSelected: true,
-// ),
-// Steps(
-// name: "profile",
-// id: 1,
-// isSelected: false,
-// ),
-// Steps(
-// name: "payment",
-// id: 2,
-// isSelected: false,
-// ),
-// Steps(
-// name: " badge",
-// id: 3,
-// isSelected: false,
-// ),
-// Steps(
-// name: " settings",
-// id: 4,
-// isSelected: false,
-// ),
-// ],
-// pages: const [
-// Home(),
-// Center(child: Text("Profile")),
-// Center(child: Text("Payment")),
-// Center(child: Text("Badge")),
-// Center(child: Text("Settings")),
-// ],
-// )
+class CallStepWidget extends StatefulWidget {
+  const CallStepWidget({super.key});
+
+  @override
+  State<CallStepWidget> createState() => _CallStepWidgetState();
+}
+
+class _CallStepWidgetState extends State<CallStepWidget> {
+  PageController pageController = PageController();
+
+  @override
+  Widget build(BuildContext context) {
+    return StepsWidget(
+      steps: [
+        Steps(id: 0, name: 'Profile'),
+        Steps(id: 1, name: 'Phone'),
+        Steps(id: 2, name: 'Email'),
+        Steps(id: 3, name: 'Done'),
+      ],
+      pages: const [
+        Text('Profile'),
+        Text('Phone'),
+        Text('Email'),
+        Text('Done'),
+      ],
+      onTapStep: (index) {
+        pageController.animateToPage(index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut);
+      },
+      currentIndex: 0,
+      pageController: pageController,
+      isProfile: true,
+    );
+  }
+}
+
 class StepsWidget extends StatelessWidget {
   final List<Steps> steps;
   final List<Widget> pages;
@@ -237,7 +235,9 @@ class StepsWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return pages[index];
                   },
-                  onPageChanged: (index) {},
+                  onPageChanged: (index) {
+                    onTapStep(index);
+                  },
                 ),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 
@@ -16,6 +17,8 @@ Future<void> main() async {
           backgroundColor: const Color(0xFF654321),
         ),
   );
+  ChuckerFlutter.showOnRelease = false;
+  ChuckerFlutter.showNotification = false;
   F.appFlavor = Flavor.production;
   await runner.main();
 }

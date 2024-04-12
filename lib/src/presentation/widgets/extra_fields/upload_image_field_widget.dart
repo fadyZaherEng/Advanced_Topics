@@ -6,8 +6,8 @@ import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/widgets/gallery_content_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_content_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletons/skeletons.dart';
 
