@@ -11,6 +11,12 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/otp_content_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+//with SMS autofill and timer
+// To USe SMS autofill Should Use Package to Read SMS
+// Then make Reqex for SMS
+// then check it if this massage of Verification code
+// i will get code and fill it in the PinField
+
 class OTPScreen extends BaseStatefulWidget {
   final int userId;
   final String phoneNumber;
@@ -43,6 +49,7 @@ class _OTPScreenState extends BaseState<OTPScreen> {
   bool _isDebouncing = false;
   String mobileNumber = '';
   List<TextEditingController> _controllers = [];
+
   @override
   void initState() {
     super.initState();
