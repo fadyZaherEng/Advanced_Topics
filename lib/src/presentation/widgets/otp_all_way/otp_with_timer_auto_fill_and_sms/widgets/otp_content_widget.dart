@@ -3,9 +3,9 @@ import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/button/custom_button_internet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/build_app_bar_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/dont_recive_code_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/edit_phone_number_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/otp_text_feild_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/widgets/dont_recive_code_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/widgets/edit_phone_number_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/widgets/otp_text_feild_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OTPContentWidget extends StatefulWidget {

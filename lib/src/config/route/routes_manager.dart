@@ -13,9 +13,8 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/play_video_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/video_trimmer_screen.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/tow_way_gallerys/gallery_screen/widgets/gallery_images_screen.dart';
-
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_screen.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr/qr_code_scanner_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr_scan/qr_code_scanner_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class AppRoutes {
