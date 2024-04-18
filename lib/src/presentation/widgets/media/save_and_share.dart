@@ -30,6 +30,34 @@ class _SaveAndShareImageState extends State<SaveAndShareImage> {
     ));
   }
 
+  Future<void> shareFile(String shareLink) async {
+    try {
+      // Fetch the image bytes from the network
+      http.Response response = await http.get(Uri.parse(shareLink));
+      if (response.statusCode == 200) {
+        await Share.shareUri(Uri.parse(shareLink));
+      } else {
+        showMassageDialogWidget(
+            context: context,
+            text: S.of(context).failedToShareImage,
+            icon: ImagePaths.error,
+            buttonText: S.of(context).ok,
+            onTap: () {
+              Navigator.pop(context);
+            });
+      }
+    } catch (e) {
+      showMassageDialogWidget(
+          context: context,
+          text: S.of(context).failedToShareImage,
+          icon: ImagePaths.error,
+          buttonText: S.of(context).ok,
+          onTap: () {
+            Navigator.pop(context);
+          });
+      // Handle the error as needed
+    }
+  }
   Future<void> shareImage(String imageUrl) async {
     try {
       // Fetch the image bytes from the network
