@@ -247,6 +247,12 @@
 # OTP_All_Way //all method in otp
 # IntlPhoneField // intl_phone_field for phone number with country code and dial code //in otp
 # LibphonenumberPlugin//libphonenumber_plugin for check validation of phone number with country code and dial code//in otp
+# QR_Props//sensors-qrScanner-qrCodeGenerator-qrSectionDesign-badgeIdentity
+# AllMethodsFroMedia//in media
+# ------------------------------------------------------------
+######################################################--:DONE:
+# ------------------------------------------------------------
+# 
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

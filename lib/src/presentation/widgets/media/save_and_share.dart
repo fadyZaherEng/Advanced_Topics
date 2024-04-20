@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
 
 import 'dart:io';
 
@@ -25,9 +25,10 @@ class _SaveAndShareImageState extends State<SaveAndShareImage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-      title: const Text('Save and Share Image'),
-    ));
+      appBar: AppBar(
+        title: const Text('Save and Share Image'),
+      ),
+    );
   }
 
   Future<void> shareFile(String shareLink) async {
@@ -38,26 +39,29 @@ class _SaveAndShareImageState extends State<SaveAndShareImage> {
         await Share.shareUri(Uri.parse(shareLink));
       } else {
         showMassageDialogWidget(
-            context: context,
-            text: S.of(context).failedToShareImage,
-            icon: ImagePaths.error,
-            buttonText: S.of(context).ok,
-            onTap: () {
-              Navigator.pop(context);
-            });
+          context: context,
+          text: "Failed To Share Image",
+          icon: ImagePaths.error,
+          buttonText: "Ok",
+          onTap: () {
+            Navigator.pop(context);
+          },
+        );
       }
     } catch (e) {
       showMassageDialogWidget(
-          context: context,
-          text: S.of(context).failedToShareImage,
-          icon: ImagePaths.error,
-          buttonText: S.of(context).ok,
-          onTap: () {
-            Navigator.pop(context);
-          });
+        context: context,
+        text: "Failed To Share Image",
+        icon: ImagePaths.error,
+        buttonText: "Ok",
+        onTap: () {
+          Navigator.pop(context);
+        },
+      );
       // Handle the error as needed
     }
   }
+
   Future<void> shareImage(String imageUrl) async {
     try {
       // Fetch the image bytes from the network
