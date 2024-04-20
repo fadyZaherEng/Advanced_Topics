@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class CameraScannerOptionWidget extends StatefulWidget {
@@ -75,7 +75,7 @@ class _CameraScannerOptionWidgetState extends State<CameraScannerOptionWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Container(
                   margin: const EdgeInsets.all(8),
                   child: ElevatedButton(

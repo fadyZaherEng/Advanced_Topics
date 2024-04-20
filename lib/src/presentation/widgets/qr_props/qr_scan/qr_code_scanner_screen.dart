@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr/widget/build_qr_view_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr/widget/camera_scanner_option_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr_scan/widget/build_qr_view_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/qr_scan/widget/camera_scanner_option_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrCodeScannerScreen extends StatefulWidget {

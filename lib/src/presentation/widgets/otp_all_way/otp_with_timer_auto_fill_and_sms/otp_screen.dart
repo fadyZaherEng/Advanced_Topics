@@ -6,9 +6,9 @@ import 'package:flutter_advanced_topics/src/core/base/widget/base_stateful_widge
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_massage_dialog_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/custom_snack_bar_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/otp_bloc/otp_bloc.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/utils/show_edit_number_bottom_sheet.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/widgets/otp_content_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/otp_bloc/otp_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/utils/show_edit_number_bottom_sheet.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/widgets/otp_content_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 //with SMS autofill and timer

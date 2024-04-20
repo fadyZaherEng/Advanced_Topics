@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer/utils/timer_ticker.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/utils/timer_ticker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'otp_event.dart';
