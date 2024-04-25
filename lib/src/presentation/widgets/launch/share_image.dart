@@ -1,4 +1,14 @@
-Future<void> shareImage(String imageUrl, String shareLink) async {
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/core/utils/new_utils/show_massage_dialog_widget.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+Future<void> shareImage(String imageUrl, String shareLink, context) async {
   try {
     // Fetch the image bytes from the network
     http.Response response = await http.get(Uri.parse(imageUrl));
@@ -20,9 +30,9 @@ Future<void> shareImage(String imageUrl, String shareLink) async {
     } else {
       showMassageDialogWidget(
           context: context,
-          text: S.of(context).failedToShareImage,
+          text: "failedToShareImage",
           icon: ImagePaths.error,
-          buttonText: S.of(context).ok,
+          buttonText: "ok",
           onTap: () {
             Navigator.pop(context);
           });
@@ -30,9 +40,9 @@ Future<void> shareImage(String imageUrl, String shareLink) async {
   } catch (e) {
     showMassageDialogWidget(
         context: context,
-        text: S.of(context).failedToShareImage,
+        text: "failedToShareImage",
         icon: ImagePaths.error,
-        buttonText: S.of(context).ok,
+        buttonText: "ok",
         onTap: () {
           Navigator.pop(context);
         });

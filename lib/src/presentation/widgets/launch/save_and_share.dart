@@ -109,7 +109,7 @@ class _SaveAndShareImageState extends State<SaveAndShareImage> {
     Directory? dir;
     CustomSnackBarWidget.show(
       context: context,
-      message: "S.of(context).downloading",
+      message: "downloading...",
       backgroundColor: ColorSchemes.gray,
       path: ImagePaths.info,
     );
