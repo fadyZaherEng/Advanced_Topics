@@ -33,7 +33,7 @@ class DioHelper {
     return {
       "to": token,
       "notification": {
-        "title": "you have recieved a message from admin",
+        "title": "you have received a message from admin",
         "body": massage,
         "sound": "default"
       },
