@@ -122,12 +122,15 @@ class _UploadFileWidgetState extends State<UploadFileWidget> {
                   ),
             const SizedBox(height: 8.0),
             Visibility(
-                visible: widget.isMandatory,
-                child: Text(widget.fileErrorMassage ?? "",
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: ColorSchemes.redError,
-                          letterSpacing: -.24,
-                        ))),
+              visible: widget.isMandatory,
+              child: Text(
+                widget.fileErrorMassage ?? "",
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: ColorSchemes.redError,
+                      letterSpacing: -.24,
+                    ),
+              ),
+            ),
           ],
         ),
       ],

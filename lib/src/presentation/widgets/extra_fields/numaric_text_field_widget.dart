@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/dynamic_questions/bloc_dynamic_questions/dynamic_questions_event.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_field_widget.dart';
 
 class NumericTextFieldWidget extends StatefulWidget {

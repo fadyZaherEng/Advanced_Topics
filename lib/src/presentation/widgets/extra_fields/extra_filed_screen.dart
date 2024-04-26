@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/dynamic_questions/bloc_dynamic_questions/dynamic_questions_event.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_text_field_with_button_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_date_picker_text_field_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_mobile_number_widget.dart';
