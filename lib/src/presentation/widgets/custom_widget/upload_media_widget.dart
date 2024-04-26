@@ -8,9 +8,11 @@ class UploadMediaWidget extends StatefulWidget {
   final Function() onTapCamera;
   final Function() onTapGallery;
 
-  const UploadMediaWidget(
-      {Key? key, required this.onTapCamera, required this.onTapGallery})
-      : super(key: key);
+  const UploadMediaWidget({
+    Key? key,
+    required this.onTapCamera,
+    required this.onTapGallery,
+  }) : super(key: key);
 
   @override
   State<UploadMediaWidget> createState() => _UploadMediaWidgetState();

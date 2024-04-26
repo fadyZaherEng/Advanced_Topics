@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/calender_props/event_screen/models.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/multi_selection_items.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/dynamic_questions/bloc_dynamic_questions/dynamic_questions_event.dart';
 
 class MultiSelectionFieldWidget extends StatefulWidget {
   final PageField pageField;
