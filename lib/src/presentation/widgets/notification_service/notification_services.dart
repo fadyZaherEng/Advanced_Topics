@@ -121,6 +121,20 @@ class NotificationService {
       );
     });
   }
+  // https://pub.dev/packages/firebase_messaging/example
+  //
+  // In this there are how to add subscribe and in subscribe
+  // And different between three methods
+  // On massage call when background or app closed
+  // Get initial
+  // عند تعريف firebase massage
+  // On massage Open app
+  // وهو مفتوح
+  // لذلك في الفتح أو التعريف بضيف في المتغير بس وهو في ال main بي listen فينقل لوحده
+  // إنما
+  // في ال background or closed
+  // بعرض فقط وكده كده في ال did receive بيحصلها call بضيف فيه فبتتغير ال قيمه لوحدها ولما اضغط عليه هيدخل وهيلاقي في قيمه
+  // دا كده ال سينيور
 
   void _configMessage() {
     FirebaseMessaging.onMessage.listen((message) {
