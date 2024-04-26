@@ -3,9 +3,11 @@
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/notification_service/firebase_notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final didReceiveLocalNotificationSubject =
     BehaviorSubject<FirebaseNotification>();
@@ -101,8 +103,12 @@ class LocalNotificationService {
   }
 
   static Future<void> callFirebaseMassaging() async {
-    var token = await FirebaseMessaging.instance.getToken();
-    print("token:$token \n");
+    String notificationToken =
+        await FirebaseMessaging.instance.getToken() ?? "";
+
+    await SaveFirebaseNotificationTokenUseCase(injector())(
+        firebaseNotificationToken: notificationToken);
+    print("notificationToken:$notificationToken \n");
     //first method
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       _showNotification(message);
@@ -113,6 +119,18 @@ class LocalNotificationService {
     FirebaseMessaging.onMessage.listen((message) {
       _showNotification(message);
     });
+  }
+}
+
+class SaveFirebaseNotificationTokenUseCase {
+  final SharedPreferences _sharedPreferences;
+
+  SaveFirebaseNotificationTokenUseCase(this._sharedPreferences);
+
+  Future<bool> call({required String firebaseNotificationToken}) async {
+    return await _sharedPreferences.setString(
+            "token", firebaseNotificationToken) ??
+        false;
   }
 }
 // import 'package:firebase_messaging/firebase_messaging.dart';
