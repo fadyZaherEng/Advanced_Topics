@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/bottom_sheet_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/edit_number_bottom_sheet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/phone_number_with_country_code_validation/edit_number_bottom_sheet_widget.dart';
 
 Future showEditNumberBottomSheet({
   required BuildContext context,
