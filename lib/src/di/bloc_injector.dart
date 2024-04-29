@@ -4,6 +4,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/otp_bloc/otp_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/utils/timer_ticker.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_bloc/badge_identity_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
 
 Future<void> initializeBlocDependencies() async {
   injector.registerFactory<LogInBloc>(
@@ -18,4 +19,5 @@ Future<void> initializeBlocDependencies() async {
   );
   injector.registerSingleton<BadgeIdentityBloc>(BadgeIdentityBloc());
   injector.registerFactory<OtpBloc>(() => OtpBloc(TimerTicker()));
+  injector.registerFactory<ScrollBloc>(() => ScrollBloc());
 }

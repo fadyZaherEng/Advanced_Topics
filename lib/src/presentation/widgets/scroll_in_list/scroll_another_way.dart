@@ -2,15 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ScrollInListScreen extends StatefulWidget {
-  const ScrollInListScreen({super.key});
+class ScrollInAnotherListScreen extends StatefulWidget {
+  final List<Item> items;
+  const ScrollInAnotherListScreen({super.key, required this.items});
 
   @override
-  State<ScrollInListScreen> createState() => _ScrollInListScreenState();
+  State<ScrollInAnotherListScreen> createState() =>
+      _ScrollInAnotherListScreenState();
 }
 
-class _ScrollInListScreenState extends State<ScrollInListScreen> {
+class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   final List<Item> _items = [];
   Color borderColor = ColorSchemes.primary;
   var itemCount = 0;
@@ -19,11 +23,9 @@ class _ScrollInListScreenState extends State<ScrollInListScreen> {
   var scrollToId = 5000;
 
   @override
-  void initState() {
-    super.initState();
-    for (var i = 0; i < 1000000; i++) {
-      _items.add(Item(GlobalKey(), 'Item $i', i));
-    }
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    _items.addAll(widget.items);
   }
 
   Future<void> _scrollToIndex(GlobalKey key) async {
@@ -42,6 +44,7 @@ class _ScrollInListScreenState extends State<ScrollInListScreen> {
     });
   }
 
+  ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
   @override
   void dispose() {
     _timer?.cancel();
@@ -50,40 +53,48 @@ class _ScrollInListScreenState extends State<ScrollInListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Scroll In List'),
-      ),
-      body: ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          itemCount++;
-          if (scrollToId != 0 && _items[index].id == scrollToId) {
-            _key = _items[index].key;
-          }
-          if (itemCount <= _items.length && _key != null) {
-            setState(() {
-              _scrollToIndex(_key);
-              getColor();
-            });
-          }
-          return Container(
-            margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: _items[index].id == scrollToId && _key != null
-                    ? borderColor
-                    : ColorSchemes.white,
-                width: 2,
-              ),
-            ),
-            child: ListTile(
-              title: Text(_items[index].title),
-              onTap: () {},
-            ),
-          );
-        },
-      ),
+    print("scrollToId: $scrollToId");
+    return BlocConsumer<ScrollBloc, ScrollState>(
+      listener: (context, state) {
+        if (state is ScrollToItemState) {
+          getColor();
+          _scrollToIndex(state.key);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Scroll In List'),
+          ),
+          body: ListView.builder(
+            itemCount: _items.length,
+            itemBuilder: (context, index) {
+              itemCount++;
+              if (scrollToId != 0 && _items[index].id == scrollToId) {
+                _key = _items[index].key;
+              }
+              if (itemCount <= _items.length && _key != null) {
+                _bloc.add(ScrollToItemEvent(_key));
+              }
+              return Container(
+                margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: _items[index].id == scrollToId && _key != null
+                        ? borderColor
+                        : ColorSchemes.white,
+                    width: 2,
+                  ),
+                ),
+                child: ListTile(
+                  title: Text(_items[index].title),
+                  onTap: () {},
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
