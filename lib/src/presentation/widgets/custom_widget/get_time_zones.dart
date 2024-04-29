@@ -1,8 +1,10 @@
 import 'package:country_state_city/country_state_city.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:worldtime/worldtime.dart';
 
 List<String> states = [];
 List<dynamic> cities = [];
@@ -69,6 +71,16 @@ void _getCurrentTimeBasedOnCity(String city) async {
 void _getRegionBasedMobileLocation() async {
   String region = await FlutterNativeTimezone.getLocalTimezone();
   List<String> regions = await FlutterNativeTimezone.getAvailableTimezones();
+}
+
+void _getRegionBasedMobileLocation2() async {
+  List<Location> locations = await locationFromAddress("italia");
+  print("gggggggggggggggggg${locations[0].latitude} ${locations[0].longitude}");
+  final DateTime timeAmsterdamGeo = await Worldtime().timeByLocation(
+    latitude: locations[0].latitude,
+    longitude: locations[0].longitude,
+  );
+  print("timeAmsterdamGeo $timeAmsterdamGeo");
 }
 
 void _getCurrentTime2() async {
