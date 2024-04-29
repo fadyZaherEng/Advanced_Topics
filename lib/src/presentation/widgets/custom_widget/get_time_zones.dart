@@ -65,6 +65,7 @@ void _getCurrentTimeBasedOnCity(String city) async {
   }
 }
 
+//to get region based mobile location then use it in time zone to get time
 void _getRegionBasedMobileLocation() async {
   String region = await FlutterNativeTimezone.getLocalTimezone();
   List<String> regions = await FlutterNativeTimezone.getAvailableTimezones();
