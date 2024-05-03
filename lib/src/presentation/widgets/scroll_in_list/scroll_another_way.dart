@@ -15,16 +15,14 @@ class ScrollInAnotherListScreen extends StatefulWidget {
 
 class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   final List<Item> _items = [];
-  Color borderColor = ColorSchemes.primary;
-  var _key;
-  Timer? _timer;
+  Color _borderColor = ColorSchemes.primary;
   var scrollToId = 5000;
+
+  ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
+
   @override
   void initState() {
-    _fetchData();
-  }
-
-  _fetchData() {
+    super.initState();
     for (int i = 0; i < 1000000; i++) {
       _items.add(Item(GlobalKey(), 'Item $i', i));
     }
@@ -40,17 +38,10 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   }
 
   getColor() {
-    _timer = Timer(const Duration(seconds: 5), () {
-      borderColor = ColorSchemes.white;
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      _borderColor = ColorSchemes.white;
       setState(() {});
     });
-  }
-
-  ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
   }
 
   @override
@@ -72,17 +63,14 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
             itemCount: _items.length,
             itemBuilder: (context, index) {
               if (scrollToId != 0 && _items[index].id == scrollToId) {
-                _key = _items[index].key;
-              }
-              if (index < _items.length && _key != null) {
-                _bloc.add(ScrollToItemEvent(_key));
+                _bloc.add(ScrollToItemEvent(_items[index].key));
               }
               return Container(
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: _items[index].id == scrollToId && _key != null
-                        ? borderColor
+                    color: _items[index].id == scrollToId
+                        ? _borderColor
                         : ColorSchemes.white,
                     width: 2,
                   ),
