@@ -6,8 +6,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ScrollInAnotherListScreen extends StatefulWidget {
-  final List<Item> items;
-  const ScrollInAnotherListScreen({super.key, required this.items});
+  const ScrollInAnotherListScreen({super.key});
 
   @override
   State<ScrollInAnotherListScreen> createState() =>
@@ -17,15 +16,18 @@ class ScrollInAnotherListScreen extends StatefulWidget {
 class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   final List<Item> _items = [];
   Color borderColor = ColorSchemes.primary;
-  var itemCount = 0;
   var _key;
   Timer? _timer;
   var scrollToId = 5000;
-
   @override
-  void didChangeDependencies() async {
-    super.didChangeDependencies();
-    _items.addAll(widget.items);
+  void initState() {
+    _fetchData();
+  }
+
+  _fetchData() {
+    for (int i = 0; i < 1000000; i++) {
+      _items.add(Item(GlobalKey(), 'Item $i', i));
+    }
   }
 
   Future<void> _scrollToIndex(GlobalKey key) async {
@@ -69,11 +71,10 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
           body: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (context, index) {
-              itemCount++;
               if (scrollToId != 0 && _items[index].id == scrollToId) {
                 _key = _items[index].key;
               }
-              if (itemCount <= _items.length && _key != null) {
+              if (index < _items.length && _key != null) {
                 _bloc.add(ScrollToItemEvent(_key));
               }
               return Container(

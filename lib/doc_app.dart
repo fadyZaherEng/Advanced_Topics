@@ -32,7 +32,6 @@ class _DocAppState extends State<DocApp> {
 
   @override
   void initState() {
-    _fetchData();
     _internetConnectionListener();
     super.initState();
   }
@@ -67,18 +66,9 @@ class _DocAppState extends State<DocApp> {
             //initialRoute: AppRoutes.splashScreen,
             theme: AppTheme("en").light,
             locale: const Locale('en'),
-            home: ScrollInAnotherListScreen(
-              items: _items,
-            )),
+            home: ScrollInAnotherListScreen()),
       ),
     );
-  }
-
-  List<Item> _items = [];
-  _fetchData() {
-    for (int i = 0; i < 1000000; i++) {
-      _items.add(Item(GlobalKey(), 'Item $i', i));
-    }
   }
 
   void _internetConnectionListener() {
