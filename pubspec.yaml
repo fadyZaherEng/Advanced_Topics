@@ -70,6 +70,8 @@ dependencies:
   url_launcher: ^6.1.12
   # for webview
   flutter_widget_from_html_core: ^0.10.3
+  # for checking internet connection status and displaying a snackbar to the user in case of no internet connection
+  internet_connection_checker:
   # for shared preferences
   shared_preferences:
   # for device information (like device id and device name)
@@ -105,7 +107,7 @@ dependencies:
   # for video trim or crop video
   video_trimmer: ^2.1.0
   # for handle ios voice
-  audio_session: ^0.1.19
+  audio_session: ^0.1.16
   # for using data type of assets
   multi_image_picker_plus: ^0.0.3
   # for get mutli image from gallery or camera or mylti video or voic or file as asset using asset Picker
@@ -131,9 +133,7 @@ dependencies:
   page_transition:
   like_button:
   # to fix no internet
-  # for checking internet connection status and displaying a snackbar to the user in case of no internet connection
-  internet_connection_checker_plus: ^2.1.0
-  connectivity_plus: ^5.0.2
+  connectivity_plus:
   # for icons animation
   badges:
   # change app icon
