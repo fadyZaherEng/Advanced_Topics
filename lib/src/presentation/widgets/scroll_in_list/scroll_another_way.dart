@@ -30,6 +30,7 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
 
   Future<void> _scrollToIndex(GlobalKey key) async {
     Future.delayed(const Duration(milliseconds: 300));
+
     Scrollable.ensureVisible(
       key.currentContext ?? context,
       duration: const Duration(milliseconds: 500),
