@@ -8,10 +8,10 @@ class AESScreen extends StatefulWidget {
   State<AESScreen> createState() => _AESScreenState();
 }
 
-class Keys {
+class AESKeys {
   List<List<String>> key;
 
-  Keys(this.key);
+  AESKeys(this.key);
 }
 
 class _AESScreenState extends State<AESScreen> {
@@ -359,7 +359,7 @@ class _AESScreenState extends State<AESScreen> {
   void initState() {
     super.initState();
     initializeSBoxInv();
-    _plainTextController.text = mainPlain;
+    _plainTextController.text = mainCipher;
     _keyController.text = mainKey;
     _cipherTextController.text = mainCipher;
   }
@@ -697,7 +697,7 @@ class _AESScreenState extends State<AESScreen> {
     String mainCipher = cipherText;
     String mainKey = key;
     String plain = "0x";
-    List<Keys> arr = [];
+    List<AESKeys> arr = List.generate(10, (_) => AESKeys([[]]));
 // Keys[] arr = new Keys[10];
     List<List<String>> o =
         List.generate(4, (index) => List.generate(4, (_) => ''));
