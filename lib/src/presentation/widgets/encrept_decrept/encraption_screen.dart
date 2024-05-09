@@ -24,6 +24,7 @@ class _AESScreenState extends State<AESScreen> {
   final Map<String, String> _invBox = {};
   List<List<String>> _sBoxResInv = [];
   List<List<String>> _shiftRowPlainInv = [];
+
   // List<List<String>> _mixColPlainInv = [];
   List<List<String>> finalInv = [];
   List<List<String>> outputInv = [];
@@ -335,16 +336,85 @@ class _AESScreenState extends State<AESScreen> {
     ["01", "01", "02", "03"],
     ["03", "01", "01", "02"]
   ];
+  final TextEditingController _plainTextController = TextEditingController();
+  final TextEditingController _keyController = TextEditingController();
+  final TextEditingController _cipherTextController = TextEditingController();
+  String mainPlain = "0x3243F6A8885A308D313198A2e0370734";
+  String mainCipher = "0x3925841D02DC09FBDC118597196A0B32";
+  String mainKey = "0x2B7E151628AED2A6ABF7158809CF4F3C";
+
+  String mainPlain2 = "0x00000000000000000000000000000001";
+  String mainCipher2 = "0x58e2fccefa7e3061367f1d57a4e7455a";
+  String mainKey2 = "0x00000000000000000000000000000000";
+
+  String mainPlain3 = "0x00112233445566778899aabbccddeeff";
+  String mainCipher3 = "0x69c4e0d86a7b0430d8cdb78070b4c55a";
+  String mainKey3 = "0x000102030405060708090a0b0c0d0e0f";
+
+  String newPlain = "0x54776F204F6E65204E696E652054776F";
+  String newCipher = "0x29C3505F571420F6402299B31A02D73A";
+  String newKey = "0x5468617473206D79204B756E67204675";
 
   @override
   void initState() {
     super.initState();
     initializeSBoxInv();
+    _plainTextController.text = mainPlain;
+    _keyController.text = mainKey;
+    _cipherTextController.text = mainCipher;
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("AES"),
+      ),
+      body: SafeArea(
+        child: Column(children: [
+          TextField(
+            controller: _plainTextController,
+            decoration: const InputDecoration(
+              hintText: "Enter Plain Text",
+            ),
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: _keyController,
+            decoration: const InputDecoration(
+              hintText: "Enter Key",
+            ),
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: _cipherTextController,
+            decoration: const InputDecoration(
+              hintText: "Cipher Text",
+            ),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _cipherTextController.text =
+                    _encrypt(_plainTextController.text, _keyController.text);
+              });
+            },
+            child: const Text("Encrypt"),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _plainTextController.text =
+                    _decrypt(_cipherTextController.text, _keyController.text);
+              });
+            },
+            child: const Text("Decrypt"),
+          ),
+        ]),
+      ),
+    );
   }
 
   void initializeSBoxInv() {
