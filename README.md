@@ -256,6 +256,7 @@
 # picker
 # DFS_UnitsStack_Register//units_search
 # Dynamic_Questions
+# Device_Preview// to test app screen on all devices //run on browser flutter pub add device_preview
 # ------------------------------------------------------------
 ######################################################--:DONE:
 # ------------------------------------------------------------

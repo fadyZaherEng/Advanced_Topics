@@ -211,6 +211,7 @@ dependencies:
   barcode_widget: ^2.0.4
   geocoding:
   worldtime:
+  device_preview: ^1.1.0
 
 flutter_launcher_icons:
   image_path_android: "assets/images/ios_android_logo.png"
