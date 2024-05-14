@@ -7,6 +7,8 @@ class CustomTabBarWidget extends BaseStatefulWidget {
   final String titleOfTapTwo;
   final Widget contentOfTapOne;
   final Widget contentOfTapTwo;
+  final Function(int)? currentIndex;
+  final TabController tabController;
 
   const CustomTabBarWidget({
     Key? key,
@@ -14,108 +16,107 @@ class CustomTabBarWidget extends BaseStatefulWidget {
     required this.titleOfTapTwo,
     required this.contentOfTapOne,
     required this.contentOfTapTwo,
+    required this.tabController,
+    this.currentIndex,
   }) : super(key: key);
 
   @override
-  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabBarWidgetState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabbarWidgetState();
 }
 
-class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
+class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  int selectedIndex = 0;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    widget.tabController.addListener(() {
+      if (widget.currentIndex != null) {
+        widget.currentIndex!(widget.tabController.index);
+      }
+    });
   }
 
   @override
   Widget baseBuild(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: DefaultTabController(
-        animationDuration: const Duration(milliseconds: 700),
-        length: 2,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 48,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ),
-                      child: Container(
-                        height: 6,
-                        decoration: const BoxDecoration(
-                          color: ColorSchemes.lightGray,
-                        ),
+    return DefaultTabController(
+      animationDuration: const Duration(milliseconds: 700),
+      length: 2,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 48,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ),
+                    child: Container(
+                      height: 6,
+                      decoration: const BoxDecoration(
+                        color: ColorSchemes.lightGray,
                       ),
                     ),
                   ),
-                  TabBar(
-                    onTap: (int index) {
-                      FocusScope.of(context).unfocus();
-                      _tabController.animateTo(index);
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    unselectedLabelColor: ColorSchemes.black,
-                    unselectedLabelStyle:
-                        Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: ColorSchemes.black,
-                              letterSpacing: -0.24,
-                            ),
-                    labelStyle:
-                        Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: ColorSchemes.black,
-                              letterSpacing: -0.24,
-                            ),
-                    labelColor: ColorSchemes.black,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    controller: _tabController,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: const UnderlineTabIndicator(
-                      borderSide: BorderSide(
-                        width: 6.0,
-                        color: ColorSchemes.primary,
-                      ),
-                    ),
-                    tabs: [
-                      Tab(
-                        text: widget.titleOfTapOne,
-                      ),
-                      Tab(
-                        text: widget.titleOfTapTwo,
-                      ),
-                    ],
+                ),
+                TabBar(
+                  onTap: (int index) {
+                    FocusScope.of(context).unfocus();
+                    widget.tabController.index = index;
+                    setState(() {});
+                  },
+                  unselectedLabelColor: ColorSchemes.black,
+                  unselectedLabelStyle:
+                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: ColorSchemes.black,
+                    letterSpacing: -0.24,
                   ),
-                ],
-              ),
+                  labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: ColorSchemes.black,
+                    letterSpacing: -0.24,
+                  ),
+                  labelColor: ColorSchemes.black,
+                  controller: widget.tabController,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicator: UnderlineTabIndicator(
+                    borderSide: BorderSide(
+                      width: 6.0,
+                      color: ColorSchemes.primary,
+                    ),
+                    insets: widget.tabController.index == 0
+                        ? const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0)
+                        : widget.tabController.index ==
+                        widget.tabController.length - 1
+                        ? const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0)
+                        : EdgeInsets.zero,
+                  ),
+                  tabs: [
+                    Tab(text: widget.titleOfTapOne),
+                    Tab(text: widget.titleOfTapTwo),
+                  ],
+                ),
+              ],
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  widget.contentOfTapOne,
-                  widget.contentOfTapTwo,
-                ],
-              ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: widget.tabController,
+              children: [
+                widget.contentOfTapOne,
+                widget.contentOfTapTwo,
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    widget.tabController.dispose();
     super.dispose();
   }
 }
