@@ -5,28 +5,34 @@ import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void launchStore() async {
-  String androidPackageName = F.appFlavor == Flavor.production
+  String androidPackageName = F.isNiceTouch
       ? 'com.sprinteye.cityeyehandyman.nicetouch'
       : 'com.sprinteye.cityeyehandyman';
-  if (await HmsApiAvailability().isHMSAvailableWithApkVersion(28) != 1) {
-    String huaweiAppId = 'C110577713';
-    final url = "https://appgallery.huawei.com/app/$huaweiAppId";
+  if (Platform.isIOS) {
+    String iOSAppId = '6479604068';
+    final url = 'https://apps.apple.com/app/id$iOSAppId';
     try {
       launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   } else {
-    String iOSAppId = '6479604068';
-    if (Platform.isAndroid) {
+    if (await HmsApiAvailability().isHMSAvailableWithApkVersion(28) != 1) {
+      String huaweiAppId = 'C110577713';
+      final url = "https://appgallery.huawei.com/app/$huaweiAppId";
+      try {
+        launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      } catch (e) {
+        print(e);
+      }
+    } else {
       final url =
           'https://play.google.com/store/apps/details?id=$androidPackageName';
       try {
         launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-      } catch (e) {}
-    } else if (Platform.isIOS) {
-      final url = 'https://apps.apple.com/app/id$iOSAppId';
-      try {
-        launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-      } catch (e) {}
+      } catch (e) {
+        print(e);
+      }
     }
   }
 }
