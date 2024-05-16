@@ -5,7 +5,7 @@ import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void launchStore() async {
-  String androidPackageName = F.isNiceTouch
+  String androidPackageName = F.appFlavor == Flavor.production
       ? 'com.sprinteye.cityeyehandyman.nicetouch'
       : 'com.sprinteye.cityeyehandyman';
   if (Platform.isIOS) {
