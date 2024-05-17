@@ -21,10 +21,10 @@ class CustomTabBarWidget extends BaseStatefulWidget {
   }) : super(key: key);
 
   @override
-  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabbarWidgetState();
+  BaseState<BaseStatefulWidget> baseCreateState() => _CustomTabBarWidgetState();
 }
 
-class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
+class _CustomTabBarWidgetState extends BaseState<CustomTabBarWidget>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -64,34 +64,27 @@ class _CustomTabbarWidgetState extends BaseState<CustomTabBarWidget>
                 TabBar(
                   onTap: (int index) {
                     FocusScope.of(context).unfocus();
-                    widget.tabController.index = index;
-                    setState(() {});
                   },
                   unselectedLabelColor: ColorSchemes.black,
                   unselectedLabelStyle:
-                  Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: ColorSchemes.black,
-                    letterSpacing: -0.24,
-                  ),
+                      Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: ColorSchemes.black,
+                            letterSpacing: -0.24,
+                          ),
                   labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: ColorSchemes.black,
-                    letterSpacing: -0.24,
-                  ),
+                        color: ColorSchemes.black,
+                        letterSpacing: -0.24,
+                      ),
                   labelColor: ColorSchemes.black,
                   controller: widget.tabController,
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(
-                      width: 6.0,
-                      color: ColorSchemes.primary,
-                    ),
-                    insets: widget.tabController.index == 0
-                        ? const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0)
-                        : widget.tabController.index ==
-                        widget.tabController.length - 1
-                        ? const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0)
-                        : EdgeInsets.zero,
-                  ),
+                      borderSide: BorderSide(
+                        width: 6.0,
+                        color: ColorSchemes.primary,
+                      ),
+                      insets: const EdgeInsetsDirectional.symmetric(
+                          horizontal: 16.0)),
                   tabs: [
                     Tab(text: widget.titleOfTapOne),
                     Tab(text: widget.titleOfTapTwo),
