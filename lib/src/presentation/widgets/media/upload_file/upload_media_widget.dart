@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/bottom_sheet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/bottom_sheet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/circular_icon.dart';
 
 class UploadMediaWidget extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/sort_bottom_sheet/sort_bottom_sheet_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/show_bottom_sheet_widget.dart';
 
 class Sort {
@@ -21,8 +22,7 @@ List<Sort> sorts = [
   Sort(2, "DateNewestOlder", ImagePaths.icRecentAdded),
   Sort(3, "DateOldestNewer", ImagePaths.icOldDate),
 ];
-Sort selectedSort =
-    Sort(0, "priceLowToHigh", ImagePaths.icSortAscending);
+Sort selectedSort = Sort(0, "priceLowToHigh", ImagePaths.icSortAscending);
 
 void _showSortBottomSheet({required BuildContext context}) {
   showBottomSheetWidget(

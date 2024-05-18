@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/upload_media_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/upload_media_widget.dart';
 
 Future showBottomSheetUploadMedia({
   required BuildContext context,

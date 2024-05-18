@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/sort_bottom_sheet/custom_radio_tile_list_item_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/sort_bottom_sheet/show_bottom_sheet.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/sort_bottom_sheet/custom_radio_tile_list_item_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/sort_bottom_sheet/show_bottom_sheet.dart';
 
 class SortBottomSheetWidget extends StatefulWidget {
   final List<Sort> sorts;
