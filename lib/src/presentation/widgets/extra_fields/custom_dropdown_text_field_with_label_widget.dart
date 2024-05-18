@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/extra_fields/custom_date_text_field_with_label_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 class CustomDropdownTextFieldWithLabelWidget extends StatefulWidget {
   final TextEditingController controller;
   final String title;
@@ -36,7 +36,8 @@ class _CustomDropdownTextFieldWithLabelWidgetState
           children: [
             Text(
               widget.title,
-              style: Theme.of(context)
+              style: Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium
                   ?.copyWith(color: ColorSchemes.black),
@@ -45,12 +46,12 @@ class _CustomDropdownTextFieldWithLabelWidgetState
             SizedBox(
               child: CustomTextFieldWithSuffixIconWidget(
                 controller: widget.controller,
-                labelTitle: "S.of(context).select",
+                labelTitle: "Select",
                 errorMessage: widget.errorMessage,
                 isReadOnly: true,
                 onTap: widget.onTap,
                 suffixIcon: SvgPicture.asset(
-                  "ImagePaths.arrowDown",
+                  ImagePaths.arrowDown,
                   fit: BoxFit.scaleDown,
                 ),
                 onChanged: (String value) {},
