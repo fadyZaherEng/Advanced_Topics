@@ -3,9 +3,11 @@
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/notification_service/firebase_notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final didReceiveLocalNotificationSubject =
     BehaviorSubject<FirebaseNotification>();
@@ -99,10 +101,28 @@ class LocalNotificationService {
   static Future<void> firebaseMassageBackground(RemoteMessage message) async {
     _showNotification(message);
   }
+  // https://pub.dev/packages/firebase_messaging/example
+  //
+  // In this there are how to add subscribe and in subscribe
+  // And different between three methods
+  // On massage call when background or app closed
+  // Get initial
+  // عند تعريف firebase massage
+  // On massage Open app
+  // وهو مفتوح
+  // لذلك في الفتح أو التعريف بضيف في المتغير بس وهو في ال main بي listen فينقل لوحده
+  // إنما
+  // في ال background or closed
+  // بعرض فقط وكده كده في ال did receive بيحصلها call بضيف فيه فبتتغير ال قيمه لوحدها ولما اضغط عليه هيدخل وهيلاقي في قيمه
+  // دا كده ال سينيور
 
   static Future<void> callFirebaseMassaging() async {
-    var token = await FirebaseMessaging.instance.getToken();
-    print("token:$token \n");
+    String notificationToken =
+        await FirebaseMessaging.instance.getToken() ?? "";
+
+    await SaveFirebaseNotificationTokenUseCase(injector())(
+        firebaseNotificationToken: notificationToken);
+    print("notificationToken:$notificationToken \n");
     //first method
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       _showNotification(message);
@@ -113,6 +133,18 @@ class LocalNotificationService {
     FirebaseMessaging.onMessage.listen((message) {
       _showNotification(message);
     });
+  }
+}
+
+class SaveFirebaseNotificationTokenUseCase {
+  final SharedPreferences _sharedPreferences;
+
+  SaveFirebaseNotificationTokenUseCase(this._sharedPreferences);
+
+  Future<bool> call({required String firebaseNotificationToken}) async {
+    return await _sharedPreferences.setString(
+            "token", firebaseNotificationToken) ??
+        false;
   }
 }
 // import 'package:firebase_messaging/firebase_messaging.dart';

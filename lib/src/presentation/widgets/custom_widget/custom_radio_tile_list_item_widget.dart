@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/sort_bottom_sheet/radio_button_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/sort_bottom_sheet/radio_button_widget.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomRadioListTileWidget extends StatelessWidget {

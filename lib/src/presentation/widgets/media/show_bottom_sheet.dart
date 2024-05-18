@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/bottom_sheet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/bottom_sheet_widget.dart';
 
 Future showBottomSheetWidget({
   required BuildContext context,

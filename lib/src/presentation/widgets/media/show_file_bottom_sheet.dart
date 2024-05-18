@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/bottom_sheet_upload_file_style_widget.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/file_content_bottom_sheet_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/bottom_sheet_upload_file_style_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/bottom_sheet/file_content_bottom_sheet_widget.dart';
 
 Future showBottomSheetUploadFile({
   required BuildContext context,
