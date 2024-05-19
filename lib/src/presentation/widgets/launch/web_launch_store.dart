@@ -1,12 +1,13 @@
-import 'package:flutter_advanced_topics/flavors.dart';
 import 'dart:js' as js;
+
+import 'package:flutter_advanced_topics/flavors.dart';
 
 void webLaunchStore({required String platform}) async {
   String androidPackageName = '';
   String huaweiAppId = '';
   String iOSAppId = '';
 
-  if(F.isNiceTouch) {
+  if (F.appFlavor == Flavor.production) {
     androidPackageName = "com.sprinteye.cityeye.nicetouch";
     iOSAppId = "6474612743";
     huaweiAppId = "C110578913";
@@ -15,12 +16,12 @@ void webLaunchStore({required String platform}) async {
     iOSAppId = "6474612743";
     huaweiAppId = "C110578913";
 
-  }*/ else {
+  }*/
+  else {
     androidPackageName = "com.sprinteye.cityeye.app";
     iOSAppId = "6474612743";
     huaweiAppId = "C110578913";
   }
-
 
   String url = '';
   if (platform == 'android') {
