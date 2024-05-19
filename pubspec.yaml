@@ -215,6 +215,7 @@ dependencies:
   secure_content: ^0.1.0
   provider: ^6.0.2
   flutter_portal: ^1.1.1
+  visibility_detector:
 
 flutter_launcher_icons:
   image_path_android: "assets/images/ios_android_logo.png"
