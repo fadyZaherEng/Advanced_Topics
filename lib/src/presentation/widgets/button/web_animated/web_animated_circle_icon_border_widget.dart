@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/svg.dart';
 
 class WebAnimatedCircleIconBorderWidget extends StatefulWidget {
@@ -85,5 +86,33 @@ class WebAnimatedCircleIconBorderWidgetState
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+}
+
+class Scroll extends StatelessWidget {
+  const Scroll({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        _onScrollTo(
+            GlobalKey()); //key of header or widget that want to scroll to it
+      },
+      child: const WebAnimatedCircleIconBorderWidget(
+        imagePath: ImagePaths.arrowDown, //arrow up
+        borderColor: ColorSchemes.primary,
+        width: 48,
+        height: 48,
+      ),
+    );
+  }
+
+  void _onScrollTo(GlobalKey key) {
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.ease,
+    );
   }
 }
