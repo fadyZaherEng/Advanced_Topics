@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
+
 class VisibiltyDetectorScreen extends StatefulWidget {
   const VisibiltyDetectorScreen({super.key});
 
