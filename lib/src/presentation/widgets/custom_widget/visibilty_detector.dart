@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -14,19 +15,27 @@ class _VisibiltyDetectorScreenState extends State<VisibiltyDetectorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: const Key('footer'),
-      onVisibilityChanged: (VisibilityInfo info) {
-        if (info.visibleFraction == 0) {
-          _isFooterVisible = false;
-        } else if (info.visibleFraction == 1) {
-          _isFooterVisible = true;
-        } else {
-          _isFooterVisible = true;
-        }
-        setState(() {});
-      },
-      child: const Text('Footer'),
+    return Column(
+      children: [
+        VisibilityDetector(
+          key: const Key('footer'),
+          onVisibilityChanged: (VisibilityInfo info) {
+            if (info.visibleFraction == 0) {
+              _isFooterVisible = false;
+            } else if (info.visibleFraction == 1) {
+              _isFooterVisible = true;
+            } else {
+              _isFooterVisible = true;
+            }
+            setState(() {});
+          },
+          child: const Text('Footer'),
+        ),
+        Visibility(
+          visible: _isFooterVisible,
+          child: const Text('Footer'),
+        )
+      ],
     );
   }
 }
