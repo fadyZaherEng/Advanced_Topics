@@ -16,42 +16,25 @@ class ScrollInAnotherListScreen extends StatefulWidget {
 class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   final List<Item> _items = [];
   Color _borderColor = ColorSchemes.primary;
-  var scrollToId = 5000;
-
+  int scrollToId = 500;
   ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < 1000000; i++) {
+    for (int i = 0; i < 1000; i++) {
+      print("i: $i");
       _items.add(Item(GlobalKey(), 'Item $i', i));
     }
-  }
-
-  Future<void> _scrollToIndex(GlobalKey key) async {
-    Future.delayed(const Duration(milliseconds: 300));
-
-    Scrollable.ensureVisible(
-      key.currentContext ?? context,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  getColor() {
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      _borderColor = ColorSchemes.white;
-      setState(() {});
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     print("scrollToId: $scrollToId");
+    print("LIST LENGTH: ${_items.length}");
     return BlocConsumer<ScrollBloc, ScrollState>(
       listener: (context, state) {
         if (state is ScrollToItemState) {
-          getColor();
           _scrollToIndex(state.key);
         }
       },
@@ -63,8 +46,12 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
           body: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (context, index) {
+              print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ${_items[index].id}");
               if (scrollToId != 0 && _items[index].id == scrollToId) {
-                _bloc.add(ScrollToItemEvent(_items[index].key));
+                print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                // Future.delayed(const Duration(milliseconds: 500)).then((value) {
+                //   _scrollToIndex(_items[index].key);
+                // });
               }
               return Container(
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
@@ -86,6 +73,24 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
         );
       },
     );
+  }
+
+  Future<void> _scrollToIndex(GlobalKey key) async {
+    print("keyRRRRRRRRRRRRrr: $key");
+    Future.delayed(const Duration(milliseconds: 300));
+    Scrollable.ensureVisible(
+      key.currentContext ?? context,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+    _getColor();
+  }
+
+  void _getColor() {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      _borderColor = ColorSchemes.white;
+      setState(() {});
+    });
   }
 }
 
