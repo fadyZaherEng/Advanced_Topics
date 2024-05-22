@@ -8,7 +8,8 @@ import 'package:flutter_advanced_topics/src/core/utils/show_no_internet_dialog_w
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/internet/get_no_internet_use_case.dart';
 import 'package:flutter_advanced_topics/src/domain/use_case/internet/set_no_internet_use_case.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+
 
 abstract class BaseStatefulWidget extends StatefulWidget {
   final Color materialColor;
@@ -28,9 +29,7 @@ abstract class BaseStatefulWidget extends StatefulWidget {
 
 abstract class BaseState<W extends BaseStatefulWidget> extends State<W>
     with LoadingManager {
-  final InternetConnectionChecker connectivity = InternetConnectionChecker();
-  late StreamSubscription<InternetConnectionStatus> listener;
-
+  // late StreamSubscription<ConnectivityResult> subscription;
   @override
   Widget build(BuildContext context) {
     return baseWidget();
@@ -39,16 +38,24 @@ abstract class BaseState<W extends BaseStatefulWidget> extends State<W>
   @override
   void initState() {
     super.initState();
-    listener = connectivity.onStatusChange.listen(_updateConnectionStatus);
+    // subscription = Connectivity().onConnectivityChanged.listen((connectivityResult) {
+    //   print("Hassan $connectivityResult");
+    //   _updateConnectionStatus(connectivityResult);
+    // });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget baseWidget() {
     return Material(
-      color: widget.materialColor,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [baseBuild(context), loadingManagerWidget()],
-      ),
+        color: widget.materialColor,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [baseBuild(context), loadingManagerWidget()],
+        )
     );
   }
 
@@ -61,32 +68,26 @@ abstract class BaseState<W extends BaseStatefulWidget> extends State<W>
     changeState();
   }
 
-  @override
-  void dispose() {
-    listener.cancel();
-    super.dispose();
-  }
-
   Widget baseBuild(BuildContext context);
 
-  Future<void> _updateConnectionStatus(InternetConnectionStatus status) async {
-    if (status == InternetConnectionStatus.disconnected &&
-        !GetNoInternetUseCase(injector())()) {
-      SetNoInternetUseCase(injector())(true);
-      showNoInternetDialogWidget(
-        context: context,
-        onTapTryAgain: () {
-          if (status == InternetConnectionStatus.connected) {
-            SetNoInternetUseCase(injector())(false);
-            Navigator.pop(context);
-          }
-        },
-      );
-    } else if (status == InternetConnectionStatus.connected &&
-        GetNoInternetUseCase(injector())()) {
-      SetNoInternetUseCase(injector())(false);
-      Navigator.pop(context);
-    }
-    setState(() {});
-  }
+// void _updateConnectionStatus(ConnectivityResult status)  {
+//   if (status == ConnectivityResult.none &&
+//       !GetNoInternetUseCase(injector())()) {
+//     SetNoInternetUseCase(injector())(true);
+//     showNoInternetDialogWidget(
+//       context: context,
+//       onTapTryAgain: () {
+//         if (status != ConnectivityResult.none) {
+//           SetNoInternetUseCase(injector())(false);
+//           Navigator.pop(context);
+//         }
+//       },
+//     );
+//   }  if (status != ConnectivityResult.none &&
+//       GetNoInternetUseCase(injector())()) {
+//     SetNoInternetUseCase(injector())(false);
+//     Navigator.pop(context);
+//   }
+//   setState(() {});
+// }
 }

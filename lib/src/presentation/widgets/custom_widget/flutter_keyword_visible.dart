@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/signture_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_widget/signture/signture_widget.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class KeywordVisibilty extends StatelessWidget {

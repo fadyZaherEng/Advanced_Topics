@@ -9,11 +9,13 @@ import 'package:flutter_advanced_topics/src/config/theme/app_theme.dart';
 import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/encrept_decrept/encraption_screen.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_drop_down_search/bloc/search_bottom_sheet_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/custom_drop_down_search/custom_drop_down_search.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/otp_bloc/otp_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_bloc/badge_identity_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/scroll_another_way.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,6 +49,7 @@ class _DocAppState extends State<DocApp> {
         BlocProvider(create: (context) => injector<BadgeIdentityBloc>()),
         BlocProvider(create: (context) => injector<OtpBloc>()),
         BlocProvider(create: (context) => injector<ScrollBloc>()),
+        BlocProvider(create: (context) => injector<SearchBottomSheetBloc>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -67,6 +70,7 @@ class _DocAppState extends State<DocApp> {
           theme: AppTheme("en").light,
           locale: const Locale('en'),
         ),
+    ),
     );
   }
 
