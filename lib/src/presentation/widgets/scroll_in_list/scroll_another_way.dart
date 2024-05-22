@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,12 +23,14 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < 1000; i++) {
-      print("i: $i");
-      _items.add(Item(GlobalKey(), 'Item $i', i));
-    }
+    _init();
   }
-
+_init(){
+  for (int i = 0; i < 1000; i++) {
+    print("i: $i");
+    _items.add(Item(GlobalKey(), 'Item $i', i));
+  }
+}
   @override
   Widget build(BuildContext context) {
     print("scrollToId: $scrollToId");
@@ -43,32 +46,44 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
           appBar: AppBar(
             title: const Text('Scroll In List'),
           ),
-          body: ListView.builder(
-            itemCount: _items.length,
-            itemBuilder: (context, index) {
-              print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ${_items[index].id}");
-              if (scrollToId != 0 && _items[index].id == scrollToId) {
-                print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-                // Future.delayed(const Duration(milliseconds: 500)).then((value) {
-                //   _scrollToIndex(_items[index].key);
-                // });
-              }
-              return Container(
-                margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: _items[index].id == scrollToId
-                        ? _borderColor
-                        : ColorSchemes.white,
-                    width: 2,
-                  ),
+          body: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _items.length,
+                  itemBuilder: (context, index) {
+                    print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ${_items[index].id}");
+                    if (scrollToId != 0 && _items[index].id == scrollToId) {
+                      print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+                      // Future.delayed(const Duration(milliseconds: 500)).then((value) {
+                      //   _scrollToIndex(_items[index].key);
+                      // });
+                      _scrollToIndex(_items[index].key);
+                    }
+                    return Container(
+                      margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: _items[index].id == scrollToId
+                              ? _borderColor
+                              : ColorSchemes.white,
+                          width: 2,
+                        ),
+                      ),
+                      child: ListTile(
+                        title: Text(_items[index].title),
+                        onTap: () {
+                            _init();
+                            setState(() {
+
+                            });
+                        },
+                      ),
+                    );
+                  },
                 ),
-                child: ListTile(
-                  title: Text(_items[index].title),
-                  onTap: () {},
-                ),
-              );
-            },
+              ),
+            ],
           ),
         );
       },
@@ -83,6 +98,9 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
+    setState(() {
+
+    });
     _getColor();
   }
 

@@ -15,6 +15,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/otp_bloc/otp_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/qr_props/badge_identity/badge_identity_bloc/badge_identity_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/scroll_another_way.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +69,7 @@ class _DocAppState extends State<DocApp> {
           //initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          home: const CustomDropDownSearch()
+          home: const ScrollInAnotherListScreen()
         ),
       ),
     );
