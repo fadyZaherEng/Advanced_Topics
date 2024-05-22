@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/scroll_in_list/bloc/scroll_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -98,9 +97,7 @@ _init(){
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
-    setState(() {
-
-    });
+    setState(() {});
     _getColor();
   }
 
