@@ -5,6 +5,12 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_topics/src/core/utils/show_no_internet_dialog_widget.dart';
 
+//calling in doc app file and base stateful widget
+// internet_connection_checker_plus used within base stateful widget
+//connectivity_plus used within main
+//only used one from its
+
+
 class NetworkConnectivity {
   NetworkConnectivity._();
 
