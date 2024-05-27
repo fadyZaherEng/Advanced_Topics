@@ -39,6 +39,7 @@ class _DocAppState extends State<DocApp> {
     super.initState();
   }
 
+
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -70,11 +71,12 @@ class _DocAppState extends State<DocApp> {
           //initialRoute: AppRoutes.splashScreen,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          home: const CustomButtonAnimationFilter()
+          home:  const ScrollToKeyExample()
         ),
       ),
     );
   }
+
 
   void _internetConnectionListener() {
     _networkConnectivity.initialise();
