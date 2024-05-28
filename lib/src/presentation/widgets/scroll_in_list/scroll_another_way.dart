@@ -19,22 +19,21 @@ class ScrollInAnotherListScreen extends StatefulWidget {
 
 class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   Color _borderColor = ColorSchemes.primary;
-  int scrollToId = 500;
+  int scrollToId = 5;
+
   ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
   final List<Item> _items = [];
 
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < 1000000; i++) {
+    for (var i = 0; i < 10; i++) {
       _items.add(Item(GlobalKey(), 'Item $i', i));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("scrollToId: $scrollToId");
-    print("LIST LENGTH: ${_items.length}");
     return BlocConsumer<ScrollBloc, ScrollState>(
       listener: (context, state) {
         if (state is ScrollToItemState) {
@@ -46,36 +45,43 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
           appBar: AppBar(
             title: const Text('Scroll In List'),
           ),
-          body: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: ListView.separated(
-              itemCount: _items.length,
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                if (scrollToId != 0 && _items[index].id == scrollToId) {
-                  _bloc.add(ScrollToItemEvent(_items[index].key));
-                }
-                return Container(
-                  margin: const EdgeInsetsDirectional.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: _items[index].id == scrollToId
-                          ? _borderColor
-                          : ColorSchemes.white,
-                      width: 2,
+          body:Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ListView.separated(
+                itemCount: _items.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  print("scrollToId: $scrollToId");
+                  print("scrollToId: ${_items[index].id}");
+                  if ( _items[index].id == scrollToId) {
+                    print("keymmmmmmmmmmmmmmmmmmmmmm: ${_items[index].key}");
+                    //_bloc.add(ScrollToItemEvent(_items[index].key));
+                  }
+                  return Container(
+                    key: _items[index].key,
+                    margin: const EdgeInsetsDirectional.symmetric(
+                        horizontal: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: _items[index].id == scrollToId
+                            ? _borderColor
+                            : ColorSchemes.white,
+                        width: 2,
+                      ),
                     ),
-                  ),
-                  child: ListTile(
-                    title: Text(_items[index].title),
-                    onTap: () {},
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Divider();
-              },
+                    child: ListTile(
+                      title: Text(_items[index].title),
+                      onTap: () {},
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider();
+                },
+              ),
             ),
           ),
         );
@@ -84,28 +90,28 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   }
 
   Future<void> _scrollToIndex(GlobalKey key) async {
+    print('keykkkkkkkkkkkkkkk: $key');
     Future.delayed(const Duration(milliseconds: 300));
     Scrollable.ensureVisible(
       key.currentContext ?? context,
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
-    ).then((value) async {
+    ).then((value) async {});
+    setState(() {
+
     });
   }
-
- void getColor() {
+  void getColor() {
     Future.delayed(const Duration(seconds: 3), () {
       _borderColor = ColorSchemes.white;
       setState(() {});
     });
   }
-
 }
 
 class Item {
   final GlobalKey key;
   final String title;
   final int id;
-
   Item(this.key, this.title, this.id);
 }
