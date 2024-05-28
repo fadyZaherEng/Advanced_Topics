@@ -19,7 +19,8 @@ class ScrollInAnotherListScreen extends StatefulWidget {
 
 class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   Color _borderColor = ColorSchemes.primary;
-  int scrollToId = 5;
+  int scrollToId = 500;
+  int itemsCount = 0;
 
   ScrollBloc get _bloc => BlocProvider.of<ScrollBloc>(context);
   final List<Item> _items = [];
@@ -27,7 +28,7 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   @override
   void initState() {
     super.initState();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 1000; i++) {
       _items.add(Item(GlobalKey(), 'Item $i', i));
     }
   }
@@ -42,10 +43,8 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('Scroll In List'),
-          ),
-          body:Padding(
+          appBar: AppBar(title: const Text('Scroll In List')),
+          body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
@@ -54,16 +53,20 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  print("scrollToId: $scrollToId");
-                  print("scrollToId: ${_items[index].id}");
-                  if ( _items[index].id == scrollToId) {
-                    print("keymmmmmmmmmmmmmmmmmmmmmm: ${_items[index].key}");
-                    //_bloc.add(ScrollToItemEvent(_items[index].key));
+                  itemsCount++;
+                  if (scrollToId != 0 &&
+                      _items[index].id == scrollToId &&
+                      itemsCount <= _items.length) {
+                    //to avoid rebuild screen from second time when we scroll within bloc
+                    //so item count will be always increased by length of list
+                    //to avoid that check if item count is less than length of list then we can scroll to that item
+                    //and if we are not scrolling then we can scroll to that item
+                    _bloc.add(ScrollToItemEvent(_items[index].key));
                   }
                   return Container(
                     key: _items[index].key,
-                    margin: const EdgeInsetsDirectional.symmetric(
-                        horizontal: 5),
+                    margin:
+                        const EdgeInsetsDirectional.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: _items[index].id == scrollToId
@@ -90,17 +93,15 @@ class _ScrollInAnotherListScreenState extends State<ScrollInAnotherListScreen> {
   }
 
   Future<void> _scrollToIndex(GlobalKey key) async {
-    print('keykkkkkkkkkkkkkkk: $key');
     Future.delayed(const Duration(milliseconds: 300));
     Scrollable.ensureVisible(
       key.currentContext ?? context,
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     ).then((value) async {});
-    setState(() {
-
-    });
+    getColor();
   }
+
   void getColor() {
     Future.delayed(const Duration(seconds: 3), () {
       _borderColor = ColorSchemes.white;
@@ -113,5 +114,6 @@ class Item {
   final GlobalKey key;
   final String title;
   final int id;
+
   Item(this.key, this.title, this.id);
 }
