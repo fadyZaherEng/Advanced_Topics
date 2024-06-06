@@ -219,6 +219,7 @@ dependencies:
   internet_connection_checker_plus: ^2.1.0
   #for animation
   flutter_extensions:
+  lottie:
 
 flutter_launcher_icons:
   image_path_android: "assets/images/ios_android_logo.png"
@@ -273,6 +274,7 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/images/cheese.png
+    - assets/images/tigger.json
   fonts:
     - family: Almarai-Bold
       fonts:

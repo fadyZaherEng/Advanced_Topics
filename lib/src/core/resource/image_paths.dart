@@ -578,4 +578,7 @@ class ImagePaths {
   static const String jerry="assets/images/jerry.png";
   static const String tom="assets/images/tom.png";
   static const String dog="assets/images/dog.png";
+  static const String bird="assets/images/bird.json";
+  static const String cars="assets/images/car.json";
+  static const String tigger="assets/images/tigger.json";
 }
