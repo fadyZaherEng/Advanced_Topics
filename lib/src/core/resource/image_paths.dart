@@ -581,4 +581,7 @@ class ImagePaths {
   static const String bird="assets/images/bird.json";
   static const String cars="assets/images/car.json";
   static const String tigger="assets/images/tigger.json";
+  static const String girl="assets/images/girl.riv";
+  static const String ratings="assets/images/tigger.riv";
+  static const String bear="assets/images/tigger.riv";
 }

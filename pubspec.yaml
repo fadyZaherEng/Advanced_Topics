@@ -274,6 +274,7 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/images/cheese.png
+    - assets/images/girl.riv
     - assets/images/tigger.json
   fonts:
     - family: Almarai-Bold

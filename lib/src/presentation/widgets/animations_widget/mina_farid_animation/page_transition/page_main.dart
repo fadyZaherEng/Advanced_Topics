@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/mina_farid_animation/page_transition/page_fade_transition.dart';
-import 'package:flutter_advanced_topics/src/presentation/widgets/mina_farid_animation/page_transition/page_tow.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/mina_farid_animation/page_transition/page_fade_transition.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/animations_widget/mina_farid_animation/page_transition/page_tow.dart';
 
 class PageMainNavigator extends StatefulWidget {
   const PageMainNavigator({super.key});
