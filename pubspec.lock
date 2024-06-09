@@ -1079,26 +1079,26 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_sound
-      sha256: "22f13af5cacf48380318851997e4c29251fd0602a26fa6f07f7685c7e1e63699"
+      sha256: "07734206e8ffad4fdb517128a0331f8e9dd7b92fa12234ea8d9d09ca764a3445"
       url: "https://pub.dev"
     source: hosted
-    version: "9.4.18"
+    version: "9.4.20"
   flutter_sound_platform_interface:
     dependency: transitive
     description:
       name: flutter_sound_platform_interface
-      sha256: "9637cad39c8d60e25ebdfc4fd06188976f43f577be4d8c51c3e4f086d58da30a"
+      sha256: "58cd12ea08131fb8d0c80097444f3814ee639638c8f78035abd8e1f998043b4e"
       url: "https://pub.dev"
     source: hosted
-    version: "9.4.18"
+    version: "9.4.20"
   flutter_sound_web:
     dependency: transitive
     description:
       name: flutter_sound_web
-      sha256: "1a070a7114548e1b93b668843e65142dbb8f132ed6a2a0ad2d6a64e093039d25"
+      sha256: "68c295694a9cf6e5a67abf0e738e58534741a2f28c7812c10b0e1d46efcd44f2"
       url: "https://pub.dev"
     source: hosted
-    version: "9.4.18"
+    version: "9.4.20"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -1965,6 +1965,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.1.0"
+  rive:
+    dependency: "direct main"
+    description:
+      name: rive
+      sha256: "255ab7892a77494458846cecee1376a017e64fd6b4130b51ec21424d12ffa6fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.4"
+  rive_common:
+    dependency: transitive
+    description:
+      name: rive_common
+      sha256: "3a0d95f529d52caef535d8ff32d75629ca37f7ab4707b13c83e9552a322557bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.8"
   rxdart:
     dependency: "direct main"
     description:
@@ -2150,10 +2166,10 @@ packages:
     dependency: "direct main"
     description:
       name: sms_autofill
-      sha256: "43139a175fb3c57ff103ac4b82f2aa70b6c45cf93539d7974c2556810f355363"
+      sha256: a851630775fa11ca985d85d8c4e51573c26d9647ab35de151748eb733d4893e8
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.4.0"
   source_gen:
     dependency: transitive
     description:
@@ -2686,10 +2702,10 @@ packages:
     dependency: "direct main"
     description:
       name: wechat_assets_picker
-      sha256: d9d3b7219206247898234ce2f330f84dd6ba9d45338f382db787c5dd8789e97a
+      sha256: "6a1193beb2ce170edcf4091d849d2bc811eb2a36a8007fa63e6bfbaf3ac99625"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.3"
+    version: "9.0.4"
   wechat_picker_library:
     dependency: transitive
     description:

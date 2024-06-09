@@ -9,6 +9,5 @@ class AssetsRes {
   static const String PLUGIN_NAME = 'flutter_advanced_topics';
   static const String PLUGIN_VERSION = '1.0.0+1';
   static const String CHEESE = 'assets/images/cheese.png';
-  static const String GIRL = 'assets/images/girl.riv';
   static const String TIGGER = 'assets/images/tigger.json';
 }
