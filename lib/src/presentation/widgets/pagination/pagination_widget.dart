@@ -1,7 +1,7 @@
-import 'package:city_eye/src/config/theme/color_schemes.dart';
-import 'package:city_eye/src/core/resources/image_paths.dart';
-import 'package:city_eye/src/domain/entities/landing/project.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
+import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/pagination/project_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PaginationWidget extends StatefulWidget {
@@ -28,8 +28,13 @@ class _PaginationWidgetState extends State<PaginationWidget> {
   List<Project> _displayedList = [];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _totalPages = (widget.projectsList.length / widget.itemsPerPage).ceil();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     _startPage =
         _currentPageNumber - (_currentPageNumber % widget.itemsPerPage);
     _endPage = _startPage + widget.itemsPerPage;
@@ -44,14 +49,13 @@ class _PaginationWidgetState extends State<PaginationWidget> {
             if (_currentPageNumber > 0) {
               _currentPageNumber--;
               int startPage = _currentPageNumber * widget.itemsPerPage;
-              int endPage = startPage+ widget.itemsPerPage;
+              int endPage = startPage + widget.itemsPerPage;
               if (endPage > widget.projectsList.length) {
                 endPage = widget.projectsList.length;
               }
               setState(() {
-                _displayedList = widget.projectsList
-                    .getRange(startPage, endPage)
-                    .toList();
+                _displayedList =
+                    widget.projectsList.getRange(startPage, endPage).toList();
                 // TODO: implement update displayed list
                 widget.onPageChange(_displayedList);
               });
@@ -74,7 +78,7 @@ class _PaginationWidgetState extends State<PaginationWidget> {
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                ImagePaths.icWebArrowRight,
+                ImagePaths.imagesIcArrowLeft,
                 width: 16,
                 height: 16,
                 fit: BoxFit.fill,
@@ -90,27 +94,29 @@ class _PaginationWidgetState extends State<PaginationWidget> {
           ),
         ),
         Visibility(
-          visible: _totalPages > 3 && _currentPageNumber != 0 &&
-              _currentPageNumber != 1 && _currentPageNumber != 2,
+          visible: _totalPages > 3 &&
+              _currentPageNumber != 0 &&
+              _currentPageNumber != 1 &&
+              _currentPageNumber != 2,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: Text(
               "...",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: ColorSchemes.gray,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: ColorSchemes.gray,
+                  ),
             ),
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(_endPage - _startPage, (index) {
+            print("index $index");
+            print("startPage $_startPage");
+            print("currentPage $_currentPageNumber");
+            print("endPage $_endPage");
             int pageIndex = _startPage + index;
             return Padding(
               padding: const EdgeInsets.all(4),
@@ -118,7 +124,7 @@ class _PaginationWidgetState extends State<PaginationWidget> {
                 onTap: () {
                   _currentPageNumber = pageIndex;
                   int startPage = _currentPageNumber * widget.itemsPerPage;
-                  int endPage = startPage+ widget.itemsPerPage;
+                  int endPage = startPage + widget.itemsPerPage;
                   if (endPage > widget.projectsList.length) {
                     endPage = widget.projectsList.length;
                   }
@@ -132,17 +138,13 @@ class _PaginationWidgetState extends State<PaginationWidget> {
                 },
                 child: Text(
                   '${pageIndex + 1}',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: _currentPageNumber == pageIndex
-                        ? ColorSchemes.primary
-                        : ColorSchemes.gray,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: _currentPageNumber == pageIndex
+                            ? ColorSchemes.primary
+                            : ColorSchemes.gray,
+                      ),
                 ),
               ),
             );
@@ -157,15 +159,11 @@ class _PaginationWidgetState extends State<PaginationWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: Text(
               "...",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: ColorSchemes.gray,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: ColorSchemes.gray,
+                  ),
             ),
           ),
         ),
@@ -179,9 +177,8 @@ class _PaginationWidgetState extends State<PaginationWidget> {
                 endPage = widget.projectsList.length;
               }
               setState(() {
-                _displayedList = widget.projectsList
-                    .getRange(startPage, endPage)
-                    .toList();
+                _displayedList =
+                    widget.projectsList.getRange(startPage, endPage).toList();
                 // TODO: implement update displayed list
                 widget.onPageChange(_displayedList);
               });
@@ -204,7 +201,7 @@ class _PaginationWidgetState extends State<PaginationWidget> {
                 shape: BoxShape.circle,
               ),
               child: SvgPicture.asset(
-                ImagePaths.icWebArrowLeft,
+                ImagePaths.imagesIcArrowRight,
                 width: 16,
                 height: 16,
                 fit: BoxFit.cover,

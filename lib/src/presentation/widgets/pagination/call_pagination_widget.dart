@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/pagination/pagination_widget.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/pagination/project_model.dart';
+
 class CallPaginationWidget extends StatefulWidget {
   const CallPaginationWidget({super.key});
 
@@ -11,15 +15,16 @@ class _CallPaginationWidgetState extends State<CallPaginationWidget> {
   List<Project> _displayedList = [];
 
   @override
-  void initState() {
-    super.initState();
-    _projectsList = widget.projectsList;
-    if(_projectsList.length <= 3){
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    await getProjectsList();
+    if (_projectsList.length <= 3) {
       _displayedList = _projectsList;
     } else {
       _displayedList = _projectsList.sublist(0, _itemsPerPage);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,15 +35,12 @@ class _CallPaginationWidgetState extends State<CallPaginationWidget> {
         children: [
           Column(
             mainAxisSize: MainAxisSize.min,
-            children: _displayedList
-                .asMap()
-                .entries
-                .map((entry) {
+            children: _displayedList.asMap().entries.map((entry) {
               int index = entry.key;
               Project project = entry.value;
               return InkWell(
                 onTap: () {
-                  widget.onProjectTab(project);
+                  print("onTap ${project.name}");
                 },
                 child: Column(
                   children: [
@@ -47,18 +49,16 @@ class _CallPaginationWidgetState extends State<CallPaginationWidget> {
                       children: [
                         if (index % 2 == 1) ...[
                           SizedBox(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.1),
+                              width: MediaQuery.of(context).size.width * 0.1),
                         ],
-                        Text(project.name),
+                        Text(
+                          project.name,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                         if (index % 2 == 0) ...[
                           SizedBox(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.1),
+                              width: MediaQuery.of(context).size.width * 0.1),
                         ],
                       ],
                     ),
@@ -81,15 +81,19 @@ class _CallPaginationWidgetState extends State<CallPaginationWidget> {
           ]
         ],
       ),
-    )
+    );
   }
- void getProjectsList() {
+
+  Future<void> getProjectsList() async {
     for (int i = 0; i < 100; i++) {
       _projectsList.add(Project(
-          id: i,
-          name: 'Project $i',
-          description: 'Description $i',
-          image: 'https://picsum.photos/id/$i/200/300'));
+        id: i,
+        name: 'Project $i',
+        description: 'Description $i',
+        projectImages: ['https://picsum.photos/id/$i/200/300'],
+        price: i * 100,
+        location: "Location $i",
+      ));
     }
     setState(() {});
   }
