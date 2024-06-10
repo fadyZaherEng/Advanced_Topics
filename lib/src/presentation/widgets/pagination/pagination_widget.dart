@@ -152,8 +152,8 @@ class _PaginationWidgetState extends State<PaginationWidget> {
         ),
         Visibility(
           visible: _currentPageNumber != _totalPages - 1 &&
-              _currentPageNumber != _totalPages - 2 &&
-              _currentPageNumber != _totalPages - 3 &&
+              // _currentPageNumber != _totalPages - 2 &&
+              // _currentPageNumber != _totalPages - 3 &&
               _totalPages > 3,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
