@@ -35,30 +35,33 @@ class _PaginationWidgetState extends State<PaginationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _startPage =
-        _currentPageNumber - (_currentPageNumber % widget.itemsPerPage);
-    _endPage = _startPage + widget.itemsPerPage;
-    if (_endPage > _totalPages) {
-      _endPage = _totalPages;
+    if (_totalPages <= widget.itemsPerPage) {
+      _startPage = 0;
+      _endPage = _totalPages - 1;
+    } else {
+      //handle first edge cases
+      if (_currentPageNumber <= 1) {
+        _startPage = 0;
+        _endPage = widget.itemsPerPage - 1;
+      //handle last edge cases
+      } else if (_currentPageNumber >= _totalPages - 2) {
+        _startPage = _totalPages - 3;
+        _endPage = _totalPages - 1;
+        //handle middle page edge cases
+      } else {
+        _startPage = _currentPageNumber - 1;
+        _endPage = _currentPageNumber + 1;
+      }
     }
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         InkWell(
           onTap: () {
-            if (_currentPageNumber > 0) {
+            if (_currentPageNumber > 1) {
               _currentPageNumber--;
-              int startPage = _currentPageNumber * widget.itemsPerPage;
-              int endPage = startPage + widget.itemsPerPage;
-              if (endPage > widget.projectsList.length) {
-                endPage = widget.projectsList.length;
-              }
-              setState(() {
-                _displayedList =
-                    widget.projectsList.getRange(startPage, endPage).toList();
-                // TODO: implement update displayed list
-                widget.onPageChange(_displayedList);
-              });
+              _updateDisplayedList();
             }
           },
           child: Padding(
@@ -94,10 +97,9 @@ class _PaginationWidgetState extends State<PaginationWidget> {
           ),
         ),
         Visibility(
-          visible: _totalPages > 3 &&
+          visible: _totalPages > widget.itemsPerPage &&
               _currentPageNumber != 0 &&
-              _currentPageNumber != 1 &&
-              _currentPageNumber != 2,
+              _currentPageNumber != 1,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: Text(
@@ -112,29 +114,15 @@ class _PaginationWidgetState extends State<PaginationWidget> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_endPage - _startPage, (index) {
-            print("index $index");
-            print("startPage $_startPage");
-            print("currentPage $_currentPageNumber");
-            print("endPage $_endPage");
+          //zero indexed so increment by 1
+          children: List.generate(_endPage - _startPage + 1, (index) {
             int pageIndex = _startPage + index;
             return Padding(
               padding: const EdgeInsets.all(4),
               child: InkWell(
                 onTap: () {
                   _currentPageNumber = pageIndex;
-                  int startPage = _currentPageNumber * widget.itemsPerPage;
-                  int endPage = startPage + widget.itemsPerPage;
-                  if (endPage > widget.projectsList.length) {
-                    endPage = widget.projectsList.length;
-                  }
-                  setState(() {
-                    _displayedList = widget.projectsList
-                        .getRange(startPage, endPage)
-                        .toList();
-                    // TODO: implement update displayed list
-                    widget.onPageChange(_displayedList);
-                  });
+                  _updateDisplayedList();
                 },
                 child: Text(
                   '${pageIndex + 1}',
@@ -152,18 +140,15 @@ class _PaginationWidgetState extends State<PaginationWidget> {
         ),
         Visibility(
           visible: _currentPageNumber != _totalPages - 1 &&
-              // _currentPageNumber != _totalPages - 2 &&
-              // _currentPageNumber != _totalPages - 3 &&
-              _totalPages > 3,
+              _totalPages > widget.itemsPerPage,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: Text(
               "...",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: ColorSchemes.gray,
-                  ),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: ColorSchemes.gray),
             ),
           ),
         ),
@@ -171,17 +156,7 @@ class _PaginationWidgetState extends State<PaginationWidget> {
           onTap: () {
             if (_currentPageNumber < _totalPages - 1) {
               _currentPageNumber++;
-              int startPage = _currentPageNumber * widget.itemsPerPage;
-              int endPage = startPage + widget.itemsPerPage;
-              if (endPage > widget.projectsList.length) {
-                endPage = widget.projectsList.length;
-              }
-              setState(() {
-                _displayedList =
-                    widget.projectsList.getRange(startPage, endPage).toList();
-                // TODO: implement update displayed list
-                widget.onPageChange(_displayedList);
-              });
+              _updateDisplayedList();
             }
           },
           child: Padding(
@@ -218,5 +193,22 @@ class _PaginationWidgetState extends State<PaginationWidget> {
         ),
       ],
     );
+  }
+  void _updateDisplayedList() {
+    if (widget.projectsList.length <= widget.itemsPerPage) {
+      _displayedList = widget.projectsList;
+    } else {
+      int startPage = _currentPageNumber * widget.itemsPerPage;
+      int endPage = startPage + widget.itemsPerPage;
+      if (endPage > widget.projectsList.length) {
+        endPage = widget.projectsList.length;
+        startPage = endPage - widget.itemsPerPage;
+      }
+      setState(() {
+        _displayedList =
+            widget.projectsList.sublist(startPage, endPage);
+        widget.onPageChange(_displayedList);
+      });
+    }
   }
 }
