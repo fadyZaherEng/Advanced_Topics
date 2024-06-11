@@ -115,7 +115,7 @@ class _PaginationWidgetState extends State<PaginationWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           //zero indexed so increment by 1
-          children: List.generate(_endPage - _startPage + 1, (index) {
+          children: List.generate(widget.itemsPerPage/*or _endPage-_startPage+1*/, (index) {
             int pageIndex = _startPage + index;
             return Padding(
               padding: const EdgeInsets.all(4),
