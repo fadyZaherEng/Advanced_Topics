@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:pinput/pinput.dart';
-import 'package:rich_chat_copilot/lib/src/config/theme/color_schemes.dart';
 
 class OtpWidget extends StatelessWidget {
   final TextEditingController textEditingController;
