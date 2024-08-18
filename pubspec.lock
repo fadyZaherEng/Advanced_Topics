@@ -1317,6 +1317,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.12.0+300"
+  huawei_push:
+    dependency: "direct main"
+    description:
+      name: huawei_push
+      sha256: "30b4dcab270d81e2c58624e044707886c487d6cb80287db9be629d894e439e40"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.12.0+301"
   im_stepper:
     dependency: "direct main"
     description:
