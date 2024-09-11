@@ -4,6 +4,7 @@ import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media
 import 'package:image_picker/image_picker.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
+
 Future<List<File>> convertAssetEntitiesToFiles(
     List<AssetEntity>? assetEntities) async {
   List<File> files = [];
@@ -15,9 +16,12 @@ Future<List<File>> convertAssetEntitiesToFiles(
   for (AssetEntity assetEntity in assetEntities) {
     File? file = await assetEntity.file;
     if (file != null) {
-      files.add(file);
       XFile? imageFile = await compressFile(File(file.path));
-      files.add(File(imageFile!.path));
+      if (imageFile != null) {
+        files.add(File(imageFile.path));
+      } else {
+        files.add(file);
+      }
     }
   }
 

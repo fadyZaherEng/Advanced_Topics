@@ -10,6 +10,8 @@ import 'package:flutter_advanced_topics/src/di/injector.dart';
 import 'package:flutter_advanced_topics/src/presentation/boc/login/log_in_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/advanced_way_to_fix_internet/network_connectivity.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/custom_drop_down_search/bloc/search_bottom_sheet_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/add_multi_image_with_max_count/bloc/multi_image_bloc.dart';
+import 'package:flutter_advanced_topics/src/presentation/widgets/media/add_multi_image_with_max_count/multi_image_widget.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/media/new_media/add_payment/add_payment_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/otp_all_way/otp_with_timer_auto_fill_and_sms/otp_bloc/otp_bloc.dart';
 import 'package:flutter_advanced_topics/src/presentation/widgets/pagination/call_pagination_widget.dart';
@@ -50,6 +52,7 @@ class _DocAppState extends State<DocApp> {
         BlocProvider(create: (context) => injector<OtpBloc>()),
         BlocProvider(create: (context) => injector<ScrollBloc>()),
         BlocProvider(create: (context) => injector<SearchBottomSheetBloc>()),
+        BlocProvider(create: (context) => injector<MultiImageBloc>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -68,7 +71,7 @@ class _DocAppState extends State<DocApp> {
           onGenerateRoute: RouteGenerator.getRoute,
           theme: AppTheme("en").light,
           locale: const Locale('en'),
-          home: CallPaginationWidget()
+          home:MultiImageScreen()
         ),
       ),
     );
