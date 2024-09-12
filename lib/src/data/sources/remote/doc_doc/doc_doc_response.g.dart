@@ -11,7 +11,7 @@ DocDocResponse<T> _$DocDocResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     DocDocResponse<T>(
-      statusCode: json['code'] as int?,
+      statusCode: (json['code'] as num?)?.toInt(),
       status: json['status'] as bool?,
       responseMessage: json['massage'] as String?,
       result: _$nullableGenericFromJson(json['data'], fromJsonT),

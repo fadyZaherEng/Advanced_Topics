@@ -574,4 +574,11 @@ class ImagePaths {
   static const String icSortAscending = 'assets/images/ic_sort_ascending.svg';
   static const String icSortDescending = 'assets/images/ic_sort_descending.svg';
   static const String icUpdate = "assets/images/ic_update.svg";
+  static const String cheese="assets/images/cheese.png";
+  static const String jerry="assets/images/jerry.png";
+  static const String tom="assets/images/tom.png";
+  static const String dog="assets/images/dog.png";
+  static const String bird="assets/images/bird.json";
+  static const String cars="assets/images/car.json";
+  static const String tigger="assets/images/tigger.json";
 }

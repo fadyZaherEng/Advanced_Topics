@@ -23,7 +23,7 @@ class _AuthApiService implements AuthApiService {
   @override
   Future<HttpResponse<DocDocResponse<RemoteSignIn>>> signIn(
       SignInRequest signInRequest) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
