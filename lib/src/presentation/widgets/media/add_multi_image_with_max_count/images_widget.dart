@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/theme/color_schemes.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -177,9 +175,7 @@ class ImageWidgets extends StatelessWidget {
                           );
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      width: 16,
-                    );
+                    return const SizedBox(width: 16);
                   },
                   itemCount: images.length + 1),
             ),

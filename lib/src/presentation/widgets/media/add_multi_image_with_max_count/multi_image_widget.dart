@@ -29,7 +29,7 @@ class MultiImageScreen extends StatefulWidget {
 class _MultiImageScreenState extends State<MultiImageScreen> {
   final int _maxMultipleImages = 3;
   final int _minMultipleImages = 1;
-  int selectedMultiImagesCount = 0;
+  int selectedMultiImagesCameraCount = 0;
   List<AssetEntity> imagesAssets = [];
   List<File> cameraImages = [];
 
@@ -48,11 +48,14 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
       } else if (state is DeleteMultipleImageState) {
         allImages = state.imagesList;
         if (state.isMultiImage && state.index != -1) {
+          print(state.index);
+          print(imagesAssets.length);
+          print(cameraImages.length);
           if (state.index < imagesAssets.length) {
             imagesAssets.removeAt(state.index);
           } else {
             cameraImages.removeAt(state.index - imagesAssets.length);
-            selectedMultiImagesCount--;
+            selectedMultiImagesCameraCount--;
           }
         }
         _isImagesRequired = true;
@@ -191,7 +194,7 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         context,
         pickerConfig: AssetPickerConfig(
           selectedAssets: imagesAssets,
-          maxAssets: _maxMultipleImages - selectedMultiImagesCount,
+          maxAssets: _maxMultipleImages - selectedMultiImagesCameraCount,
           requestType: RequestType.image,
           specialPickerType: SpecialPickerType.noPreview,
         ),
@@ -211,18 +214,18 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
           imagesList.add(cameraImages[i]);
         }
       }
+      allImages.addAll(imagesList);
 
-      if (allImages.isEmpty) {
-        allImages.addAll(imagesList);
-      } else {
-        allImages = [];
-        allImages = [...allImages, ...imagesList];
-        // document = document.copyWith(
-        //   imagesList: [],
-        // );
-        // document =
-        //     document.copyWith(imagesList: document.imagesList + imagesList);
-      }
+      // if (allImages.isEmpty) {
+      // } else {
+      //   allImages = [];
+      //   allImages = [...allImages, ...imagesList];
+      //   // document = document.copyWith(
+      //   //   imagesList: [],
+      //   // );
+      //   // document =
+      //   //     document.copyWith(imagesList: document.imagesList + imagesList);
+      // }
       _bloc.add(SelectMultipleImageEvent(images: imagesList));
     } else {
       final pickedFile = await picker.pickImage(
@@ -231,7 +234,7 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
       if (pickedFile != null) {
         XFile? imageFile = await compressFile(File(pickedFile.path));
         cameraImages.add(File(imageFile!.path));
-        selectedMultiImagesCount++;
+        selectedMultiImagesCameraCount++;
         _bloc.add(AddMultipleImageEvent(
           imageList: allImages,
           image: imageFile,
