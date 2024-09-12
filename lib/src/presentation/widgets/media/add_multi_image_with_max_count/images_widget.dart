@@ -198,7 +198,7 @@ class ImageWidgets extends StatelessWidget {
                   (isRequired && (images.isEmpty || checkMinImagesRequired())),
               child: Text(
                 errorMessages == ""
-                    ? "${"youCanUploadAMinimumOf"} $imagesMinNumber ${"imageAndAMaximumOf"} $imagesMaxNumber ${"image"}"
+                    ? "${"you Can Upload AMinimum Of"} $imagesMinNumber ${"image And AMaximum Of"} $imagesMaxNumber ${"image"}"
                     : errorMessages,
                 style: Theme.of(context)
                     .textTheme

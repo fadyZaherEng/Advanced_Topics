@@ -5,29 +5,27 @@ sealed class MultiImageEvent {}
 
 class AddMultipleImageEvent extends MultiImageEvent {
   final XFile image;
-  final PageField document;
+  final List<File>imageList;
 
   AddMultipleImageEvent({
-    required this.document,
+    required this.imageList,
     required this.image,
   });
 }
 
 class DeleteMultipleImageEvent extends MultiImageEvent {
-  final PageField document;
+  final List<File>imageList;
   int index;
 
   DeleteMultipleImageEvent({
-    required this.document,
+    required this.imageList,
     required this.index,
   });
 }
 class SelectMultipleImageEvent extends MultiImageEvent {
   final List<File> images;
-  final PageField document;
 
   SelectMultipleImageEvent({
     required this.images,
-    required this.document,
   });
 }

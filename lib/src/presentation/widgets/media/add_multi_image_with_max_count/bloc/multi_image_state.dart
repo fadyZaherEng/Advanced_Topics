@@ -5,27 +5,27 @@ sealed class MultiImageState {}
 
 final class MultiImageInitial extends MultiImageState {}
 class SelectMultipleImageState extends MultiImageState {
-  final PageField document;
+  final List<File> imagesList;
 
   SelectMultipleImageState({
-    required this.document,
+    required this.imagesList,
   });
 }
 class AddMultipleImageState extends MultiImageState {
-  final PageField document;
+  final List<File> imagesList;
 
   AddMultipleImageState({
-    required this.document,
+    required this.imagesList,
   });
 }
 
 class DeleteMultipleImageState extends MultiImageState {
-  final PageField document;
+  final List<File> imagesList;
   final bool isMultiImage;
   final int index;
 
   DeleteMultipleImageState({
-    required this.document,
+    required this.imagesList,
     this.isMultiImage = false,
     this.index = -1,
   });

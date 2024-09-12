@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_topics/generated/l10n.dart';
 import 'package:flutter_advanced_topics/src/config/route/routes_manager.dart';
 import 'package:flutter_advanced_topics/src/core/resource/image_paths.dart';
 import 'package:flutter_advanced_topics/src/core/utils/new_utils/permission_service_handler.dart';
@@ -21,17 +18,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class MultiImageScreen extends StatefulWidget {
-  // final Function(PageField document, int min, int max) onAddMultipleImageTap;
-  // final Function(PageField document, int index) onDeleteMultipleImageTap;
-  // int maxMultipleImages;
-  // int minMultipleImages;
-
   const MultiImageScreen({
     Key? key,
-    // required this.onAddMultipleImageTap,
-    // required this.onDeleteMultipleImageTap,
-    // this.maxMultipleImages = 1,
-    // this.minMultipleImages = 1,
   }) : super(key: key);
 
   @override
@@ -39,26 +27,26 @@ class MultiImageScreen extends StatefulWidget {
 }
 
 class _MultiImageScreenState extends State<MultiImageScreen> {
-  int _maxMultipleImages = 3;
+  final int _maxMultipleImages = 3;
+  final int _minMultipleImages = 1;
   int selectedMultiImagesCount = 0;
   List<AssetEntity> imagesAssets = [];
   List<File> cameraImages = [];
-  PageField document = const PageField();
-  bool _isImagesRequired = false;
+
+  List<File> allImages = [];
 
   MultiImageBloc get _bloc => BlocProvider.of<MultiImageBloc>(context);
+  bool _isImagesRequired = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MultiImageBloc, MultiImageState>(
         listener: (context, state) {
       if (state is AddMultipleImageState) {
-        document = state.document;
+        allImages = state.imagesList;
         _isImagesRequired = true;
       } else if (state is DeleteMultipleImageState) {
-        document = state.document;
-        _isImagesRequired = true;
-
+        allImages = state.imagesList;
         if (state.isMultiImage && state.index != -1) {
           if (state.index < imagesAssets.length) {
             imagesAssets.removeAt(state.index);
@@ -67,39 +55,37 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
             selectedMultiImagesCount--;
           }
         }
+        _isImagesRequired = true;
       } else if (state is SelectMultipleImageState) {
-        document = state.document;
+        allImages = state.imagesList;
         _isImagesRequired = true;
       }
     }, builder: (context, state) {
       return Scaffold(
           body: Center(
         child: ImageWidgets(
-          globalKey: document.key,
-          images: document.imagesList,
-          imagesMaxNumber: _getMaxImagesCount(document),
-          imagesMinNumber: _getMinImagesCount(document),
+          images: allImages,
+          imagesMaxNumber: _maxMultipleImages,
+          imagesMinNumber: _minMultipleImages,
           isRequired: _isImagesRequired,
-          title: document.label,
-          errorMessages: _getErrorMessage(document),
+          title: "Document Label",
+          errorMessages: "",
           onClearImageTap: (int mIndex) {
             _dialogMessage(
                 icon: ImagePaths.warning,
-                message: "areYouSureYouWantToDeleteThisImage",
+                message: "are You Sure You Want To Delete This Image",
                 primaryAction: () {
                   Navigator.pop(context);
                   _bloc.add(DeleteMultipleImageEvent(
-                      document: document, index: mIndex));
+                      imageList: allImages, index: mIndex));
                 });
-            // widget.onDeleteMultipleImageTap(document, mIndex);
           },
           onAddImageTap: () {
-            _maxMultipleImages = _getMaxImagesCount(document);
-            _onOpenMediaBottomSheet(document, true);
+            _onOpenMediaBottomSheet(allImages, true);
           },
           onTapImage: (index) {
             List<GalleryAttachment> galleryImages = [];
-            for (var image in document.imagesList) {
+            for (var image in allImages) {
               galleryImages.add(GalleryAttachment(attachment: image.path));
             }
             Navigator.pushNamed(context, AppRoutes.galleryImagesScreen,
@@ -124,8 +110,8 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         context: context,
         text: message,
         icon: icon,
-        primaryText: "yes",
-        secondaryText: "no",
+        primaryText: "Yes",
+        secondaryText: "No",
         primaryAction: () async {
           primaryAction();
         },
@@ -134,7 +120,8 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         });
   }
 
-  void _onOpenMediaBottomSheet(PageField document, [bool isMultiple = false]) {
+  void _onOpenMediaBottomSheet(List<File> allImages,
+      [bool isMultiple = false]) {
     showBottomSheetUploadMedia(
       context: context,
       onTapCamera: () async {
@@ -142,23 +129,20 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         if (await PermissionServiceHandler().handleServicePermission(
           setting: PermissionServiceHandler.getCameraPermission(),
         )) {
-          _getImage(document, ImageSource.camera);
+          _getImage(allImages, ImageSource.camera);
         } else {
           _showActionDialog(
             icon: ImagePaths.warning,
             onPrimaryAction: () {
               Navigator.pop(context);
-              openAppSettings().then((value) async {
-                // if (await PermissionServiceHandler()
-                //     .handleServicePermission(setting: Permission.camera)) {}
-              });
+              openAppSettings().then((value) async {});
             },
             onSecondaryAction: () {
               Navigator.pop(context);
             },
-            primaryText: "ok",
-            secondaryText: "cancel",
-            text: "youShouldHaveCameraPermission",
+            primaryText: "Ok",
+            secondaryText: "Cancel",
+            text: "you Should Have Camera Permission",
           );
         }
       },
@@ -170,7 +154,7 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
           androidDeviceInfo:
               Platform.isAndroid ? await DeviceInfoPlugin().androidInfo : null,
         ))) {
-          _getImage(document, ImageSource.gallery, isMultiple);
+          _getImage(allImages, ImageSource.gallery, isMultiple);
         } else {
           _showActionDialog(
             icon: ImagePaths.warning,
@@ -195,12 +179,12 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
   }
 
   Future<void> _getImage(
-    PageField document,
+    List<File> allImages,
     ImageSource img, [
     bool isMultiple = false,
   ]) async {
     final ImagePicker picker = ImagePicker();
-    if (isMultiple) {
+    if (isMultiple && img == ImageSource.gallery) {
       List<AssetEntity>? images = [];
 
       images = await AssetPicker.pickAssets(
@@ -228,17 +212,18 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         }
       }
 
-      if (document.imagesList.isEmpty) {
-        document = document.copyWith(imagesList: imagesList);
+      if (allImages.isEmpty) {
+        allImages.addAll(imagesList);
       } else {
-        document = document.copyWith(
-          imagesList: [],
-        );
-        document =
-            document.copyWith(imagesList: document.imagesList + imagesList);
+        allImages = [];
+        allImages = [...allImages, ...imagesList];
+        // document = document.copyWith(
+        //   imagesList: [],
+        // );
+        // document =
+        //     document.copyWith(imagesList: document.imagesList + imagesList);
       }
-      _bloc.add(
-          SelectMultipleImageEvent(document: document, images: imagesList));
+      _bloc.add(SelectMultipleImageEvent(images: imagesList));
     } else {
       final pickedFile = await picker.pickImage(
         source: img,
@@ -247,9 +232,10 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
         XFile? imageFile = await compressFile(File(pickedFile.path));
         cameraImages.add(File(imageFile!.path));
         selectedMultiImagesCount++;
-        document.imagesList.add(File(imageFile.path));
-        setState(() {});
-        // _bloc.add(AddMultipleImageEvent(document: document, image: imageFile));
+        _bloc.add(AddMultipleImageEvent(
+          imageList: allImages,
+          image: imageFile,
+        ));
       }
     }
   }
@@ -276,320 +262,4 @@ class _MultiImageScreenState extends State<MultiImageScreen> {
       icon: icon,
     );
   }
-
-  int _getMinImagesCount(PageField document) {
-    for (var validation in document.validations) {
-      if (validation.validationRule.code == ">") {
-        return int.parse(validation.valueOne);
-      }
-    }
-    return 1;
-  }
-
-  int _getMaxImagesCount(PageField document) {
-    for (var validation in document.validations) {
-      if (validation.validationRule.code == "<") {
-        return int.parse(validation.valueOne);
-      }
-    }
-    return 1;
-  }
-
-  String _getErrorMessage(PageField document) {
-    for (var validation in document.validations) {
-      if (validation.validationRule.code == ">") {
-        return validation.validationMessage;
-      }
-    }
-    return "";
-  }
-}
-
-class PageField extends Equatable {
-  final int id;
-  final int typeId;
-  final int eventOptionId;
-  final int maxCount;
-  final int minCount;
-  final String code;
-  final String label;
-  final String description;
-  final bool isRequired;
-  final String value;
-  final String answerId;
-  final List<Choice> choices;
-  final List<File> imagesList;
-  final String errorMessage;
-  final bool fileValid;
-  final GlobalKey? key;
-  final int? index;
-  final bool notAnswered;
-  final String expireDate;
-  final bool isEditable;
-  final bool isDeletable;
-  final String canNotDeleteReason;
-  final String canNotEditReason;
-  final bool isFromServer;
-  final bool isHasRelatedQuestion;
-  final List<Validation> validations;
-  final bool isValid;
-  final String validationMessage;
-
-  const PageField({
-    this.id = 0,
-    this.typeId = 0,
-    this.eventOptionId = 0,
-    this.maxCount = 3,
-    this.minCount = 1,
-    this.code = "",
-    this.label = "",
-    this.description = "",
-    this.isRequired = false,
-    this.value = "",
-    this.answerId = "",
-    this.choices = const [],
-    this.validations = const [],
-    this.imagesList = const [],
-    this.errorMessage = "",
-    this.fileValid = false,
-    this.index = 0,
-    this.key,
-    this.notAnswered = false,
-    this.expireDate = "",
-    this.isEditable = false,
-    this.isDeletable = false,
-    this.canNotDeleteReason = "",
-    this.canNotEditReason = "",
-    this.isFromServer = false,
-    this.isHasRelatedQuestion = false,
-    this.isValid = true,
-    this.validationMessage = "",
-  });
-
-  PageField copyWith({
-    int? id,
-    int? typeId,
-    int? eventOptionId,
-    int? maxCount,
-    int? minCount,
-    String? code,
-    String? label,
-    String? description,
-    bool? isRequired,
-    String? value,
-    String? answerId,
-    List<Choice>? choices,
-    List<File>? imagesList,
-    String? errorMessage,
-    bool? fileValid,
-    int? index,
-    GlobalKey? key,
-    bool? notAnswered,
-    String? expireDate,
-    bool? isEditable,
-    bool? isDeletable,
-    String? canNotDeleteReason,
-    String? canNotEditReason,
-    bool? isFromServer,
-    bool? isHasRelatedQuestion,
-    List<Validation>? validations,
-    bool? isValid,
-    String? validationMessage,
-  }) {
-    return PageField(
-      id: id ?? this.id,
-      typeId: typeId ?? this.typeId,
-      maxCount: maxCount ?? this.maxCount,
-      minCount: minCount ?? this.minCount,
-      code: code ?? this.code,
-      label: label ?? this.label,
-      description: description ?? this.description,
-      isRequired: isRequired ?? this.isRequired,
-      value: value ?? this.value,
-      answerId: answerId ?? this.answerId,
-      choices: choices ?? this.choices,
-      imagesList: imagesList ?? this.imagesList,
-      errorMessage: errorMessage ?? this.errorMessage,
-      fileValid: fileValid ?? this.fileValid,
-      index: index ?? this.index,
-      key: key ?? this.key,
-      notAnswered: notAnswered ?? this.notAnswered,
-      expireDate: expireDate ?? this.expireDate,
-      isEditable: notAnswered ?? this.isEditable,
-      isDeletable: isDeletable ?? this.isDeletable,
-      canNotDeleteReason: canNotDeleteReason ?? this.canNotDeleteReason,
-      canNotEditReason: canNotEditReason ?? this.canNotEditReason,
-      isFromServer: isFromServer ?? this.isFromServer,
-      isHasRelatedQuestion: isHasRelatedQuestion ?? this.isHasRelatedQuestion,
-      validations: validations ?? this.validations,
-      isValid: isValid ?? this.isValid,
-      validationMessage: validationMessage ?? this.validationMessage,
-      eventOptionId: eventOptionId ?? this.eventOptionId,
-      //write the rest of the fields
-    );
-  }
-
-  @override
-  List<Object?> get props => [
-        id,
-        typeId,
-        eventOptionId,
-        maxCount,
-        minCount,
-        code,
-        label,
-        description,
-        isRequired,
-        value,
-        answerId,
-        choices,
-        imagesList,
-        errorMessage,
-        fileValid,
-        index,
-        key,
-        notAnswered,
-        expireDate,
-        isEditable,
-        isDeletable,
-        canNotDeleteReason,
-        isFromServer,
-        canNotEditReason,
-        validations,
-        eventOptionId,
-        isHasRelatedQuestion,
-        isValid,
-        validationMessage
-      ];
-
-  PageField deepClone() {
-    return PageField(
-      id: id,
-      typeId: typeId,
-      eventOptionId: eventOptionId,
-      maxCount: maxCount,
-      minCount: minCount,
-      code: code,
-      label: label,
-      description: description,
-      isRequired: isRequired,
-      value: value,
-      answerId: answerId,
-      choices: choices.map((choice) => choice.deepClone()).toList(),
-      imagesList: imagesList.map((image) => File(image.path)).toList(),
-      errorMessage: errorMessage,
-      fileValid: fileValid,
-      key: key,
-      // Note: This will still reference the same GlobalKey
-      index: index,
-      notAnswered: notAnswered,
-      expireDate: expireDate,
-      isEditable: isEditable,
-      isDeletable: isDeletable,
-      canNotDeleteReason: canNotDeleteReason,
-      canNotEditReason: canNotEditReason,
-      isFromServer: isFromServer,
-      validations: validations,
-      isValid: isValid,
-      validationMessage: validationMessage,
-    );
-  }
-
-  @override
-  String toString() {
-    return 'PageField{id: $id, typeId: $typeId, eventOptionId: $eventOptionId, code: $code, label: $label, description: $description, isRequired: $isRequired, value: $value, answerId: $answerId, choices: $choices, imagesList: $imagesList, errorMessage: $errorMessage, fileValid: $fileValid, key: $key, index: $index, notAnswered: $notAnswered, expireDate: $expireDate, isEditable: $isEditable, isDeletable: $isDeletable, canNotDeleteReason: $canNotDeleteReason, canNotEditReason: $canNotEditReason, isFromServer: $isFromServer, validations: $validations isValid: $isValid}';
-  }
-}
-
-class Choice extends Equatable {
-  final int id;
-  final String value;
-  bool isSelected;
-  bool isNeedMoreInformation;
-  final double percentage;
-  bool showPercentage;
-  final int total;
-
-  Choice({
-    this.id = 0,
-    this.value = "",
-    this.isSelected = false,
-    this.isNeedMoreInformation = false,
-    this.percentage = 0,
-    this.showPercentage = false,
-    this.total = 0,
-  });
-
-  Choice copyWith({
-    int? id,
-    String? value,
-    bool? isSelected,
-  }) {
-    return Choice(
-      id: id ?? this.id,
-      value: value ?? this.value,
-      isSelected: isSelected ?? this.isSelected,
-    );
-  }
-
-  @override
-  List<Object?> get props => [
-        id,
-        value,
-        isSelected,
-      ];
-
-  Choice deepClone() {
-    return Choice(
-      id: this.id,
-      value: this.value,
-      isSelected: this.isSelected,
-      isNeedMoreInformation: this.isNeedMoreInformation,
-      percentage: this.percentage,
-      showPercentage: this.showPercentage,
-      total: this.total,
-    );
-  }
-}
-
-class Validation extends Equatable {
-  final int id;
-  final ValidationRule validationRule;
-  final String valueOne;
-  final String valueTwo;
-  final String validationMessage;
-
-  const Validation({
-    this.id = 0,
-    this.validationRule = const ValidationRule(),
-    this.valueOne = "",
-    this.valueTwo = "",
-    this.validationMessage = "",
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        validationRule,
-        valueOne,
-        valueTwo,
-        valueTwo,
-        validationMessage,
-      ];
-}
-
-class ValidationRule extends Equatable {
-  final int id;
-  final String code;
-
-  const ValidationRule({
-    this.id = 0,
-    this.code = ">",
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        code,
-      ];
 }
