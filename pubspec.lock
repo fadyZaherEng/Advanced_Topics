@@ -870,6 +870,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  flutter_face_api:
+    dependency: "direct main"
+    description:
+      name: flutter_face_api
+      sha256: "6b446e246e166bde680687f7a31744f0ab4a9a8fe3868f8ced1307768f7039f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.591"
   flutter_file_downloader:
     dependency: "direct main"
     description:
