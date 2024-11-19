@@ -6,6 +6,125 @@ import 'dart:async';
 import 'package:flutter_face_api/flutter_face_api.dart';
 import 'package:image_picker/image_picker.dart';
 
+
+
+
+
+// //face recognition
+// void _validateFaceDetectionOfAdmin({
+//   bool isCheckOut = true,
+// }) async {
+//   _user.image == ""
+//       ? mfImageReal = MatchFacesImage(
+//       (await rootBundle.load(ImagePaths.myProfile)).buffer.asUint8List(),
+//       ImageType.PRINTED)
+//       : mfImageReal = MatchFacesImage(
+//     //convert user profile url to unit8List
+//     // image.toByteData().buffer.asUInt8List()
+//     (await NetworkAssetBundle(Uri.parse(_user.image)).load(_user.image))
+//         .buffer
+//         .asUint8List(),
+//     ImageType.LIVE,
+//   );
+//
+//   if (mfImageReal == null) {
+//     showMessageDialogWidget(
+//       context: context,
+//       text: S.of(context).faceNotFound,
+//       icon: ImagePaths.icCancelNew,
+//       buttonText: S.of(context).ok,
+//       onTap: () {
+//         Navigator.of(context).pop();
+//       },
+//     );
+//     return;
+//   }
+//   _bloc.add(MatchFacesImageEvent(
+//     mfImageReal: mfImageReal,
+//     isCheckout: isCheckOut,
+//   ));
+// }
+//
+// void _matchFace(MatchFacesImage currentImage, bool isCheckOut) async {
+//   bool cameraPermission = await PermissionServiceHandler()
+//       .handleServicePermission(setting: Permission.camera);
+//   if (cameraPermission) {
+//     String similarityStatus = "failed";
+//     await faceSdk.startFaceCapture().then((value) async {
+//       showLoading();
+//       var image = value.image;
+//       if (image != null) {
+//         var takenImage = MatchFacesImage(image.image, value.image!.imageType);
+//         var request = MatchFacesRequest([takenImage, currentImage]);
+//         var response = await faceSdk.matchFaces(request);
+//         var split = await faceSdk.splitComparedFaces(response.results, 0.7);
+//         var match = split.matchedFaces;
+//         if (match.isNotEmpty) {
+//           similarityStatus =
+//           "${(match[0].similarity * 100).toStringAsFixed(2)}%";
+//         }
+//       }
+//     }).then((value) {
+//       if (similarityStatus == "failed") {
+//         hideLoading();
+//         showMessageDialogWidget(
+//             context: context,
+//             text: S.of(context).faceMatchFailed,
+//             icon: ImagePaths.icCancelNew,
+//             buttonText: S.of(context).ok,
+//             onTap: () {
+//               Navigator.pop(context);
+//             });
+//       } else {
+//         print("similarity: $similarityStatus");
+//         if (isCheckOut) {
+//           _bloc.add(CheckOutEvent());
+//         } else {
+//           _bloc.add(CheckInEvent());
+//         }
+//       }
+//     });
+//   } else {
+//     await showActionDialogWidget(
+//         context: context,
+//         text: S.current.youShouldHaveCameraPermission,
+//         icon: ImagePaths.profile,
+//         primaryText: S.current.yes,
+//         secondaryText: S.current.no,
+//         primaryAction: () async {
+//           Navigator.pop(context);
+//           openAppSettings();
+//         },
+//         secondaryAction: () {
+//           Navigator.pop(context);
+//         });
+//   }
+// }
+//
+// // If 'assets/regula.license' exists, init using license(enables offline match)
+// // otherwise init without license.
+//
+// //for download sdk from this website
+// //https://support.regulaforensics.com/hc/en-us/articles/115004219343-Regula-Downloads-Manager
+// void initialize() async {
+//   var license = await loadAssetIfExists("assets/regula.license");
+//   InitConfig? config;
+//   if (license != null) config = InitConfig(license);
+//   var (success, error) = await faceSdk.initialize(config: config);
+// }
+//
+// Future<ByteData?> loadAssetIfExists(String path) async {
+//   try {
+//     return await rootBundle.load(path);
+//   } catch (_) {
+//     return null;
+//   }
+// }
+
+
+
+
+
 class FaceScreen extends BaseStatefulWidget {
   const FaceScreen({super.key});
 

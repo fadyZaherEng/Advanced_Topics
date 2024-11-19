@@ -262,8 +262,11 @@ class _FaceScreenState extends BaseState<FaceScreen> {
     );
   }
 }
+//build.gradle
 
-
+// aaptOptions {
+// noCompress "Regula/faceSdkResource.dat"
+// }
 
 
 //face recognition
