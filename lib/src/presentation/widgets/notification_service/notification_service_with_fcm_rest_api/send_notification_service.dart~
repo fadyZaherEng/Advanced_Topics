@@ -47,7 +47,7 @@ class SendNotificationService {
   static Future<String?> getServerAccessToken() async {
     // Path to your Service Account JSON key file
     const serviceAccountPath =
-        'lib/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/service_keysssss.json';
+        'lib/src/presentation/widgets/notification_service/notification_service_with_fcm_rest_api/service_key.json';
 
     // Load the service account key JSON file
     final serviceAccountJson =
