@@ -1,0 +1,13 @@
+// //send notification
+// await SendNotificationService.sendMassageByToken(
+//   requestId: event.requestId.toString(),
+//   message: "${event.sender.userInformation.fullName} is send message : ${event.message}",
+// );
+//send notification
+await SendNotificationService.sendMassageByTopic(
+topic: "topic${event.requestId}",
+unitId: event.unitId,
+requestId: event.requestId.toString(),
+message:
+"${event.sender.userInformation.fullName} is send message : ${event.message}",
+);
