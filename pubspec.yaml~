@@ -230,6 +230,7 @@ dependencies:
   huawei_push: ^6.12.0+300
   huawei_hmsavailability: ^6.11.0+301
   flutter_face_api: ^6.3.591
+  googleapis_auth: ^1.4.0
 
 
 

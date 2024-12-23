@@ -108,7 +108,8 @@ dependencies:
   audio_session: ^0.1.16
   # for using data type of assets
   multi_image_picker_plus: ^0.0.3
-  # for get mutli image from gallery or camera or mylti video or voic or file as asset using asset Picker
+  # for get mutli image from gallery or camera or multi video or voice or file as asset using asset Picker
+  # this package multi_image_picker_plus better then wechat_assets_picker because wechat_assets save image in gallary when select the code in city eye
   wechat_assets_picker: ^9.0.0-dev.2
   # for create loading animation
   loading_animation_widget: ^1.2.0+4
